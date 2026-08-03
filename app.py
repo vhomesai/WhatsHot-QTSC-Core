@@ -182,14 +182,14 @@ def verify_api_key(
 
 
 def _build_response(
-    request: AuditRequest,
+    audit: AuditRequest,
     client_name: str,
     tier: str,
     entropy_score: float,
     audit_mode: str,
 ) -> AuditResponse:
     canonical = json.dumps(
-        request.model_dump(), sort_keys=True, separators=(",", ":")
+        audit.model_dump(), sort_keys=True, separators=(",", ":")
     ).encode("utf-8")
     return AuditResponse(
         status="success",
@@ -199,7 +199,7 @@ def _build_response(
         request_hash=hashlib.sha256(canonical).hexdigest(),
         client_name=client_name,
         tier=tier,
-        timestamp_utc=request.timestamp_utc or datetime.now(timezone.utc).isoformat(),
+        timestamp_utc=audit.timestamp_utc or datetime.now(timezone.utc).isoformat(),
         details={
             "audit_mode": audit_mode,
             "verification_source": "imqbd.org",
@@ -222,14 +222,18 @@ def health_check() -> Dict[str, str]:
     }
 
 
-@app.post("/v1/public/ternary-check", response_model=AuditResponse, summary="Public preview (5 req/min)")
+@app.post(
+    "/v1/public/ternary-check",
+    response_model=AuditResponse,
+    summary="Public preview — 5 req/min",
+)
 @limiter.limit("5/minute")
-def public_ternary_check(request_obj: Request, request: AuditRequest) -> AuditResponse:
+def public_ternary_check(request: Request, body: AuditRequest) -> AuditResponse:
     """Key-free CORS endpoint for the imqbd.org browser widget.
     Rate limited to 5 requests/minute per IP.
     """
     return _build_response(
-        request,
+        body,
         client_name="Public-Widget-User",
         tier="free",
         entropy_score=0.9987,
@@ -237,18 +241,22 @@ def public_ternary_check(request_obj: Request, request: AuditRequest) -> AuditRe
     )
 
 
-@app.post("/v1/audit/ternary-check", response_model=AuditResponse, summary="Enterprise (100 req/min)")
+@app.post(
+    "/v1/audit/ternary-check",
+    response_model=AuditResponse,
+    summary="Enterprise — 100 req/min",
+)
 @limiter.limit("100/minute")
 def enterprise_ternary_check(
-    request_obj: Request,
-    request: AuditRequest,
+    request: Request,
+    body: AuditRequest,
     client: ClientAPIKey = Depends(verify_api_key),
 ) -> AuditResponse:
     """Authenticated enterprise endpoint. Requires X-API-Key header.
     Rate limited to 100 requests/minute per IP.
     """
     return _build_response(
-        request,
+        body,
         client_name=client.client_name,
         tier=client.tier,
         entropy_score=0.9999,
