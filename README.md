@@ -67,7 +67,7 @@ The repository includes an enterprise SLA draft: `ENTERPRISE_SLA.md`.
 
 The repository includes a GitHub Actions workflow (.github/workflows/python-tests.yml) that runs the unit test suite on push and pull request events using Windows runners and Python 3.12.
 
-A second workflow (.github/workflows/deploy.yml) is configured to run on pushes to `main`, execute the same test suite, and deploy the application to a remote host via SSH when deployment secrets are configured. Add `WHOT_ENTERPRISE_API_KEYS` as a repository secret using `api-key:client-name` entries separated by commas.
+Deploy the application with [Render](https://render.com) using the included `render.yaml` blueprint. In Render, set `WHOT_ENTERPRISE_API_KEYS` as an environment variable using `api-key:client-name` entries separated by commas. Render automatically deploys commits pushed to `main`.
 
 ## Adding codeowners / branch protection
 
