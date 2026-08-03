@@ -2,19 +2,63 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import time
+from collections import defaultdict
 from datetime import datetime, timezone
+from threading import Lock
 from typing import Dict, Optional
 
-from fastapi import Body, Depends, FastAPI, Header, HTTPException, Request, status
+from fastapi import Depends, FastAPI, Header, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from sqlmodel import Field as DBField, Session, SQLModel, create_engine, select
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.errors import RateLimitExceeded
 
 APP_NAME = "WhatsHot, Inc. QTSC Monetized Gateway"
 APP_VERSION = "1.1.0"
 WYOMING_ASSET_ID = "DA-000000992"
+
+# ---------------------------------------------------------------------------
+# In-process rate limiter (sliding window, thread-safe)
+# Works on a single Render instance without external dependencies.
+# ---------------------------------------------------------------------------
+
+
+class _RateLimiter:
+    def __init__(self) -> None:
+        self._store: dict[str, list[float]] = defaultdict(list)
+        self._lock = Lock()
+
+    def is_allowed(self, key: str, limit: int, window: int = 60) -> bool:
+        now = time.monotonic()
+        with self._lock:
+            ts = self._store[key]
+            self._store[key] = [t for t in ts if now - t < window]
+            if len(self._store[key]) >= limit:
+                return False
+            self._store[key].append(now)
+            return True
+
+
+_rl = _RateLimiter()
+
+
+def _client_ip(request: Request) -> str:
+    forwarded = request.headers.get("X-Forwarded-For")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    if request.client and request.client.host:
+        return request.client.host
+    return "unknown"
+
+
+def _rate_limit(request: Request, key_prefix: str, limit: int) -> None:
+    ip = _client_ip(request)
+    if not _rl.is_allowed(f"{key_prefix}:{ip}", limit=limit):
+        raise HTTPException(
+            status_code=429,
+            detail=f"Rate limit exceeded: {limit} requests/minute. Upgrade to enterprise for higher limits.",
+        )
+
 
 # ---------------------------------------------------------------------------
 # Database
@@ -81,24 +125,6 @@ _raw_origins = os.environ.get(
 ALLOWED_ORIGINS: list[str] = [o.strip() for o in _raw_origins.split(",") if o.strip()]
 
 # ---------------------------------------------------------------------------
-# Rate limiter — proxy-safe key function
-# Render sits behind Cloudflare; request.client may be None or a proxy IP.
-# Prefer X-Forwarded-For so limits track real callers, not edge nodes.
-# ---------------------------------------------------------------------------
-
-
-def _client_key(request: Request) -> str:
-    forwarded = request.headers.get("X-Forwarded-For")
-    if forwarded:
-        return forwarded.split(",")[0].strip()
-    if request.client and request.client.host:
-        return request.client.host
-    return "unknown"
-
-
-limiter = Limiter(key_func=_client_key)
-
-# ---------------------------------------------------------------------------
 # API models
 # ---------------------------------------------------------------------------
 
@@ -141,8 +167,6 @@ app = FastAPI(
         "audit requests. Free tier: 5 req/min. Enterprise tier: 100 req/min."
     ),
 )
-app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.add_middleware(
     CORSMiddleware,
@@ -239,13 +263,11 @@ def health_check() -> Dict[str, str]:
     response_model=AuditResponse,
     summary="Public preview — 5 req/min",
 )
-@limiter.limit("5/minute")
-def public_ternary_check(
-    request: Request, body: AuditRequest = Body(...)
-) -> AuditResponse:
+def public_ternary_check(request: Request, body: AuditRequest) -> AuditResponse:
     """Key-free CORS endpoint for the imqbd.org browser widget.
     Rate limited to 5 requests/minute per IP.
     """
+    _rate_limit(request, key_prefix="public", limit=5)
     return _build_response(
         body,
         client_name="Public-Widget-User",
@@ -260,15 +282,15 @@ def public_ternary_check(
     response_model=AuditResponse,
     summary="Enterprise — 100 req/min",
 )
-@limiter.limit("100/minute")
 def enterprise_ternary_check(
     request: Request,
-    body: AuditRequest = Body(...),
+    body: AuditRequest,
     client: ClientAPIKey = Depends(verify_api_key),
 ) -> AuditResponse:
     """Authenticated enterprise endpoint. Requires X-API-Key header.
     Rate limited to 100 requests/minute per IP.
     """
+    _rate_limit(request, key_prefix=f"enterprise:{client.api_key}", limit=100)
     return _build_response(
         body,
         client_name=client.client_name,
