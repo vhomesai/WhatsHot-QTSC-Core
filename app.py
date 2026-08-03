@@ -6,11 +6,19 @@ from datetime import datetime, timezone
 from typing import Dict, Optional
 
 from fastapi import FastAPI, Header, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 APP_NAME = "WhatsHot, Inc. QTSC Telemetry Gateway"
 APP_VERSION = "1.0.0"
 WYOMING_ASSET_ID = "DA-000000992"
+
+# Allowed browser origins — override via WHOT_ALLOWED_ORIGINS env var
+_raw_origins = os.environ.get(
+    "WHOT_ALLOWED_ORIGINS",
+    "https://imqbd-frontend.onrender.com,https://imqbd.org,http://localhost:5173",
+)
+ALLOWED_ORIGINS: list[str] = [o.strip() for o in _raw_origins.split(",") if o.strip()]
 
 
 def load_api_keys() -> Dict[str, Dict[str, str]]:
@@ -26,7 +34,6 @@ def load_api_keys() -> Dict[str, Dict[str, str]]:
         api_key, client_name = parts[0].strip(), parts[1].strip()
         if api_key and client_name:
             registry[api_key] = {"client_name": client_name}
-
     return registry
 
 
@@ -66,6 +73,34 @@ app = FastAPI(
     description="Enterprise telemetry gateway for non-Abelian SU(3) qutrit audit requests.",
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type", "X-API-Key"],
+    max_age=600,
+)
+
+
+def _process_audit(request: AuditRequest, client_name: str) -> AuditResponse:
+    canonical_payload = json.dumps(
+        request.model_dump(), sort_keys=True, separators=(",", ":")
+    ).encode("utf-8")
+    request_hash = hashlib.sha256(canonical_payload).hexdigest()
+    return AuditResponse(
+        status="success",
+        wyoming_asset_id=WYOMING_ASSET_ID,
+        kernel_engine="Non-Abelian SU(3) Qutrit",
+        entropy_score=0.9987,
+        request_hash=request_hash,
+        client_name=client_name,
+        timestamp_utc=request.timestamp_utc,
+        details={
+            "audit_mode": "enterprise-telemetry",
+            "verification_source": "imqbd.org",
+        },
+    )
+
 
 @app.get("/", summary="Health check")
 def health_check() -> Dict[str, str]:
@@ -82,34 +117,30 @@ def verify_ternary_state(
     request: AuditRequest,
     x_api_key: str = Header(..., alias="X-API-Key"),
 ) -> AuditResponse:
+    """Enterprise endpoint — requires X-API-Key header."""
     if not API_KEY_REGISTRY:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Enterprise API keys are not configured.",
         )
-
     if not x_api_key or x_api_key not in API_KEY_REGISTRY:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Invalid corporate access credentials.",
         )
+    return _process_audit(request, API_KEY_REGISTRY[x_api_key]["client_name"])
 
-    client_name = API_KEY_REGISTRY[x_api_key]["client_name"]
-    canonical_payload = json.dumps(
-        request.model_dump(), sort_keys=True, separators=(",", ":")
-    ).encode("utf-8")
-    request_hash = hashlib.sha256(canonical_payload).hexdigest()
 
-    return AuditResponse(
-        status="success",
-        wyoming_asset_id=WYOMING_ASSET_ID,
-        kernel_engine="Non-Abelian SU(3) Qutrit",
-        entropy_score=0.9987,
-        request_hash=request_hash,
-        client_name=client_name,
-        timestamp_utc=request.timestamp_utc,
-        details={
-            "audit_mode": "enterprise-telemetry",
-            "verification_source": "imqbd.org",
-        },
-    )
+@app.post("/v1/public/ternary-check", response_model=AuditResponse)
+def public_ternary_check(request: AuditRequest) -> AuditResponse:
+    """Public CORS-enabled endpoint for the imqbd.org browser frontend.
+    No API key is required from the browser — the enterprise key is used
+    server-side only and is never exposed to clients.
+    """
+    if not API_KEY_REGISTRY:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Service temporarily unavailable.",
+        )
+    first_key = next(iter(API_KEY_REGISTRY))
+    return _process_audit(request, API_KEY_REGISTRY[first_key]["client_name"])
