@@ -11,7 +11,6 @@ from pydantic import BaseModel, Field
 from sqlmodel import Field as DBField, Session, SQLModel, create_engine, select
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
-from slowapi.util import get_remote_address
 
 APP_NAME = "WhatsHot, Inc. QTSC Monetized Gateway"
 APP_VERSION = "1.1.0"
@@ -82,9 +81,22 @@ _raw_origins = os.environ.get(
 ALLOWED_ORIGINS: list[str] = [o.strip() for o in _raw_origins.split(",") if o.strip()]
 
 # ---------------------------------------------------------------------------
-# Rate limiter
+# Rate limiter — proxy-safe key function
+# Render sits behind Cloudflare; request.client may be None or a proxy IP.
+# Prefer X-Forwarded-For so limits track real callers, not edge nodes.
 # ---------------------------------------------------------------------------
-limiter = Limiter(key_func=get_remote_address)
+
+
+def _client_key(request: Request) -> str:
+    forwarded = request.headers.get("X-Forwarded-For")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    if request.client and request.client.host:
+        return request.client.host
+    return "unknown"
+
+
+limiter = Limiter(key_func=_client_key)
 
 # ---------------------------------------------------------------------------
 # API models
