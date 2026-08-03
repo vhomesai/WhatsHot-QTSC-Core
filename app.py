@@ -5,7 +5,7 @@ import os
 from datetime import datetime, timezone
 from typing import Dict, Optional
 
-from fastapi import Depends, FastAPI, Header, HTTPException, Request, status
+from fastapi import Body, Depends, FastAPI, Header, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from sqlmodel import Field as DBField, Session, SQLModel, create_engine, select
@@ -228,7 +228,9 @@ def health_check() -> Dict[str, str]:
     summary="Public preview — 5 req/min",
 )
 @limiter.limit("5/minute")
-def public_ternary_check(request: Request, body: AuditRequest) -> AuditResponse:
+def public_ternary_check(
+    request: Request, body: AuditRequest = Body(...)
+) -> AuditResponse:
     """Key-free CORS endpoint for the imqbd.org browser widget.
     Rate limited to 5 requests/minute per IP.
     """
@@ -249,7 +251,7 @@ def public_ternary_check(request: Request, body: AuditRequest) -> AuditResponse:
 @limiter.limit("100/minute")
 def enterprise_ternary_check(
     request: Request,
-    body: AuditRequest,
+    body: AuditRequest = Body(...),
     client: ClientAPIKey = Depends(verify_api_key),
 ) -> AuditResponse:
     """Authenticated enterprise endpoint. Requires X-API-Key header.
