@@ -1,22 +1,22 @@
 # CODEOWNERS: define who must review changes to paths
 # Syntax: <pattern> <owner> (owners are GitHub usernames or org/team slugs)
-# Replace the placeholders below with your actual GitHub usernames or org/team slugs.
+# Repository ownership for the vhomesai account.
 
 # Ownership for repository-level changes and CI
-/.github/ @whatshot/infra-team
+/.github/ @vhomesai
 
 # Ownership for the anchor generator and related scripts
-/anchor_metadata.py @whatshot/devops
-/push_with_gh.ps1 @whatshot/devops
-/push_with_gh.sh @whatshot/devops
-/anchor_metadata_auto.py @whatshot/devops
+/anchor_metadata.py @vhomesai
+/push_with_gh.ps1 @vhomesai
+/push_with_gh.sh @vhomesai
+/anchor_metadata_auto.py @vhomesai
 
 # Ownership for tests
-/test_anchor_metadata.py @whatshot/qa-team
-/test_anchor_metadata_extra.py @whatshot/qa-team
+/test_anchor_metadata.py @vhomesai
+/test_anchor_metadata_extra.py @vhomesai
 
 # Default ownership for Python code
-*.py @whatshot/dev-team
+*.py @vhomesai
 
 # Fallback: require review from repo owners for other changes
-/ @whatshot/owners
+/ @vhomesai
