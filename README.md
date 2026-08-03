@@ -38,15 +38,36 @@ Dry run (do not write manifest):
 python anchor_metadata.py --target . --dry-run --verbose
 ```
 
-Run tests locally:
+## Telemetry Gateway
+
+A FastAPI-based telemetry gateway is provided in `app.py` to support secure enterprise audit requests.
+
+Run the gateway locally:
 
 ```powershell
-python -m unittest discover -v
+python -m pip install -r requirements.txt
+$env:WHOT_ENTERPRISE_API_KEYS = "replace-with-a-strong-api-key:your-client-name"
+uvicorn app:app --host 0.0.0.0 --port 8000
 ```
+
+Example request:
+
+```powershell
+curl -X POST "http://127.0.0.1:8000/v1/audit/ternary-check" \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: replace-with-a-strong-api-key" \
+  -d '{"asset_id":"DA-000000992","metadata":{"customer":"AcmeCorp"}}'
+```
+
+## Software Licensing Agreement
+
+The repository includes an enterprise SLA draft: `ENTERPRISE_SLA.md`.
 
 ## CI
 
 The repository includes a GitHub Actions workflow (.github/workflows/python-tests.yml) that runs the unit test suite on push and pull request events using Windows runners and Python 3.12.
+
+A second workflow (.github/workflows/deploy.yml) is configured to run on pushes to `main`, execute the same test suite, and deploy the application to a remote host via SSH when deployment secrets are configured. Add `WHOT_ENTERPRISE_API_KEYS` as a repository secret using `api-key:client-name` entries separated by commas.
 
 ## Adding codeowners / branch protection
 
@@ -67,3 +88,9 @@ Do NOT commit generated manifests (WhatsHot_IP_Anchor_*.json) — these are incl
 ## License
 
 Add your project license here (e.g., MIT, Apache-2.0) — replace this placeholder with the actual license text or file.
+
+## Published
+
+Published https://github.com/vhomesai/WhatsHot-QTSC-Core with `main` tracking `origin/main`.
+
+`CODEOWNERS` now assigns project paths to `@vhomesai`; unrelated home-directory files were not included.
