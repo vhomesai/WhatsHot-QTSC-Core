@@ -1,0 +1,14 @@
+{
+  "network": "base-sepolia",
+  "chainId": 84532,
+  "contract": "QTSCKernelToken",
+  "address": "0xdb5B9Df171B8b49cA3902728d375198a995a6df1",
+  "transactionHash": "0xa3362c6aec2079eb7f3eebd215d63a8fb37c84e39843d4f425cd9588cf6d3aab",
+  "blockNumber": 45321106,
+  "deploymentFactory": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+  "owner": "0xE7ecd644738D30D282cCb826fE236b144Bf98C6f",
+  "escrowTreasury": "0x44161F6c6c08Ae799A268Bc2e1Fb3fdc91b79FC0",
+  "operationalTreasury": "0x44161F6c6c08Ae799A268Bc2e1Fb3fdc91b79FC0",
+  "initialSupply": "100000000000000000000000000",
+  "deployedCodeHash": "0x549b015cb2913e120e976deb6ad89c0c50bb5c9dcda97a9cc2a2a546730df731"
+}

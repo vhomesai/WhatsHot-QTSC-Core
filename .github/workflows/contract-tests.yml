@@ -1,0 +1,39 @@
+name: Contract Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: evm/package-lock.json
+
+      - name: Install dependencies
+        working-directory: evm
+        run: npm ci
+
+      - name: Compile production bytecode
+        working-directory: evm
+        run: npm run compile
+
+      - name: Build read-only Mainnet preflight
+        working-directory: evm
+        run: npm run preflight:build
+
+      - name: Run contract and tooling tests
+        working-directory: evm
+        run: npm test
+
+      - name: Type-check contract tooling
+        working-directory: evm
+        run: npm run typecheck

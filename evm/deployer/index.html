@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QTSC Mainnet Read-Only Preflight</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>QTSC Mainnet Read-Only Preflight</h1>
+      <p class="warning">
+        Deployment is disabled. This page cannot connect a wallet, construct a
+        transaction, request a signature, or broadcast.
+      </p>
+
+      <section>
+        <h2>Reviewed production topology</h2>
+        <dl>
+          <dt>Network</dt><dd>Base Mainnet (8453), read-only RPC</dd>
+          <dt>Owner Safe</dt><dd><code id="owner-safe"></code></dd>
+          <dt>Escrow Safe (25%)</dt><dd><code id="escrow-safe"></code></dd>
+          <dt>Operations Safe (75%)</dt><dd><code id="operations-safe"></code></dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>Read-only checks</h2>
+        <button id="run-checks">Run Safe checks</button>
+        <pre id="status">No checks run.</pre>
+      </section>
+
+      <section>
+        <h2>Deployment blockers</h2>
+        <ul>
+          <li>Independent professional audit is required.</li>
+          <li>Exact three-Safe Base Sepolia rehearsal is required.</li>
+          <li>Source verification and bytecode evidence are required.</li>
+          <li>A future separately reviewed Mainnet authorization change is required.</li>
+        </ul>
+      </section>
+    </main>
+    <script type="module" src="/main.ts"></script>
+  </body>
+</html>

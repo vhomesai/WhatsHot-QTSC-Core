@@ -1,0 +1,38 @@
+{
+  "name": "whatshot-qtsc-core-evm",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "hardhat compile --build-profile production",
+    "test": "hardhat test",
+    "typecheck": "tsc --noEmit",
+    "preflight:mainnet-readonly": "vite deployer --host 127.0.0.1 --port 3001",
+    "preflight:build": "vite build deployer",
+    "deploy:base-sepolia": "hardhat run scripts/deploy-deterministic.ts --network baseSepolia --build-profile production",
+    "bytecode:base-sepolia": "hardhat run scripts/check-bytecode.ts --network baseSepolia --build-profile production",
+    "verify:base-sepolia": "hardhat run scripts/verify.ts --network baseSepolia --build-profile production",
+    "rehearsal:preflight": "hardhat run scripts/rehearsal-preflight.ts --network baseSepolia --build-profile production",
+    "rehearsal:plan": "hardhat run scripts/rehearsal-plan.ts --network baseSepolia --build-profile production",
+    "rehearsal:check": "hardhat run scripts/rehearsal-check.ts --network baseSepolia --build-profile production"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "4.0.15",
+    "@nomicfoundation/hardhat-ethers-chai-matchers": "3.0.11",
+    "@nomicfoundation/hardhat-mocha": "3.1.0",
+    "@nomicfoundation/hardhat-verify": "3.0.22",
+    "@types/mocha": "10.0.10",
+    "@types/node": "22.20.1",
+    "hardhat": "3.12.0",
+    "typescript": "5.9.3",
+    "vite": "7.3.6"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.6.1",
+    "viem": "2.55.13"
+  },
+  "overrides": {
+    "diff": "8.0.3",
+    "serialize-javascript": "7.1.0"
+  }
+}

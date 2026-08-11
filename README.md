@@ -10,6 +10,7 @@ This project provides a deterministic file-hashing manifest generator suitable f
 - `anchor_metadata_auto.py` — earlier auto-path convenience script
 - `test_anchor_metadata.py`, `test_anchor_metadata_extra.py` — unit tests
 - `.github/workflows/python-tests.yml` — GitHub Actions workflow to run tests
+- `evm/` — QTSC contract, deterministic Base Sepolia deployment tooling, and Safe rehearsal workflow
 - `push_with_gh.ps1` / `push_with_gh.sh` — helper scripts to create remote and push using GitHub CLI
 
 ## Quickstart
@@ -65,7 +66,7 @@ The repository includes an enterprise SLA draft: `ENTERPRISE_SLA.md`.
 
 ## CI
 
-The repository includes a GitHub Actions workflow (.github/workflows/python-tests.yml) that runs the unit test suite on push and pull request events using Windows runners and Python 3.12.
+The repository includes Python and EVM GitHub Actions workflows. The EVM job compiles the exact production profile, runs contract/tooling tests, and performs strict TypeScript checking.
 
 Deploy the application with [Render](https://render.com) using the included `render.yaml` blueprint. In Render, set `WHOT_ENTERPRISE_API_KEYS` as an environment variable using `api-key:client-name` entries separated by commas. Render automatically deploys commits pushed to `main`.
 
@@ -84,6 +85,8 @@ To protect main and require CI checks, enable branch protection in the repositor
 ## Security
 
 Do NOT commit generated manifests (WhatsHot_IP_Anchor_*.json) — these are included in `.gitignore` by default. If you need to publish a manifest to an immutable store, consider signing it and storing only the signed hash on-chain.
+
+QTSC is **not cleared for Base Mainnet**. See [`evm/README.md`](evm/README.md) for the Base Sepolia rehearsal and the unresolved independent professional audit requirement.
 
 ## License
 
