@@ -5,6 +5,7 @@ import hre from "hardhat";
 import {
   BASE_SEPOLIA_CHAIN_ID,
   CONTRACT_NAME,
+  assertBaseSepolia,
   requireTopology,
 } from "./lib/config.js";
 import { validateTopologySafes } from "./lib/safe.js";
@@ -42,12 +43,7 @@ interface RehearsalResults {
 
 const { ethers, networkName } = await hre.network.getOrCreate();
 const network = await ethers.provider.getNetwork();
-if (
-  networkName !== "baseSepolia" ||
-  network.chainId !== BASE_SEPOLIA_CHAIN_ID
-) {
-  throw new Error("Safe rehearsal checks are restricted to Base Sepolia");
-}
+assertBaseSepolia(networkName, network.chainId);
 const topology = requireTopology(ethers);
 await validateTopologySafes(ethers, ethers.provider, topology);
 

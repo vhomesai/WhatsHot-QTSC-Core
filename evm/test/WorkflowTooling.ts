@@ -2,12 +2,29 @@ import { expect } from "chai";
 import hre from "hardhat";
 import {
   DETERMINISTIC_DEPLOYMENT_PROXY,
+  assertBaseSepolia,
   type Topology,
 } from "../scripts/lib/config.js";
 import { buildDeterministicDeployment } from "../scripts/lib/deterministic.js";
 import { buildRehearsalActions } from "../scripts/lib/rehearsal.js";
 
 describe("deployment and rehearsal tooling", function () {
+  it("unconditionally rejects Base Mainnet chain ID 8453", function () {
+    expect(() => assertBaseSepolia("baseMainnet", 8453n)).to.throw(
+      "Base Mainnet and all non-Sepolia networks are disabled",
+    );
+    expect(() => assertBaseSepolia("baseSepolia", 8453n)).to.throw(
+      "Base Mainnet and all non-Sepolia networks are disabled",
+    );
+  });
+
+  it("accepts only the configured Base Sepolia network", function () {
+    expect(() => assertBaseSepolia("baseSepolia", 84532n)).not.to.throw();
+    expect(() => assertBaseSepolia("hardhat", 84532n)).to.throw(
+      "Base Mainnet and all non-Sepolia networks are disabled",
+    );
+  });
+
   it("builds CREATE2 proxy calldata from salt and exact init code", async function () {
     const { ethers } = await hre.network.create();
     const salt = ethers.id("qtsc-reviewed-release");

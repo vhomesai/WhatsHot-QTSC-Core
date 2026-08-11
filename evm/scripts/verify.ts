@@ -4,18 +4,14 @@ import hre from "hardhat";
 import {
   BASE_SEPOLIA_CHAIN_ID,
   CONTRACT_FQN,
+  assertBaseSepolia,
   deploymentFile,
   readDeployment,
 } from "./lib/config.js";
 
 const { ethers, networkName } = await hre.network.getOrCreate();
 const network = await ethers.provider.getNetwork();
-if (
-  networkName !== "baseSepolia" ||
-  network.chainId !== BASE_SEPOLIA_CHAIN_ID
-) {
-  throw new Error("Source verification is restricted to Base Sepolia");
-}
+assertBaseSepolia(networkName, network.chainId);
 
 const metadata = readDeployment();
 if ((await ethers.provider.getCode(metadata.address)) === "0x") {

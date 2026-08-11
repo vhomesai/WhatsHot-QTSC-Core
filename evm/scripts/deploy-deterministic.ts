@@ -4,6 +4,7 @@ import {
   CONTRACT_NAME,
   DETERMINISTIC_DEPLOYMENT_PROXY,
   SEPOLIA_CONFIRMATION,
+  assertBaseSepolia,
   deploymentFile,
   requireBytes32,
   requireTopology,
@@ -15,12 +16,7 @@ import { validateTopologySafes } from "./lib/safe.js";
 
 const { ethers, networkName } = await hre.network.getOrCreate();
 const network = await ethers.provider.getNetwork();
-if (
-  networkName !== "baseSepolia" ||
-  network.chainId !== BASE_SEPOLIA_CHAIN_ID
-) {
-  throw new Error("Deterministic deployment is restricted to Base Sepolia");
-}
+assertBaseSepolia(networkName, network.chainId);
 
 const topology = requireTopology(ethers);
 await validateTopologySafes(ethers, ethers.provider, topology);

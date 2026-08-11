@@ -51,6 +51,20 @@ export interface DeploymentMetadata {
 
 type Ethers = typeof EthersNamespace;
 
+export function assertBaseSepolia(
+  networkName: string,
+  chainId: bigint,
+): void {
+  if (
+    networkName !== "baseSepolia" ||
+    chainId !== BASE_SEPOLIA_CHAIN_ID
+  ) {
+    throw new Error(
+      `Base Mainnet and all non-Sepolia networks are disabled; received ${networkName} (${chainId})`,
+    );
+  }
+}
+
 export function requireAddress(
   ethers: Ethers,
   name: string,

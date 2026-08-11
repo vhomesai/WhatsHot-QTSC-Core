@@ -3,6 +3,7 @@ import {
   BASE_SEPOLIA_CHAIN_ID,
   CONTRACT_NAME,
   DETERMINISTIC_DEPLOYMENT_PROXY,
+  assertBaseSepolia,
   readDeployment,
 } from "./lib/config.js";
 import {
@@ -20,12 +21,7 @@ interface ArtifactReferences {
 
 const { ethers, networkName } = await hre.network.getOrCreate();
 const network = await ethers.provider.getNetwork();
-if (
-  networkName !== "baseSepolia" ||
-  network.chainId !== BASE_SEPOLIA_CHAIN_ID
-) {
-  throw new Error("Bytecode checks are restricted to Base Sepolia");
-}
+assertBaseSepolia(networkName, network.chainId);
 
 const metadata = readDeployment();
 if (
