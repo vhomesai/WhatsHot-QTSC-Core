@@ -133,7 +133,8 @@ export function requireTopology(ethers: Ethers): Topology {
 
 export function deploymentFile(): string {
   return path.resolve(
-    process.env.QTSC_DEPLOYMENT_FILE ?? "deployments/base-sepolia.json",
+    process.env.QTSC_DEPLOYMENT_FILE ??
+      "deployments/base-sepolia-rehearsal.json",
   );
 }
 

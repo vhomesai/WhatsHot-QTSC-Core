@@ -20,7 +20,20 @@ The earlier direct-EOA deployment script conflicted with the stated deterministi
 6. Requires the exact Sepolia confirmation phrase before broadcasting.
 7. Writes factual deployment metadata only after a successful receipt and code check.
 
-There is no Base Mainnet network, command, RPC URL, confirmation phrase, or deploy script in this repository. A future Mainnet procedure must be added only after every blocker below is independently cleared and reviewed.
+There is no Base Mainnet transaction network configuration, deployment command,
+confirmation phrase, or executable Mainnet deploy script in this repository.
+The legacy `scripts/deploy.ts` path is a throwing tombstone. A future Mainnet
+procedure must be added only after every blocker below is independently cleared
+and reviewed.
+
+The optional browser UI is a **read-only** production-Safe preflight. It uses a
+public Base Mainnet RPC only for `eth_chainId`, code, and Safe view calls. It
+does not access an injected wallet provider and contains no transaction,
+signature, authorization, or broadcast capability:
+
+```powershell
+npm run preflight:mainnet-readonly
+```
 
 ## Deterministic build
 
@@ -133,9 +146,11 @@ The checker validates transaction order, successful receipts, execution through 
 
 ## Evidence and metadata
 
-`deployments/base-sepolia.json` is created only by a successful deterministic deployment. Commit it after reviewing every full address and transaction hash. Generated Safe transaction files and locally entered results remain gitignored.
+`deployments/base-sepolia-rehearsal.json` is created only by a successful deterministic deployment. Commit it after reviewing every full address and transaction hash. Generated Safe transaction files and locally entered results remain gitignored.
 
-Do not copy the previous Sepolia record into this directory: that deployment used the same address for Escrow and Operations and therefore is not evidence of the required three-Safe topology.
+The imported `deployments/base-sepolia.json` record is historical only. It used
+the same address for Escrow and Operations and therefore is not evidence of
+the required three-Safe topology.
 
 ## Remaining Mainnet blockers
 

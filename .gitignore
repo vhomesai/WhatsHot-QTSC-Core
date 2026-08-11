@@ -2,6 +2,12 @@
 WhatsHot_IP_Anchor_*.json
 evm/artifacts/
 evm/cache/
+evm/coverage/
+evm/deployer/dist/
 evm/node_modules/
 evm/rehearsal-output/
+evm/typechain-types/
+evm/types/
 evm/.env
+evm/.env.*
+!evm/.env.example

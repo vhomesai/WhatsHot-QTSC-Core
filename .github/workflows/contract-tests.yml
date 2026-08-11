@@ -26,6 +26,10 @@ jobs:
         working-directory: evm
         run: npm run compile
 
+      - name: Build read-only Mainnet preflight
+        working-directory: evm
+        run: npm run preflight:build
+
       - name: Run contract and tooling tests
         working-directory: evm
         run: npm test
