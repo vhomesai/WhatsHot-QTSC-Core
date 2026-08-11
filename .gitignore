@@ -1,2 +1,7 @@
 ﻿__pycache__/
 WhatsHot_IP_Anchor_*.json
+evm/artifacts/
+evm/cache/
+evm/node_modules/
+evm/rehearsal-output/
+evm/.env
