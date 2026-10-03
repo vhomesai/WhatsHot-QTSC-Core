@@ -274,3 +274,24 @@ def test_triangle_narratives_use_exact_deterministic_result(agent, prompt):
     expected = f"{triangle['rtt_latency_saved_ms']:.2f} ms"
     assert expected in response["response_text"]
     assert "81.44 ms" not in response["response_text"]
+
+
+def test_qec_synthesize_tool_and_response(agent):
+    result = agent.execute_tool("synthesize_qldpc_fault_tolerant_kernel", {})
+    assert result["status"] == "PROTOTYPE_SYNTHESIZED_AND_VERIFIED"
+    assert result["physical_qubits"] == 72
+    assert result["logical_qubits"] == 12
+    assert result["algebra_proof"]["commutativity_verified"] is True
+    assert result["algebra_proof"]["h_x_rank"] == 30
+
+    response = agent.generate_response("Synthesize QEC fault-tolerant code")
+    assert any(t["tool_name"] == "synthesize_qldpc_fault_tolerant_kernel" for t in response["tools_executed"])
+    assert "EXPERIMENTAL QEC PROTOTYPE" in response["response_text"]
+    assert "Commutativity Verified" in response["response_text"]
+
+    ionq_resp = agent.route_intent_and_tools("Synthesize QEC on IonQ")
+    assert ionq_resp[1]["params"]["backend"] == "ionq_forte"
+
+    rigetti_resp = agent.route_intent_and_tools("Synthesize QEC on Rigetti")
+    assert rigetti_resp[1]["params"]["backend"] == "rigetti_ankaa"
+
