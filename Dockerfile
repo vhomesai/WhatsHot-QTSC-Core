@@ -1,38 +1,33 @@
-# Use standard official Python slim image
-FROM python:3.12-slim
+# syntax=docker/dockerfile:1.7
+FROM python:3.12.15-slim-bookworm
 
-# Set environment variables for clean container execution
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1 \
     PORT=8000
 
-# Set working directory inside container
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+RUN groupadd --gid 10001 triqee \
+    && useradd --uid 10001 --gid triqee --no-create-home --shell /usr/sbin/nologin triqee \
+    && install -d -o triqee -g triqee /app/data
 
-# Copy packaging configuration and install dependencies
-COPY pyproject.toml README.md ./
+COPY requirements.lock pyproject.toml README.md ./
 COPY src/ ./src/
 
-# Install the package and dependencies
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir .
+# requirements.lock is the sole resolved runtime dependency set. The local
+# package is installed without invoking a second dependency resolver.
+RUN python -m pip install --no-cache-dir -r requirements.lock \
+    && python -m pip install --no-cache-dir --no-deps . \
+    && python -c "from src.api_server import app; assert app.title"
 
-# Create a non-root user for security
-RUN useradd -m -u 1000 appuser && \
-    chown -R appuser:appuser /app
-USER appuser
+USER 10001:10001
 
-# Expose the API port
 EXPOSE 8000
 
-# Health check to monitor container status
-HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD ["python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
 
-# Start the FastAPI application with Uvicorn
-CMD ["uvicorn", "src.api_server:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["python", "-m", "uvicorn"]
+CMD ["src.api_server:app", "--host=0.0.0.0", "--port=8000", "--workers=1", "--proxy-headers", "--forwarded-allow-ips=*", "--no-server-header"]

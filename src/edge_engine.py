@@ -16,6 +16,7 @@ import math
 from typing import Dict, List, Any, Optional
 
 from src.physics_engine import haversine_distance, calculate_propagation_latencies, C_LIGHT_KM_S
+from src.qpu_transpiler import plan_multivendor_workload
 
 
 class TriqeeEdgeEngine:
@@ -97,13 +98,36 @@ class TriqeeEdgeEngine:
         self,
         qubit_count: int = 8,
         depth: int = 12,
-        target_backend: str = "ibm_heron"
+        target_backend: str = "ibm_heron",
+        workload_type: str | None = None,
+        qaoa_p: int = 2,
     ) -> Dict[str, Any]:
         """
         Compiles a quantum circuit job DAG for asynchronous QPU cloud execution.
         """
         if qubit_count <= 0 or qubit_count > 127:
             raise ValueError("Qubit count must be between 1 and 127.")
+        if workload_type is not None or qubit_count == 48:
+            selected_workload = workload_type or "qaoa_portfolio_risk"
+            bundle = self.plan_48_qubit_workload(selected_workload, qaoa_p=qaoa_p)
+            if target_backend not in bundle["plans"]:
+                if target_backend in bundle["unsupported_backends"]:
+                    unsupported = bundle["unsupported_backends"][target_backend]
+                    raise ValueError(
+                        f"{unsupported['status']}: {unsupported['reason']}"
+                    )
+                raise ValueError(f"Unsupported QPU backend: {target_backend}")
+            plan = bundle["plans"][target_backend]
+            return {
+                "job_id": plan["plan_id"],
+                "target_backend": target_backend,
+                "qubit_count": 48,
+                "circuit_depth": plan["optimized_depth"],
+                "total_gates": plan["original_gate_count"],
+                "qpu_status": plan["status"],
+                "logical_error_target": 1e-5,
+                "transpilation_plan": plan,
+            }
 
         gates = []
         for q in range(qubit_count):
@@ -120,6 +144,31 @@ class TriqeeEdgeEngine:
             "qpu_status": "READY_FOR_DISPATCH",
             "logical_error_target": 1e-5
         }
+
+    def plan_48_qubit_workload(
+        self,
+        workload_type: str,
+        *,
+        qaoa_p: int = 2,
+        data_qubits: int = 36,
+        ancilla_qubits: int = 12,
+    ) -> Dict[str, Any]:
+        """Create deterministic plans for all supported vendor backends."""
+        if workload_type == "qaoa_portfolio_risk":
+            return plan_multivendor_workload(
+                "qaoa_portfolio_risk",
+                qaoa_p=qaoa_p,
+                data_qubits=data_qubits,
+                ancilla_qubits=ancilla_qubits,
+            )
+        if workload_type == "qldpc_syndrome_extraction":
+            return plan_multivendor_workload(
+                "qldpc_syndrome_extraction",
+                qaoa_p=qaoa_p,
+                data_qubits=data_qubits,
+                ancilla_qubits=ancilla_qubits,
+            )
+        raise ValueError(f"Unsupported 48-qubit workload: {workload_type}")
 
     def benchmark_full_hybrid_cycle(self) -> Dict[str, Any]:
         """

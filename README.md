@@ -12,10 +12,11 @@ git clone https://github.com/vhomesai/WhatsHot-QTSC-Core.git
 cd WhatsHot-QTSC-Core
 
 # Install package in editable mode
-pip install -e .
+python -m pip install -r requirements.lock
+python -m pip install --no-deps -e .
 
 # Install development & test dependencies
-pip install -e ".[dev]"
+python -m pip install pytest==8.4.2 pytest-cov==7.0.0 httpx==0.28.1 PyYAML==6.0.3
 ```
 
 ---
@@ -61,7 +62,135 @@ Interactive OpenAPI documentation will be available at:
 | `TRIQEE_CORS_ORIGINS` | Comma-separated HTTP(S) browser-origin allowlist; wildcards are rejected | `http://localhost:3000,http://127.0.0.1:3000` |
 | `TRIQEE_ADMIN_KEY` | Operator secret required in `X-Admin-Key` for CRM CSV/JSON exports | Unset; exports fail closed with HTTP 503 |
 
-The self-contained cockpit prompts for the CRM operator key for each export and does not persist it. Set `TRIQEE_ADMIN_KEY` in the environment before starting Docker Compose; never place it in the HTML.
+The public cockpit never receives or requests the CRM operator key. CRM exports are
+operator-only API operations and must be performed by trusted server-side tooling.
+Never place `TRIQEE_ADMIN_KEY` in the HTML, an image build argument, or a committed
+environment file.
+
+---
+
+## Deterministic multi-vendor QPU planning
+
+The vendor-neutral planner supports two typed 48-logical-qubit workloads:
+
+- QAOA portfolio-risk circuits with configurable `p` depth from 1 through 8,
+  a typed 48-asset return/covariance instance, coefficient-weighted cost
+  rotations, cardinality penalty, mixers, and complete Z-basis readout.
+- A defined toy qLDPC-like syndrome-extraction benchmark with 36 data qubits,
+  12 ancillas, explicit stabilizer support, and physically correct X/Z check
+  extraction. It does not claim a named code, distance, threshold, or correction
+  capability.
+
+IBM Heron plans target 156 physical qubits and Heavy-Hex connectivity. Rigetti
+Ankaa plans target 84 physical qubits and square-lattice tunable couplers. Both
+use interaction-aware placement, deterministic shortest-path SWAP routing, and
+dependency-safe parallel scheduling, with an identity-placement baseline and a
+non-regression fallback.
+
+IonQ Forte has 36 algorithmic qubits, so a 48-qubit circuit is never represented
+as an intact execution. The planner emits a deterministic 36+12 capacity
+diagnostic, identifies every crossing interaction, and reports zero topology
+SWAPs. It then fails closed with `UNSUPPORTED_EXACT_CIRCUIT_CUTTING`: no gate is
+deleted and no fragment depth, experiment multiplier, or submission-ready plan
+is claimed until an independently sampled density-matrix/process-tensor
+reconstruction is implemented.
+
+Generate the representative plan/deployment report with:
+
+```bash
+python scripts/generate_transpilation_deployment_report.py
+```
+
+See
+[`TRANSPILATION_DEPLOYMENT_REPORT.md`](TRANSPILATION_DEPLOYMENT_REPORT.md) for
+exact deterministic metrics and the explicit no-hardware-execution boundary.
+
+---
+
+## Production deployment
+
+The bundle runs `src.api_server:app` behind Caddy and exposes only Caddy. Caddy
+obtains and renews certificates automatically and serves the zero-CDN cockpit at
+`https://www.triqee.com/cockpit`. The API and SQLite network are internal.
+
+### Prerequisites and DNS
+
+1. Install Docker Engine with the Compose v2 plugin.
+2. Create public `A` and/or `AAAA` records for `www.triqee.com` pointing to the
+   deployment host.
+3. Permit inbound TCP 80 and TCP/UDP 443. Do **not** expose port 8000.
+4. Ensure outbound HTTPS and DNS are available so Caddy can issue certificates.
+
+Set the administrator secret only in the process environment (or inject it from
+your host secret manager). Compose intentionally has no secret value or default:
+
+```bash
+export TRIQEE_ADMIN_KEY="$(openssl rand -base64 48)"
+docker compose config --quiet
+docker compose up -d --build
+docker compose ps
+curl --fail --show-error https://www.triqee.com/health
+curl --fail --show-error https://www.triqee.com/api/health
+curl --fail --show-error https://www.triqee.com/cockpit >/dev/null
+```
+
+For PowerShell, use
+`$env:TRIQEE_ADMIN_KEY = [Convert]::ToBase64String((1..48 | ForEach-Object { Get-Random -Maximum 256 }))`
+before the same `docker compose` commands. Production CORS is fixed to
+`https://www.triqee.com`; wildcard origins are never used.
+
+The API and Caddy run as non-root users with read-only root filesystems,
+`no-new-privileges`, dropped capabilities (except Caddy's low-port bind
+capability), bounded temporary filesystems, health checks, and automatic restart.
+`triqee_data` contains SQLite state and `caddy_data` contains certificate state.
+
+### Backup and restore
+
+Use SQLite's online backup command so a live WAL/transaction cannot produce an
+inconsistent copy:
+
+```bash
+mkdir -p backups
+docker compose exec -T api python -c "import sqlite3; s=sqlite3.connect('/app/data/operational.db'); d=sqlite3.connect('/tmp/backup.db'); s.backup(d); d.close(); s.close()"
+docker compose cp api:/tmp/backup.db ./backups/operational-$(date +%Y%m%d-%H%M%S).db
+```
+
+Restore during a maintenance window (replace the example filename). Keeping the
+API process up allows SQLite to perform a transactional restore while Caddy is
+stopped so no requests can reach it:
+
+```bash
+docker compose stop caddy
+cat ./backups/operational-20260101-120000.db | docker compose exec -T api python -c "import sqlite3,sys; p='/tmp/restore.db'; open(p,'wb').write(sys.stdin.buffer.read()); s=sqlite3.connect(p); d=sqlite3.connect('/app/data/operational.db'); s.backup(d); d.close(); s.close()"
+docker compose start caddy
+curl --fail --show-error https://www.triqee.com/health
+```
+
+Keep backups encrypted with access controls appropriate for CRM data. Back up
+the `caddy_data` volume separately only if retaining ACME account state is
+required; certificates can otherwise be reissued.
+
+### Health, upgrades, and rollback
+
+`docker compose ps` reports both container health checks. The public `/health`
+route checks the actual API through Caddy; a healthy response is JSON containing
+`"status":"healthy"`. `/api/health` provides the equivalent same-origin API
+health route. View failures with `docker compose logs --tail=200 api caddy`.
+
+Before an upgrade, create a database backup and record the current Git revision
+and image IDs (`git rev-parse HEAD` and `docker compose images`). Deploy with
+`docker compose up -d --build` and verify both URLs above. To roll back:
+
+```bash
+git checkout <previous-reviewed-revision>
+export TRIQEE_ADMIN_KEY='<value-from-secret-manager>'
+docker compose up -d --build
+# Restore the pre-upgrade database only when the release changed its schema.
+curl --fail --show-error https://www.triqee.com/health
+```
+
+Do not use `docker compose down -v` during normal deployment or rollback: `-v`
+permanently removes the SQLite and Caddy volumes.
 
 ---
 
@@ -72,6 +201,12 @@ The self-contained cockpit prompts for the CRM operator key for each export and 
 python -m pytest tests test_app.py test_anchor_metadata.py test_anchor_metadata_extra.py \
   -q --cov=src --cov-report=term-missing --cov-fail-under=100
 ```
+
+Local tests parse all YAML structurally and perform non-authoritative static
+Caddy assertions. The `deployment-validation` CI job is authoritative: it runs
+`docker compose config`, validates `Caddyfile` with pinned
+`caddy:2.10.2-alpine`, starts the complete Compose bundle, and smoke-tests `/`,
+`/cockpit`, and `/api/health` including redirect and security headers.
 
 ### Opt-in kernel benchmarks
 

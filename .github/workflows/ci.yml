@@ -26,10 +26,22 @@ jobs:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
 
+    - name: Set up Node.js 24
+      uses: actions/setup-node@v4
+      with:
+        node-version: "24"
+
     - name: Install package and development dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install -e ".[dev]"
+        python -m pip install -r requirements.lock
+        python -m pip install --no-deps -e .
+        python -m pip install pytest==8.4.2 pytest-cov==7.0.0 httpx==0.28.1 PyYAML==6.0.3
+        python -c "from src.api_server import app; assert app.title"
+
+    - name: Verify runtime lock for every supported Linux Python
+      if: matrix.python-version == '3.12'
+      run: python scripts/validate_runtime_lock.py
 
     - name: Run tests and enforce full source coverage
       run: >-
@@ -42,3 +54,49 @@ jobs:
         --cov=src
         --cov-report=term-missing
         --cov-fail-under=100
+
+  deployment-validation:
+    name: Executable deployment validation
+    runs-on: ubuntu-latest
+    env:
+      TRIQEE_ADMIN_KEY: ci-validation-key-not-for-production
+      TRIQEE_SITE_ADDRESS: http://localhost
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Parse Compose configuration
+      run: docker compose config --quiet
+
+    - name: Validate Caddy configuration with pinned Caddy
+      run: >-
+        docker run --rm
+        -e TRIQEE_SITE_ADDRESS=http://localhost
+        -v "$PWD/Caddyfile:/etc/caddy/Caddyfile:ro"
+        --entrypoint caddy
+        caddy:2.10.2-alpine
+        validate --config /etc/caddy/Caddyfile --adapter caddyfile
+
+    - name: Build and start deployment bundle
+      run: docker compose up --detach --build --wait
+
+    - name: Smoke test redirect, cockpit, API health, and headers
+      run: |
+        root_headers="$(curl --fail --silent --show-error --head http://localhost/)"
+        echo "$root_headers" | grep -Eiq '^HTTP/[^ ]+ 308'
+        echo "$root_headers" | grep -Eiq '^location: /cockpit'
+        cockpit_headers="$(curl --fail --silent --show-error --head http://localhost/cockpit)"
+        echo "$cockpit_headers" | grep -Eiq '^HTTP/[^ ]+ 200'
+        echo "$cockpit_headers" | grep -Eiq '^x-content-type-options: nosniff'
+        echo "$cockpit_headers" | grep -Eiq '^content-security-policy:'
+        curl --fail --silent --show-error http://localhost/api/health |
+          python -c "import json,sys; payload=json.load(sys.stdin); assert payload['status']=='healthy'"
+
+    - name: Show service logs after failure
+      if: failure()
+      run: docker compose logs --no-color
+
+    - name: Stop deployment bundle
+      if: always()
+      run: docker compose down --volumes

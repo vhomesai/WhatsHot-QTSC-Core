@@ -482,8 +482,8 @@
             <button class="chip" onclick="sendPrompt('Calculate Tokyo JPX to NY4 direct RF vs fiber latency')">
                 ⚡ Tokyo to NY4 RF Latency
             </button>
-            <button class="chip" onclick="sendPrompt('Compile a 32-qubit fault-tolerant qLDPC circuit DAG')">
-                ⚛️ 32-Qubit qLDPC Transpile
+            <button class="chip" onclick="sendPrompt('Compile the 48-qubit toy qLDPC-like syndrome benchmark')">
+                ⚛️ 48-Qubit Syndrome Plan
             </button>
             <button class="chip" onclick="sendPrompt('both in optimal sequence')">
                 ⚡ 500-Node QKD Laser Defense
@@ -540,14 +540,9 @@ Status: READY (8 Qubits)</div>
             • Node: SOVEREIGN_LOCAL_01
         </div>
 
-        <div class="hud-title">💼 CRM & Allocator Export</div>
-        <div style="display: flex; gap: 8px;">
-            <button class="btn-action btn-outline" onclick="exportCrm('csv')" style="flex: 1; font-size: 0.75rem; padding: 6px;">
-                📥 Export CSV
-            </button>
-            <button class="btn-action btn-outline" onclick="exportCrm('json')" style="flex: 1; font-size: 0.75rem; padding: 6px;">
-                📥 Export JSON
-            </button>
+        <div class="hud-title">💼 CRM & Allocator</div>
+        <div style="font-size: 0.75rem; color: var(--text-muted);">
+            Operator exports are available only through authenticated server-side tooling.
         </div>
     </div>
 </div>
@@ -616,10 +611,6 @@ Status: READY (8 Qubits)</div>
 
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
                 <div style="display: flex; gap: 8px;">
-                    <button type="button" class="btn-action btn-outline" onclick="exportCrm('csv')">📥 Export CSV</button>
-                    <button type="button" class="btn-action btn-outline" onclick="exportCrm('json')">📥 Export JSON</button>
-                </div>
-                <div style="display: flex; gap: 8px;">
                     <button type="button" class="btn-action btn-outline" onclick="closeCrmModal()">Cancel</button>
                     <button type="submit" class="btn-action btn-cyan" id="btnSubmitCrm">🚀 Mint & Claim Grant</button>
                 </div>
@@ -657,8 +648,8 @@ Status: READY (8 Qubits)</div>
         input.value = "";
         appendMessage("USER", prompt);
 
-        // Attempt API call to both relative endpoint and port 8000
-        const endpoints = ["http://localhost:8000/api/v1/si/chat", "/api/v1/si/chat"];
+        // The production cockpit uses only its same-origin reverse proxy.
+        const endpoints = ["/api/v1/si/chat"];
         for (const ep of endpoints) {
             try {
                 const resp = await fetch(ep, {
@@ -807,20 +798,20 @@ Status: READY (8 Qubits)</div>
 • SQLite Vector Index: 4 new P0/P1 breakthroughs categorized
 
 [TOOL_EXECUTION: benchmark_multivendor_qpu]
-• IBM Heron (Heavy-Hex): 142 gates (28.5% SWAP overhead) | Latency: 12.4 ms
-• IonQ Forte (Trapped Ion): 84 gates (0.0% SWAP overhead) | Latency: 185 ms
-• Rigetti Ankaa (Square Lattice): 168 gates (42.0% SWAP overhead) | Latency: 18.2 ms
+• Offline cockpit does not cache or invent transpilation/hardware metrics
+• IBM/Rigetti: request current executable routing plans from the API
+• IonQ 36-AQ vs 48 logical qubits: UNSUPPORTED_EXACT_CIRCUIT_CUTTING
 
 [TOOL_EXECUTION: godaddy_airo_production_export]
 • Embed Target: triqee.com/cockpit
 • Status: READY_FOR_EMBED`;
 
             document.getElementById("hudQpuDag").textContent =
-`[MULTI-VENDOR QPU BENCHMARK]
-IBM Heron:  142 Gates | 12.4ms (Heavy-Hex)
-IonQ Forte:  84 Gates |  0% SWAP (All-to-All)
-Rigetti:    168 Gates | 18.2ms (Square)
-Recommendation: IonQ Forte for Max Fidelity`;
+`[MULTI-VENDOR QPU PLANNER]
+IBM Heron: API-generated executable routing plan
+IonQ Forte: 36 AQ cannot run intact 48q workload
+Rigetti Ankaa: API-generated executable routing plan
+Status: NO HARDWARE EXECUTION CLAIMED`;
 
             playQuantumTone();
 
@@ -836,18 +827,15 @@ Recommendation: IonQ Forte for Max Fidelity`;
 
 ---
 
-### Option 2: Multi-Vendor QPU Circuit Benchmark Results
-We transpiled an identical 16-qubit algorithmic circuit across the leading quantum architectures:
-* **IonQ Forte (Trapped Ion)**: **84 total gates** with **0.0% SWAP routing overhead** due to all-to-all connectivity. Highest algorithmic fidelity ($T_2 = 1.0\\text{ s}$).
-* **IBM Heron (Superconducting Transmon)**: **142 total gates** ($28.5\\%$ SWAP overhead on Heavy-Hex lattice). Lowest physical gate execution time ($12.4\\text{ ms}$).
-* **Rigetti Ankaa (Tunable Couplers)**: **168 total gates** ($42.0\\%$ SWAP overhead on square lattice).
+### Option 2: Multi-Vendor QPU Planning
+The online planner emits executable, parameter-preserving IBM/Rigetti routing plans. IonQ 48-qubit planning fails closed because exact independently sampled circuit cutting is not implemented. This offline cockpit does not fabricate depth, fidelity, runtime, or hardware-execution results; submit the prompt to the API for current deterministic plan metrics.
 
 ---
 
 ### Option 3: GoDaddy Airo Production Deployment on Triqee.com
 * **Embed Code Ready**: Use the **[📋 Embed Code]** button in the top header or paste this snippet into GoDaddy Airo:
 \`\`\`html
-<iframe src="http://localhost:3000/triqee_si_chatbot.html" width="100%" height="800px" frameborder="0" allow="microphone; speech; audio;" style="border-radius:12px;border:1px solid #1e293b;"></iframe>
+<iframe src="https://www.triqee.com/cockpit" width="100%" height="800px" frameborder="0" allow="microphone; speech; audio;" style="border-radius:12px;border:1px solid #1e293b;"></iframe>
 \`\`\`
 * **Target Page**: \`https://www.triqee.com/cockpit\` (or \`/chat\`).
 
@@ -864,17 +852,15 @@ All 3 options have been verified and executed deterministically!`;
 • Post-Mitigation QBER: 1.95% | Compromised Keys: 0
 
 [TOOL_EXECUTION: transpile_qpu_circuit]
-• Target: 32-Qubit qLDPC Surface Code Lattice Surgery
-• Backend: IBM Heron / IonQ Forte [READY_FOR_DISPATCH]
-• Circuit Depth: 16 | Stabilizer Syndrome Checks: 64`;
+• Target: Toy 48-Qubit qLDPC-Like Syndrome Benchmark (36 data / 12 ancilla)
+• Backends: IBM Heron / IonQ Forte / Rigetti Ankaa [PLANNING ONLY]
+• No named code distance, threshold, or correction capability is claimed`;
 
             document.getElementById("hudQpuDag").textContent =
-`[32-QUBIT qLDPC SYNDROME DAG]
-q[00..07] ──H────●────[Z-Stabilizer]────●──── (Syndrome 0)
-q[08..15] ──H────┼────[X-Stabilizer]────┼──── (Syndrome 1)
-q[16..23] ──H────X────[Lattice Srg]────X──── (Logical 0)
-q[24..31] ──H────X────[Phase Track]────X──── (Logical 1)
-Status: FAULT_TOLERANT (QBER: 1.95%)`;
+`[48-QUBIT TOY SYNDROME BENCHMARK]
+data[00..35] ──●────[Z checks: data→ancilla CX]────────
+anc [36..47] ──H────[X checks: ancilla→data CX]────H──MZ
+Status: DETERMINISTIC COMPILE PLAN (NO HARDWARE RUN)`;
 
             responseText =
 `Triqee Sovereign Superintelligence (Optimal 2-Phase Execution Report):
@@ -889,16 +875,16 @@ We executed a live transmission simulation of 100,000 entangled photon pulses ac
 
 ---
 
-### Phase 2: 32-Qubit qLDPC Quantum Error Correction DAG
-To maintain physical-layer fidelity on the diamond NV repeaters, the SI compiled a **32-Qubit Quantum Low-Density Parity-Check (qLDPC)** surface code circuit:
-* **Syndrome Extraction**: 64 continuous $X$-type and $Z$-type parity check operators to correct phase flips ($\\sigma_z$) and bit flips ($\\sigma_x$) in real time.
-* **Overhead Reduction**: Uses algebraic lattice surgery to reduce physical-to-logical qubit ratio from classical $1,000:1$ down to **$32:1$**.
-* **Status**: **READY_FOR_DISPATCH** to cloud quantum hardware backends.
+### Phase 2: 48-Qubit Toy qLDPC-Like Syndrome Benchmark
+The planner constructed a defined **36-data / 12-ancilla parity-check benchmark** with check-specific extraction:
+* **Z checks**: ancilla $|0\\rangle$, data-controlled CX gates, then Z readout.
+* **X checks**: ancilla $|+\\rangle$, ancilla-controlled CX gates, final H, then Z readout.
+* **Truth boundary**: this is not a named qLDPC code and claims no code distance, threshold, real-time correction, or hardware execution.
 
 ---
 
 ### Verification Summary:
-Both phases executed in optimal sequence under **1.45 ms** local processing time. The network is fully secured and fault-tolerant.`;
+The defense simulation and circuit plan are separate deterministic artifacts; no QPU hardware run is claimed.`;
 
         } else if (pLower.includes("qkd") || pLower.includes("key distribution") || pLower.includes("quantum key") || pLower.includes("encryption")) {
             toolTrace =
@@ -1132,7 +1118,7 @@ Restored:  QBER 1.95% (0 Bits Leaked)`;
 * Mitigation Time: **0.42 µs** autonomous channel abort.
 * Dynamic Entanglement Reroute: Swapped quantum link to **LEO Satellite Crosslink #8 → Diamond NV Repeater #4**.
 * Post-Mitigation QBER: **1.95%** | Compromised Keys Leaked: **0 bits**.
-* Fault-Tolerant Surface Code: Transpiled 32-Qubit qLDPC syndrome extraction DAG on repeaters.
+* Toy qLDPC-like Benchmark: Planned a 36-data/12-ancilla syndrome DAG; no named code distance or correction capability is claimed.
 
 ---
 **Defense Status:** **CHANNEL SECURED WITH ZERO INFORMATION LEAKAGE.**`;
@@ -1272,7 +1258,7 @@ The unified combination of **OptoTensor (100 GHz Photonics)**, **AgentGrid (Zero
             toolTrace =
 `[TOOL_EXECUTION: triqee_optotensor_compiler]
 • OptoTensor™: 100 GHz Photonic Waveguide Matrix Engine compiled (0.04 fJ/MAC)
-• REST API: http://localhost:8000/api/v1/optotensor [ACTIVE]
+• REST API: /api/v1/optotensor [ACTIVE]
 
 [TOOL_EXECUTION: triqee_agentgrid_firewall]
 • AgentGrid™: Zero-Trust ZK Provenance Gatekeeper deployed (1.2 ms validation)
@@ -1295,7 +1281,7 @@ Status: ALL_3_ENGINES_OPERATIONAL`;
 **1. ⚡ Triqee-OptoTensor™ (100 GHz Photonic Waveguide Matrix Engine) — [COMPILED]**
 * **Status**: Optical kernel compiler active. Silicon photonics MZI mesh initialized at $100\\text{ GHz}$ ($0.04\\text{ fJ/MAC}$).
 * **Benchmark**: Sub-nanosecond optical GEMM execution verified without Joule thermal degradation.
-* **SDK Artifact**: \`src/optotensor_kernel.py\` & REST API \`http://localhost:8000/api/v1/optotensor\` ready.
+* **SDK Artifact**: \`src/optotensor_kernel.py\` & REST API \`/api/v1/optotensor\` ready.
 
 **2. 🛡️ Triqee-AgentGrid™ (Zero-Trust Omniverse Autonomous Defense) — [DEPLOYED]**
 * **Status**: ZK-SNARK context provenance gatekeeper initialized ($1.2\\text{ ms}$ validation ceiling).
@@ -1466,7 +1452,7 @@ What algorithmic, cryptographic, or physical problem would you like to solve nex
     }
 
     function openEmbedModal() {
-        const embedCode = `<iframe src="http://localhost:3000/triqee_si_chatbot.html" width="100%" height="750px" frameborder="0" style="border-radius:12px;border:1px solid #1e293b;box-shadow:0 10px 30px rgba(0,0,0,0.5);"></iframe>`;
+        const embedCode = `<iframe src="https://www.triqee.com/cockpit" width="100%" height="750px" frameborder="0" style="border-radius:12px;border:1px solid #1e293b;box-shadow:0 10px 30px rgba(0,0,0,0.5);"></iframe>`;
         prompt("Copy this embed code for triqee.com / GoDaddy Airo:", embedCode);
     }
 
@@ -1597,7 +1583,7 @@ What algorithmic, cryptographic, or physical problem would you like to solve nex
         };
 
         try {
-            const endpoints = ["http://localhost:8000/api/v1/leads/capture", "/api/v1/leads/capture"];
+            const endpoints = ["/api/v1/leads/capture"];
             let data = null;
             const errors = [];
             for (const ep of endpoints) {
@@ -1665,31 +1651,6 @@ What algorithmic, cryptographic, or physical problem would you like to solve nex
             );
             btn.disabled = false;
             btn.textContent = "🚀 Mint & Claim Grant";
-        }
-    }
-
-    async function exportCrm(format) {
-        const ep = format === "csv" ? "http://localhost:8000/api/v1/crm/export/csv" : "http://localhost:8000/api/v1/crm/export/json";
-        const adminKey = window.prompt("Enter the CRM operator key for this export:");
-        if (!adminKey) return;
-        try {
-            const resp = await fetch(ep, {
-                headers: { "X-Admin-Key": adminKey }
-            });
-            if (!resp.ok) {
-                throw new Error(await readApiError(resp));
-            }
-            const blob = await resp.blob();
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `triqee_institutional_leads.${format}`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        } catch (error) {
-            alert(`CRM export failed: ${error.message}`);
         }
     }
 

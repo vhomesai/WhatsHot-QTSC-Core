@@ -62,7 +62,15 @@ class SovereignSIAgent:
             qubits = int(params.get("qubits", 8))
             depth = int(params.get("depth", 10))
             backend = params.get("backend", "ibm_heron")
-            return self.edge_engine.compile_qpu_transpilation_job(qubit_count=qubits, depth=depth, target_backend=backend)
+            workload_type = params.get("workload_type")
+            qaoa_p = int(params.get("qaoa_p", 2))
+            return self.edge_engine.compile_qpu_transpilation_job(
+                qubit_count=qubits,
+                depth=depth,
+                target_backend=backend,
+                workload_type=workload_type,
+                qaoa_p=qaoa_p,
+            )
 
         elif tool_name == "design_qkd_architecture":
             distance_km = float(params.get("distance_km", 120.0))
@@ -155,40 +163,73 @@ class SovereignSIAgent:
             }
 
         elif tool_name == "benchmark_multivendor_qpu":
-            qubits = int(params.get("qubits", 16))
-            return {
-                "qubits": qubits,
-                "logical_circuit_depth": 14,
-                "backends_compared": [
+            requested_qubits = int(params.get("qubits", 16))
+            workload_type = params.get("workload_type", "qaoa_portfolio_risk")
+            qaoa_p = int(params.get("qaoa_p", 2))
+            bundle = self.edge_engine.plan_48_qubit_workload(
+                workload_type,
+                qaoa_p=qaoa_p,
+            )
+            backend_names = {
+                "ibm_heron": "IBM Heron (156 Qubits)",
+                "ionq_forte": "IonQ Forte (36 Algorithmic Qubits)",
+                "rigetti_ankaa": "Rigetti Ankaa-9Q / 84Q",
+            }
+            comparisons = []
+            for backend_key, plan in bundle["plans"].items():
+                routed_operations = plan.get("routed_operations", [])
+                comparisons.append(
                     {
-                        "backend": "IBM Heron (156 Qubits)",
-                        "architecture": "Superconducting Transmon (Heavy-Hex Lattice)",
-                        "transpiled_gates": 142,
-                        "swap_overhead_pct": 28.5,
-                        "coherence_time_t2_us": 300.0,
-                        "average_2q_error": 0.0035,
-                        "est_execution_ms": 12.4
-                    },
-                    {
-                        "backend": "IonQ Forte (36 Algorithmic Qubits)",
-                        "architecture": "Trapped Ytterbium Ions (All-to-All Full Connectivity)",
-                        "transpiled_gates": 84,
-                        "swap_overhead_pct": 0.0,
-                        "coherence_time_t2_us": 1000000.0,
-                        "average_2q_error": 0.0018,
-                        "est_execution_ms": 185.0
-                    },
-                    {
-                        "backend": "Rigetti Ankaa-9Q / 84Q",
-                        "architecture": "Superconducting Tunable Couplers (Square Lattice)",
-                        "transpiled_gates": 168,
-                        "swap_overhead_pct": 42.0,
-                        "coherence_time_t2_us": 45.0,
-                        "average_2q_error": 0.0085,
-                        "est_execution_ms": 18.2
+                        "backend": backend_names[backend_key],
+                        "backend_key": backend_key,
+                        "capacity": plan["backend"]["capacity"],
+                        "topology": plan["backend"]["topology"],
+                        "workload_type": workload_type,
+                        "original_depth": plan["original_depth"],
+                        "optimized_depth": plan["optimized_depth"],
+                        "transpiled_gates": len(routed_operations),
+                        "swap_count": plan["optimized_swap_count"],
+                        "swap_overhead_pct": round(
+                            plan["optimized_swap_count"]
+                            / max(plan["original_gate_count"], 1)
+                            * 100.0,
+                            2,
+                        ),
+                        "hardware_execution": False,
+                        "status": plan["status"],
                     }
-                ],
-                "recommended_optimal_backend": "IonQ Forte (Zero SWAP Routing Overhead) for deep circuits; IBM Heron for ultra-low latency."
+                )
+            for backend_key, diagnostic in bundle["unsupported_backends"].items():
+                comparisons.append(
+                    {
+                        "backend": backend_names[backend_key],
+                        "backend_key": backend_key,
+                        "capacity": diagnostic["backend"]["capacity"],
+                        "topology": diagnostic["backend"]["topology"],
+                        "workload_type": workload_type,
+                        "status": diagnostic["status"],
+                        "cut_count": diagnostic["cut_count"],
+                        "fragment_widths": diagnostic["fragment_widths"],
+                        "swap_count": 0,
+                        "swap_overhead_pct": 0.0,
+                        "hardware_execution": False,
+                        "submission_ready": False,
+                        "reason": diagnostic["reason"],
+                        "rejected_amplitude_expansion_term_count": diagnostic[
+                            "rejected_amplitude_expansion_term_count"
+                        ],
+                    }
+                )
+            backend_order = {"ibm_heron": 0, "ionq_forte": 1, "rigetti_ankaa": 2}
+            comparisons.sort(key=lambda item: backend_order[item["backend_key"]])
+            return {
+                "qubits": requested_qubits,
+                "logical_workload_qubits": 48,
+                "workload_type": workload_type,
+                "logical_circuit_depth": next(iter(bundle["plans"].values()))["original_depth"],
+                "backends_compared": comparisons,
+                "hardware_execution": False,
+                "result_scope": bundle["result_scope"],
             }
 
         elif tool_name == "calculate_global_triangle_rf":
@@ -368,9 +409,27 @@ class SovereignSIAgent:
                 "tool_name": "calculate_global_triangle_rf",
                 "params": {}
             })
+            if "qaoa" in p_lower or "portfolio" in p_lower:
+                p_match = re.search(r'(?:p|depth)\s*[=:]?\s*(\d+)', p_lower)
+                backend = (
+                    "ionq_forte"
+                    if "ionq" in p_lower
+                    else "rigetti_ankaa"
+                    if "rigetti" in p_lower
+                    else "ibm_heron"
+                )
+                qpu_params = {
+                    "qubits": 48,
+                    "depth": 12,
+                    "backend": backend,
+                    "workload_type": "qaoa_portfolio_risk",
+                    "qaoa_p": int(p_match.group(1)) if p_match else 2,
+                }
+            else:
+                qpu_params = {"qubits": 24, "depth": 14}
             tools_to_run.append({
                 "tool_name": "transpile_qpu_circuit",
-                "params": {"qubits": 24, "depth": 14}
+                "params": qpu_params
             })
             return tools_to_run
 
@@ -450,9 +509,27 @@ class SovereignSIAgent:
         if any(w in p_lower for w in ["qpu", "quantum circuit", "qubit", "qldpc", "transpile", "surface code", "hamiltonian"]):
             qubit_match = re.search(r'(\d+)[\s-]*qubit', p_lower)
             qubits = int(qubit_match.group(1)) if qubit_match else 8
+            backend = (
+                "ionq_forte"
+                if "ionq" in p_lower
+                else "rigetti_ankaa"
+                if "rigetti" in p_lower
+                else "ibm_heron"
+            )
+            workload_type = None
+            qaoa_p = 2
+            if "qldpc" in p_lower or "syndrome" in p_lower:
+                workload_type = "qldpc_syndrome_extraction"
+                qubits = 48
             tools_to_run.append({
                 "tool_name": "transpile_qpu_circuit",
-                "params": {"qubits": min(qubits, 64), "depth": 12}
+                "params": {
+                    "qubits": min(qubits, 64),
+                    "depth": 12,
+                    "backend": backend,
+                    "workload_type": workload_type,
+                    "qaoa_p": qaoa_p,
+                }
             })
 
         return tools_to_run
@@ -530,7 +607,7 @@ class SovereignSIAgent:
                 f"• Mitigation Time: **0.42 µs** autonomous channel abort.\n"
                 f"• Dynamic Entanglement Reroute: Swapped quantum link to **LEO Satellite Crosslink #8 → Diamond NV Repeater #4**.\n"
                 f"• Post-Mitigation QBER: **1.95%** | Compromised Keys Leaked: **0 bits**.\n"
-                f"• Fault-Tolerant Surface Code: Transpiled 32-Qubit qLDPC syndrome extraction DAG on repeaters.\n\n"
+                f"• Toy qLDPC-like Benchmark: Planned a 36-data/12-ancilla syndrome extraction DAG; no named code distance or correction capability is claimed.\n\n"
                 f"---\n"
                 f"**Defense Status:** **CHANNEL SECURED WITH ZERO INFORMATION LEAKAGE.**"
             )
@@ -731,10 +808,29 @@ class SovereignSIAgent:
                     tool_narratives.append(f"• Active Research Grounding: {art_titles}")
             elif req["tool_name"] == "transpile_qpu_circuit":
                 qpu_artifact = result
-                tool_narratives.append(
-                    f"• QPU DAG Compiled: {result['qubit_count']} qubits ({result['total_gates']} gates) "
-                    f"-> Target Backend: {result['target_backend']} [{result['qpu_status']}]"
-                )
+                plan = result.get("transpilation_plan")
+                if plan:
+                    backend = plan["backend"]
+                    detail = (
+                        f"depth {plan['original_depth']} -> {plan['optimized_depth']}, "
+                        f"{plan['optimized_swap_count']} SWAPs"
+                    )
+                    truth_boundary = (
+                        f" {plan['circuit_ir']['metadata']['code_classification']}."
+                        if plan["workload_type"] == "qldpc_syndrome_extraction"
+                        else ""
+                    )
+                    tool_narratives.append(
+                        f"• QPU DAG Compiled: {plan['workload_type']} on "
+                        f"{backend['vendor']} {backend['model']} "
+                        f"({backend['capacity']} qubits, {backend['topology']}): {detail}. "
+                        f"Deterministic plan only; no hardware execution.{truth_boundary}"
+                    )
+                else:
+                    tool_narratives.append(
+                        f"• QPU DAG Compiled: {result['qubit_count']} qubits ({result['total_gates']} gates) "
+                        f"-> Target Backend: {result['target_backend']} [{result['qpu_status']}]"
+                    )
             elif req["tool_name"] == "design_qkd_architecture":
                 models = result.get("comparison_models", [])
                 qkd_summary = [
@@ -756,7 +852,7 @@ class SovereignSIAgent:
                     f"  - Sovereign Action: {result['quantum_action']} in {result['mitigation_time_us']} µs",
                     f"  - Dynamic Reroute: Swapped entanglement across {result['rerouted_path']}",
                     f"  - Post-Mitigation QBER: {result['post_mitigation_qber_pct']}% | Leaked Keys: {result['compromised_keys_leaked']} (Zero Information Leakage)\n",
-                    f"• Step 2: Compiled Fault-Tolerant Quantum Error Correction (qLDPC) Surface Code DAG on Repeaters"
+                    f"• Step 2: Planned a toy 36-data/12-ancilla qLDPC-like parity-check DAG (no named code-distance or correction claim)"
                 ]
                 tool_narratives.extend(sim_summary)
             elif req["tool_name"] == "claim_token_grant":
@@ -770,12 +866,29 @@ class SovereignSIAgent:
                 tool_narratives.extend(grant_summary)
             elif req["tool_name"] == "benchmark_multivendor_qpu":
                 qpu_summary = [
-                    f"• Multi-Vendor QPU Transpiler Benchmark ({result['qubits']} Qubits, Depth {result['logical_circuit_depth']}):",
-                    "  - IBM Heron: 142 transpiled gates (28.5% SWAP routing overhead) | Execution: 12.4 ms | T2: 300 µs",
-                    "  - IonQ Forte: 84 transpiled gates (0.0% SWAP overhead - Full All-to-All) | Execution: 185 ms | T2: 1.0 s",
-                    "  - Rigetti Ankaa: 168 transpiled gates (42.0% SWAP overhead) | Execution: 18.2 ms | T2: 45 µs\n",
-                    f"• Optimal Architecture Recommendation: {result['recommended_optimal_backend']}"
+                    f"• Multi-Vendor QPU Transpiler Benchmark ({result['workload_type']}, "
+                    f"{result['logical_workload_qubits']} logical qubits, "
+                    f"original depth {result['logical_circuit_depth']}):"
                 ]
+                for comparison in result["backends_compared"]:
+                    if comparison["backend_key"] == "ionq_forte":
+                        detail = (
+                            f"{comparison['status']}: {comparison['fragment_widths']} "
+                            f"capacity diagnostic / {comparison['cut_count']} cuts / "
+                            "0 SWAPs; no executable reconstruction emitted"
+                        )
+                    else:
+                        detail = (
+                            f"depth {comparison['original_depth']} -> "
+                            f"{comparison['optimized_depth']} / {comparison['swap_count']} SWAPs"
+                        )
+                    qpu_summary.append(
+                        f"  - {comparison['backend']}: {detail} "
+                        f"({comparison['capacity']} capacity, {comparison['topology']})"
+                    )
+                qpu_summary.append(
+                    "• These are deterministic heuristic transpilation plans, not real QPU executions."
+                )
                 tool_narratives.extend(qpu_summary)
             elif req["tool_name"] == "calculate_global_triangle_rf":
                 tri_summary = [
@@ -785,7 +898,7 @@ class SovereignSIAgent:
                     f"  3. Tokyo JPX -> New York NY4: {result['legs'][2]['distance_km']} km | RF: {result['legs'][2]['rf_oneway_ms']} ms vs Fiber: {result['legs'][2]['fiber_oneway_ms']} ms ({result['legs'][2]['latency_saved_ms']} ms saved)\n",
                     f"• Total Global Round-Trip Time (RTT): RF: {result['total_rf_rtt_ms']} ms vs Subsea Fiber: {result['total_fiber_rtt_ms']} ms",
                     f"• Cumulative Arbitrage Latency Advantage: {result['rtt_latency_saved_ms']} ms Saved (+{result['speedup_pct']}% Speedup Per Arbitrage Cycle)\n",
-                    f"• 24-Qubit QAOA Portfolio Risk Hamiltonian Formulated: H_C = Σ μ_i Z_i + Σ σ_ij Z_i Z_j [Transpiled for IBM Heron / IonQ Forte]",
+                    f"• 24-Qubit QAOA Portfolio Risk Hamiltonian Formulated: H_C = Σ μ_i Z_i + Σ σ_ij Z_i Z_j [No vendor submission or execution claimed]",
                     f"• Sovereign Cryptographic Proof & Wyoming Legal Compliance: W.S. 34-29-106 & DOI 10.5281/zenodo.23045297 [Zero Cloud Lock-In]"
                 ]
                 tool_narratives.extend(tri_summary)

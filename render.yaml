@@ -2,9 +2,20 @@ services:
   - type: web
     name: whatshot-qtsc-core
     runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
-    healthCheckPath: /
+    buildCommand: >-
+      python -m pip install -r requirements.lock &&
+      python -m pip install --no-deps . &&
+      python -c "from src.api_server import app; assert app.title"
+    startCommand: uvicorn src.api_server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    disk:
+      name: triqee-data
+      mountPath: /opt/render/project/data
+      sizeGB: 1
     envVars:
-      - key: WHOT_ENTERPRISE_API_KEYS
+      - key: TRIQEE_ADMIN_KEY
         sync: false
+      - key: TRIQEE_CORS_ORIGINS
+        value: https://www.triqee.com
+      - key: TRIQEE_DB_PATH
+        value: /opt/render/project/data/triqee_system.db

@@ -20,7 +20,7 @@ def test_chat_rendering_escapes_untrusted_content_before_markdown():
 def test_crm_rendering_and_failures_do_not_create_success_shaped_fallbacks():
     html = HTML_PATH.read_text(encoding="utf-8")
     crm_section = html.split("async function submitCrmLead", 1)[1].split(
-        "async function exportCrm", 1
+        'window.addEventListener("DOMContentLoaded"', 1
     )[0]
     assert "resultBox.innerHTML" not in crm_section
     assert "row.textContent = line;" in crm_section
@@ -38,17 +38,15 @@ def test_crm_rendering_and_failures_do_not_create_success_shaped_fallbacks():
     assert "successfully provisioned" not in offline_grant
 
 
-def test_crm_export_requires_ephemeral_operator_key_and_has_no_dummy_data():
+def test_public_cockpit_never_handles_operator_credentials():
     html = HTML_PATH.read_text(encoding="utf-8")
-    export_section = html.split("async function exportCrm", 1)[1].split(
-        'window.addEventListener("DOMContentLoaded"', 1
-    )[0]
-    assert 'window.prompt("Enter the CRM operator key for this export:")' in export_section
-    assert '"X-Admin-Key": adminKey' in export_section
-    assert "localStorage" not in export_section
-    assert "sessionStorage" not in export_section
-    assert "dummyContent" not in export_section
-    assert "CRM export failed:" in export_section
+    assert "TRIQEE_ADMIN_KEY" not in html
+    assert "X-Admin-Key" not in html
+    assert "adminKey" not in html
+    assert "exportCrm(" not in html
+    assert "localhost:" not in html
+    assert 'const endpoints = ["/api/v1/si/chat"];' in html
+    assert 'const endpoints = ["/api/v1/leads/capture"];' in html
 
 
 def test_offline_latency_narratives_share_one_deterministic_invariant():
