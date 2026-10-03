@@ -101,7 +101,27 @@ class DatabaseManager:
                     evaluated_at DEFAULT CURRENT_TIMESTAMP
                 )
             """)
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS intelligence_records (
+                    stable_id TEXT PRIMARY KEY,
+                    title TEXT NOT NULL,
+                    summary TEXT NOT NULL,
+                    category TEXT NOT NULL,
+                    priority TEXT NOT NULL,
+                    source_name TEXT NOT NULL,
+                    source_reference TEXT NOT NULL,
+                    indexed_at TEXT NOT NULL,
+                    published_at TEXT,
+                    tags_json TEXT NOT NULL
+                )
+            """)
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS intelligence_seed_records (
+                    stable_id TEXT PRIMARY KEY
+                )
+            """)
             conn.commit()
+        conn.close()
 
     def record_lead(
         self,

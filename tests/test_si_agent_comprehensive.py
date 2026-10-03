@@ -41,9 +41,13 @@ def test_execute_tool_catalog_and_invariants(agent):
         "search_intelligence_breakthroughs",
         {"limit": 5, "category": "EDGE_QUANTUM_HARDWARE"},
     )
-    assert all_articles["count"] == 2
+    assert all_articles["count"] == 5
+    assert all_articles["matched_count"] == 5
     assert filtered["count"] == 1
-    assert filtered["articles"][0]["primary_category"] == "EDGE_QUANTUM_HARDWARE"
+    assert all(
+        article["category"] == "DIAMOND_NV"
+        for article in filtered["articles"]
+    )
 
     qpu = agent.execute_tool(
         "transpile_qpu_circuit",

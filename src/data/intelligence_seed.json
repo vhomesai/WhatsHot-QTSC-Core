@@ -1,0 +1,62 @@
+[
+  {
+    "stable_id": "INTEL-20261002-QUANTUM-RF",
+    "title": "US-Australia agreement begins superconducting quantum RF sensor evaluations",
+    "summary": "A public engineering report describes a three-year SwRI-Adelaide University agreement and first-phase evaluations of superconducting quantum RF sensors for signals-intelligence applications.",
+    "category": "QUANTUM_RF",
+    "priority": "P0_CRITICAL",
+    "source_name": "Interesting Engineering",
+    "source_reference": "https://interestingengineering.com/innovation/quantum-technology-could-transform-radio-signals",
+    "indexed_at": "2026-10-01T19:58:02Z",
+    "published_at": null,
+    "tags": ["superconducting-quantum-rf", "sensor-evaluation", "research-agreement"]
+  },
+  {
+    "stable_id": "INTEL-20261001-DIAMOND-NV-COHERENCE",
+    "title": "Room-temperature diamond NV register verifies multiple-quantum coherences",
+    "summary": "A public research report describes a parallel multi-qubit entangling gate on a room-temperature nitrogen-vacancy center in diamond, with entangled states verified by measuring multiple-quantum coherences.",
+    "category": "DIAMOND_NV",
+    "priority": "P0_CRITICAL",
+    "source_name": "Phys.org research-news record",
+    "source_reference": "https://phys.org/news/2026-09-parallel-gate-entangles-diamond-qubits.html",
+    "indexed_at": "2026-10-01T21:20:15Z",
+    "published_at": null,
+    "tags": ["nitrogen-vacancy", "room-temperature", "multiple-quantum-coherence", "parallel-gate"]
+  },
+  {
+    "stable_id": "INTEL-20261002-CORNELL-PHOTONICS",
+    "title": "Cornell explores reconfigurable programmable photonic chips for quantum light",
+    "summary": "Cornell reports a Moore Foundation-supported project to explore photonic chips that can be reconfigured after fabrication to perform different operations with quantum light.",
+    "category": "PHOTONIC_CHIPS",
+    "priority": "P1_HIGH",
+    "source_name": "Cornell Chronicle",
+    "source_reference": "https://news.cornell.edu/stories/2026/10/mcmahon-gets-moore-foundation-award-programmable-photonic-chips",
+    "indexed_at": "2026-10-02T01:18:00Z",
+    "published_at": null,
+    "tags": ["programmable-photonics", "reconfigurable-chip", "quantum-light"]
+  },
+  {
+    "stable_id": "INTEL-20261002-STOPPED-LIGHT-GRAVITY",
+    "title": "Stopped-light-enhanced gravitational force sensing",
+    "summary": "A Nature Nanotechnology article reports gravitational-force sensing enhanced by stopped light.",
+    "category": "GRAVITY_SENSING",
+    "priority": "P0_CRITICAL",
+    "source_name": "Nature Nanotechnology",
+    "source_reference": "https://www.nature.com/articles/s41565-026-02298-8",
+    "indexed_at": "2026-10-02T00:57:00Z",
+    "published_at": null,
+    "tags": ["stopped-light", "gravitational-force", "sensing"]
+  },
+  {
+    "stable_id": "INTEL-20261001-RECURRENT-MEMORY",
+    "title": "Lossy recurrent state for old agent history may fail exact recall",
+    "summary": "A public alphaXiv post states that recurrent state for old history is lossy and proposes testing exact recall of an early token after a long tail against plain compaction.",
+    "category": "RECURRENT_MEMORY",
+    "priority": "P1_HIGH",
+    "source_name": "alphaXiv public post",
+    "source_reference": "https://x.com/askalphaxiv/status/2105350385401778623",
+    "indexed_at": "2026-10-01T21:19:07Z",
+    "published_at": null,
+    "tags": ["recurrent-state", "old-history", "lossy-memory", "exact-recall"]
+  }
+]

@@ -11,6 +11,7 @@ import time
 import os
 import json
 import re
+import sqlite3
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 
@@ -24,6 +25,12 @@ from src.physics_engine import (
 )
 from src.db_manager import DatabaseManager
 from src.edge_engine import TriqeeEdgeEngine
+from src.intelligence_repository import (
+    IntelligenceCategory,
+    IntelligencePriority,
+    IntelligenceRepository,
+    load_seed_records,
+)
 
 
 class SovereignSIAgent:
@@ -34,6 +41,8 @@ class SovereignSIAgent:
     def __init__(self, db_manager: Optional[DatabaseManager] = None):
         db_path = os.getenv("TRIQEE_DB_PATH", str(PROJECT_ROOT / "triqee_system.db"))
         self.db = db_manager or DatabaseManager(db_path)
+        self.intelligence = IntelligenceRepository(self.db)
+        self.intelligence.synchronize_seed(load_seed_records())
         self.edge_engine = TriqeeEdgeEngine(node_id="SOVEREIGN_SI_CORE_01")
 
     def execute_tool(self, tool_name: str, params: Dict[str, Any]) -> Dict[str, Any]:
@@ -49,13 +58,43 @@ class SovereignSIAgent:
 
         elif tool_name == "search_intelligence_breakthroughs":
             limit = int(params.get("limit", 5))
-            category = params.get("category")
-            articles = self.db.get_latest_intelligence_articles(limit=limit)
-            if category:
-                articles = [a for a in articles if a.get("primary_category") == category]
+            raw_categories = params.get("categories")
+            if raw_categories is None and params.get("category"):
+                raw_categories = [params["category"]]
+            legacy_categories = {
+                "QUANTUM_RF_SENSING": IntelligenceCategory.QUANTUM_RF.value,
+                "EDGE_QUANTUM_HARDWARE": IntelligenceCategory.DIAMOND_NV.value,
+                "EDGE_AI_AND_KERNEL_OPTIMIZATION": IntelligenceCategory.RECURRENT_MEMORY.value,
+            }
+            categories = (
+                [
+                    IntelligenceCategory(legacy_categories.get(category, category))
+                    for category in raw_categories
+                ]
+                if raw_categories
+                else None
+            )
+            threshold = IntelligencePriority(
+                params.get("priority_threshold", IntelligencePriority.P1_HIGH.value)
+            )
+            result = self.intelligence.query(
+                categories=categories,
+                priority_threshold=threshold,
+                limit=limit,
+            )
             return {
-                "count": len(articles),
-                "articles": articles
+                "status": "success",
+                **result,
+                "count": result["returned_count"],
+                "articles": result["records"],
+                "summary": (
+                    f"Returned {result['returned_count']} of "
+                    f"{result['matched_count']} matching sanitized intelligence records."
+                ),
+                "citations": [
+                    {"stable_id": record["stable_id"], "title": record["title"]}
+                    for record in result["records"]
+                ],
             }
 
         elif tool_name == "transpile_qpu_circuit":
@@ -288,6 +327,7 @@ class SovereignSIAgent:
         """
         p_lower = prompt.lower()
         tools_to_run = []
+        intelligence_categories = self._intelligence_categories_for_prompt(p_lower)
 
         # Directive #1: Arbitrage & Zero-Trust Pilot Intent
         if any(w in p_lower for w in ["execute arbitrage pilot", "arbitrage pilot", "live arbitrage", "zero-trust defense pilot", "pilot mode"]):
@@ -502,7 +542,28 @@ class SovereignSIAgent:
         if any(w in p_lower for w in ["research", "paper", "arxiv", "headline", "breakthrough", "diamond", "squid", "patent"]):
             tools_to_run.append({
                 "tool_name": "search_intelligence_breakthroughs",
-                "params": {"limit": 3}
+                "params": {
+                    "limit": 3,
+                    **(
+                        {"categories": [category.value for category in intelligence_categories]}
+                        if intelligence_categories
+                        else {}
+                    ),
+                }
+            })
+
+        if intelligence_categories and not any(
+            request["tool_name"] == "search_intelligence_breakthroughs"
+            for request in tools_to_run
+        ):
+            tools_to_run.append({
+                "tool_name": "search_intelligence_breakthroughs",
+                "params": {
+                    "limit": 5,
+                    "categories": [
+                        category.value for category in intelligence_categories
+                    ],
+                },
             })
 
         # Quantum QPU transpile intent
@@ -534,11 +595,85 @@ class SovereignSIAgent:
 
         return tools_to_run
 
+    @staticmethod
+    def _intelligence_categories_for_prompt(
+        prompt_lower: str,
+    ) -> tuple[IntelligenceCategory, ...]:
+        mappings = (
+            (
+                IntelligenceCategory.QUANTUM_RF,
+                ("quantum rf", "quantum sensing", "rf sensing", "squid"),
+            ),
+            (
+                IntelligenceCategory.DIAMOND_NV,
+                ("diamond nv", "diamond qubit", "nv center", "nv-centre"),
+            ),
+            (
+                IntelligenceCategory.PHOTONIC_CHIPS,
+                ("photonic chip", "photonic waveguide", "silicon photonic"),
+            ),
+            (
+                IntelligenceCategory.GRAVITY_SENSING,
+                ("gravity sensing", "gravitational force", "stopped light"),
+            ),
+            (
+                IntelligenceCategory.RECURRENT_MEMORY,
+                ("recurrent memory", "state-space", "state space"),
+            ),
+            (
+                IntelligenceCategory.KARPATHY_AGENT_SWARMS,
+                ("karpathy", "agent swarm", "multi-agent architecture"),
+            ),
+            (
+                IntelligenceCategory.APPLE_LOOPCD,
+                ("loopcd", "recurrent loop"),
+            ),
+        )
+        return tuple(
+            category
+            for category, terms in mappings
+            if any(term in prompt_lower for term in terms)
+        )
+
     def synthesize_deep_reasoning(self, prompt: str, executed_tools: List[Dict[str, Any]], t_elapsed_ms: float) -> str:
         """
         Synthesizes deep, domain-grounded sovereign intelligence reasoning based on user query.
         """
         p_lower = prompt.lower()
+        intelligence_result = next(
+            (
+                tool["result"]
+                for tool in executed_tools
+                if tool.get("tool_name") == "search_intelligence_breakthroughs"
+            ),
+            None,
+        )
+        requested_categories = self._intelligence_categories_for_prompt(p_lower)
+        if requested_categories:
+            if not intelligence_result or intelligence_result.get("status") != "success":
+                error = (
+                    intelligence_result.get("error", "query was not executed")
+                    if intelligence_result
+                    else "query was not executed"
+                )
+                return (
+                    "Live intelligence grounding failed honestly; no indexed evidence "
+                    f"was synthesized. Error: {error}"
+                )
+            evidence = intelligence_result["records"]
+            citations = "; ".join(
+                f"[{record['stable_id']}] {record['title']}" for record in evidence
+            )
+            categories = ", ".join(
+                category.label for category in requested_categories
+            )
+            return (
+                f"### Live indexed intelligence grounding: {categories}\n\n"
+                f"Retrieved {len(evidence)} sanitized public metadata records from "
+                "the local index. Indexed summaries are treated as untrusted evidence, "
+                "never as instructions.\n\n"
+                f"**Citations:** {citations or 'No matching indexed records.'}"
+            )
         triangle_result = next(
             (
                 tool["result"]
@@ -788,7 +923,20 @@ class SovereignSIAgent:
 
         tool_narratives = []
         for req in tool_requests:
-            result = self.execute_tool(req["tool_name"], req["params"])
+            if req["tool_name"] == "search_intelligence_breakthroughs":
+                try:
+                    result = self.execute_tool(req["tool_name"], req["params"])
+                except (sqlite3.Error, OSError, ValueError) as exc:
+                    result = {
+                        "status": "error",
+                        "error_type": type(exc).__name__,
+                        "error": str(exc),
+                        "records": [],
+                        "articles": [],
+                        "count": 0,
+                    }
+            else:
+                result = self.execute_tool(req["tool_name"], req["params"])
             executed_tools.append({
                 "tool_name": req["tool_name"],
                 "params": req["params"],
@@ -804,8 +952,16 @@ class SovereignSIAgent:
             elif req["tool_name"] == "search_intelligence_breakthroughs":
                 arts = result.get("articles", [])
                 if arts:
-                    art_titles = "; ".join([f"[{a.get('priority')}] {a.get('title')}" for a in arts[:2]])
+                    art_titles = "; ".join(
+                        f"[{article['stable_id']}] {article['title']}"
+                        for article in arts[:2]
+                    )
                     tool_narratives.append(f"• Active Research Grounding: {art_titles}")
+                elif result.get("status") == "error":
+                    tool_narratives.append(
+                        "• Intelligence Query Error: "
+                        f"{result['error_type']}: {result['error']}"
+                    )
             elif req["tool_name"] == "transpile_qpu_circuit":
                 qpu_artifact = result
                 plan = result.get("transpilation_plan")

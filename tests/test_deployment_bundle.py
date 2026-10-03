@@ -1,5 +1,8 @@
 from pathlib import Path
+import os
 import re
+import subprocess
+import sys
 import tomllib
 
 import yaml
@@ -44,12 +47,38 @@ def test_dockerfile_installs_project_and_runs_expected_app_as_non_root():
     assert dockerfile.startswith("# syntax=docker/dockerfile:1.7\nFROM python:3.12.15-slim-bookworm")
     assert "pip install --no-cache-dir -r requirements.lock" in dockerfile
     assert "pip install --no-cache-dir --no-deps ." in dockerfile
-    assert 'from src.api_server import app; assert app.title' in dockerfile
+    assert "TRIQEE_DB_PATH=/app/data/operational.db" in dockerfile
+    assert "python -m compileall -q src" in dockerfile
+    assert "find_spec('src.api_server')" in dockerfile
+    assert "from src.api_server import" not in dockerfile
+    assert "gemini_agent_dashboard.db" not in dockerfile
     assert "requirements.txt" not in dockerfile
     assert "USER 10001:10001" in dockerfile
     assert '"src.api_server:app"' in dockerfile
     assert "HEALTHCHECK" in dockerfile
     assert "apt-get" not in dockerfile
+
+
+def test_runtime_import_initializes_configured_database_only(tmp_path):
+    runtime_database = tmp_path / "data" / "operational.db"
+    environment = os.environ.copy()
+    environment["TRIQEE_DB_PATH"] = str(runtime_database)
+    subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            "from src.api_server import DB_PATH, app; "
+            "assert DB_PATH == __import__('os').environ['TRIQEE_DB_PATH']; "
+            "assert app.title",
+        ],
+        cwd=ROOT,
+        env=environment,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    assert runtime_database.is_file()
+    assert not (tmp_path / "gemini_agent_dashboard.db").exists()
 
 
 def test_runtime_lock_covers_project_dependencies_and_email_validation_extra():
@@ -117,7 +146,9 @@ def test_render_and_workflow_yaml_parse_structurally():
     service = render["services"][0]
     assert "requirements.lock" in service["buildCommand"]
     assert "pip install --no-deps ." in service["buildCommand"]
-    assert "from src.api_server import app" in service["buildCommand"]
+    assert "python -m compileall -q src" in service["buildCommand"]
+    assert "find_spec('src.api_server')" in service["buildCommand"]
+    assert "from src.api_server import" not in service["buildCommand"]
     assert service["startCommand"].startswith("uvicorn src.api_server:app")
     assert service["healthCheckPath"] == "/health"
     assert service["disk"]["mountPath"] == "/opt/render/project/data"

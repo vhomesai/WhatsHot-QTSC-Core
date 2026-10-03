@@ -43,6 +43,9 @@ dev = [
 where = ["."]
 include = ["src*"]
 
+[tool.setuptools.package-data]
+src = ["data/*.json"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests", "test_app.py", "test_anchor_metadata.py", "test_anchor_metadata_extra.py"]
 python_files = ["test_*.py"]

@@ -9,7 +9,7 @@ import hmac
 import os
 from pathlib import Path
 from typing import Dict, Any, Optional
-from fastapi import Depends, FastAPI, Header, HTTPException, status
+from fastapi import Depends, FastAPI, Header, HTTPException, Query, status
 from pydantic import BaseModel, Field, EmailStr
 
 from src.physics_engine import (
@@ -26,6 +26,11 @@ from src.triage_engine import (
 from src.db_manager import DatabaseManager
 from src.edge_engine import TriqeeEdgeEngine
 from src.si_agent_core import SovereignSIAgent
+from src.intelligence_repository import (
+    MAX_QUERY_LIMIT,
+    IntelligenceCategory,
+    IntelligencePriority,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DB_PATH = PROJECT_ROOT / "gemini_agent_dashboard.db"
@@ -219,17 +224,28 @@ class SIChatRequest(BaseModel):
 
 
 @app.get("/api/v1/intelligence/latest", tags=["Intelligence"])
-def get_latest_intelligence(limit: int = 15, priority: Optional[str] = None):
-    """Retrieves the latest scientific breakthroughs evaluated against our taxonomy."""
-    articles = db.get_latest_intelligence_articles(limit=limit, min_priority=priority)
-    return {"status": "success", "count": len(articles), "articles": articles}
+def get_latest_intelligence(
+    category: Optional[list[IntelligenceCategory]] = Query(default=None),
+    priority: IntelligencePriority = IntelligencePriority.P1_HIGH,
+    limit: int = Query(default=15, ge=1, le=MAX_QUERY_LIMIT),
+):
+    """Public read-only access to sanitized indexed intelligence metadata."""
+    result = si_agent.intelligence.query(
+        categories=category,
+        priority_threshold=priority,
+        limit=limit,
+    )
+    return {"status": "success", **result, "articles": result["records"]}
 
 
 @app.get("/api/v1/intelligence/stats", tags=["Intelligence"])
 def get_intelligence_statistics():
-    """Retrieves taxonomy distribution stats across quantum, RF, and edge AI pillars."""
-    stats = db.get_intelligence_stats()
-    return {"status": "success", "stats": stats}
+    """Public read-only deterministic metrics from the sanitized local index."""
+    return {
+        "status": "success",
+        "access": "public_sanitized_metadata",
+        "stats": si_agent.intelligence.stats(),
+    }
 
 
 @app.post("/api/v1/edge/infer", tags=["Edge Engine"])

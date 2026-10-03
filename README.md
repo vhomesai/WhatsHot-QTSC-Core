@@ -107,6 +107,21 @@ exact deterministic metrics and the explicit no-hardware-execution boundary.
 
 ---
 
+## Live intelligence index
+
+The SI agent seeds and queries a local SQLite index from the sanitized,
+deterministic `src/data/intelligence_seed.json` artifact. The public read-only
+endpoints `GET /api/v1/intelligence/latest` and
+`GET /api/v1/intelligence/stats` expose only public research metadata and
+provenance; no mailbox identifiers, private bodies, credentials, or database
+paths are returned. Filters use canonical category/priority enums, and “live”
+means each response queries current indexed state—not that a mailbox or network
+scanner runs at startup. See `LIVE_INTELLIGENCE_REPORT.md` for the authoritative
+source audit, the authorized five-record distribution, and the explicit
+mismatch with the unverified 21-record claim.
+
+---
+
 ## Production deployment
 
 The bundle runs `src.api_server:app` behind Caddy and exposes only Caddy. Caddy
