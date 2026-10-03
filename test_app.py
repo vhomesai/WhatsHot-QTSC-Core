@@ -7,17 +7,24 @@ os.environ["WHOT_ENTERPRISE_API_KEYS"] = "test-enterprise-key:internal-testing"
 
 import app
 
-client = TestClient(app.app)
-
 
 class TestTelemetryGateway(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls._client_context = TestClient(app.app)
+        cls.client = cls._client_context.__enter__()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls._client_context.__exit__(None, None, None)
+
     def test_health_check(self):
-        response = client.get("/")
+        response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["status"], "ok")
 
     def test_audit_requires_valid_api_key(self):
-        response = client.post(
+        response = self.client.post(
             "/v1/audit/ternary-check",
             json={"asset_id": "DA-000000992"},
             headers={"X-API-Key": "invalid-key"},
@@ -25,7 +32,7 @@ class TestTelemetryGateway(unittest.TestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_audit_accepts_configured_api_key(self):
-        response = client.post(
+        response = self.client.post(
             "/v1/audit/ternary-check",
             json={"asset_id": "DA-000000992"},
             headers={"X-API-Key": "test-enterprise-key"},

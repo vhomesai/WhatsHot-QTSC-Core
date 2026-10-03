@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: triqee_core_api
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - TRIQEE_DB_PATH=/app/data/operational.db
+      - TRIQEE_CORS_ORIGINS=${TRIQEE_CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
+      - TRIQEE_ADMIN_KEY=${TRIQEE_ADMIN_KEY:?TRIQEE_ADMIN_KEY must be set}
+    volumes:
+      - api_data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  api_data:
