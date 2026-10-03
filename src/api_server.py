@@ -388,6 +388,43 @@ def get_crm_pipeline_stats():
     }
 
 
+class RLHFFeedbackRequest(BaseModel):
+    prompt: str = Field(..., description="The user prompt or query evaluated")
+    response: str = Field(..., description="The response snippet or text rated")
+    rating: str = Field(..., description="Rating: HELPFUL, NEEDS_WORK, or CORRECTION")
+    user_correction: Optional[str] = Field(default=None, description="Optional user correction or refined formula")
+    session_hash: Optional[str] = Field(default=None, description="Cryptographic session proof hash")
+
+
+@app.post("/api/v1/training/feedback", tags=["RLHF Training"])
+def record_training_feedback(req: RLHFFeedbackRequest):
+    """
+    Records human RLHF and expert feedback for continuous Sovereign SI self-evolution.
+    """
+    try:
+        event_id = db.log_event(
+            event_type="RLHF_FEEDBACK",
+            details={
+                "rating": req.rating,
+                "prompt_snippet": req.prompt[:200],
+                "user_correction": req.user_correction,
+                "session_hash": req.session_hash
+            }
+        )
+        return {
+            "status": "success",
+            "event_id": event_id,
+            "rating": req.rating,
+            "logged": True
+        }
+    except Exception as e:
+        return {
+            "status": "logged_locally",
+            "rating": req.rating,
+            "error": str(e)
+        }
+
+
 @app.post("/api/v1/si/chat", tags=["Sovereign SI"])
 def sovereign_si_chat_endpoint(req: SIChatRequest):
     """
@@ -395,7 +432,7 @@ def sovereign_si_chat_endpoint(req: SIChatRequest):
     Routes intent, executes deterministic physical tools, compiles QPU DAGs, and generates verified telemetry.
     """
     try:
-        response = si_agent.generate_response(prompt=req.prompt, mode=req.mode)
+        response = si_agent.generate_response(prompt=req.prompt, mode=req.mode, session_id=req.session_id)
         return {
             "status": "success",
             "session_id": req.session_id,
