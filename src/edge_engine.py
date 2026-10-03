@@ -28,6 +28,8 @@ class TriqeeEdgeEngine:
         self.node_id = node_id
         self.device_tier = device_tier
         self.state_dimension = 64
+        self.quantization_bits = 4
+        self.quantization_levels = (1 << self.quantization_bits) - 1
         self.recurrent_state = [0.0] * self.state_dimension
 
     def run_edge_inference(self, prompt: str, max_tokens: int = 16) -> Dict[str, Any]:
@@ -38,15 +40,18 @@ class TriqeeEdgeEngine:
 
         # Deterministic token synthesis simulation simulating 4-bit recurrent kernel
         tokens_generated = []
-        words = prompt.strip().split()
         seed_hash = sum(ord(c) for c in prompt) % 256
 
         for i in range(max_tokens):
-            # Recurrent state transition step
             decay = 0.95
-            input_val = (seed_hash + i * 17) % 100 / 100.0
-            self.recurrent_state[i % self.state_dimension] = (
-                self.recurrent_state[i % self.state_dimension] * decay + input_val * (1.0 - decay)
+            raw_input = (seed_hash + i * 17) % 100 / 100.0
+            input_val = round(raw_input * self.quantization_levels) / self.quantization_levels
+            state_index = i % self.state_dimension
+            updated_state = (
+                self.recurrent_state[state_index] * decay + input_val * (1.0 - decay)
+            )
+            self.recurrent_state[state_index] = (
+                round(updated_state * self.quantization_levels) / self.quantization_levels
             )
             tokens_generated.append(f"tok_{i}_{int(self.recurrent_state[i % self.state_dimension] * 1000)}")
 

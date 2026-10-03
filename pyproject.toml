@@ -45,6 +45,9 @@ include = ["src*"]
 [tool.pytest.ini_options]
 testpaths = ["tests", "test_app.py", "test_anchor_metadata.py", "test_anchor_metadata_extra.py"]
 python_files = ["test_*.py"]
+markers = [
+    "benchmark: opt-in hardware-sensitive benchmark gates"
+]
 
 [tool.coverage.run]
 source = ["src"]

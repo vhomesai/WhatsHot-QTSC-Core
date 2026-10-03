@@ -18,6 +18,12 @@ def test_edge_inference_latency_and_output():
     assert res["latency_ms"] < 25.0  # Must be fast local execution
     assert res["memory_footprint_mb"] <= 15.0
     assert len(res["output_tokens"]) == 16
+    assert engine.quantization_bits == 4
+    assert engine.quantization_levels == 15
+    assert all(
+        value * engine.quantization_levels == round(value * engine.quantization_levels)
+        for value in engine.recurrent_state
+    )
 
 
 def test_rf_quantum_link_physics():

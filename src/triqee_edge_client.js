@@ -13,6 +13,8 @@ class TriqeeEdgeClient {
         this.cKmPerS = 299792.458;
         this.fiberRefractiveIndex = 1.4682;
         this.stateDimension = 64;
+        this.quantizationBits = 4;
+        this.quantizationLevels = (1 << this.quantizationBits) - 1;
         this.recurrentMemory = new Float32Array(this.stateDimension);
     }
 
@@ -29,9 +31,13 @@ class TriqeeEdgeClient {
 
         const decay = 0.95;
         for (let i = 0; i < maxTokens; i++) {
-            const val = ((seed + i * 17) % 100) / 100.0;
+            const rawValue = ((seed + i * 17) % 100) / 100.0;
+            const val = Math.round(rawValue * this.quantizationLevels) / this.quantizationLevels;
             const idx = i % this.stateDimension;
-            this.recurrentMemory[idx] = this.recurrentMemory[idx] * decay + val * (1.0 - decay);
+            const updatedState = this.recurrentMemory[idx] * decay + val * (1.0 - decay);
+            this.recurrentMemory[idx] = Math.round(
+                updatedState * this.quantizationLevels
+            ) / this.quantizationLevels;
             tokens.push(`tok_${i}_${Math.floor(this.recurrentMemory[idx] * 1000)}`);
         }
 

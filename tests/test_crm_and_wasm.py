@@ -38,6 +38,13 @@ class TestWebAssemblySiliconKernel:
         assert b"fiber_optical_latency" in wasm_bytes
         assert b"photonic_mac" in wasm_bytes
         assert b"qber_rate" in wasm_bytes
+        assert b"photonic_mac_batch_10000" in wasm_bytes
+        assert b"geodesic_rf_latency_batch_10000" in wasm_bytes
+
+        # The f64 encoding must be the exact statutory physics constant,
+        # not the previously mistyped 299672.458375 value.
+        assert bytes.fromhex("b6f3fdd4414c1241") in wasm_bytes
+        assert bytes.fromhex("894160d5614a1241") not in wasm_bytes
 
     def test_wasm_base64_string(self):
         b64 = get_silicon_wasm_base64()

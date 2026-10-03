@@ -1473,8 +1473,9 @@ What algorithmic, cryptographic, or physical problem would you like to solve nex
     // ==========================================
     // WebAssembly (WASM) Silicon Kernel Engine
     // ==========================================
-    const wasmBase64 = "AGFzbQEAAAABDgJgAnx8AXxgA3x8fAF8AwUEAAEBAAdKBBNnZW9kZXNpY19yZl9sYXRlbmN5AAAVZmliZXJfb3B0aWNhbF9sYXRlbmN5AAEMcGhvdG9uaWNfbWFjAAIJcWJlcl9yYXRlAAMKTwQbACAAIAGiRIlBYNVhShJBo0QAAAAAAECPQKILHgAgACABoiACokSJQWDVYUoSQaNEAAAAAABAj0CiCwoAIAAgAaIgAqALBwAgACABows=";
+    const wasmBase64 = "AGFzbQEAAAABDgJgAnx8AXxgA3x8fAF8AwcGAAEBAAEAB4cBBhNnZW9kZXNpY19yZl9sYXRlbmN5AAAVZmliZXJfb3B0aWNhbF9sYXRlbmN5AAEMcGhvdG9uaWNfbWFjAAIJcWJlcl9yYXRlAAMYcGhvdG9uaWNfbWFjX2JhdGNoXzEwMDAwAAQfZ2VvZGVzaWNfcmZfbGF0ZW5jeV9iYXRjaF8xMDAwMAAFCs4BBhsAIAAgAaJEtvP91EFMEkGjRAAAAAAAQI9AogseACAAIAGiIAKiRLbz/dRBTBJBo0QAAAAAAECPQKILCgAgACABoiACoAsHACAAIAGjCywBAX9BACEDAkADQCADQZDOAE8NASAAIAGiIAKgIQIgA0EBaiEDDAALCyACC1ECAX8BfEEAIQJEAAAAAAAAAAAhAwJAA0AgAkGQzgBPDQEgAyAAIAK4oCABokS28/3UQUwSQaNEAAAAAABAj0CioCEDIAJBAWohAgwACwsgAws=";
     let wasmExports = null;
+    let wasmBinarySizeBytes = 0;
 
     async function initSiliconWasm() {
         try {
@@ -1484,6 +1485,7 @@ What algorithmic, cryptographic, or physical problem would you like to solve nex
             for (let i = 0; i < len; i++) {
                 bytes[i] = binaryStr.charCodeAt(i);
             }
+            wasmBinarySizeBytes = bytes.byteLength;
             const wasmModule = await WebAssembly.instantiate(bytes.buffer);
             wasmExports = wasmModule.instance.exports;
             const badge = document.getElementById("wasmLivenessBadge");
@@ -1501,39 +1503,47 @@ What algorithmic, cryptographic, or physical problem would you like to solve nex
     function runWasmMicroBenchmark() {
         initAudio();
         playLaserTone();
-        const t0 = performance.now();
-        let accum = 0.0;
         const iterations = 10000;
 
-        if (wasmExports && wasmExports.photonic_mac) {
-            for (let i = 0; i < iterations; i++) {
-                accum = wasmExports.photonic_mac(1.0004, 0.9996, accum);
-            }
-            const rfLat = wasmExports.geodesic_rf_latency(3900.0, 1.0075);
-            const fibLat = wasmExports.fiber_optical_latency(3900.0, 1.22, 1.4682);
-        } else {
-            for (let i = 0; i < iterations; i++) {
-                accum = (1.0004 * 0.9996) + accum;
-            }
+        if (!wasmExports ||
+            !wasmExports.photonic_mac_batch_10000 ||
+            !wasmExports.geodesic_rf_latency_batch_10000) {
+            appendMessage(
+                "SI",
+                "### WASM Benchmark Unavailable\n\nThe real 10,000-operation WASM batch exports are not initialized. No JavaScript fallback was timed.",
+                "Not measured"
+            );
+            return;
         }
-        const t1 = performance.now();
-        const elapsedMs = (t1 - t0);
-        const speedupWan = (845.0 / Math.max(elapsedMs, 0.001)).toFixed(0);
+
+        const macStart = performance.now();
+        const accum = wasmExports.photonic_mac_batch_10000(1.0004, 0.9996, 0.0);
+        const macElapsedUs = (performance.now() - macStart) * 1000.0;
+
+        const rfStart = performance.now();
+        const rfBatch = wasmExports.geodesic_rf_latency_batch_10000(3900.0, 1.0075);
+        const rfElapsedUs = (performance.now() - rfStart) * 1000.0;
+        const rfLat = wasmExports.geodesic_rf_latency(3900.0, 1.0075);
+        const fibLat = wasmExports.fiber_optical_latency(3900.0, 1.22, 1.4682);
+        const slowestBatchUs = Math.max(macElapsedUs, rfElapsedUs);
+        const speedupWan = (845000.0 / Math.max(slowestBatchUs, 0.001)).toFixed(0);
 
         const hudWasm = document.getElementById("hudWasmLatency");
         if (hudWasm) {
-            hudWasm.textContent = (elapsedMs < 1.0 ? (elapsedMs * 1000).toFixed(1) + " µs" : elapsedMs.toFixed(3) + " ms");
+            hudWasm.textContent = `${slowestBatchUs.toFixed(1)} µs max batch`;
         }
 
         appendMessage(
             "SI",
             `### ⚡ WebAssembly Silicon Kernel Benchmark Executed\n\n` +
-            `* **Kernel Execution Time**: **${(elapsedMs * 1000).toFixed(1)} µs** (${iterations.toLocaleString()} Photonic MAC & Geodesic Ops)\n` +
+            `* **Photonic MAC Batch**: **${macElapsedUs.toFixed(1)} µs** (exactly ${iterations.toLocaleString()} operations; result ${accum.toFixed(6)})\n` +
+            `* **Geodesic RF Batch**: **${rfElapsedUs.toFixed(1)} µs** (exactly ${iterations.toLocaleString()} operations; checksum ${rfBatch.toFixed(6)})\n` +
+            `* **Representative RF/Fiber Latency**: ${rfLat.toFixed(6)} ms / ${fibLat.toFixed(6)} ms\n` +
             `* **Speedup vs Cloud WAN**: **${speedupWan}x faster**\n` +
-            `* **Bytecode Footprint**: 188 bytes pure WebAssembly, 0 External CDNs\n` +
+            `* **Bytecode Footprint**: ${wasmBinarySizeBytes} bytes pure WebAssembly, 0 External CDNs\n` +
             `* **Hardware Dispatch**: Client CPU/SIMD Photonic Emulation via WebAssembly\n` +
             `* **Physical Constants**: Speed of light $c = 299,792.458\\text{ km/s}$, glass index $n = 1.4682$`,
-            `${(elapsedMs * 1000).toFixed(1)} µs (WASM Silicon)`
+            `${slowestBatchUs.toFixed(1)} µs max (WASM Silicon)`
         );
     }
 

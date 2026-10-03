@@ -1,4 +1,7 @@
+import re
 from pathlib import Path
+
+from src.silicon_kernel_wasm import get_silicon_wasm_base64
 
 
 HTML_PATH = Path(__file__).resolve().parents[1] / "triqee_si_chatbot.html"
@@ -53,3 +56,14 @@ def test_offline_latency_narratives_share_one_deterministic_invariant():
     assert "const GLOBAL_TRIANGLE_RTT_ADVANTAGE_MS = 83.56;" in html
     assert "81.44 ms" not in html
     assert html.count("GLOBAL_TRIANGLE_RTT_ADVANTAGE_MS.toFixed(2)") >= 8
+
+
+def test_embedded_wasm_is_current_and_benchmarks_real_internal_batches():
+    html = HTML_PATH.read_text(encoding="utf-8")
+    payload = re.search(r'const wasmBase64 = "([^"]+)";', html)
+
+    assert payload is not None
+    assert payload.group(1) == get_silicon_wasm_base64()
+    assert "wasmExports.photonic_mac_batch_10000" in html
+    assert "wasmExports.geodesic_rf_latency_batch_10000" in html
+    assert "No JavaScript fallback was timed." in html

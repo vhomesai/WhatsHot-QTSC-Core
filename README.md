@@ -72,3 +72,24 @@ The self-contained cockpit prompts for the CRM operator key for each export and 
 python -m pytest tests test_app.py test_anchor_metadata.py test_anchor_metadata_extra.py \
   -q --cov=src --cov-report=term-missing --cov-fail-under=100
 ```
+
+### Opt-in kernel benchmarks
+
+The hardware-sensitive latency gates are intentionally separate from the ordinary
+coverage matrix. They execute the real 64-lane 4-bit recurrent update and the
+actual client-equivalent WebAssembly module through Node:
+
+```bash
+python benchmarks/run_benchmarks.py --markdown-output BENCHMARK_RESULTS.md
+# Equivalent pytest gate used by the dedicated workflow:
+python -m pytest benchmarks/test_kernel_benchmarks.py -m benchmark -v
+```
+
+The recurrent kernel uses 200 warmups and 2,000 measured calls and requires p99
+strictly below 12 ms. Each WASM kernel uses 25 warmups and 100 measured runs of a
+fixed internal loop containing exactly 10,000 operations. The cockpit's
+`10k Ops: <250 µs` invariant therefore applies to each complete 10,000-operation
+batch, not to one operation. WASM compile and instantiate time are reported
+separately. No outliers are discarded. See
+[`BENCHMARK_RESULTS.md`](BENCHMARK_RESULTS.md) for methodology and a measured
+reference result.
