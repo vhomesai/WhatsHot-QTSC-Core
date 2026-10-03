@@ -16,7 +16,7 @@ python -m pip install -r requirements.lock
 python -m pip install --no-deps -e .
 
 # Install development & test dependencies
-python -m pip install pytest==8.4.2 pytest-cov==7.0.0 httpx==0.28.1 PyYAML==6.0.3
+python -m pip install pytest==8.4.2 pytest-cov==7.0.0 httpx==0.27.2 PyYAML==6.0.3
 ```
 
 ---

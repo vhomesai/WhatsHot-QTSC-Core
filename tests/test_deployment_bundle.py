@@ -103,6 +103,10 @@ def test_runtime_lock_covers_project_dependencies_and_email_validation_extra():
     assert "pydantic==2.12.5" in lock_lines
     assert "pydantic-core==2.41.5" in lock_lines
     assert "typing-inspection==0.4.2" in lock_lines
+    assert "SQLAlchemy==2.0.54" in lock_lines
+    assert "httpx==0.27.2" in project["project"]["optional-dependencies"]["dev"]
+    assert "httpx==0.27.2" in _read(".github/workflows/ci.yml")
+    assert "httpx==0.27.2" in _read("README.md")
     assert all("==" in requirement for requirement in project_dependencies)
     assert all("==" in requirement for requirement in lock_lines)
 
@@ -138,6 +142,8 @@ def test_caddy_static_structure_is_non_authoritative_but_security_complete():
     assert "encode zstd gzip" in caddyfile
     assert "Strict-Transport-Security" in caddyfile
     assert "Content-Security-Policy" in caddyfile
+    assert "@root path /" in caddyfile
+    assert "redir @root /cockpit 308" in caddyfile
     assert caddyfile.count("{") == caddyfile.count("}")
 
 

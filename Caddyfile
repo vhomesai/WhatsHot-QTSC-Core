@@ -59,9 +59,8 @@
 		}
 	}
 
-	handle / {
-		redir /cockpit 308
-	}
+	@root path /
+	redir @root /cockpit 308
 
 	handle {
 		respond "Not Found" 404
