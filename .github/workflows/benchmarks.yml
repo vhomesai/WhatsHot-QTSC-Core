@@ -1,0 +1,32 @@
+name: Deterministic kernel benchmarks
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    name: Python 3.12 / Node 24 / ubuntu-22.04
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install development dependencies
+        run: |
+          python -m pip install -r requirements.lock
+          python -m pip install --no-deps -e .
+          python -m pip install pytest==8.4.2
+          python -c "from src.api_server import app; assert app.title"
+      - name: Run deterministic hardware-sensitive benchmark gate
+        run: python -m pytest benchmarks/test_kernel_benchmarks.py -m benchmark -v

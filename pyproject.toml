@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "triqee-core"
+version = "0.1.0"
+description = "Deterministic geodesic distance calculations, latency modeling, and inquiry triage engine"
+readme = "README.md"
+authors = [
+    { name = "Triqee Engineering Team", email = "dev@triqee.com" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+dependencies = [
+    "fastapi==0.109.0",
+    "uvicorn==0.24.0",
+    "pydantic[email]==2.12.5",
+    "sqlmodel==0.0.22"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "httpx==0.27.2",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+    "PyYAML==6.0.3"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.setuptools.package-data]
+src = ["data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "test_app.py", "test_anchor_metadata.py", "test_anchor_metadata_extra.py"]
+python_files = ["test_*.py"]
+markers = [
+    "benchmark: opt-in hardware-sensitive benchmark gates"
+]
+
+[tool.coverage.run]
+source = ["src"]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
