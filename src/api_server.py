@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 from typing import Dict, Any, Optional
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, status
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field, EmailStr
 
 from src.physics_engine import (
@@ -440,3 +441,15 @@ def sovereign_si_chat_endpoint(req: SIChatRequest):
         }
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Sovereign SI agent error: {str(e)}")
+
+
+@app.get("/", tags=["Cockpit UI"], include_in_schema=False)
+@app.get("/triqee_si_chatbot.html", tags=["Cockpit UI"], include_in_schema=False)
+def serve_chatbot_ui():
+    """Serves the Sovereign Superintelligence Cockpit HTML directly."""
+    html_file = PROJECT_ROOT / "triqee_si_chatbot.html"
+    if not html_file.exists():
+        html_file = Path("C:/Users/VHome/Desktop/wyoming_demo/triqee_si_chatbot.html")
+    if html_file.exists():
+        return FileResponse(str(html_file), media_type="text/html")
+    raise HTTPException(status_code=404, detail="triqee_si_chatbot.html not found")
