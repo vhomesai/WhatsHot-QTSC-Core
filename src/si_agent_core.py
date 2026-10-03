@@ -562,6 +562,18 @@ class SovereignSIAgent:
             })
             return tools_to_run
 
+        # Quantum Native Algorithms & New Non-QFT Algorithmic Classes Intent
+        if any(w in p_lower for w in ["quantum native", "native algorithm", "native algorithms", "new classes", "no qft", "without qft", "beyond qft", "qsvt", "quantum signal processing", "lindblad", "quantum walk", "ahs", "neutral atom analog"]):
+            tools_to_run.append({
+                "tool_name": "search_intelligence_breakthroughs",
+                "params": {"limit": 4}
+            })
+            tools_to_run.append({
+                "tool_name": "benchmark_multivendor_qpu",
+                "params": {"qubits": 32}
+            })
+            return tools_to_run
+
         # QEC / Fault Tolerance / All Options Execution Intent
         if any(w in p_lower for w in ["qec", "error correction", "fault tolerant", "fault-tolerant", "bivariate", "stim", "openqasm", "all options", "run all options", "execute all options", "run all"]):
             backend = (
@@ -809,6 +821,37 @@ class SovereignSIAgent:
         if triangle_result is None:
             triangle_result = self.execute_tool("calculate_global_triangle_rf", {})
         triangle_advantage_ms = triangle_result["rtt_latency_saved_ms"]
+
+        # Quantum Native Algorithms (Beyond QFTs) Synthesis
+        if any(w in p_lower for w in ["quantum native", "native algorithm", "native algorithms", "new classes", "no qft", "without qft", "beyond qft", "qsvt", "quantum signal processing", "lindblad", "quantum walk", "ahs", "neutral atom analog"]):
+            return (
+                "### 🌌 QUANTUM-NATIVE ALGORITHMIC PARADIGMS (BEYOND QFTs)\n\n"
+                "To move beyond standard Quantum Fourier Transform (QFT) routines (e.g., Shor's period finding, Phase Estimation), "
+                "modern quantum computational physics has developed **6 major non-QFT quantum-native algorithmic paradigms**:\n\n"
+                "**1. ⚡ Quantum Singular Value Transformation (QSVT) & Quantum Signal Processing (QSP):**\n"
+                "• **The Concept:** Known as the *Grand Unification of Quantum Algorithms* (Gilyén et al.). QSVT embeds an arbitrary matrix $A$ into a block of a unitary matrix $U$ (block-encoding), then uses a single ancilla qubit and interleaved phase rotations to apply any polynomial $P(x)$ directly to the singular values of $A$.\n"
+                "• **Applications:** Solves linear systems (HHL replacement), Hamiltonian simulation, ground-state preparation, and matrix sign functions with strictly optimal gate query complexity $O(d)$.\n"
+                "• **Why it's Native:** Operates entirely on projected SU(2) subspace rotations without discrete Fourier sampling.\n\n"
+                "**2. ⚛️ Analog Quantum Hamiltonian Simulation (AHS) & Rydberg Atom Arrays:**\n"
+                "• **The Concept:** Continuous-time physical evolution under programmable many-body Hamiltonians $H(t) = \\sum_i \\frac{\\hbar\\Omega(t)}{2}\\sigma_i^x - \\sum_i \\hbar\\Delta(t)n_i + \\sum_{i<j} V_{ij}n_i n_j$ (Van der Waals $C_6/R^6$ interaction).\n"
+                "• **Applications:** Simulates Kardar-Parisi-Zhang (KPZ) universal hydrodynamics, quantum spin liquids, maximum independent set (MIS) graph optimization, and non-equilibrium quantum phase transitions.\n"
+                "• **Hardware:** 256+ neutral atoms in reconfigurable optical tweezer arrays (QuEra Aquila, Harvard).\n\n"
+                "**3. 🌊 Continuous-Variable (CV) & Bosonic Phase-Space Computing:**\n"
+                "• **The Concept:** Encodes quantum information into continuous infinite-dimensional Hilbert spaces (photonic modes / microwave cavity phonons) rather than discrete 2-level qubits.\n"
+                "• **Applications:** Gaussian Boson Sampling (GBS) for molecular vibronic spectra, dense subgraph discovery, and non-Gaussian Kerr-cat state error correction.\n"
+                "• **Hardware:** Xanadu Borealis photonic chips, superconducting 3D microwave cavities.\n\n"
+                "**4. 🧪 Dissipative Quantum State Engineering & Lindbladian Dynamics:**\n"
+                "• **The Concept:** Utilizes engineered environmental coupling (non-unitary Lindblad jump operators $L_k$) to drive a quantum system asymptotically toward a target entangled or topological steady state $\\rho_{\\text{target}}$, making dissipation a computational resource rather than noise.\n"
+                "• **Applications:** Autonomous quantum error correction, rapid ground-state cooling, and open-system thermalization.\n\n"
+                "**5. 🌐 Continuous-Time & Discrete-Time Quantum Random Walks (QRW):**\n"
+                "• **The Concept:** Quantum particles propagating across complex graph structures via unitary coin operators or Hamiltonian adjacency matrices, exhibiting quadratic ballistic spreading ($v \\propto t$ vs classical $v \\propto \\sqrt{t}$).\n"
+                "• **Applications:** Spatial network search, graph isomorphism testing, element distinctness, and non-abelian hidden subgroup problem exploration.\n\n"
+                "**6. 🧬 Projected Quantum Kernels & Variational Many-Body Learning:**\n"
+                "• **The Concept:** Quantum states parameterized into high-dimensional Hilbert spaces with measurement projections directly onto 1-qubit / 2-qubit reduced density matrices ($\\{\\rho_i\\}$), preventing barren plateaus while retaining provable quantum separation.\n"
+                "• **Applications:** High-dimensional quantum classification, biochemical ligand binding, and quantum generative modeling.\n\n"
+                "---\n"
+                "**Recommended Next Step:** Would you like to compile a **QSVT Block-Encoding Polynomial DAG**, transpile a **Rydberg AHS Hamiltonian Job**, or simulate a **Continuous-Time Quantum Walk**?"
+            )
 
         # Directive #1: Live Cross-Exchange Arbitrage & Zero-Trust Defense Pilot
         if any(w in p_lower for w in ["execute arbitrage pilot", "arbitrage pilot", "live arbitrage", "zero-trust defense pilot", "pilot mode"]):
