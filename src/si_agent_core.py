@@ -640,10 +640,25 @@ class SovereignSIAgent:
             })
 
         # Physics & RF Latency intent
-        if any(w in p_lower for w in ["latency", "distance", "geodesic", "rf", "fiber", "speed of light", "ny4", "cme", "tokyo", "london"]):
+        if any(w in p_lower for w in ["latency", "distance", "geodesic", "rf", "fiber", "speed of light", "ny4", "cme", "tokyo", "london", "jpx", "ld4"]):
+            if ("tokyo" in p_lower or "jpx" in p_lower) and "ny4" in p_lower:
+                lat1, lon1 = KNOWN_NODES["TOKYO_JPX"]
+                lat2, lon2 = KNOWN_NODES["SECAUCUS_NY4"]
+            elif "cme" in p_lower and ("ld4" in p_lower or "london" in p_lower):
+                lat1, lon1 = KNOWN_NODES["CHICAGO_CME"]
+                lat2, lon2 = KNOWN_NODES["LONDON_LD4"]
+            elif ("ld4" in p_lower or "london" in p_lower) and ("tokyo" in p_lower or "jpx" in p_lower):
+                lat1, lon1 = KNOWN_NODES["LONDON_LD4"]
+                lat2, lon2 = KNOWN_NODES["TOKYO_JPX"]
+            elif "cme" in p_lower and "ny4" in p_lower:
+                lat1, lon1 = KNOWN_NODES["CHICAGO_CME"]
+                lat2, lon2 = KNOWN_NODES["SECAUCUS_NY4"]
+            else:
+                lat1, lon1 = 37.3861, -121.9639
+                lat2, lon2 = 40.7831, -74.0407
             tools_to_run.append({
                 "tool_name": "calculate_geodesic_rf",
-                "params": {"lat1": 37.3861, "lon1": -121.9639, "lat2": 40.7831, "lon2": -74.0407}
+                "params": {"lat1": lat1, "lon1": lon1, "lat2": lat2, "lon2": lon2}
             })
 
         # Research & Breakthroughs intent
@@ -1087,6 +1102,32 @@ class SovereignSIAgent:
                 f"Operating at atmospheric light speed ($c = 299,792.458\\text{{ km/s}}$), Triqee bypasses terrestrial optical fiber delays ($n_{{\\text{{fiber}}}} = 1.4682$), securing an **+{triangle_advantage_ms:.2f} ms round-trip time (RTT) arbitrage advantage** across the Chicago CME $\\leftrightarrow$ London LD4 $\\leftrightarrow$ Tokyo JPX triangle.\n\n"
                 f"**3. Wyoming Statutory Token Law (W.S. § 34-29-106):**\n"
                 f"Triqee ($TQ) utility tokens are formally classified as intangible personal property with consumptive purpose (compute quotas, QPU compilation DAGs, and QKD key access) under Wyoming Law, exempt from state securities regulations with cryptographic SHA-256 state receipts (CERN Zenodo DOI: 10.5281/zenodo.23045297)."
+            )
+
+        # Relativistic Geodesic RF Link Calculation
+        rf_tool_result = next(
+            (
+                tool["result"]
+                for tool in executed_tools
+                if tool.get("tool_name") == "calculate_geodesic_rf"
+            ),
+            None,
+        )
+        if rf_tool_result and any(w in p_lower for w in ["latency", "distance", "geodesic", "rf", "fiber", "speed of light", "ny4", "cme", "tokyo", "london", "jpx", "ld4"]):
+            dist_km = rf_tool_result.get("distance_km", 0.0)
+            rf_ms = rf_tool_result.get("rf_line_of_sight_latency_ms", 0.0)
+            fiber_ms = rf_tool_result.get("legacy_fiber_latency_ms", 0.0)
+            saved_ms = rf_tool_result.get("physical_latency_saved_ms", 0.0)
+            speedup = rf_tool_result.get("speedup_percentage", 0.0)
+
+            return (
+                f"### ⚡ RELATIVISTIC GEODESIC RF LINK CALCULATION\n\n"
+                f"• **Great-Circle Surface Distance:** **{dist_km:.2f} km**\n"
+                f"• **Atmospheric Line-of-Sight RF Latency:** **{rf_ms:.3f} ms** (Propagating at $c = 299,792.458\\text{{ km/s}}$)\n"
+                f"• **Standard Terrestrial/Subsea Fiber Latency:** **{fiber_ms:.3f} ms** (Constrained by $n_{{\\text{{fiber}}}} = 1.4682$)\n"
+                f"• **Physical Latency Advantage:** **{saved_ms:.3f} ms saved** (+{speedup:.1f}% speedup per one-way packet)\n\n"
+                f"---\n"
+                f"**Market Edge:** Capturing {saved_ms:.3f} ms one-way latency advantage eliminates queue delays and guarantees deterministic execution over legacy optical fiber networks."
             )
 
         # 3. Default Sovereign Synthesis with Grounded Context
