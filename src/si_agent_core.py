@@ -1375,18 +1375,16 @@ class SovereignSIAgent:
         speedup_factor = round(cloud_baseline_ms / max(t_elapsed_ms, 0.01), 1)
 
         # Build response narrative
+        deep_reasoning = self.synthesize_deep_reasoning(prompt, executed_tools, t_elapsed_ms, session_id=session_id)
         response_sections = [
             f"Triqee Sovereign Superintelligence (Edge-Compiled Hybrid Kernel):",
-            f"Synthesized locally on client silicon in {t_elapsed_ms:.2f} ms.\n"
+            f"Synthesized locally on client silicon in {t_elapsed_ms:.2f} ms.\n",
+            deep_reasoning,
         ]
 
         if tool_narratives:
-            response_sections.append("Verified Deterministic Physical Telemetry:")
+            response_sections.append("\n---\n### 📡 Verified Deterministic Physical Telemetry:")
             response_sections.extend(tool_narratives)
-            response_sections.append("")
-
-        deep_reasoning = self.synthesize_deep_reasoning(prompt, executed_tools, t_elapsed_ms, session_id=session_id)
-        response_sections.append(deep_reasoning)
 
         response_text = "\n".join(response_sections)
 
