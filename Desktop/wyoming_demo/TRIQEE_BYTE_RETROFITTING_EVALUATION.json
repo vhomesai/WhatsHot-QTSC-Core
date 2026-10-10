@@ -1,0 +1,43 @@
+{
+  "paper_citation": "Nature (2026): Retrofitting language models to operate over bytes",
+  "authors": "Minixhofer et al.",
+  "evaluation_timestamp": "2026-10-10 13:11:27",
+  "benchmarks": [
+    {
+      "target": "OpenQASM 3.0 Quantum Circuit",
+      "metrics": {
+        "raw_byte_length": 124,
+        "ltlm_patch_count": 53,
+        "bytes_per_patch_ratio": 2.34,
+        "subword_bpe_estimated_tokens": 45,
+        "efficiency_gain_over_bpe_pct": -17.78,
+        "zero_tokenization_loss": true
+      },
+      "lossless_fidelity": true
+    },
+    {
+      "target": "EVM Hex Calldata & Proof Hash",
+      "metrics": {
+        "raw_byte_length": 138,
+        "ltlm_patch_count": 23,
+        "bytes_per_patch_ratio": 6.0,
+        "subword_bpe_estimated_tokens": 50,
+        "efficiency_gain_over_bpe_pct": 54.0,
+        "zero_tokenization_loss": true
+      },
+      "lossless_fidelity": true
+    },
+    {
+      "target": "4realsy QSIR JSON Telemetry",
+      "metrics": {
+        "raw_byte_length": 96,
+        "ltlm_patch_count": 23,
+        "bytes_per_patch_ratio": 4.17,
+        "subword_bpe_estimated_tokens": 35,
+        "efficiency_gain_over_bpe_pct": 34.29,
+        "zero_tokenization_loss": true
+      },
+      "lossless_fidelity": true
+    }
+  ]
+}
