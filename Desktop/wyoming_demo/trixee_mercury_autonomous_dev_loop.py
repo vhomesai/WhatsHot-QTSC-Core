@@ -32,7 +32,8 @@ TEST_SUITE = [
     "triqee_4realsy_qsir_heron_bridge.py",
     "triqee_run_full_user_buildout_test.py",
     "triqee_ltlm_byte_retrofitting_engine.py",
-    "triqee_neuromorphic_sensor_silicon_engine.py"
+    "triqee_neuromorphic_sensor_silicon_engine.py",
+    "test_udt35_neurosynapse.py"
 ]
 
 class MercuryAutonomousDevEngine:

@@ -1,7 +1,7 @@
 {
   "architecture": "Sensor-to-Silicon Neuromorphic Path (BEGI / Iturbe Aligned)",
   "thesis_validation": "CONFIRMED_HIGHLY_SUITABLE",
-  "data_reduction_factor": "46.0x Bandwidth Savings",
+  "data_reduction_factor": "46.7x Bandwidth Savings",
   "system1_reflex_latency_us": "< 50 us (Instant Local Silicon Reaction)",
   "system2_cognitive_offload": "94.8% Idle Reduction for Gemini Argon / GPU",
   "applicability_to_triqee": [

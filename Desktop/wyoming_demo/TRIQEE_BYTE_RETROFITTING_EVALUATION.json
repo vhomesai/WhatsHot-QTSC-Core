@@ -1,7 +1,7 @@
 {
   "paper_citation": "Nature (2026): Retrofitting language models to operate over bytes",
   "authors": "Minixhofer et al.",
-  "evaluation_timestamp": "2026-10-10 13:46:29",
+  "evaluation_timestamp": "2026-10-10 13:55:19",
   "benchmarks": [
     {
       "target": "OpenQASM 3.0 Quantum Circuit",
