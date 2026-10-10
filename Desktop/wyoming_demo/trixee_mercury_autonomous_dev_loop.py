@@ -29,7 +29,8 @@ TELEMETRY_PATH = REPO_DIR / "mercury_autonomous_dev_telemetry.json"
 TEST_SUITE = [
     "test_wyoming_bonding_curve.py",
     "test_consumptive_burn_bridge.py",
-    "triqee_4realsy_qsir_heron_bridge.py"
+    "triqee_4realsy_qsir_heron_bridge.py",
+    "triqee_run_full_user_buildout_test.py"
 ]
 
 class MercuryAutonomousDevEngine:
