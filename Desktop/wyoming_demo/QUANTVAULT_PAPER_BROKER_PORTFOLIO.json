@@ -1,0 +1,112 @@
+{
+  "account_id": "TRIQEE-ALPACA-QUANT-001",
+  "broker_status": "CONNECTED_SIMULATED_ALPACA_PRO",
+  "account_nav_usd": 999800.12,
+  "initial_capital_usd": 1000000.0,
+  "cash_balance_usd": 379.66,
+  "invested_capital_usd": 999420.46,
+  "cumulative_pnl_usd": -199.88,
+  "cumulative_return_pct": -0.02,
+  "quantum_sharpe_ratio": 14.915,
+  "open_positions_count": 5,
+  "positions": {
+    "NVDA": {
+      "shares": 951,
+      "avg_cost": 230.35,
+      "current_price": 230.35,
+      "market_value": 219062.85,
+      "weight_pct": 21.92
+    },
+    "MSFT": {
+      "shares": 320,
+      "avg_cost": 516.83,
+      "current_price": 516.83,
+      "market_value": 165385.6,
+      "weight_pct": 16.54
+    },
+    "AMD": {
+      "shares": 147,
+      "avg_cost": 605.28,
+      "current_price": 605.28,
+      "market_value": 88976.16,
+      "weight_pct": 8.93
+    },
+    "IBM": {
+      "shares": 277,
+      "avg_cost": 218.77,
+      "current_price": 218.77,
+      "market_value": 60599.29,
+      "weight_pct": 6.07
+    },
+    "IONQ": {
+      "shares": 10456,
+      "avg_cost": 44.51,
+      "current_price": 44.51,
+      "market_value": 465396.56,
+      "weight_pct": 46.54
+    }
+  },
+  "order_blotter": [
+    {
+      "order_id": "ORD-BUY-1790789635-IONQ",
+      "ticker": "IONQ",
+      "side": "BUY",
+      "shares": 10456,
+      "fill_price": 44.51,
+      "total_usd": 465489.64,
+      "execution_type": "QUANTUM_REBALANCE_LIMIT",
+      "timestamp": "2026-09-30T17:33:55.766721+00:00"
+    },
+    {
+      "order_id": "ORD-BUY-1790789635-IBM",
+      "ticker": "IBM",
+      "side": "BUY",
+      "shares": 277,
+      "fill_price": 218.77,
+      "total_usd": 60611.41,
+      "execution_type": "QUANTUM_REBALANCE_LIMIT",
+      "timestamp": "2026-09-30T17:33:55.766721+00:00"
+    },
+    {
+      "order_id": "ORD-BUY-1790789635-AMD",
+      "ticker": "AMD",
+      "side": "BUY",
+      "shares": 147,
+      "fill_price": 605.28,
+      "total_usd": 88993.96,
+      "execution_type": "QUANTUM_REBALANCE_LIMIT",
+      "timestamp": "2026-09-30T17:33:55.766721+00:00"
+    },
+    {
+      "order_id": "ORD-BUY-1790789635-MSFT",
+      "ticker": "MSFT",
+      "side": "BUY",
+      "shares": 320,
+      "fill_price": 516.83,
+      "total_usd": 165418.68,
+      "execution_type": "QUANTUM_REBALANCE_LIMIT",
+      "timestamp": "2026-09-30T17:33:55.766721+00:00"
+    },
+    {
+      "order_id": "ORD-BUY-1790789635-NVDA",
+      "ticker": "NVDA",
+      "side": "BUY",
+      "shares": 951,
+      "fill_price": 230.35,
+      "total_usd": 219106.66,
+      "execution_type": "QUANTUM_REBALANCE_LIMIT",
+      "timestamp": "2026-09-30T17:33:55.766721+00:00"
+    }
+  ],
+  "equity_history": [
+    {
+      "timestamp": "2026-09-30T17:33:55.766721+00:00",
+      "equity_usd": 999800.12,
+      "cash_usd": 379.66,
+      "positions_value_usd": 999420.46,
+      "cumulative_pnl_usd": -199.88,
+      "cumulative_return_pct": -0.02
+    }
+  ],
+  "last_rebalance_timestamp": "2026-09-30T17:33:55.766721+00:00"
+}

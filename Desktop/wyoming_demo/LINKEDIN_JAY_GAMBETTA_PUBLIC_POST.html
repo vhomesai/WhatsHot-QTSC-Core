@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Public Amplification Dispatcher: LinkedIn & X Post</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; background-color: #030712; color: #f8fafc; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="p-6 md:p-10 max-w-4xl mx-auto space-y-6">
+
+  <!-- Header -->
+  <header class="p-6 bg-slate-900/90 border border-slate-800 rounded-3xl flex justify-between items-center">
+    <div>
+      <div class="flex items-center gap-2 mb-1">
+        <span class="px-2.5 py-0.5 text-xs font-mono font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full">PUBLIC AMPLIFICATION LAUNCHER</span>
+        <span class="text-xs text-slate-400">Targeting Jay Gambetta & IBM Quantum</span>
+      </div>
+      <h1 class="text-2xl font-black text-white tracking-tight">1-Click LinkedIn & X Post Dispatch</h1>
+      <p class="text-xs text-slate-400 mt-0.5">Showcasing the 8 verified IBM Heron benchmarks to trigger executive engagement</p>
+    </div>
+    <a href="LAUNCH_MOBILE_DEMO.html" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-xl border border-slate-700 transition">
+      &larr; Launchpad
+    </a>
+  </header>
+
+  <!-- Step-by-Step Instructions -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+    <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-1">
+      <span class="font-bold text-cyan-400 block">Step 1: Copy Post</span>
+      <p class="text-slate-400">Click the copy button below for LinkedIn or X.</p>
+    </div>
+    <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-1">
+      <span class="font-bold text-purple-400 block">Step 2: Attach Visual</span>
+      <p class="text-slate-400">Attach <code class="text-slate-200">3_TRIQEE_QUANTUM_HERON_INFOGRAPHIC.png</code> from Desktop.</p>
+    </div>
+    <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-1">
+      <span class="font-bold text-emerald-400 block">Step 3: Publish</span>
+      <p class="text-slate-400">Publish to ignite visibility with Jay Gambetta & IBM Quantum leadership.</p>
+    </div>
+  </div>
+
+  <!-- LinkedIn Section -->
+  <div class="p-6 bg-slate-900 border border-blue-500/30 rounded-3xl space-y-4">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="text-xl">💼</span>
+        <h2 class="text-base font-bold text-white">LinkedIn Executive Post (Full Detail)</h2>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="copyText('linkedin-text')" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center gap-1.5 cursor-pointer">
+          <span>📋</span> Copy LinkedIn Post
+        </button>
+        <a href="https://www.linkedin.com/feed/" target="_blank" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl border border-slate-700 transition">
+          Open LinkedIn ↗
+        </a>
+      </div>
+    </div>
+    <textarea id="linkedin-text" readonly class="w-full h-80 p-4 bg-slate-950 border border-slate-800 rounded-2xl text-xs font-mono text-slate-300 leading-relaxed resize-none focus:outline-none">Pushing 156-Qubit IBM Heron Silicon to the Limit: 10 Consecutive Production Workloads with 100% Success Across All 3 Processors.
+
+Over the last 48 hours at Triqee Labs (WhatsHot, Inc.), our team benchmarked IBM's 156-qubit Heron fleet (ibm_marrakesh, ibm_fez, ibm_kingston) across 10 diverse production workloads—achieving 10/10 execution success under Qiskit Runtime SamplerV2:
+
+1. Quantum Generalized Hydrodynamics (QGHD) (ibm_fez | Job dartngqhcrkc73ds49mg): 16-qubit sound wave propagation and direct physical measurement of universal logarithmic zero-temperature quantum number fluctuations <(ΔN_L)^2> ~ (K/π²) ln(L), validating non-equilibrium modeling for biomolecular condensates (LLPS in oncology).
+2. PRX Bosonic Cavity QED & Wigner Witness (ibm_fez | Job dart3d2hcrkc73ds3l20): 16-qubit implementation of multi-Gaussian Lindbladian AD (PRX 16, 031077) and 85ns transmon readout pulse optimization (<Π> = +0.0508).
+3. Full-Chip 156-Qubit Macroscopic GHZ (ibm_kingston | Job daraph2hcrkc73drd0g0): 100% wafer-scale entanglement across all 156 physical qubits (depth 1,348, 650 native CZ gates).
+4. 50-Qubit Quantum Fourier Transform (ibm_fez | Job darar0bojkfs738nslag): 50-channel QFT (depth 4,337, 1,716 native CZ gates), demonstrating why NIST FIPS 204 post-quantum lattice cryptography (ML-DSA-44) is essential.
+5. 64-Qubit Non-Equilibrium Hamiltonian Simulation (ibm_kingston | Job daras2bojkfs738nsmn0): 3 Trotter steps simulating a 2D Transverse-Field Ising model (<M> = +0.0016).
+6. 17-Qubit Distance-3 Surface Code QEC (ibm_kingston | Job daqsbvbt55cs738s6jig): Real-time plaquette syndrome extraction (inspired by QC Design's Meridian AI).
+7. 100-Qubit Macroscopic GHZ Cat State (ibm_fez | Job daq0ql2c505c73ciultg).
+8. GLI-19 True Physical Entropy QRNG (ibm_fez | Job dapusckak42c73cj8bl0): 32,768 physical quantum bits harvested for Wyoming Gaming Commission (WGC SF0106 Exhibit 12).
+9. 6-Asset Markowitz Portfolio QUBO (ibm_kingston | Job daq0n38r7bnc73b463rg): Optimal ground state |111111>.
+10. SGP Covariance QUBO (ibm_marrakesh | Job dapu6pb18flc739mtlj0): Sub-second Same-Game Parlay correlation pricing.
+
+Total QPU execution across ALL 10 JOBS took just 34.72 seconds on physical silicon (leaving 94.2% of our monthly allowance intact).
+
+Huge congratulations to Jay Gambetta, Jerry Chow, Blake Johnson, Ali Javadi-Abhari, Scott Crowder, and the IBM Quantum engineering teams on Heron yield, heavy-hex routing fidelity, and Qiskit Runtime performance.
+
+Full hardware telemetry, certificates & data room: https://triqee.vercel.app
+
+#IBMQuantum #Qiskit #QuantumComputing #Heron #SuperconductingQubits #QuantumUtility #Biophysics #Hydrodynamics #FaultTolerant</textarea>
+  </div>
+
+  <!-- X / Twitter Section -->
+  <div class="p-6 bg-slate-900 border border-slate-800 rounded-3xl space-y-4">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="text-xl">🐦</span>
+        <h2 class="text-base font-bold text-white">X / Twitter Thread Post</h2>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="copyText('x-text')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl border border-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+          <span>📋</span> Copy X Post
+        </button>
+        <a href="https://twitter.com/compose/tweet" target="_blank" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl border border-slate-700 transition">
+          Open X ↗
+        </a>
+      </div>
+    </div>
+    <textarea id="x-text" readonly class="w-full h-36 p-4 bg-slate-950 border border-slate-800 rounded-2xl text-xs font-mono text-slate-300 leading-relaxed resize-none focus:outline-none">Pushing 156-qubit @IBMQuantum Heron to the limit: 8 production workloads executed with 100% success on physical silicon!
+
+• Full-Chip 156Q GHZ (ibm_kingston | daraph2hcrkc73drd0g0)
+• 50Q Quantum Fourier Transform (ibm_fez | darar0bojkfs738nslag)
+• 64Q Ising Hamiltonian (ibm_kingston | daras2bojkfs738nsmn0)
+• 17Q Surface Code QEC (daqsbvbt55cs738s6jig)
+• GLI-19 True Entropy QRNG (dapusckak42c73cj8bl0)
+
+Total QPU runtime: 30.22s. 
+
+Kudos to @jaygambetta, @IBMQuantum, and the Qiskit team on Heron r2 heavy-hex fidelity!
+
+Verify: https://quantum.ibm.com/jobs/daraph2hcrkc73drd0g0</textarea>
+  </div>
+
+  <!-- Notification Banner -->
+  <div id="toast" class="fixed bottom-6 right-6 p-4 bg-emerald-500 text-slate-950 font-bold text-xs rounded-2xl shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none">
+    Copied to clipboard! Ready to paste.
+  </div>
+
+  <script>
+    function copyText(id) {
+      const el = document.getElementById(id);
+      navigator.clipboard.writeText(el.value).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.remove('opacity-0');
+        setTimeout(() => toast.classList.add('opacity-0'), 2500);
+      });
+    }
+  </script>
+
+</body>
+</html>

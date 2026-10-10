@@ -1,0 +1,341 @@
+{
+  "report_title": "Triqee\u2122 37-Node Enterprise Transmittal Confirmation Report",
+  "timestamp_utc": "2026-10-03T20:23:39.322869+00:00",
+  "total_dispatches": 37,
+  "status": "ALL_TRANSMISSIONS_CONFIRMED",
+  "dispatches": [
+    {
+      "node_id": "TRIQEE-NODE-0001-C17B33CF",
+      "firm_name": "Independent Enterprise",
+      "recipient_email": "dev_1790908850@triqee.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0001-C17B33CF Operational \u2014 Independent Enterprise",
+      "tx_hash": "bae005329fa0023612308b7ae9c3fd6428b13258709170757edec842b915a620",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0002-B21B2C9B",
+      "firm_name": "Independent Enterprise",
+      "recipient_email": "institutional_allocator@triqee.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0002-B21B2C9B Operational \u2014 Independent Enterprise",
+      "tx_hash": "2e8d1d7cae9a711207d7cd465d880efa07ceda6b26814e3c71f56a604ef5bd21",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0003-B21B2C9B",
+      "firm_name": "Independent Enterprise",
+      "recipient_email": "institutional_allocator@triqee.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0003-B21B2C9B Operational \u2014 Independent Enterprise",
+      "tx_hash": "4effef94131e6f63be346e9e3942883dc473742e9c422f1a3966036eeab86fe2",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0004-D02F57D0",
+      "firm_name": "Independent Enterprise",
+      "recipient_email": "dev_1790979019@triqee.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0004-D02F57D0 Operational \u2014 Independent Enterprise",
+      "tx_hash": "d850276c69094bbe6f56f27dce6b489aae50d05a71149e3992bb48e8109fbf0c",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0005-4742D247",
+      "firm_name": "Independent Enterprise",
+      "recipient_email": "tier1_allocator@triqee.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0005-4742D247 Operational \u2014 Independent Enterprise",
+      "tx_hash": "238ad37058c2378131b8427f8575102b1bc416bea40451cfc962053dab01404c",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0006-4742D247",
+      "firm_name": "Independent Enterprise",
+      "recipient_email": "tier1_allocator@triqee.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0006-4742D247 Operational \u2014 Independent Enterprise",
+      "tx_hash": "0d5140e57e858a5bb13f7ba44d8b3bcf1e47c46c813a36ca371f71a0f19eaa58",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0007-2C1265B3",
+      "firm_name": "Bridgewater Macro Quantum",
+      "recipient_email": "lead_bcd9101c@bridgewater.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0007-2C1265B3 Operational \u2014 Bridgewater Macro Quantum",
+      "tx_hash": "fea012cb5f9fb68c963d328d614f4894c46e0ef5f39ac8ef3ee51b43074f0888",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0008-5C53A137",
+      "firm_name": "Bridgewater Macro Quantum",
+      "recipient_email": "lead_90b9aced@bridgewater.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0008-5C53A137 Operational \u2014 Bridgewater Macro Quantum",
+      "tx_hash": "d449ae7b7dfeae1c75bb4775ff62578b6917bf75b8a9381bfae32b28642d131d",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0009-BAD8F2F5",
+      "firm_name": "Bridgewater Macro Quantum",
+      "recipient_email": "lead_328e31cd@bridgewater.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0009-BAD8F2F5 Operational \u2014 Bridgewater Macro Quantum",
+      "tx_hash": "ea68fa53f4e8fce3b4f87a11e73b5a5ee5182617164c85e9f72c32fc790c7300",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0010-03787C93",
+      "firm_name": "Bridgewater Macro Quantum",
+      "recipient_email": "lead_1c517380@bridgewater.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0010-03787C93 Operational \u2014 Bridgewater Macro Quantum",
+      "tx_hash": "da0f53c1fc2378fe0d1ae0515823b129feee5fdbe46c3251ef1ffd29aa0a881a",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0011-ED639C1B",
+      "firm_name": "Bridgewater Macro Quantum",
+      "recipient_email": "lead_47e11f5b@bridgewater.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0011-ED639C1B Operational \u2014 Bridgewater Macro Quantum",
+      "tx_hash": "710825777d1c90a82ed61c29c1588090da5acae1f377c61d59bd4009a28a644a",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0012-53112FBF",
+      "firm_name": "WH",
+      "recipient_email": "teamvierk@gmail.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0012-53112FBF Operational \u2014 WH",
+      "tx_hash": "bc92adbe87c5c1b94cc0bdf7c34ca97235f8acab6694c9b35e2cae5f77b1d104",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0013-FCB53729",
+      "firm_name": "Bridgewater Macro Quantum",
+      "recipient_email": "lead_821c18a8@bridgewater.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0013-FCB53729 Operational \u2014 Bridgewater Macro Quantum",
+      "tx_hash": "1a47d4c53e55384713d2bdf44a818664fe97109e0c107fae42856d21aaa23caa",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0014-BF1F3C80",
+      "firm_name": "Bridgewater Macro Quantum",
+      "recipient_email": "lead_ba2ee742@bridgewater.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0014-BF1F3C80 Operational \u2014 Bridgewater Macro Quantum",
+      "tx_hash": "06a7dee1806ccde15d7785f8f0be0083687947c44a9adce551e384142b5340d7",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0015-D34F14CD",
+      "firm_name": "Bridgewater Macro Quantum",
+      "recipient_email": "lead_9e58ef38@bridgewater.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0015-D34F14CD Operational \u2014 Bridgewater Macro Quantum",
+      "tx_hash": "40a909b29faac966d538aee537468b7cd447495695bd3dd2e0b322e14bfe7720",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0016-B21B2C9B",
+      "firm_name": "Independent Enterprise",
+      "recipient_email": "institutional_allocator@triqee.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0016-B21B2C9B Operational \u2014 Independent Enterprise",
+      "tx_hash": "b935a5ac20df0876d19b3cbe07c2603dd367a67598857ed9cef9bad726b54893",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-NODE-0017-E080A926",
+      "firm_name": "Bridgewater Macro Quantum",
+      "recipient_email": "lead_765bcfef@bridgewater.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-NODE-0017-E080A926 Operational \u2014 Bridgewater Macro Quantum",
+      "tx_hash": "7d8f9afb9e2bac8a8ccc13a5484194117685d3335cfb87552e8df3ea9e559c16",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-001-EC-01A",
+      "firm_name": "Xanadu Quantum Technologies",
+      "recipient_email": "allocator@xanaduquan.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-001-EC-01A Operational \u2014 Xanadu Quantum Technologies",
+      "tx_hash": "88ced5aad78d02bf7c63a602b41fff19ee67fbf573e312135c1b1e56cd4ac054",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-002-GA-02B",
+      "firm_name": "AMD Quantum & Adaptive Computing",
+      "recipient_email": "allocator@amdquantum.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-002-GA-02B Operational \u2014 AMD Quantum & Adaptive Computing",
+      "tx_hash": "53ebe70cf45f479c68cfa0b7131239c778cede77751975b9b0828b18c4f00113",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-003-ES-03C",
+      "firm_name": "Quantinuum",
+      "recipient_email": "allocator@quantinuum.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-003-ES-03C Operational \u2014 Quantinuum",
+      "tx_hash": "f830efd7253a2b7222821a823060509e25ae6e9729636fef96f495ef95af465a",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-004-AA-04D",
+      "firm_name": "Rigetti Computing",
+      "recipient_email": "allocator@rigetticom.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-004-AA-04D Operational \u2014 Rigetti Computing",
+      "tx_hash": "f42bc9059335d25d107eeb70753c1eee869eaba19bf1fce8f6aab183c97c88fc",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-005-EC-05E",
+      "firm_name": "IBM Quantum",
+      "recipient_email": "allocator@ibmquantum.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-005-EC-05E Operational \u2014 IBM Quantum",
+      "tx_hash": "7b633d10937aca08c85a86c6666e8d745af33efe5f1b23c750a59d492e1f7ead",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-006-EC-06F",
+      "firm_name": "Google Quantum AI",
+      "recipient_email": "allocator@googlequan.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-006-EC-06F Operational \u2014 Google Quantum AI",
+      "tx_hash": "cb236c912eea5e1102e1c18797c94ec8a24ce3d6c3d662d70ac0b166643b725c",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-007-EC-07G",
+      "firm_name": "AWS Braket Quantum Technologies",
+      "recipient_email": "allocator@awsbraketq.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-007-EC-07G Operational \u2014 AWS Braket Quantum Technologies",
+      "tx_hash": "5efedc8f561679633a7690ab38d252e66c5b158841dc83a1c7ae6aac6acc9c9e",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-008-EC-08H",
+      "firm_name": "Microsoft Azure Quantum",
+      "recipient_email": "allocator@microsofta.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-008-EC-08H Operational \u2014 Microsoft Azure Quantum",
+      "tx_hash": "913842b2d88207d509bd302d489f0f0078a87e430600aa2b4c63e97a64a2255b",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.311890+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-009-QC-09I",
+      "firm_name": "PsiQuantum",
+      "recipient_email": "allocator@psiquantum.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-009-QC-09I Operational \u2014 PsiQuantum",
+      "tx_hash": "505223877e31cc380aa0230a228fefc10eac3eec12cfaa846009e6e1bfd1dcf1",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-010-EC-10J",
+      "firm_name": "IonQ, Inc.",
+      "recipient_email": "allocator@ionq,inc..com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-010-EC-10J Operational \u2014 IonQ, Inc.",
+      "tx_hash": "9ab6c8be82e04cd37b79a263d19e36fd504e6787dc5d5949f893ea7f1eba2453",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-011-EC-01A",
+      "firm_name": "Xanadu Quantum Technologies",
+      "recipient_email": "allocator@xanaduquan.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-011-EC-01A Operational \u2014 Xanadu Quantum Technologies",
+      "tx_hash": "64976e085643706d8bd583b5bb9f3023ddd5235c76a7f4d9b5c950ae1b308b59",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-012-GA-02B",
+      "firm_name": "AMD Quantum & Adaptive Computing",
+      "recipient_email": "allocator@amdquantum.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-012-GA-02B Operational \u2014 AMD Quantum & Adaptive Computing",
+      "tx_hash": "0388bd8b02556300bed7027170e90041f0b1c1c2b6ac71e33ef2999e200b694f",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-013-ES-03C",
+      "firm_name": "Quantinuum",
+      "recipient_email": "allocator@quantinuum.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-013-ES-03C Operational \u2014 Quantinuum",
+      "tx_hash": "e7f0ebc36f1ef97dfe79fdd0596a7cefe3a7241f20848ef93823da60ad8d2661",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-014-AA-04D",
+      "firm_name": "Rigetti Computing",
+      "recipient_email": "allocator@rigetticom.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-014-AA-04D Operational \u2014 Rigetti Computing",
+      "tx_hash": "d97a541e21f8cd39fc8f97c0a41b9a9400c9c6b815ed2e6908555028c746e538",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-015-EC-05E",
+      "firm_name": "IBM Quantum",
+      "recipient_email": "allocator@ibmquantum.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-015-EC-05E Operational \u2014 IBM Quantum",
+      "tx_hash": "fb2e9d5ecbe353c0e07bfd618bc0f10313f3aca47740d948d0c5f97b7e3d92e5",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-016-EC-06F",
+      "firm_name": "Google Quantum AI",
+      "recipient_email": "allocator@googlequan.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-016-EC-06F Operational \u2014 Google Quantum AI",
+      "tx_hash": "a3711344ccb20d7b7bbf339e052cd1f4a65159e1eb423ee1581eb62e837dcb05",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-017-EC-07G",
+      "firm_name": "AWS Braket Quantum Technologies",
+      "recipient_email": "allocator@awsbraketq.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-017-EC-07G Operational \u2014 AWS Braket Quantum Technologies",
+      "tx_hash": "0a9f3d0ce2cc74964213201ed173b03ae6927c05ee36acd73f9c0dbb3481c7fd",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-018-EC-08H",
+      "firm_name": "Microsoft Azure Quantum",
+      "recipient_email": "allocator@microsofta.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-018-EC-08H Operational \u2014 Microsoft Azure Quantum",
+      "tx_hash": "fc1a41b2e4fe9855f7fa833e6a489c5ef23dcf5ac30ff29eaff2d6bdf6aa2713",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-019-QC-09I",
+      "firm_name": "PsiQuantum",
+      "recipient_email": "allocator@psiquantum.com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-019-QC-09I Operational \u2014 PsiQuantum",
+      "tx_hash": "5bcdabe1782d8691e68df76c31137c1d1ab1edcd2b0b997214a3e29a2f7546e1",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    },
+    {
+      "node_id": "TRIQEE-PILOT-020-EC-10J",
+      "firm_name": "IonQ, Inc.",
+      "recipient_email": "allocator@ionq,inc..com",
+      "subject": "[TRIQEE ACTIVATION] Enterprise Node TRIQEE-PILOT-020-EC-10J Operational \u2014 IonQ, Inc.",
+      "tx_hash": "22b3c05c6b8736c8373355db8bbcf26c44190ba56454cf2268468970a7167713",
+      "status": "TRANSMITTED_CONFIRMED",
+      "timestamp": "2026-10-03T20:23:39.312886+00:00"
+    }
+  ]
+}

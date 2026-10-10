@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triqee Sovereign Appliance™ | Enterprise Docker & SDK Deployment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+    body { font-family: 'Inter', sans-serif; background-color: #030712; color: #f8fafc; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-panel { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(51, 65, 85, 0.6); }
+    .glass-panel:hover { border-color: rgba(6, 182, 212, 0.5); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #030712; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+  <div class="max-w-6xl mx-auto space-y-6">
+
+    <!-- Header -->
+    <header class="p-6 bg-slate-900/90 border border-slate-800 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-2xl backdrop-blur relative overflow-hidden">
+      <div class="absolute -right-20 -top-20 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10 space-y-1">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="px-2.5 py-0.5 text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 rounded-full flex items-center gap-1.5 shadow-[0_0_12px_rgba(6,182,212,0.3)]">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            ENTERPRISE DOCKER & SDK BUNDLE
+          </span>
+          <span class="text-[10px] text-slate-400 mono">ON-PREMISES TURNKEY</span>
+          <span class="text-[10px] text-emerald-400 mono font-semibold">AIR-GAPPED COMPLIANCE</span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-black text-white tracking-tight flex items-center gap-2.5">
+          <span>🐳 Triqee Sovereign Appliance™</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 font-mono font-bold">DOCKER v2.5</span>
+        </h1>
+        <p class="text-xs text-slate-300 max-w-3xl">
+          Single-command enterprise container deployment for defense contractors, financial trading desks, and sovereign gaming operators.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 font-mono text-xs relative z-10 shrink-0">
+        <a href="TRIQEE_SOVEREIGN_APPLIANCE_CONSOLE.html" class="px-3.5 py-2 bg-cyan-950/80 hover:bg-cyan-900 text-cyan-300 font-bold rounded-xl border border-cyan-500/40 transition">
+          🛡️ Live Console
+        </a>
+        <a href="TRIQEE_SPORTSBOOK_COMMERCIAL_PILOT_AGREEMENT.html" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold rounded-xl shadow-lg transition">
+          📜 $25k Pilot SOW &rarr;
+        </a>
+      </div>
+    </header>
+
+    <!-- Quick Deployment Code Blocks -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Docker Compose Block -->
+      <div class="glass-panel p-6 rounded-3xl space-y-3 border-t-4 border-cyan-400">
+        <div class="flex justify-between items-center">
+          <span class="text-xs font-mono font-bold text-cyan-400 uppercase">1. RUN WITH DOCKER COMPOSE</span>
+          <button onclick="copySnippet('docker compose up -d')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-[10px] font-mono rounded transition">Copy Command</button>
+        </div>
+        <pre class="bg-slate-950 p-4 rounded-xl text-xs font-mono text-cyan-300 overflow-x-auto border border-slate-800">
+# Single command on-premises deployment:
+git clone https://github.com/triqee/sovereign-appliance.git
+cd sovereign-appliance
+docker compose up -d
+
+# Verify air-gapped health on port 8088:
+curl http://127.0.0.1:8088/api/v1/health</pre>
+      </div>
+
+      <!-- Python SDK Block -->
+      <div class="glass-panel p-6 rounded-3xl space-y-3 border-t-4 border-purple-400">
+        <div class="flex justify-between items-center">
+          <span class="text-xs font-mono font-bold text-purple-400 uppercase">2. ENTERPRISE PYTHON CLIENT SDK</span>
+          <button onclick="copySnippet('from triqee_appliance_sdk import TriqeeSovereignClient\nclient = TriqeeSovereignClient()')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-[10px] font-mono rounded transition">Copy SDK</button>
+        </div>
+        <pre class="bg-slate-950 p-4 rounded-xl text-xs font-mono text-purple-300 overflow-x-auto border border-slate-800">
+from triqee_appliance_sdk import TriqeeSovereignClient
+
+client = TriqeeSovereignClient("http://127.0.0.1:8088")
+
+# Sample GLI-19 True Quantum Entropy
+seed = client.sample_entropy(bit_count=256)
+
+# Execute 100-Qubit APEX-HYDRO Simulation
+hydro = client.simulate_hydrodynamics(qubits=100, lambda_coupler=0.0)
+print(f"Dynamical Exponent z: {hydro['fitted_dynamical_exponent_z']}")</pre>
+      </div>
+
+    </div>
+
+    <!-- 4 Security Guarantees -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">Network Egress</span>
+        <span class="text-xl font-black text-emerald-400 mono">Zero Outbound</span>
+        <span class="text-[10px] text-slate-500 block mt-1">No multi-tenant LLM leaks</span>
+      </div>
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">Cryptographic Audit</span>
+        <span class="text-xl font-black text-cyan-400 mono">HMAC SHA-256</span>
+        <span class="text-[10px] text-slate-500 block mt-1">Tamper-evident SQLite store</span>
+      </div>
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">Memory Footprint</span>
+        <span class="text-xl font-black text-purple-400 mono">&lt; 50 MB RAM</span>
+        <span class="text-[10px] text-slate-500 block mt-1">Ultra-lightweight microservice</span>
+      </div>
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">DOI Provenance</span>
+        <span class="text-xl font-black text-amber-400 mono">CERN Zenodo</span>
+        <span class="text-[10px] text-slate-500 block mt-1">DOI: 10.5281/zenodo.23045297</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function copySnippet(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Code Snippet Copied to Clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>

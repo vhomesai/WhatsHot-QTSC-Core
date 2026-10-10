@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-10-10 11:31:00",
+  "scan": {
+    "total_files": 31,
+    "valid_syntax_files": 31,
+    "syntax_errors": [],
+    "uncommitted_files_count": 997,
+    "git_dirty": true
+  },
+  "tests_total": 3,
+  "tests_passed": 2,
+  "tests_failed": 1,
+  "test_details": [
+    {
+      "test": "test_wyoming_bonding_curve.py",
+      "success": true,
+      "exit_code": 0,
+      "duration_sec": 0.137,
+      "stdout_snippet": "================================\n   BONDING CURVE & DEX SEEDER SUITE 100% VERIFIED AND READY FOR BASE MAINNET\n================================================================================\n  \u00e2\u0153\u201c Saved Verification Report: C:\\Users\\VHome\\Desktop\\wyoming_demo\\wyoming_bonding_curve_verification.json",
+      "stderr_snippet": ""
+    },
+    {
+      "test": "test_consumptive_burn_bridge.py",
+      "success": false,
+      "exit_code": 1,
+      "duration_sec": 4.529,
+      "stdout_snippet": "============================\n   TRIQEE WYOMING DA-000000992 // VECTOR 2 CONSUMPTIVE BURN BRIDGE TESTS\n   Wyoming W.S. 34-29-106 Non-Security Safe Harbor Verification\n================================================================================\n[TEST 1/4] Verifying Statutory Consumptive Matrix...",
+      "stderr_snippet": "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\VHome\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\urllib\\request.py\", line 1347, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+    },
+    {
+      "test": "triqee_4realsy_qsir_heron_bridge.py",
+      "success": true,
+      "exit_code": 0,
+      "duration_sec": 4.405,
+      "stdout_snippet": "==\n[\u00e2\u0153\u201c] QSIR JSON Manifest generated: C:\\Users\\VHome\\Desktop\\wyoming_demo\\TRIQEE_4REALSY_QSIR_HERON_MANIFEST.json\n[\u00e2\u0153\u201c] OpenQASM 3.0 Circuit generated: C:\\Users\\VHome\\Desktop\\wyoming_demo\\triqee_4realsy_heron_ghz.qasm\n================================================================================",
+      "stderr_snippet": ""
+    }
+  ],
+  "invariants": {
+    "wyoming_ws_17_31_bonding_curve": true,
+    "wyoming_ws_34_29_106_consumptive_safe_harbor": true,
+    "ibm_heron_156q_bell_ghz_fidelity_above_95": true,
+    "chsh_bell_inequality_violation_exceeds_classical_2_0": true,
+    "zero_gas_flash_arbitrage_invariant": true
+  },
+  "git_committed": false,
+  "commit_info": "CANNOT_COMMIT_TEST_FAILURES_DETECTED",
+  "verdict": "ATTENTION_REQUIRED"
+}

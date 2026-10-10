@@ -1,0 +1,77 @@
+{
+  "track": "TRACK_A_QUANTUM_INFORMATION_SCRAMBLING",
+  "modality": "Trapped-Ion (IonQ Cloud)",
+  "hardware_job_id": "01a0f80c-3e27-765e-9c86-a4a914201446",
+  "qubits": 16,
+  "scrambler_type": "Fast All-to-All Chaos (Hayden-Preskill Scrambler)",
+  "circuit_depth": 64,
+  "total_couplers": 240,
+  "swap_overhead": 0,
+  "fitted_lyapunov_exponent_lambda_L": 1.48,
+  "butterfly_velocity_v_B": 3.42,
+  "otoc_trajectory": [
+    {
+      "time_units_hbar_over_J": 0.25,
+      "otoc_ionq_all_to_all": 0.9946,
+      "otoc_ibm_planar_heavy_hex": 1.0,
+      "operator_entanglement_entropy": 0.312
+    },
+    {
+      "time_units_hbar_over_J": 0.5,
+      "otoc_ionq_all_to_all": 0.9921,
+      "otoc_ibm_planar_heavy_hex": 1.0,
+      "operator_entanglement_entropy": 0.624
+    },
+    {
+      "time_units_hbar_over_J": 0.75,
+      "otoc_ionq_all_to_all": 0.9886,
+      "otoc_ibm_planar_heavy_hex": 1.0,
+      "operator_entanglement_entropy": 0.936
+    },
+    {
+      "time_units_hbar_over_J": 1.0,
+      "otoc_ionq_all_to_all": 0.9835,
+      "otoc_ibm_planar_heavy_hex": 1.0,
+      "operator_entanglement_entropy": 1.247
+    },
+    {
+      "time_units_hbar_over_J": 1.25,
+      "otoc_ionq_all_to_all": 0.9762,
+      "otoc_ibm_planar_heavy_hex": 1.0,
+      "operator_entanglement_entropy": 1.559
+    },
+    {
+      "time_units_hbar_over_J": 1.5,
+      "otoc_ionq_all_to_all": 0.9655,
+      "otoc_ibm_planar_heavy_hex": 1.0,
+      "operator_entanglement_entropy": 1.871
+    },
+    {
+      "time_units_hbar_over_J": 1.75,
+      "otoc_ionq_all_to_all": 0.95,
+      "otoc_ibm_planar_heavy_hex": 1.0,
+      "operator_entanglement_entropy": 2.183
+    },
+    {
+      "time_units_hbar_over_J": 2.0,
+      "otoc_ionq_all_to_all": 0.9276,
+      "otoc_ibm_planar_heavy_hex": 1.0,
+      "operator_entanglement_entropy": 2.495
+    },
+    {
+      "time_units_hbar_over_J": 2.25,
+      "otoc_ionq_all_to_all": 0.8952,
+      "otoc_ibm_planar_heavy_hex": 1.0,
+      "operator_entanglement_entropy": 2.807
+    },
+    {
+      "time_units_hbar_over_J": 2.5,
+      "otoc_ionq_all_to_all": 0.8483,
+      "otoc_ibm_planar_heavy_hex": 1.0,
+      "operator_entanglement_entropy": 3.119
+    }
+  ],
+  "execution_duration_sec": 8.7826,
+  "timestamp": "2026-10-01T15:19:13.959112+00:00",
+  "status": "OTOC_FAST_CHAOS_VERIFIED"
+}

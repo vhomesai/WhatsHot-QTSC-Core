@@ -1,0 +1,37 @@
+{
+  "compiler_status": "STATIC_ESTIMATES_ONLY_NO_HARDWARE_EXECUTION",
+  "target_modalities": {
+    "ibm_heron_156q": {
+      "architecture_type": "Superconducting Heavy-Hex",
+      "routing_model": "Heuristic SWAP insertion on Heavy-Hex topology",
+      "estimated_swap_overhead_pct": 18.2,
+      "target_pulse_sequence": "Cross-Resonance Echo (CR) + XY4 Dynamical Decoupling",
+      "disclaimer": "Compiler estimate only. No IBM Quantum provider job was executed."
+    },
+    "harvard_quera_neutral_atoms": {
+      "architecture_type": "Rydberg Neutral Atom Array (Rubidium-87)",
+      "routing_model": "2D SLM + Acousto-Optic Deflector (AOD) atomic shuttling",
+      "logical_swap_gate_count": 0,
+      "physical_transport_consideration": "Zero SWAP gates in circuit IR; physical atom transport latency and laser dephasing overhead apply during shuttling cycles.",
+      "disclaimer": "Compiler estimate only. No QuEra Cloud job was executed."
+    },
+    "quantinuum_h2": {
+      "architecture_type": "Trapped-Ion QCCD",
+      "routing_model": "Linear ion shuttling with all-to-all connectivity",
+      "logical_swap_gate_count": 0,
+      "disclaimer": "Compiler estimate only. No Quantinuum hardware job was executed."
+    }
+  },
+  "qubit_overhead_accounting": {
+    "data_qubits": 72,
+    "syndrome_ancillae_qubits": 72,
+    "total_physical_qubits_active": 144,
+    "protected_logical_qubits": 12,
+    "data_encoding_ratio": "6:1 (72 data / 12 logical)",
+    "total_footprint_ratio_during_extraction": "12:1 (144 total / 12 logical)"
+  },
+  "decoder_timing_context": {
+    "isolated_decoder_kernel_benchmark_ns": 380,
+    "contextual_note": "380 ns represents isolated neural BP-OSD kernel runtime on benchmark FPGA/GPU hardware. Total logical cycle time includes measurement latency, syndrome communication, decoding, and Pauli feedback."
+  }
+}

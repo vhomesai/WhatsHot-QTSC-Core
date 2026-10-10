@@ -1,0 +1,40 @@
+{
+  "execution_id": "QUANTVAULT-IONQ-1790789029",
+  "timestamp": "2026-09-30T17:23:49.818337+00:00",
+  "hardware_job_id": "01a0f357-f0af-736d-bf20-693cd87c2b2f",
+  "modality": "Trapped-Ion (IonQ Cloud)",
+  "shots": 2000,
+  "circuit_depth": 33,
+  "couplers": 120,
+  "swap_overhead": 0,
+  "selected_assets": [
+    "NVDA",
+    "MSFT",
+    "AMD",
+    "IBM",
+    "IONQ"
+  ],
+  "allocation_weights": {
+    "NVDA": 0.2192,
+    "MSFT": 0.1654,
+    "AMD": 0.0893,
+    "IBM": 0.0607,
+    "IONQ": 0.4654
+  },
+  "latest_asset_prices": {
+    "NVDA": 230.35,
+    "MSFT": 516.83,
+    "AMD": 605.28,
+    "IBM": 218.77,
+    "IONQ": 44.51
+  },
+  "portfolio_metrics": {
+    "expected_annual_return_pct": 294.84,
+    "annualized_volatility_pct": 19.77,
+    "quantum_sharpe_ratio": 14.915,
+    "benchmark_spy_sharpe": 3.095,
+    "sharpe_alpha_pct": 381.94
+  },
+  "rebalance_action": "EXECUTE_PORTFOLIO_BUY_REBALANCE",
+  "status": "LIVE_TRADE_SIGNALS_ACTIVE"
+}

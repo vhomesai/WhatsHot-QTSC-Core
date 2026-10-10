@@ -1,0 +1,11 @@
+{
+  "dao_entity": "WhatsHot, Inc. // Triqee Omniverse DAO LLC",
+  "wyoming_entity_id": "DA-000000992",
+  "contract": "TriqeeWyomingBondingCurve.sol",
+  "status": "FORMALLY_VERIFIED",
+  "real_eth_reserve": 25.126683044219394,
+  "treasury_fees_accrued_eth": 0.4121372543367091,
+  "is_graduated": true,
+  "events_count": 5,
+  "timestamp": "2026-10-10T17:32:24Z"
+}

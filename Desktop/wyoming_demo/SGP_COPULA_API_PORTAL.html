@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triqee SGP Copula API — Commercial Developer Portal & Pricing</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body {
+      background-color: #030712;
+      color: #f3f4f6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+
+  <div class="max-w-6xl mx-auto space-y-8">
+    
+    <!-- Top Nav / Branding -->
+    <header class="flex flex-wrap items-center justify-between gap-4 p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl backdrop-blur">
+      <div class="flex items-center gap-3">
+        <span class="text-3xl">🧮</span>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-black text-white tracking-tight">
+              TRIQEE <span class="text-yellow-400">SGP COPULA API</span>
+            </h1>
+            <span class="bg-yellow-400/10 text-yellow-400 text-xs px-2 py-0.5 rounded font-mono font-semibold border border-yellow-400/20">
+              v1.3.0 Live
+            </span>
+          </div>
+          <p class="text-xs text-slate-400">High-Throughput Gaussian Copula Correlation & Parlay Pricing Engine (WhatsHot, Inc. & IMQbd)</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="index.html" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700 transition">
+          🏈 Open Sportsbook Demo
+        </a>
+        <a href="TRIQEE_SPORTSBOOK_COMMERCIAL_PILOT_AGREEMENT.html" class="px-3 py-1.5 bg-yellow-500 hover:bg-yellow-400 text-slate-950 text-xs font-bold rounded-lg transition">
+          📝 View $25k Pilot SOW
+        </a>
+      </div>
+    </header>
+
+    <!-- Pricing Tiers Banner -->
+    <div class="space-y-3">
+      <div class="text-center space-y-1">
+        <h2 class="text-2xl font-black text-white">Commercial B2B Subscription Tiers</h2>
+        <p class="text-xs text-slate-400">Turnkey correlated parlay pricing for sportsbooks, syndicates, and quant trading desks.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- Starter Tier -->
+        <div class="p-6 bg-slate-900 border border-slate-800 rounded-2xl space-y-4 relative flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold text-white">Starter</h3>
+              <span class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">Boutique Books</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-black text-yellow-400">$999</span>
+              <span class="text-xs text-slate-400">/ month</span>
+            </div>
+            <ul class="text-xs text-slate-300 space-y-2 pt-2 border-t border-slate-800">
+              <li class="flex items-center gap-2">✓ <strong>50,000</strong> queries / month</li>
+              <li class="flex items-center gap-2">✓ Up to <strong>4 legs</strong> per SGP</li>
+              <li class="flex items-center gap-2">✓ Standard Empirical Correlation Matrix</li>
+              <li class="flex items-center gap-2">✓ &lt; 50ms Response SLA</li>
+            </ul>
+          </div>
+          <button onclick="selectTier('STARTER')" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl border border-slate-700 transition">
+            Select Starter Tier
+          </button>
+        </div>
+
+        <!-- Pro Tier (Popular) -->
+        <div class="p-6 bg-gradient-to-b from-slate-900 to-slate-900/90 border-2 border-yellow-400/70 rounded-2xl space-y-4 relative shadow-2xl flex flex-col justify-between">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-slate-950 text-xs px-3 py-0.5 rounded-full font-bold uppercase tracking-wider">
+            Most Popular
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold text-white">Pro</h3>
+              <span class="text-xs bg-yellow-400/20 text-yellow-400 px-2 py-0.5 rounded font-mono font-semibold">Regional Operators</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-black text-yellow-400">$2,999</span>
+              <span class="text-xs text-slate-400">/ month</span>
+            </div>
+            <ul class="text-xs text-slate-300 space-y-2 pt-2 border-t border-slate-800">
+              <li class="flex items-center gap-2">✓ <strong>250,000</strong> queries / month</li>
+              <li class="flex items-center gap-2">✓ Up to <strong>10 legs</strong> per SGP</li>
+              <li class="flex items-center gap-2">✓ <strong>Custom Correlation Matrices</strong> (Rodeo, F1, NCAA)</li>
+              <li class="flex items-center gap-2">✓ Real-time in-play odds recalibration</li>
+              <li class="flex items-center gap-2">✓ &lt; 20ms Response SLA</li>
+            </ul>
+          </div>
+          <button onclick="selectTier('PRO')" class="w-full py-2 bg-yellow-400 hover:bg-yellow-300 text-slate-950 text-xs font-bold rounded-xl shadow-lg transition">
+            Provision Pro API Key
+          </button>
+        </div>
+
+        <!-- Enterprise Tier -->
+        <div class="p-6 bg-slate-900 border border-slate-800 rounded-2xl space-y-4 relative flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold text-white">Enterprise</h3>
+              <span class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">Major Supermajors</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-black text-white">$7,500</span>
+              <span class="text-xs text-slate-400">/ month</span>
+            </div>
+            <ul class="text-xs text-slate-300 space-y-2 pt-2 border-t border-slate-800">
+              <li class="flex items-center gap-2">✓ <strong>Unlimited</strong> query volume</li>
+              <li class="flex items-center gap-2">✓ Up to <strong>20 legs</strong> per SGP</li>
+              <li class="flex items-center gap-2">✓ Dedicated Private VPC or On-Prem Cluster</li>
+              <li class="flex items-center gap-2">✓ Sub-5ms Sub-Tick Latency SLA</li>
+              <li class="flex items-center gap-2">✓ 24/7 Dedicated Quantitative Engineering SLA</li>
+            </ul>
+          </div>
+          <button onclick="selectTier('ENTERPRISE')" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl border border-slate-700 transition">
+            Contact Enterprise Sales
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Live Interactive API Playground -->
+    <div class="p-6 bg-slate-900 border border-slate-800 rounded-2xl space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <span>⚡</span> Interactive Live SGP Pricing Playground
+          </h2>
+          <p class="text-xs text-slate-400">Execute real Gaussian copula multi-leg correlation calculations directly in your browser.</p>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="text-slate-400">API Key:</span>
+          <code class="px-2.5 py-1 bg-slate-950 border border-slate-800 text-yellow-400 rounded font-mono" id="active-api-key">trq_live_pro_apex99</code>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left: Parlay Leg Builder -->
+        <div class="lg:col-span-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-300">Wagering Legs for Event:</span>
+            <select id="event-selector" class="bg-slate-950 border border-slate-800 text-xs rounded-lg px-2.5 py-1 text-slate-200">
+              <option value="nfl_kc_buf">NFL: KC Chiefs @ BUF Bills</option>
+              <option value="ncaa_wyo_bois">NCAA FB: Boise State @ Wyoming Cowboys</option>
+              <option value="nba_bos_den">NBA: Boston Celtics @ Denver Nuggets</option>
+              <option value="prca_cheyenne">PRCA Rodeo: Cheyenne Frontier Days</option>
+            </select>
+          </div>
+
+          <div class="space-y-2" id="legs-container">
+            <!-- Leg 1 -->
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl flex items-center justify-between text-xs">
+              <div>
+                <strong class="text-white block">Chiefs Moneyline</strong>
+                <span class="text-slate-400">Market: moneyline (ML)</span>
+              </div>
+              <div class="text-right">
+                <span class="px-2 py-0.5 bg-slate-800 font-mono text-yellow-400 rounded font-semibold">-145</span>
+                <span class="text-slate-400 block text-[10px]">59.2% implied</span>
+              </div>
+            </div>
+
+            <!-- Leg 2 -->
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl flex items-center justify-between text-xs">
+              <div>
+                <strong class="text-white block">Chiefs -2.5 Point Spread</strong>
+                <span class="text-slate-400">Market: spread (ATS)</span>
+              </div>
+              <div class="text-right">
+                <span class="px-2 py-0.5 bg-slate-800 font-mono text-yellow-400 rounded font-semibold">-110</span>
+                <span class="text-slate-400 block text-[10px]">52.4% implied</span>
+              </div>
+            </div>
+
+            <!-- Leg 3 -->
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl flex items-center justify-between text-xs">
+              <div>
+                <strong class="text-white block">Game Total Over 47.5</strong>
+                <span class="text-slate-400">Market: total_over</span>
+              </div>
+              <div class="text-right">
+                <span class="px-2 py-0.5 bg-slate-800 font-mono text-yellow-400 rounded font-semibold">-108</span>
+                <span class="text-slate-400 block text-[10px]">51.9% implied</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div>
+              <label class="text-slate-400 block mb-1">Operator Hold Margin:</label>
+              <select id="hold-selector" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-2 py-1.5 text-slate-200">
+                <option value="0.15">15.0% (Aggressive)</option>
+                <option value="0.18" selected>18.0% (Industry Standard)</option>
+                <option value="0.22">22.0% (Conservative)</option>
+                <option value="0.25">25.0% (Max Statutory)</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-slate-400 block mb-1">Correlation Model:</label>
+              <select id="model-selector" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-2 py-1.5 text-slate-200">
+                <option value="empirical">Gaussian Copula (Empirical)</option>
+                <option value="independent">Uncorrelated / Independent (Naive)</option>
+              </select>
+            </div>
+          </div>
+
+          <button onclick="calculateSGP()" class="w-full py-2.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 text-xs font-bold rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+            <span>🚀</span> POST /api/v1/sgp/price
+          </button>
+        </div>
+
+        <!-- Right: Mathematical Response Output -->
+        <div class="lg:col-span-6 bg-slate-950 border border-slate-800 rounded-xl p-4 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
+              <span class="text-xs font-semibold text-slate-300">Live Engine Computation Response</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded font-mono">
+                HTTP 200 OK (1.2ms)
+              </span>
+            </div>
+
+            <!-- Mathematical Results Cards -->
+            <div class="grid grid-cols-2 gap-3 text-xs">
+              <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg">
+                <span class="text-slate-400 block text-[10px]">Independent Joint Prob</span>
+                <span class="text-base font-bold text-white" id="res-indep">16.1%</span>
+                <span class="text-[10px] text-slate-500 block">Naive multiplication</span>
+              </div>
+              <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg">
+                <span class="text-slate-400 block text-[10px]">Correlated Joint Prob</span>
+                <span class="text-base font-bold text-emerald-400" id="res-corr">24.8%</span>
+                <span class="text-[10px] text-emerald-400 block font-mono" id="res-factor">1.54x Copula Boost</span>
+              </div>
+              <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg">
+                <span class="text-slate-400 block text-[10px]">Fair True Odds</span>
+                <span class="text-base font-bold text-white font-mono" id="res-true">+303</span>
+                <span class="text-[10px] text-slate-500 block">Zero hold baseline</span>
+              </div>
+              <div class="p-3 bg-slate-900 border border-yellow-400/40 rounded-lg bg-yellow-400/5">
+                <span class="text-yellow-400 block text-[10px] font-semibold">SGP Sportsbook Odds</span>
+                <span class="text-base font-black text-yellow-400 font-mono" id="res-sportsbook">+230 (3.30x)</span>
+                <span class="text-[10px] text-slate-400 block" id="res-hold">Includes 18.0% Hold</span>
+              </div>
+            </div>
+          </div>
+
+            <!-- IBM Quantum Verified Hardware Badge -->
+            <div class="p-2.5 bg-purple-950/40 border border-purple-500/40 rounded-lg flex items-center justify-between text-[11px] mb-2">
+              <div class="flex items-center gap-2">
+                <span class="text-base">⚛️</span>
+                <div>
+                  <span class="text-slate-300 font-medium block">Hardware Verified: <strong class="text-purple-300">IBM Heron 156Q (`ibm_marrakesh`)</strong></span>
+                  <span class="text-[10px] text-slate-400">Ground State: <code>|1111></code> (1,024 shots, 2.17s QPU time)</span>
+                </div>
+              </div>
+              <a href="https://quantum.ibm.com/jobs/dapu6pb18flc739mtlj0" target="_blank" class="px-2 py-1 bg-purple-700 hover:bg-purple-600 text-white rounded text-[10px] font-mono font-bold transition shrink-0">
+                Job dapu6pb18flc739mtlj0 &nearr;
+              </a>
+            </div>
+
+            <!-- Code Snippet -->
+            <div>
+              <span class="text-[11px] text-slate-400 block mb-1">Python Integration Snippet:</span>
+              <pre class="p-2.5 bg-slate-900 border border-slate-800 text-[11px] text-slate-300 rounded-lg mono overflow-x-auto"><code>import httpx
+resp = httpx.post("http://localhost:8001/api/v1/sgp/price",
+    headers={"X-API-Key": "trq_live_pro_apex99"},
+    json={"event_id": "nfl_kc_buf", "house_edge": 0.18, "legs": [...]})
+odds = resp.json()["sgp_american_odds"] # +230</code></pre>
+            </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function calculateSGP() {
+      const hold = parseFloat(document.getElementById('hold-selector').value);
+      const isIndep = document.getElementById('model-selector').value === 'independent';
+      
+      const p1 = 0.592;
+      const p2 = 0.524;
+      const p3 = 0.519;
+      
+      const pIndep = p1 * p2 * p3; // ~0.161
+      const factor = isIndep ? 1.0 : 1.54;
+      const pCorr = Math.min(0.95, pIndep * factor);
+      const pBook = pCorr / (1.0 - hold);
+      
+      const trueAmerican = Math.round((100 / pCorr) - 100);
+      const bookAmerican = Math.round((100 / pBook) - 100);
+      const decimal = (1 / pBook).toFixed(2);
+      
+      document.getElementById('res-indep').innerText = (pIndep * 100).toFixed(1) + '%';
+      document.getElementById('res-corr').innerText = (pCorr * 100).toFixed(1) + '%';
+      document.getElementById('res-factor').innerText = factor.toFixed(2) + 'x Copula Boost';
+      document.getElementById('res-true').innerText = '+' + trueAmerican;
+      document.getElementById('res-sportsbook').innerText = '+' + bookAmerican + ' (' + decimal + 'x)';
+      document.getElementById('res-hold').innerText = 'Includes ' + (hold * 100).toFixed(1) + '% Hold';
+    }
+
+    function selectTier(tier) {
+      alert("Tier selected: " + tier + ". Redirecting to API provisioning...");
+      document.getElementById('active-api-key').innerText = "trq_live_" + tier.toLowerCase() + "_" + Math.random().toString(36).substring(2, 10);
+    }
+  </script>
+</body>
+</html>

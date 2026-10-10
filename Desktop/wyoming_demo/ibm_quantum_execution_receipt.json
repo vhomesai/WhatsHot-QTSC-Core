@@ -1,0 +1,21 @@
+{
+  "entity": "WhatsHot, Inc. // Triqee Omniverse DAO LLC (DA-000000992)",
+  "backend": "ibm_marrakesh",
+  "backend_qubits": 156,
+  "job_id": "db3fo0slf4us73c16ueg",
+  "shots": 100,
+  "proof_hash": "49096f48ec17ad29ac6e54e88c767364100b4daecc888f330a7a5649380e1910",
+  "timestamp": "2026-10-08T02:12:18Z",
+  "status": "COMPLETED",
+  "zenodo_doi": "10.5281/zenodo.23045297",
+  "statute": "Wyoming W.S. 34-29-106 Consumptive Utility Token",
+  "counts": {
+    "11111": 47,
+    "00000": 50,
+    "01111": 1,
+    "11110": 1,
+    "11011": 1
+  },
+  "execution_start": "2026-10-08 02:12:23",
+  "execution_stop": "2026-10-08 02:12:24"
+}

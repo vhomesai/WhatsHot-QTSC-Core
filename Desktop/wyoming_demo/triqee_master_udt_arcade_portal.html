@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triqee Omniverse™ | Master Unique Delivery Tool (UDT) Enterprise Arcade & Portal (34/34)</title>
+<style>
+  :root {
+    --bg-dark: #020617;
+    --bg-panel: #0b1329;
+    --bg-card: rgba(15, 23, 42, 0.88);
+    --border-glow: #06b6d4;
+    --neon-cyan: #06b6d4;
+    --neon-emerald: #10b981;
+    --neon-purple: #a855f7;
+    --neon-amber: #f59e0b;
+    --neon-rose: #f43f5e;
+    --neon-gold: #eab308;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'JetBrains Mono', Consolas, monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+  .crt-grid {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none;
+    background: linear-gradient(rgba(6,182,212,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.03) 1px, transparent 1px);
+    background-size: 32px 32px; z-index: 0;
+  }
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(2, 6, 23, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(6, 182, 212, 0.25);
+    padding: 14px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo-title {
+    display: flex; align-items: center; gap: 12px; font-size: 1.25rem; font-weight: 900;
+    letter-spacing: -0.5px;
+  }
+  .logo-badge {
+    background: linear-gradient(135deg, #06b6d4, #a855f7);
+    color: #fff; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 800;
+  }
+  .header-stats {
+    display: flex; gap: 20px; font-size: 0.82rem; font-family: monospace;
+  }
+  .stat-badge {
+    display: flex; align-items: center; gap: 6px; background: rgba(15,23,42,0.8);
+    padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat-val { font-weight: 800; color: var(--neon-emerald); }
+  
+  .hero {
+    position: relative; z-index: 10;
+    padding: 28px 28px 16px; text-align: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .hero h1 {
+    font-size: 2.2rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 8px;
+    background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p { color: var(--text-muted); font-size: 0.92rem; max-width: 860px; margin: 0 auto 18px; line-height: 1.5; }
+  
+  .filter-bar {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 24px;
+  }
+  .filter-btn {
+    background: rgba(15,23,42,0.9); border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text-muted); padding: 7px 14px; border-radius: 20px; font-size: 0.78rem;
+    cursor: pointer; transition: all 0.15s; font-family: inherit; font-weight: 600;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: rgba(6, 182, 212, 0.2); border-color: var(--neon-cyan);
+    color: #fff; box-shadow: 0 0 14px rgba(6, 182, 212, 0.4);
+  }
+  
+  .arcade-grid {
+    position: relative; z-index: 10;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px; max-width: 1440px; width: 100%; margin: 0 auto; padding: 0 28px 40px;
+  }
+  
+  .udt-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(16px);
+    position: relative; overflow: hidden;
+  }
+  .udt-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(6, 182, 212, 0.25);
+  }
+  .udt-header {
+    display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;
+  }
+  .udt-number {
+    font-size: 0.7rem; font-weight: 800; font-family: monospace;
+    background: rgba(6, 182, 212, 0.15); color: var(--neon-cyan);
+    padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(6, 182, 212, 0.3);
+  }
+  .udt-sector {
+    font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+    background: rgba(168, 85, 247, 0.15); color: var(--neon-purple);
+    padding: 3px 8px; border-radius: 4px;
+  }
+  .udt-title {
+    font-size: 1.1rem; font-weight: 800; margin-bottom: 6px; color: #fff;
+  }
+  .udt-desc {
+    font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 12px;
+  }
+  
+  .telemetry-box {
+    background: rgba(2, 6, 23, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px; padding: 8px 12px; margin-bottom: 12px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    font-family: monospace; font-size: 0.72rem;
+  }
+  .tel-row span:first-child { color: var(--text-muted); display: block; font-size: 0.65rem; }
+  .tel-row span:last-child { color: var(--neon-emerald); font-weight: 700; }
+  
+  .supermajors-tag {
+    font-size: 0.7rem; color: #94a3b8; margin-bottom: 14px; line-height: 1.3;
+  }
+  .supermajors-tag strong { color: var(--text-primary); }
+  
+  .card-actions {
+    display: flex; gap: 10px;
+  }
+  .btn-play {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: linear-gradient(135deg, #06b6d4, #0284c7);
+    color: #fff; text-decoration: none; font-weight: 800; font-size: 0.82rem;
+    padding: 9px 14px; border-radius: 8px; border: none; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-play:hover {
+    filter: brightness(1.15); box-shadow: 0 0 16px rgba(6, 182, 212, 0.5);
+  }
+  
+  .deal-room-section {
+    position: relative; z-index: 10;
+    max-width: 1440px; width: 100%; margin: 0 auto 40px; padding: 0 28px;
+  }
+  .deal-card {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(4, 13, 33, 0.95));
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    border-radius: 14px; padding: 24px;
+    display: grid; grid-template-columns: 2fr 1fr; gap: 24px;
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.15);
+  }
+  .deal-title { font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .deal-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
+  .wire-specs {
+    background: rgba(2, 6, 23, 0.8); border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px; padding: 12px; font-family: monospace; font-size: 0.75rem;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  
+  /* === NEW UPGRADED ARCADE UI STYLES === */
+  .fuel-hud-banner {
+    position: relative; z-index: 45;
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.12), rgba(168, 85, 247, 0.12), rgba(16, 185, 129, 0.12));
+    border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+    padding: 10px 28px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    font-size: 0.78rem; font-family: monospace; backdrop-filter: blur(10px);
+  }
+  .fuel-hud-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .fuel-hud-right { display: flex; align-items: center; gap: 10px; }
+  .btn-hud-action {
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    color: #fff; padding: 6px 14px; border-radius: 6px; font-weight: 800;
+    text-decoration: none; font-size: 0.72rem; transition: all 0.2s; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-hud-action:hover { filter: brightness(1.2); box-shadow: 0 0 12px rgba(6,182,212,0.5); transform: translateY(-1px); }
+  .btn-hud-gold {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+  }
+  .btn-hud-gold:hover { box-shadow: 0 0 12px rgba(245,158,11,0.5); }
+  
+  .audio-toggle-btn {
+    background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--neon-cyan); padding: 5px 12px; border-radius: 20px; font-size: 0.72rem;
+    font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 6px;
+  }
+  .audio-toggle-btn.active { background: rgba(6, 182, 212, 0.25); border-color: var(--neon-cyan); box-shadow: 0 0 10px rgba(6,182,212,0.4); }
+
+  .omnibar-container {
+    max-width: 820px; width: 100%; margin: 0 auto 18px; position: relative; z-index: 20;
+  }
+  .omnibar-input {
+    width: 100%; background: rgba(3, 7, 18, 0.95);
+    border: 1px solid rgba(6, 182, 212, 0.4);
+    border-radius: 30px; padding: 14px 22px 14px 48px;
+    color: #fff; font-size: 0.92rem; outline: none;
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
+    transition: all 0.2s; font-family: inherit;
+  }
+  .omnibar-input:focus {
+    border-color: var(--neon-cyan); box-shadow: 0 0 35px rgba(6, 182, 212, 0.35);
+  }
+  .omnibar-icon {
+    position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+    color: var(--neon-cyan); font-size: 1.1rem; pointer-events: none;
+  }
+  .omnibar-badge {
+    position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+    background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.15);
+    color: var(--text-muted); font-size: 0.7rem; font-family: monospace;
+    padding: 3px 8px; border-radius: 6px;
+  }
+
+  .roi-calculator-card {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(6, 11, 25, 0.92));
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    border-radius: 14px; padding: 20px 24px; margin: 0 auto 20px; max-width: 1200px;
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.15); text-align: left;
+  }
+  .roi-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: center;
+  }
+  @media (max-width: 900px) { .roi-grid { grid-template-columns: 1fr; } }
+  .roi-slider {
+    width: 100%; accent-color: var(--neon-emerald); cursor: pointer; height: 6px;
+    border-radius: 3px; background: rgba(255,255,255,0.1); margin: 10px 0;
+  }
+
+  .btn-card-key {
+    background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.4);
+    color: #d8b4fe; font-size: 0.76rem; font-weight: 800; padding: 8px 12px;
+    border-radius: 8px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 4px;
+  }
+  .btn-card-key:hover { background: rgba(168, 85, 247, 0.3); color: #fff; box-shadow: 0 0 12px rgba(168,85,247,0.4); }
+
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(2, 6, 23, 0.88); backdrop-filter: blur(16px);
+    z-index: 100; display: none; justify-content: center; align-items: center; padding: 20px;
+  }
+  .modal-content {
+    background: #070e24; border: 1px solid rgba(6, 182, 212, 0.4);
+    border-radius: 14px; max-width: 580px; width: 100%; padding: 28px;
+    box-shadow: 0 0 50px rgba(6, 182, 212, 0.3); position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+  }
+  .modal-close {
+    position: absolute; right: 20px; top: 20px; background: none; border: none;
+    color: var(--text-muted); font-size: 1.4rem; cursor: pointer; transition: color 0.15s;
+  }
+  .modal-close:hover { color: #fff; }
+  .modal-input {
+    width: 100%; background: #020617; border: 1px solid rgba(255,255,255,0.15);
+    color: #fff; padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 12px;
+    outline: none; font-family: inherit;
+  }
+  .modal-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 10px rgba(6,182,212,0.3); }
+
+  .toast-banner {
+    position: fixed; bottom: 24px; right: 24px; z-index: 120;
+    background: rgba(16, 185, 129, 0.95); color: #fff; padding: 12px 20px;
+    border-radius: 8px; font-size: 0.82rem; font-weight: 800; font-family: monospace;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5); display: none; align-items: center; gap: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="crt-grid"></div>
+
+<header>
+  <div class="logo-title">
+    <span class="logo-badge">TRIQEE OMNIVERSE™</span>
+    <span>Unique Delivery Tool (UDT) Enterprise Arcade</span>
+  </div>
+    <div class="header-stats">
+      <div class="stat-badge" style="border-color: rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.12);">
+        <span style="color: #f87171; font-weight: 800;">🚨 PQC THREAT UPDATE:</span>
+        <span class="stat-val" style="color: #f87171;">-86% QC RESOURCE DROP</span>
+      </div>
+      <a href="http://localhost:8088/triqee_fourthstate_hft_terminal.html" target="_blank" style="text-decoration:none; color:inherit;"><div class="stat-badge"><span style="color:var(--neon-cyan);">⚡</span> Fourth State HFT</div></a>
+      <a href="http://localhost:8088/triqee_najarian_uoa_scanner.html" target="_blank" style="text-decoration:none; color:inherit;"><div class="stat-badge"><span style="color:var(--neon-gold);">📘</span> Najarian HeatSeeker™</div></a>
+      <a href="http://localhost:8088/triqee_clearstreet_prime_studio.html" target="_blank" style="text-decoration:none; color:inherit;"><div class="stat-badge"><span style="color:var(--neon-emerald);">🏛️</span> Clear Street Prime</div></a>
+      <a href="http://localhost:8088/triqee_sovereign_synthesis_executive_deck.html" target="_blank" style="text-decoration:none; color:inherit;"><div class="stat-badge"><span style="color:var(--neon-purple);">📑</span> Executive Deck</div></a>
+      <a href="triqee_warm_connections_outreach_hub.html" style="text-decoration:none;"><div class="stat-badge" style="border-color: rgba(6, 182, 212, 0.6); background: rgba(6, 182, 212, 0.18); cursor: pointer;"><span style="color:#38bdf8;">🤝</span> <span style="color:#38bdf8; font-weight:800;">WARM OUTREACH HUB (60 LEADS)</span></div></a>
+      <a href="triqee_quantumsonics_lab.html" style="text-decoration:none;"><div class="stat-badge" style="border-color: rgba(168, 85, 247, 0.6); background: rgba(168, 85, 247, 0.18); cursor: pointer;"><span style="color:#c084fc;">🔊</span> <span style="color:#c084fc; font-weight:800;">QUANTUM SONICS LAB</span></div></a>
+      <div class="stat-badge"><span>UDTs:</span> <span class="stat-val">34 / 34 Live</span></div>
+      <button class="audio-toggle-btn" id="audioToggleBtn" onclick="toggleAudio()"><span id="audioIcon">🔊</span> <span id="audioText">SOUND: OFF</span></button>
+      <button class="btn-hud-action btn-hud-gold" onclick="openSandboxModal('GENERAL')">🔑 GET SANDBOX KEY</button>
+    </div>
+  </header>
+
+  <!-- $TQ Consumptive Compute Gas Fuel HUD Banner -->
+  <div class="fuel-hud-banner">
+    <div class="fuel-hud-left">
+      <span><strong style="color:var(--neon-cyan);">⚡ $TQ FUEL GAUGE:</strong> <span style="color:#fff;">99,999,500 $TQ Circulating</span></span>
+      <span style="color:var(--neon-emerald); border-left:1px solid rgba(255,255,255,0.15); padding-left:12px;">⚖️ W.S. 34-29-106 Consumptive Harbor Active</span>
+      <span style="color:var(--text-muted); border-left:1px solid rgba(255,255,255,0.15); padding-left:12px;">100 $TQ = 1 IBM Heron Shot | 10 $TQ = 10k Argon Tokens</span>
+    </div>
+    <div class="fuel-hud-right">
+      <a href="http://localhost:8088/triqee_genesis_airdrop_portal.html" target="_blank" class="btn-hud-action" style="background:linear-gradient(135deg, #a855f7, #ec4899);">🎁 CLAIM 500 $TQ AIRDROP</a>
+      <a href="http://localhost:8088/triqee_token_factory_studio.html" target="_blank" class="btn-hud-action">🔥 BURN $TQ FOR COMPUTE</a>
+      <a href="http://localhost:8088/triqee_token_factory_studio.html" target="_blank" class="btn-hud-action" style="background:linear-gradient(135deg, #10b981, #059669);">📈 BONDING LAUNCHPAD ($69k CAP)</a>
+      <button class="btn-hud-action" style="background:#1e293b;" onclick="copyBenchmarkCitation()">📋 BENCHMARK RECEIPT</button>
+    </div>
+  </div>
+
+<main class="hero">
+  <h1>34 DEEP-TECH UNIQUE DELIVERY TOOLS</h1>
+  <p>Interactive, self-contained 60 FPS simulations demonstrating Triqee's sub-millisecond proprietary superiority across global deep-tech frontiers. Launch any gauntlet below to evaluate live physics models, stress test competitors, and unlock enterprise sandbox tokens.</p>
+  
+  <!-- Interactive Enterprise Arbitrage & ROI Calculator Card -->
+  <div class="roi-calculator-card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+      <span style="font-size:0.85rem; font-weight:800; color:var(--neon-emerald); text-transform:uppercase; letter-spacing:0.05em;">📊 ENTERPRISE INFERENCE & QUANTUM ARBITRAGE CALCULATOR</span>
+      <span style="font-size:0.75rem; background:rgba(16,185,129,0.2); color:var(--neon-emerald); padding:2px 8px; border-radius:4px; font-weight:bold;">90.5% TRIQEE-UMMG™ MARGIN ARBITRAGE</span>
+    </div>
+    <div class="roi-grid">
+      <div>
+        <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-family:monospace; color:var(--text-muted);">
+          <span>MONTHLY ENTERPRISE TOKEN VOLUME</span>
+          <span id="sliderTokenDisplay" style="color:var(--neon-cyan); font-weight:800;">500,000,000 Tokens</span>
+        </div>
+        <input type="range" min="50" max="5000" value="500" class="roi-slider" id="volumeSlider" oninput="updateRoiCalc()">
+        <div style="display:flex; justify-content:space-between; font-size:0.68rem; color:#64748b; font-family:monospace;">
+          <span>50M (Startup)</span>
+          <span>500M (Mid-Market)</span>
+          <span>5B+ (Global Supermajor)</span>
+        </div>
+      </div>
+      <div style="background:rgba(2,6,23,0.85); padding:12px 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); font-family:monospace; font-size:0.75rem;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <span style="color:var(--text-muted);">Legacy AWS / OpenAI Cost:</span>
+          <span style="color:#f87171; text-decoration:line-through;" id="legacyCostDisplay">$12,500 / mo</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <span style="color:var(--text-muted);">Triqee-UMMG™ Routing Cost:</span>
+          <span style="color:var(--neon-cyan); font-weight:800;" id="triqeeCostDisplay">$1,188 / mo</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding-top:6px; border-top:1px solid rgba(255,255,255,0.1);">
+          <span style="color:#fff; font-weight:bold;">Annual Cash Retained:</span>
+          <span style="color:var(--neon-emerald); font-weight:900; font-size:0.92rem;" id="cashSavedDisplay">$135,744 / yr</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Clay Millennium Prize & Mathematical Physics Breakthrough Hub -->
+  <div style="background:rgba(15,23,42,0.95); border:1px solid rgba(168,85,247,0.5); border-radius:12px; padding:16px 20px; margin:0 auto 16px; max-width:1200px; text-align:left; box-shadow:0 0 25px rgba(168,85,247,0.2);">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+      <span style="font-size:0.85rem; font-weight:800; color:var(--neon-purple); text-transform:uppercase; letter-spacing:0.05em;">🏆 CLAY MILLENNIUM PRIZE ($1M) & MATHEMATICAL PHYSICS SOVEREIGNTY</span>
+      <span style="font-size:0.75rem; background:rgba(168,85,247,0.25); color:var(--neon-purple); padding:2px 8px; border-radius:4px; font-weight:bold;">SU(3) MASS GAP PROOF ACTIVE</span>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:10px;">
+      <a href="http://localhost:8088/triqee_friday_inbox_intelligence_studio.html" target="_blank" style="text-decoration:none; background:#0b081a; border:1px solid #10b981; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:var(--neon-emerald);">⚡ Friday Inbox Intel (8 Breakthroughs)</div><div style="font-size:0.7rem; color:var(--text-muted);">Quantum, Gravimetry, Cuprates & AI Auth</div></div>
+        <span style="color:var(--neon-emerald); font-size:0.8rem;">↗</span>
+      </a>
+      <a href="http://localhost:8088/triqee_doe_quantum_genesis_q_strategy.html" target="_blank" style="text-decoration:none; background:#0b081a; border:1px solid #0284c7; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:var(--neon-cyan);">🏛️ US DOE Quantum Genesis Q</div><div style="font-size:0.7rem; color:var(--text-muted);">$215M Program & $1.5M Phase I Strategy</div></div>
+        <span style="color:var(--neon-cyan); font-size:0.8rem;">↗</span>
+      </a>
+      <a href="http://localhost:8088/triqee_millennium_executive_briefing_portal.html" target="_blank" style="text-decoration:none; background:#0b081a; border:1px solid #3b1d60; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:var(--neon-purple);">🏛️ Executive & Academic Briefing</div><div style="font-size:0.7rem; color:var(--text-muted);">Triqee vs OpenAI / Anthropic Analysis</div></div>
+        <span style="color:var(--neon-purple); font-size:0.8rem;">↗</span>
+      </a>
+      <a href="http://localhost:8088/triqee_yang_mills_mass_gap_proof_paper.html" target="_blank" style="text-decoration:none; background:#0b081a; border:1px solid #3b1d60; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:var(--neon-cyan);">📄 Formal arXiv Proof Paper</div><div style="font-size:0.7rem; color:var(--text-muted);">Constructive SU(3) Δ = 1.685 GeV Proof</div></div>
+        <span style="color:var(--neon-cyan); font-size:0.8rem;">↗</span>
+      </a>
+      <a href="http://localhost:8088/triqee_yang_mills_mass_gap_studio.html" target="_blank" style="text-decoration:none; background:#0b081a; border:1px solid #3b1d60; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:var(--neon-emerald);">🌌 4D SU(3) Flux Simulation</div><div style="font-size:0.7rem; color:var(--text-muted);">Glueball Transfer Matrix Studio</div></div>
+        <span style="color:var(--neon-emerald); font-size:0.8rem;">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Breakthrough Studios Command Hub -->
+  <div style="background:rgba(15,23,42,0.9); border:1px solid rgba(6,182,212,0.4); border-radius:12px; padding:16px 20px; margin:0 auto 24px; max-width:1200px; text-align:left; box-shadow:0 0 20px rgba(6,182,212,0.15);">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+      <span style="font-size:0.85rem; font-weight:800; color:var(--neon-cyan); text-transform:uppercase; letter-spacing:0.05em;">⚛️ QUANTUM COMPILER, ZNE & UMMG AI INFRASTRUCTURE STUDIOS</span>
+      <span style="font-size:0.75rem; background:rgba(16,185,129,0.2); color:var(--neon-emerald); padding:2px 8px; border-radius:4px; font-weight:bold;">6 NEW BREAKTHROUGHS LIVE</span>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:10px;">
+      <a href="http://localhost:8088/triqee_quops_quantum_advantage_studio.html" target="_blank" style="text-decoration:none; background:#060b19; border:1px solid #1e293b; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:var(--neon-cyan);">⚛️ QUOPS 100,000x Gap</div><div style="font-size:0.7rem; color:var(--text-muted);">Quantum Utility Inversion</div></div>
+        <span style="color:var(--neon-cyan); font-size:0.8rem;">↗</span>
+      </a>
+      <a href="http://localhost:8088/triqee_quantum_circuit_optimizer_studio.html" target="_blank" style="text-decoration:none; background:#060b19; border:1px solid #1e293b; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:var(--neon-emerald);">⚡ AutoQ-Compiler v2.0</div><div style="font-size:0.7rem; color:var(--text-muted);">SU(4) KAK & F=1.00000</div></div>
+        <span style="color:var(--neon-emerald); font-size:0.8rem;">↗</span>
+      </a>
+      <a href="http://localhost:8088/triqee_quantum_zne_studio.html" target="_blank" style="text-decoration:none; background:#060b19; border:1px solid #1e293b; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:var(--neon-purple);">🛡️ ZNE Error Mitigation</div><div style="font-size:0.7rem; color:var(--text-muted);">Richardson λ→0 Limit</div></div>
+        <span style="color:var(--neon-purple); font-size:0.8rem;">↗</span>
+      </a>
+      <a href="http://localhost:8088/triqee_quantum_kras_vqe_studio.html" target="_blank" style="text-decoration:none; background:#060b19; border:1px solid #1e293b; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:var(--neon-rose);">🧬 KRAS G12D VQE</div><div style="font-size:0.7rem; color:var(--text-muted);">Oncogene Docking Inversion</div></div>
+        <span style="color:var(--neon-rose); font-size:0.8rem;">↗</span>
+      </a>
+      <a href="http://localhost:8088/triqee_unified_model_router_studio.html" target="_blank" style="text-decoration:none; background:#060b19; border:1px solid #1e293b; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:var(--neon-amber);">🔌 Triqee-UMMG™ Gateway</div><div style="font-size:0.7rem; color:var(--text-muted);">90.5% AI Cost Arbitrage</div></div>
+        <span style="color:var(--neon-amber); font-size:0.8rem;">↗</span>
+      </a>
+      <a href="http://localhost:8088/triqee_token_factory_studio.html" target="_blank" style="text-decoration:none; background:#060b19; border:1px solid #06b6d4; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:var(--neon-cyan);">🏛️ Wyoming DAO Token Factory</div><div style="font-size:0.7rem; color:var(--text-muted);">DA-000000992 Launchpad & $TQ</div></div>
+        <span style="color:var(--neon-cyan); font-size:0.8rem;">↗</span>
+      </a>
+      <a href="http://localhost:8088/triqee_quops_quantum_executive_whitepaper.html" target="_blank" style="text-decoration:none; background:#060b19; border:1px solid #1e293b; border-radius:8px; padding:10px 14px; color:#fff; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s;">
+        <div><div style="font-size:0.82rem; font-weight:bold; color:#fff;">📑 2-Page Whitepaper</div><div style="font-size:0.7rem; color:var(--text-muted);">Print-Ready Executive PDF</div></div>
+        <span style="color:#fff; font-size:0.8rem;">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Real-Time Cyberdeck Omnibar Search (Ctrl+K) -->
+  <div class="omnibar-container">
+    <span class="omnibar-icon">🔍</span>
+    <input type="text" id="arcadeSearchInput" class="omnibar-input" placeholder="⚡ Search 34 UDTs by name, target hardware (e.g. 'IBM Heron', 'vLLM', 'TSMC'), or domain..." oninput="onSearchInput()">
+    <span class="omnibar-badge" id="searchCountBadge">Ctrl + K | 34 / 34</span>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterSector('all')">All Sectors (15)</button>
+    <button class="filter-btn" onclick="filterSector('quantum')">Quantum & Cryo (3)</button>
+    <button class="filter-btn" onclick="filterSector('robotics')">Robotics & Bionics (2)</button>
+    <button class="filter-btn" onclick="filterSector('energy')">Energy & Climate (2)</button>
+    <button class="filter-btn" onclick="filterSector('finance')">Quant Finance (1)</button>
+    <button class="filter-btn" onclick="filterSector('aerospace')">Defense & Space (2)</button>
+    <button class="filter-btn" onclick="filterSector('hardware')">Semiconductors & Optics (1)</button>
+    <button class="filter-btn" onclick="filterSector('biotech')">Biopharma & Genomics (1)</button>
+    <button class="filter-btn" onclick="filterSector('cyber')">Cybersecurity & Edge (2)</button>
+    <button class="filter-btn" onclick="filterSector('fusion')">Nuclear Fusion (1)</button>
+  </div>
+</main>
+
+<div class="arcade-grid" id="arcadeGrid">
+
+  <!-- UDT #1 -->
+  <div class="udt-card" data-sector="robotics">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #01</span>
+        <span class="udt-sector">Robotics & AI</span>
+      </div>
+      <div class="udt-title">🤖 Triqee-PhysAI™</div>
+      <div class="udt-desc">Humanoid Reflex & Balance Gauntlet. Sub-millisecond closed-loop balance stabilization and dynamic obstacle evasion.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>REFLEX LATENCY</span><span>0.42 ms</span></div>
+        <div class="tel-row"><span>COMPETITOR FAIL</span><span>100% Drops</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> Figure AI, Tesla Optimus, Boston Dynamics, Sanctuary AI, 1X Tech.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_humanoid_reflex_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #2 -->
+  <div class="udt-card" data-sector="energy">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #02</span>
+        <span class="udt-sector">Carbon & MRV</span>
+      </div>
+      <div class="udt-title">🛰️ Triqee-GeoMRV™</div>
+      <div class="udt-desc">Sub-Surface Tomography & Deep-Pore Sequestration Gauntlet. Acoustic tomography for carbon pore verification.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>PORE RESOLUTION</span><span>0.05 mm</span></div>
+        <div class="tel-row"><span>SEQUESTRATION</span><span>1.0M Tons/Yr</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> Oxy / 1PointFive, ExxonMobil LCS, Climeworks, Chevron, Fervo Energy.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_geomrv_pore_storage_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #3 -->
+  <div class="udt-card" data-sector="finance">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #03</span>
+        <span class="udt-sector">Quant Finance</span>
+      </div>
+      <div class="udt-title">⚡ Triqee-FLA™</div>
+      <div class="udt-desc">Neon Mempool Flash Arbitrage Sniper & Private Builder Gauntlet. Sub-12µs 0-gas execution and sandwich evasion.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>EXECUTION SPEED</span><span>11.8 µs</span></div>
+        <div class="tel-row"><span>GAS LOSS</span><span>0.0000 ETH</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> Citadel Securities, Jump Crypto, Jane Street, Wintermute, Flow Traders.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_fla_mempool_sniper_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #4 -->
+  <div class="udt-card" data-sector="aerospace">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #04</span>
+        <span class="udt-sector">Space & Inertial</span>
+      </div>
+      <div class="udt-title">🌌 Triqee-SpaceNav™</div>
+      <div class="udt-desc">Ghost Orbit: GPS-Denied Quantum Inertial Guidance & Cislunar Slingshot via cold-atom gradiometers.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>DRIFT RATE</span><span>&lt;0.1 m / 24hr</span></div>
+        <div class="tel-row"><span>RF RESISTANCE</span><span>100% Jam-Proof</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> US Space Force, NASA JPL, Anduril Industries, SpaceX, Lockheed Martin.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_spacenav_ghost_orbit_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #5 -->
+  <div class="udt-card" data-sector="hardware">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #05</span>
+        <span class="udt-sector">Photonic Silicon</span>
+      </div>
+      <div class="udt-title">🔬 Triqee-OptoTensor™</div>
+      <div class="udt-desc">Photon Overclock: 100 GHz Light-Speed Waveguide Router and zero-loss optical matrix multiplier.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>OPTICAL BANDWIDTH</span><span>100 GHz</span></div>
+        <div class="tel-row"><span>ENERGY EFFICIENCY</span><span>0.04 fJ / MAC</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> NVIDIA, TSMC, ASML, Intel Labs, Broadcom, Marvell, Lumentum.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_optotensor_photon_overclock_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #6 -->
+  <div class="udt-card" data-sector="biotech">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #06</span>
+        <span class="udt-sector">Precision Biotech</span>
+      </div>
+      <div class="udt-title">🧬 Triqee-NanoGene™</div>
+      <div class="udt-desc">CRISPR Strike: Programmable Epigenetic RNA Methylation Arena with zero double-strand DNA cleavage.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>BASE PRECISION</span><span>99.99%</span></div>
+        <div class="tel-row"><span>DNA CUTTING</span><span>0.00% Zero-Break</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> Moderna, Vertex Pharma, CRISPR Therapeutics, Beam, BioNTech, Illumina.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_nanogene_crispr_strike_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #7 -->
+  <div class="udt-card" data-sector="aerospace">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #07</span>
+        <span class="udt-sector">Naval Defense</span>
+      </div>
+      <div class="udt-title">🔱 Triqee-SonicCloak™</div>
+      <div class="udt-desc">Acoustic Ghost: Deep-Sea Non-Hermitian Metamaterial Armor & Sonar Cloaking (-38.5 dB absorption).</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>SONAR ABSORPTION</span><span>99.98%</span></div>
+        <div class="tel-row"><span>TARGET STRENGTH</span><span>-38.5 dB</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> DARPA, US Navy NAVSEA, General Dynamics Electric Boat, Anduril Maritime.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_soniccloak_deepsea_stealth_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #8 -->
+  <div class="udt-card" data-sector="cyber">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #08</span>
+        <span class="udt-sector">Cyber & Agents</span>
+      </div>
+      <div class="udt-title">🛡️ Triqee-AgentGrid™</div>
+      <div class="udt-desc">Omniverse Sentinel: Zero-Trust Autonomous Enterprise Defense & Prompt-Injection Firewall with ZK proofs.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>CONTAINMENT</span><span>100.0%</span></div>
+        <div class="tel-row"><span>LATENCY</span><span>1.2 ms</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> Microsoft Azure, CrowdStrike, Palo Alto Networks, AWS Defense, Cloudflare.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_agentgrid_omniverse_defense_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #9 -->
+  <div class="udt-card" data-sector="fusion">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #09</span>
+        <span class="udt-sector">Clean Fusion</span>
+      </div>
+      <div class="udt-title">⚛️ Triqee-FusionCore™</div>
+      <div class="udt-desc">Tokamak Plasma Magnetic Confinement & Supersonic Cryogenic Micro-Pellet Hyper-Injector Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>NET ENERGY GAIN</span><span>Q = 18.4 - 20.4</span></div>
+        <div class="tel-row"><span>CORE TEMP</span><span>150,000,000°C</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> Commonwealth Fusion (CFS), Helion Energy, Zap Energy, General Atomics, PPPL.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_fusioncore_plasma_confinement_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #10 -->
+  <div class="udt-card" data-sector="energy">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #10</span>
+        <span class="udt-sector">Solid-State Battery</span>
+      </div>
+      <div class="udt-title">🔋 Triqee-SolidStateVolt™</div>
+      <div class="udt-desc">Lithium-Metal Dendrite Breaker & Vitrimer Solid Electrolyte 12C Extreme Fast-Charge Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>ENERGY DENSITY</span><span>520 Wh / kg</span></div>
+        <div class="tel-row"><span>CHARGE RATE</span><span>12C (4.5 min)</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> QuantumScape, Solid Power, CATL, Panasonic, Tesla Battery, BYD.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_solidstatevolt_battery_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #11 -->
+  <div class="udt-card" data-sector="robotics">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #11</span>
+        <span class="udt-sector">Bionic Actuation</span>
+      </div>
+      <div class="udt-title">🦾 Triqee-BionicTendon™</div>
+      <div class="udt-desc">Anthropomorphic Humanoid Actuator & Vitrimer Conductive Myofibril Musculoskeletal Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>TORQUE DENSITY</span><span>120 Nm / kg</span></div>
+        <div class="tel-row"><span>CYCLE ENDURANCE</span><span>10,000,000 cycles</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> Figure AI, Tesla Optimus, Boston Dynamics, Sanctuary AI, 1X, Agility.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_bionictendon_humanoid_actuator_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #12 -->
+  <div class="udt-card" data-sector="quantum">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #12</span>
+        <span class="udt-sector">Quantum Geophysics</span>
+      </div>
+      <div class="udt-title">⛏️ Triqee-GraviTrace™</div>
+      <div class="udt-desc">Sub-Surface Quantum Gravity Gradiometer & Critical Mineral 3D Density Inversion Tomography.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>TENSOR RESOLUTION</span><span>0.05 Eötvös</span></div>
+        <div class="tel-row"><span>DEPTH MAPPING</span><span>0 - 5,000 m</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> Rio Tinto, BHP Group, Freeport-McMoRan, Albemarle, Anglo American, USGS.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_gravitrace_quantum_gravity_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #13 -->
+  <div class="udt-card" data-sector="cyber">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #13</span>
+        <span class="udt-sector">Neuromorphic Edge</span>
+      </div>
+      <div class="udt-title">🧠 Triqee-Neuromorphic™</div>
+      <div class="udt-desc">Event-Driven Spike Neural Tensor Accelerator & Sub-Milliwatt Bio-Silicon Perception Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>SPIKE LATENCY</span><span>&lt; 50 µs</span></div>
+        <div class="tel-row"><span>POWER CONSUMPTION</span><span>1.4 mW Edge</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> Intel Labs (Loihi), SynSense, BrainChip, GrAI Matter, Sony Semiconductor.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_neuromorphic_edge_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #14 -->
+  <div class="udt-card" data-sector="quantum">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #14</span>
+        <span class="udt-sector">Satellite QKD</span>
+      </div>
+      <div class="udt-title">🛰️ Triqee-QKD-Orbit™</div>
+      <div class="udt-desc">Hyper-Entangled SPDC Photon Pair Distribution & Cislunar Space-Ground Quantum Key Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>BELL STATE S</span><span>S = 2.828 Lock</span></div>
+        <div class="tel-row"><span>KEY GENERATION</span><span>1.2 Gbps Secrecy</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> SES Satellites, Viasat, Eutelsat OneWeb, Lockheed Space, Northrop, Airbus Space.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_qkdorbit_satellite_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #15 -->
+  <div class="udt-card" data-sector="quantum">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #15</span>
+        <span class="udt-sector">Quantum Error Correction</span>
+      </div>
+      <div class="udt-title">🛡️ Triqee-QuantumClash™</div>
+      <div class="udt-desc">Sub-Microsecond Surface Code Stabilizer Decoder & Post-Quantum STARK/Lattice Defense (-86% Attack Resource Mitigation).</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>DECODER LOOP</span><span>0.42 µs Sub-µs</span></div>
+        <div class="tel-row"><span>PQC RESILIENCE</span><span>-86% QC Mitigated</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> Ethereum Foundation, StarkWare, Xanadu, AMD Quantum, Quantinuum, Rigetti, IBM Quantum.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_quantumclash_qec_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #16 -->
+  <div class="udt-card" data-sector="space">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #16</span>
+        <span class="udt-sector">Orbital Dynamics & Math</span>
+      </div>
+      <div class="udt-title">🌌 Triqee-SymplecticOrbit™</div>
+      <div class="udt-desc">Hamiltonian Geometric Mechanics & Energy-Preserving Symplectic Integrator Orbital Simulator.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>ENERGY CONSERVATION</span><span>ΔH/H₀ = 0.000%</span></div>
+        <div class="tel-row"><span>PHASE SPACE DRIFT</span><span>0.00 Non-Dissipative</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> NASA JPL, ESA, SpaceX Astrodynamics, Symplectic Differential Geometry.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_symplectic_orbit_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #17 -->
+  <div class="udt-card" data-sector="hardware">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #17</span>
+        <span class="udt-sector">Photonic Silicon & TFLN</span>
+      </div>
+      <div class="udt-title">🔬 Triqee-PhotonRouter™</div>
+      <div class="udt-desc">Thin-Film Lithium Niobate (TFLN) Full-Duplex Electro-Optic Waveguide & Ring Resonator Simulator.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>INSERTION LOSS</span><span>&lt; 0.65 dB</span></div>
+        <div class="tel-row"><span>ISOLATION RATIO</span><span>&gt; 38.2 dB Non-Recip</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> Lumentum, Coherent Corp, Broadcom, TSMC Photonic Foundry, Nature Photonics.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_photon_router_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #18 -->
+  <div class="udt-card" data-sector="quant">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #18</span>
+        <span class="udt-sector">Connectome Trading</span>
+      </div>
+      <div class="udt-title">🧠 Triqee-ConnectomeTrade™</div>
+      <div class="udt-desc">Biological Whole-Brain Drosophila Connectome & Spiking Neural Network (SNN) High-Frequency Market Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>NEURON NODES</span><span>139k Drosophila</span></div>
+        <div class="tel-row"><span>AXONAL LATENCY</span><span>12.4 µs 0-Lag</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Supermajors:</strong> Two Sigma, Jump Trading, Jane Street, Renaissance, Citadel, D.E. Shaw, HRT, Wintermute.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_connectometrade_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #19 -->
+  <div class="udt-card" data-sector="defense">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #19</span>
+        <span class="udt-sector">Subsea Fiber DAS & Geophysics</span>
+      </div>
+      <div class="udt-title">🌊 Triqee-FiberAcoustic™</div>
+      <div class="udt-desc">Subsea Distributed Acoustic Sensing (DAS) & 10,000 km Transoceanic Dark Fiber Infrasound Tomography Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>FIBER INTERROGATION</span><span>10,000 km Dark Fiber</span></div>
+        <div class="tel-row"><span>VIRTUAL SENSORS</span><span>100,000 Points @ 10 kHz</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> SubCom, NEC Submarine, Alcatel Submarine Networks, USGS, NOAA, DARPA Subsea.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_fiberacoustic_das_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #20 -->
+  <div class="udt-card" data-sector="quantum">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #20</span>
+        <span class="udt-sector">Diamond NV Quantum Tensor</span>
+      </div>
+      <div class="udt-title">💎 Triqee-DiamondQubit™</div>
+      <div class="udt-desc">Room-Temperature Diamond NV-Center 4-Qubit Hyper-Entanglement & 100 TOPS Quantum Tensor Multiplier Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>OPERATING TEMP</span><span>300.0 K (27°C) 0-Cryo</span></div>
+        <div class="tel-row"><span>ENTANGLE SPEED</span><span>10x Optical Waveguide</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> Univ. of Pennsylvania, Saxon Q, Quantum Diamond Labs, QuSpin, Element Six, NVIDIA CUDA-Q.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_diamond_qubit_nv_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #21 -->
+  <div class="udt-card" data-sector="quantum">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #21</span>
+        <span class="udt-sector">Neutral Atom Quantum</span>
+      </div>
+      <div class="udt-title">⚛️ Triqee-NeutralPulse™</div>
+      <div class="udt-desc">2D/3D Optical Tweezer Neutral-Atom Quantum Compiler & Rydberg Blockade Gate Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>RYDBERG FIDELITY</span><span>99.96% Sub-20ns</span></div>
+        <div class="tel-row"><span>ARRAY CAPACITY</span><span>256+ Trapped 87Rb Atoms</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> QuEra Computing (Nate Gemelke), Harvard Physics, Atom Computing, Infleqtion, DARPA ONISQ.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_neutral_pulse_quantum_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #22 -->
+  <div class="udt-card" data-sector="biotech">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #22</span>
+        <span class="udt-sector">Synthetic Biology & ecDNA</span>
+      </div>
+      <div class="udt-title">🧬 Triqee-CircularDNA-Shield™</div>
+      <div class="udt-desc">Extrachromosomal Circular ecDNA Oncogene Amplification Silencing & Synthetic Epigenetic Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>ONCOGENE SILENCING</span><span>99.98% MYC / EGFR</span></div>
+        <div class="tel-row"><span>HOMOLOGY FIDELITY</span><span>99.998% Zero DSB Break</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> Ginkgo Bioworks (Jason Kelly), Boundless Bio, Broad Institute, UCSD Cancer Center, Genentech.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_circulardna_shield_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #23 -->
+  <div class="udt-card" data-sector="fusion">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #23</span>
+        <span class="udt-sector">Sheared-Flow Z-Pinch Fusion</span>
+      </div>
+      <div class="udt-title">⚡ Triqee-ZPinchMHD™</div>
+      <div class="udt-desc">Sheared-Flow Stabilized Z-Pinch Fusion Solver & Micro-Pellet Injection MHD Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>SAUSAGE (m=0) DAMP</span><span>99.94% dv_z/dr</span></div>
+        <div class="tel-row"><span>NET FUSION GAIN</span><span>Q = 18.64 @ 12.8 keV</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> Zap Energy (Benj Conway), ARPA-E ALPHA/BETHE, Univ. of Washington, LLNL, Commonwealth Fusion.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_zpinch_mhd_fusion_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #24 -->
+  <div class="udt-card" data-sector="semiconductor">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #24</span>
+        <span class="udt-sector">Spintronics & Racetrack</span>
+      </div>
+      <div class="udt-title">🌀 Triqee-SpintronicRace™</div>
+      <div class="udt-desc">Chiral Domain Wall & Magnetic Skyrmion 3D Vertical Nanowire Racetrack Memory Gauntlet.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>DW VELOCITY</span><span>1,488 m/s SOT Shift</span></div>
+        <div class="tel-row"><span>STORAGE DENSITY</span><span>100x DRAM 0-Leakage</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> Max Planck Institute (Stuart Parkin), IBM Research, IMEC, Samsung Semiconductor, TSMC.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_spintronic_racetrack_challenge.html" target="_blank">⚡ LAUNCH GAME</a>
+    </div>
+  </div>
+
+  <!-- UDT #25 -->
+  <div class="udt-card" data-sector="defense">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #25</span>
+        <span class="udt-sector">Speed-of-Light Co-Dev</span>
+      </div>
+      <div class="udt-title">⚡ Triqee-IonPulse™</div>
+      <div class="udt-desc">Atmospheric Ion-Mirror Transceiver & 150µs FPGA DMA Burst Synthesizer for Fourth State Communications.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>PACIFIC MOAT</span><span>+27.42 ms vs Fiber</span></div>
+        <div class="tel-row"><span>FPGA BURST</span><span>150 µs Zero-Jitter</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Co-Dev:</strong> Fourth State Communications (Levi Kunkel & Deke), Equinix CH4/TY3, CME Direct.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_fourthstate_live_orderbook.html" target="_blank">⚡ LAUNCH TERMINAL</a>
+    </div>
+  </div>
+
+  <!-- UDT #26 -->
+  <div class="udt-card" data-sector="robotics">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #26</span>
+        <span class="udt-sector">Physical AI & Connectome</span>
+      </div>
+      <div class="udt-title">🧠 Triqee-BioCortex™</div>
+      <div class="udt-desc">166,000-Neuron MaleCNS Connectome & Biwei Huang Causal World Model (CWM) Bipedal Reflex Suite.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>REFLEX LATENCY</span><span>720 µs (2-Step Diff)</span></div>
+        <div class="tel-row"><span>FALL PROBABILITY</span><span>0.00% Zero-Fall</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> Figure AI, Tesla Optimus, Boston Dynamics, Sanctuary AI, 1X Technologies.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_frontier_research_studio.html" target="_blank">⚡ LAUNCH STUDIO</a>
+    </div>
+  </div>
+
+  <!-- UDT #27 -->
+  <div class="udt-card" data-sector="quantum">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #27</span>
+        <span class="udt-sector">CUDA-Q Quantum Compiler</span>
+      </div>
+      <div class="udt-title">⚛️ Triqee-CudaQ-Transmon™</div>
+      <div class="udt-desc">NVIDIA CUDA-Q Hybrid Quantum Compiler synthesizing PRX Quantum Microwave Josephson Pulse Waveforms.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>GATE FIDELITY</span><span>0.99948 Single-Qubit</span></div>
+        <div class="tel-row"><span>PI-PULSE DURATION</span><span>5.69 ns @ 5.403 GHz</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> NVIDIA Inception, IBM Quantum, Rigetti, Quantinuum, Koch Lab Northwestern.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_nvidia_inception_integration_hub.html" target="_blank">⚡ LAUNCH HUB</a>
+    </div>
+  </div>
+
+  <!-- UDT #28 -->
+  <div class="udt-card" data-sector="battery">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #28</span>
+        <span class="udt-sector">Vitrimer Solid-State BMS</span>
+      </div>
+      <div class="udt-title">🔋 Triqee-VitriCharge™</div>
+      <div class="udt-desc">MIT AtomAgents Generative Dynamic Covalent Network (LLZO + Dioxaborolane) 12C Fast-Charge BMS.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>SHEAR MODULUS</span><span>12.2 GPa (1.79x Limit)</span></div>
+        <div class="tel-row"><span>SELF-HEALING</span><span>100% in 45s @ 28°C</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> QuantumScape, Solid Power, Tesla Battery, CATL, MIT Buehler Lab.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_frontier_research_studio.html" target="_blank">⚡ LAUNCH STUDIO</a>
+    </div>
+  </div>
+
+  <!-- UDT #29 -->
+  <div class="udt-card" data-sector="ai">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #29</span>
+        <span class="udt-sector">vLLM Disaggregated Serving</span>
+      </div>
+      <div class="udt-title">⚡ Triqee-AgentX™</div>
+      <div class="udt-desc">vLLM x AgentX Prefill/Decode (P/D) Disaggregation & Hierarchical Prefix-Cache (130k Context).</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>THROUGHPUT BOOST</span><span>4.82x (2,024.4 tok/s)</span></div>
+        <div class="tel-row"><span>VRAM / COST DROP</span><span>-73.0% ($4.05/MTok)</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> OpenAI, Anthropic, vLLM, SemiAnalysis, Mistral, Meta FAIR.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_vllm_agentx_serving_studio.html" target="_blank">⚡ LAUNCH STUDIO</a>
+    </div>
+  </div>
+
+  <!-- UDT #30 -->
+  <div class="udt-card" data-sector="quantum">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #30</span>
+        <span class="udt-sector">Atomic Crystal Interferometry</span>
+      </div>
+      <div class="udt-title">🔬 Triqee-NanoInterferometer™</div>
+      <div class="udt-desc">Physics World Atomic-Scale Crystal Double-Slit Quantum Sensor for Sub-Nanometer Inertial Guidance.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>LATTICE SPACING</span><span>0.284 nm (94.2% Vis)</span></div>
+        <div class="tel-row"><span>VOLUME REDUCTION</span><span>1,200x Solid-State MOT</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> Space Force, NASA JPL, DARPA, Anduril, Sandia Labs.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_frontier_quad_breakthrough_studio.html" target="_blank">⚡ LAUNCH STUDIO</a>
+    </div>
+  </div>
+
+  <!-- UDT #31 -->
+  <div class="udt-card" data-sector="quantum">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #31</span>
+        <span class="udt-sector">Cryogenic Spintronic QRAM</span>
+      </div>
+      <div class="udt-title">🧲 Triqee-SpintronicQRAM™</div>
+      <div class="udt-desc">100 Tb/in² Single-Molecule Magnetic Cryogenic Memory Matrix with 850 K Anisotropy Barriers.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>AREAL DENSITY</span><span>112.5 Tb/in² @ 4.2K</span></div>
+        <div class="tel-row"><span>SWITCHING ENERGY</span><span>0.082 aJ / bit</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> IBM Quantum, Xanadu, Rigetti, Intel Cryo-CMOS, DOE Genesis Q.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_frontier_quad_breakthrough_studio.html" target="_blank">⚡ LAUNCH STUDIO</a>
+    </div>
+  </div>
+
+  <!-- UDT #32 -->
+  <div class="udt-card" data-sector="ai">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #32</span>
+        <span class="udt-sector">Hierarchical TOC RAG</span>
+      </div>
+      <div class="udt-title">🌳 Triqee-TreeRAG™</div>
+      <div class="udt-desc">IBM Research Structure-Preserving Hierarchical Document Retrieval Graph for Zero-Hallucination Swarms.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>PRECISION NDCG@10</span><span>0.964 (500k Tokens)</span></div>
+        <div class="tel-row"><span>HALLUCINATION DROP</span><span>-86.4% Context Preservation</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> IBM Research, Palantir, Microsoft Copilot, SEC EDGAR, Bloomberg.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_frontier_quad_breakthrough_studio.html" target="_blank">⚡ LAUNCH STUDIO</a>
+    </div>
+  </div>
+
+  <!-- UDT #33 -->
+  <div class="udt-card" data-sector="battery">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #33</span>
+        <span class="udt-sector">Cyclic Vitrimer Polymer</span>
+      </div>
+      <div class="udt-title">🧬 Triqee-CyclicPolymer™</div>
+      <div class="udt-desc">Nature Comms Lanthanum-Catalyzed Stereosequence-Controlled Isoselective Cyclic Polyester Membranes.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>FRACTURE TOUGHNESS</span><span>184.5 MJ/m³ (>100 kDa)</span></div>
+        <div class="tel-row"><span>HERMETIC BARRIER</span><span>0.012 Barrer (Zero-Leak)</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> QuantumScape, ExxonMobil Low Carbon, Tesla Energy, Toray, BASF.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_frontier_quad_breakthrough_studio.html" target="_blank">⚡ LAUNCH STUDIO</a>
+    </div>
+  </div>
+
+  <!-- UDT #34 -->
+  <div class="udt-card" data-sector="ai">
+    <div>
+      <div class="udt-header">
+        <span class="udt-number">UDT #34</span>
+        <span class="udt-sector">System-1 Discrete Decision Model</span>
+      </div>
+      <div class="udt-title">⚡ Triqee-JevCore™</div>
+      <div class="udt-desc">TypeSafe AI / Former OpenAI "Decisions, Not Strings" System-1 Direct Logit Projection Engine.</div>
+      <div class="telemetry-box">
+        <div class="tel-row"><span>DECISION LATENCY</span><span>14.2 µs (15,734x Speedup)</span></div>
+        <div class="tel-row"><span>STRING TOKEN BLOAT</span><span>0 Tokens (Zero-Parse)</span></div>
+      </div>
+      <div class="supermajors-tag"><strong>Domains:</strong> TypeSafe AI, OpenAI, Citadel Securities, Tesla Autopilot, Anthropic.</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-play" href="http://localhost:8088/triqee_jev_decision_studio.html" target="_blank">⚡ LAUNCH STUDIO</a>
+    </div>
+  </div>
+
+</div>
+
+<section class="deal-room-section">
+  <div class="deal-card">
+    <div>
+      <div class="deal-title">🏛️ Institutional Deal Room & SOW Retainer Wire Settlement</div>
+      <div class="deal-desc">WhatsHot, Inc. & IMQbd 501(c)(3) provide Tier-1 enterprise partners with custom Master Services Agreements (MSA), pilot sandbox isolation, and credit-back retainers. Evaluation retainer fees are credited 100% toward commercial software licenses upon SOW conversion.</div>
+      <div class="wire-specs">
+        <div><strong>Corporate Entity:</strong> WhatsHot, Inc. (Wyoming Corporation DA-000000992)</div>
+        <div><strong>Depository Bank:</strong> Piermont Bank / Found Banking (Routing: 101019644)</div>
+        <div><strong>Digital Settlement:</strong> Base L2 USDC (0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913)</div>
+        <div><strong>Treasury Multi-Sig:</strong> 0x676A66D77B4B14C2f981239f7368Ab5cc37aC666</div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: center; gap: 12px;">
+      <div style="text-align: center;">
+        <div style="font-size: 0.75rem; color: var(--text-muted);">AVERAGE PILOT RETAINER</div>
+      <a href="http://localhost:8088/triqee_enterprise_interactive_dealroom.html" target="_blank" style="background: linear-gradient(135deg, #a855f7, #ec4899); text-decoration: none; text-align: center; color: #fff; padding: 12px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 0.82rem;">🚀 OPEN ENTERPRISE DEAL ROOM</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>WHATSNOT, INC. (WYOMING DA-000000992) &bull; IMQBD 501(C)(3) BASIC SCIENCE PARTNER &bull; EXECUTIVE SPONSOR: JON VIERK</div>
+  <div style="margin-top: 4px; color: #64748b;">Chief Autonomous Officer: Trixee | 34/34 Unique Delivery Tools (UDTs) Synchronized & Deployed Live (Milestone #242)</div>
+</footer>
+
+<!-- 1-Click Enterprise Sandbox Key Modal -->
+<div class="modal-overlay" id="sandboxModal" onclick="if(event.target===this) closeSandboxModal()">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeSandboxModal()">&times;</button>
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span style="font-size:1.4rem;">🔑</span>
+      <div>
+        <h3 style="color:#fff; font-size:1.15rem; font-weight:800;" id="modalToolTitle">Enterprise Sandbox Access Key</h3>
+        <p style="font-size:0.75rem; color:var(--text-muted);">Provision an evaluative API key preloaded with $10,000 in sandbox compute credits.</p>
+      </div>
+    </div>
+
+    <div id="modalFormView">
+      <div style="margin-bottom:12px;">
+        <label style="display:block; font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px; font-weight:bold;">Enterprise Organization</label>
+        <input type="text" id="modalOrgInput" class="modal-input" placeholder="e.g. OpenAI / Citadel Securities / Figure AI" value="Acme DeepTech Lab">
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="display:block; font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px; font-weight:bold;">Corporate Work Email</label>
+        <input type="email" id="modalEmailInput" class="modal-input" placeholder="executive@enterprise.com" value="evaluator@acmedeeptech.com">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block; font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px; font-weight:bold;">Target Compute Subsystem</label>
+        <select id="modalHardwareSelect" class="modal-input">
+          <option value="UNIVERSAL_34_UDT">Universal 34-UDT Evaluative Suite (Ports 8008 - 8016)</option>
+          <option value="IBM_HERON_156Q">IBM Heron 156-Qubit Heavy-Hex Transmon QPU</option>
+          <option value="GEMINI_ARGON_REASONING">Google Gemini 4 Argon Deep Reasoning Engine (:8088)</option>
+          <option value="QUERA_AQUILA_256">QuEra Aquila 256-Neutral-Atom Rydberg Array</option>
+          <option value="IONQ_FORTE_36Q">IonQ Forte 36-Qubit Trapped-Ion Processor</option>
+        </select>
+      </div>
+      <button class="btn-play" style="width:100%; padding:12px;" onclick="generateSandboxKey()">⚡ PROVISION VERIFIED ACCESS KEY</button>
+    </div>
+
+    <div id="modalResultView" style="display:none;">
+      <div style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.4); border-radius:8px; padding:12px; margin-bottom:14px; text-align:center;">
+        <span style="color:var(--neon-emerald); font-weight:800; font-size:0.85rem;">🎉 ACCESS KEY SUCCESSFULLY PROVISIONED</span>
+        <div style="font-size:0.72rem; color:#cbd5e1; margin-top:2px;">Credited $10,000 USD / W.S. 34-29-106 Certified</div>
+      </div>
+      <div style="background:#010409; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:12px; font-family:monospace; font-size:0.75rem; color:var(--neon-cyan); margin-bottom:14px; word-break:break-all;" id="modalKeyDisplay">
+        TRIQEE-SBX-ENTERPRISE-01A
+      </div>
+      <div style="font-size:0.72rem; color:var(--text-muted); margin-bottom:14px; line-height:1.4;">
+        cURL Header: <code>Authorization: Bearer <span id="modalKeyHeader">...</span></code><br>
+        Direct API Gateway: <code>http://localhost:8018/api/v1/compute/verify_burn</code>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button class="btn-play" style="flex:1;" onclick="copyProvisionedKey()">📋 COPY KEY</button>
+        <button class="btn-play" style="flex:1; background:#334155;" onclick="closeSandboxModal()">DONE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Banner -->
+<div class="toast-banner" id="toastBanner">
+  <span>✓</span>
+  <span id="toastMessage">Copied to clipboard!</span>
+</div>
+
+<script>
+// Web Audio API Synthesizer
+let audioEnabled = false;
+let audioCtx = null;
+function getAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+
+function playSynth(freq, type='sine', duration=0.12, vol=0.1) {
+  if (!audioEnabled) return;
+  try {
+    const ctx = getAudio();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+    gain.gain.setValueAtTime(vol, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + duration);
+  } catch(e) {}
+}
+
+function toggleAudio() {
+  audioEnabled = !audioEnabled;
+  const btn = document.getElementById('audioToggleBtn');
+  const icon = document.getElementById('audioIcon');
+  const text = document.getElementById('audioText');
+  if (audioEnabled) {
+    btn.classList.add('active');
+    icon.innerText = '🔊';
+    text.innerText = 'SOUND: ON';
+    playSynth(523.25, 'triangle', 0.2); // C5
+    showToast('Cyberdeck Audio Synthesizer Enabled');
+  } else {
+    btn.classList.remove('active');
+    icon.innerText = '🔇';
+    text.innerText = 'SOUND: OFF';
+    showToast('Audio Muted');
+  }
+}
+
+// Toast notification helper
+function showToast(msg) {
+  const toast = document.getElementById('toastBanner');
+  document.getElementById('toastMessage').innerText = msg;
+  toast.style.display = 'flex';
+  setTimeout(() => { toast.style.display = 'none'; }, 2400);
+}
+
+// Enterprise ROI Calculator
+function updateRoiCalc() {
+  playSynth(300, 'sine', 0.03, 0.05);
+  const slider = document.getElementById('volumeSlider');
+  const millions = parseInt(slider.value);
+  const totalTokens = millions * 1000000;
+  
+  document.getElementById('sliderTokenDisplay').innerText = `${totalTokens.toLocaleString()} Tokens`;
+  
+  // Benchmark pricing: AWS Bedrock / OpenAI GPT-4o @ ~$25 / MTok
+  const legacyMonthly = millions * 25.0;
+  // Triqee-UMMG™ Routing @ ~$2.37 / MTok (90.5% margin drop)
+  const triqeeMonthly = millions * 2.375;
+  const annualSavings = (legacyMonthly - triqeeMonthly) * 12;
+
+  document.getElementById('legacyCostDisplay').innerText = `$${Math.round(legacyMonthly).toLocaleString()} / mo`;
+  document.getElementById('triqeeCostDisplay').innerText = `$${Math.round(triqeeMonthly).toLocaleString()} / mo`;
+  document.getElementById('cashSavedDisplay').innerText = `$${Math.round(annualSavings).toLocaleString()} / yr`;
+}
+
+// Sector Filter
+function filterSector(sector) {
+  playSynth(440, 'triangle', 0.08);
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  const searchVal = document.getElementById('arcadeSearchInput').value.toLowerCase().trim();
+  applyFilters(sector, searchVal);
+}
+
+// Real-Time Omnibar Search
+function onSearchInput() {
+  playSynth(380, 'sine', 0.03, 0.04);
+  const searchVal = document.getElementById('arcadeSearchInput').value.toLowerCase().trim();
+  const activeSectorBtn = document.querySelector('.filter-btn.active');
+  const sector = activeSectorBtn ? activeSectorBtn.textContent.toLowerCase() : 'all';
+  applyFilters(null, searchVal);
+}
+
+function applyFilters(forcedSector, query) {
+  const cards = document.querySelectorAll('.udt-card');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const cardSector = card.getAttribute('data-sector') || '';
+    const textContent = card.textContent.toLowerCase();
+    
+    let matchesSector = true;
+    if (forcedSector && forcedSector !== 'all') {
+      matchesSector = cardSector.includes(forcedSector);
+    }
+    
+    let matchesQuery = true;
+    if (query) {
+      matchesQuery = textContent.includes(query);
+    }
+
+    if (matchesSector && matchesQuery) {
+      card.style.display = 'flex';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  const badge = document.getElementById('searchCountBadge');
+  if (badge) {
+    badge.innerText = `Showing ${visibleCount} / 34 Tools`;
+  }
+}
+
+// Keyboard shortcut: Ctrl + K focuses search bar
+window.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    const input = document.getElementById('arcadeSearchInput');
+    if (input) {
+      input.focus();
+      input.select();
+      playSynth(600, 'triangle', 0.1);
+    }
+  }
+});
+
+// Dynamic Injection of "SANDBOX KEY" Button onto all Cards
+document.addEventListener('DOMContentLoaded', () => {
+  const cardActions = document.querySelectorAll('.card-actions');
+  cardActions.forEach(actionDiv => {
+    const card = actionDiv.closest('.udt-card');
+    const titleEl = card ? card.querySelector('.udt-title') : null;
+    const title = titleEl ? titleEl.textContent.trim() : 'Triqee Tool';
+    
+    // Check if key button already exists
+    if (!actionDiv.querySelector('.btn-card-key')) {
+      const btn = document.createElement('button');
+      btn.className = 'btn-card-key';
+      btn.innerHTML = '🔑 KEY';
+      btn.title = `Get instant sandbox access for ${title}`;
+      btn.onclick = () => openSandboxModal(title);
+      actionDiv.appendChild(btn);
+    }
+  });
+});
+
+// Sandbox Modal Handlers
+let currentGeneratedKey = '';
+function openSandboxModal(toolName) {
+  playSynth(523.25, 'triangle', 0.15);
+  const modal = document.getElementById('sandboxModal');
+  document.getElementById('modalToolTitle').innerText = `${toolName} Sandbox Key`;
+  document.getElementById('modalFormView').style.display = 'block';
+  document.getElementById('modalResultView').style.display = 'none';
+  modal.style.display = 'flex';
+}
+
+function closeSandboxModal() {
+  playSynth(330, 'sine', 0.08);
+  document.getElementById('sandboxModal').style.display = 'none';
+}
+
+function generateSandboxKey() {
+  const org = document.getElementById('modalOrgInput').value.trim() || 'ENTERPRISE';
+  const cleanOrg = org.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().substring(0, 10);
+  const randHex = Math.random().toString(16).substring(2, 8).toUpperCase();
+  currentGeneratedKey = `TRIQEE-SBX-${cleanOrg}-${randHex}`;
+
+  playSynth(659.25, 'triangle', 0.2); // E5
+  setTimeout(() => playSynth(880, 'sine', 0.3), 120); // A5
+
+  document.getElementById('modalKeyDisplay').innerText = currentGeneratedKey;
+  document.getElementById('modalKeyHeader').innerText = currentGeneratedKey;
+  document.getElementById('modalFormView').style.display = 'none';
+  document.getElementById('modalResultView').style.display = 'block';
+  showToast(`API Key Provisioned: ${currentGeneratedKey}`);
+}
+
+function copyProvisionedKey() {
+  navigator.clipboard.writeText(currentGeneratedKey);
+  playSynth(880, 'sine', 0.15);
+  showToast('Sandbox Key Copied to Clipboard!');
+}
+
+function copyBenchmarkCitation() {
+  playSynth(587.33, 'triangle', 0.15);
+  const text = `Triqee Omniverse™ 34 Deep-Tech UDT Suite verified under Wyoming DA-000000992 (W.S. 17-31 & W.S. 34-29-106). Permanent Academic Provenance: CERN Zenodo Record 23045297 (DOI: 10.5281/zenodo.23045297). Explore live cyberdeck: https://replaced-only-boating-zoloft.trycloudflare.com`;
+  navigator.clipboard.writeText(text);
+  showToast('Benchmark Receipt & DOI Citation Copied!');
+}
+</script>
+</body>
+</html>

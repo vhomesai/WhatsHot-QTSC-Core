@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triqee™ 1st-Degree Warm LinkedIn Outreach Hub | 60 Qualified C-Suite & Technical Leads</title>
+  <style>
+    :root {
+      --bg-dark: #020617;
+      --card-bg: #0f172a;
+      --card-border: #1e293b;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --purple: #a855f7;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at 50% 0%, #0d1527, var(--bg-dark));
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    header {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
+    }
+    .badge-bar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tag-cyan { background: rgba(6, 182, 212, 0.15); color: var(--cyan); border: 1px solid rgba(6, 182, 212, 0.3); }
+    .tag-emerald { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .tag-purple { background: rgba(168, 85, 247, 0.15); color: var(--purple); border: 1px solid rgba(168, 85, 247, 0.3); }
+    .tag-amber { background: rgba(245, 158, 11, 0.15); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+    
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 900px;
+      line-height: 1.5;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .stat-val {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      font-family: monospace;
+    }
+    .stat-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .filter-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .pill-btn {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pill-btn:hover {
+      color: #fff;
+      border-color: var(--cyan);
+    }
+    .pill-btn.active {
+      background: rgba(6, 182, 212, 0.2);
+      border-color: var(--cyan);
+      color: #fff;
+    }
+    .search-box {
+      position: relative;
+      min-width: 320px;
+    }
+    .search-box input {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 10px 14px 10px 38px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-box input:focus {
+      border-color: var(--cyan);
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .leads-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 20px;
+    }
+    .lead-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .lead-card:hover {
+      border-color: rgba(6, 182, 212, 0.5);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .lead-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lead-title {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+    .conn-date {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 6px;
+      font-family: monospace;
+    }
+    
+    .product-box {
+      background: rgba(2, 6, 23, 0.6);
+      border: 1px solid rgba(30, 41, 59, 0.8);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 14px 0;
+    }
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .product-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .product-prop {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+    
+    .message-preview {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 12px;
+      color: #e2e8f0;
+      line-height: 1.45;
+      margin-bottom: 16px;
+      max-height: 110px;
+      overflow-y: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      white-space: pre-wrap;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn {
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: none;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-msg {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #fff;
+      flex: 1;
+      justify-content: center;
+    }
+    .btn-msg:hover {
+      background: linear-gradient(135deg, #0369a1, #1d4ed8);
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+    }
+    .btn-copy {
+      background: rgba(30, 41, 59, 0.9);
+      color: #cbd5e1;
+      border: 1px solid var(--card-border);
+    }
+    .btn-copy:hover {
+      color: #fff;
+      border-color: var(--cyan);
+      background: rgba(51, 65, 85, 0.8);
+    }
+    .btn-demo {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+    .btn-demo:hover {
+      background: rgba(168, 85, 247, 0.3);
+      color: #fff;
+    }
+    
+    .status-select {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      outline: none;
+      cursor: pointer;
+    }
+    .status-select:focus {
+      border-color: var(--cyan);
+    }
+
+    /* Toast notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10b981;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      display: none;
+      z-index: 9999;
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge-bar">
+        <span class="tag tag-emerald">● 60 Verified 1st-Degree Connections</span>
+        <span class="tag tag-cyan">⚡ 0 InMail Credits Required</span>
+        <span class="tag tag-purple">🔬 15 UDTs Mapped</span>
+        <span class="tag tag-amber">🏛️ Wyoming Regulated Stack</span>
+      </div>
+      <h1>Triqee™ Warm LinkedIn Outreach Hub</h1>
+      <p class="subtitle">
+        Direct peer-to-peer 1-to-1 messaging console for your 60 connected C-Suite, scientific, and technical leaders. Every entry features your direct LinkedIn compose URL, mapped Triqee product demo, and custom warm message copy tailored to each connection's organization and technical background.
+      </p>
+    </header>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-val" id="stat-total">60</div>
+        <div class="stat-lbl">1st-Degree Network Leads</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--emerald);" id="stat-sent">0</div>
+        <div class="stat-lbl">Messages Sent</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--cyan);" id="stat-quantum">27</div>
+        <div class="stat-lbl">Quantum & Photonic Leaders</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--amber);" id="stat-gaming">5</div>
+        <div class="stat-lbl">Tribal & Casino Gaming C-Suite</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--purple);" id="stat-defense">9</div>
+        <div class="stat-lbl">Clean Energy, Defense & Space</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="filter-pills">
+        <button class="pill-btn active" onclick="setFilter('all', this)">All Leads (60)</button>
+        <button class="pill-btn" onclick="setFilter('quantum', this)">⚛️ Quantum & Photonics (27)</button>
+        <button class="pill-btn" onclick="setFilter('gaming', this)">🎰 Casino & Tribal Gaming (5)</button>
+        <button class="pill-btn" onclick="setFilter('fusion_space', this)">🚀 Fusion, Defense & Space (9)</button>
+        <button class="pill-btn" onclick="setFilter('cyber_ai', this)">🤖 AI Quant & Cyber (8)</button>
+        <button class="pill-btn" onclick="setFilter('leadership', this)">🤝 Strategic Leadership (11)</button>
+      </div>
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search by name, company, or keyword..." oninput="filterCards()">
+      </div>
+    </div>
+
+    <div class="leads-grid" id="leadsGrid"></div>
+  </div>
+
+  <div id="toast">Message copied to clipboard!</div>
+
+  <script>
+    const leadsData = [{"id": "WARM-LEAD-001", "name": "Reco Prianto, P.E.", "title": "Founding Principal at CaliChi Design Group and Forma AI", "slug": "recoprianto", "profile_url": "https://www.linkedin.com/in/recoprianto/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAE1iFoBZCsgze_j3BLgAq91hzeIpVMVH8s&recipient=ACoAAAE1iFoBZCsgze_j3BLgAq91hzeIpVMVH8s&interop=msgOverlay", "connected_on": "October 5, 2026", "sector": "Enterprise AI & Cyber Architecture", "sector_code": "cyber_ai", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-AgentGrid™", "udt_num": "#8", "udt_url": "http://localhost:8088/triqee_agentgrid_omniverse_defense_challenge.html", "value_prop": "Zero-Trust Multi-Agent Provenance Firewall & Real-Time Prompt Injection Defense", "message_copy": "Hi Reco, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-002", "name": "Patrick Browne", "title": "Chief Executive Officer at Dakota Nation Gaming Enterprise", "slug": "patrick-browne-7b33849", "profile_url": "https://www.linkedin.com/in/patrick-browne-7b33849/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAGoG3cBKj5saGka_wwvqKzB3o6OnFTdTDc&recipient=ACoAAAGoG3cBKj5saGka_wwvqKzB3o6OnFTdTDc&interop=msgOverlay", "connected_on": "October 5, 2026", "sector": "Tribal Gaming & Casino Tech", "sector_code": "gaming", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Wyoming Sportsbook & FLA Engine", "udt_num": "WY-SPORTS", "udt_url": "http://localhost:8000/fla", "value_prop": "Zero-Gas Instant Settlement, Real-Time Sports Betting Engine & VIP Player Loyalty Infrastructure", "message_copy": "Hi Patrick, hope you're having a wonderful week! Reaching out following our connection—we've been working deeply on modernizing gaming operations under our Wyoming regulatory framework (Wyoming Online Sports Betting Act SF0106). We engineered a high-throughput, zero-gas instant settlement wagering and loyalty engine tailored specifically for tribal and casino enterprise operators: http://localhost:8000/fla. Would love to show you a quick 5-minute walkthrough of how it streamlines player liquidity and payout reconciliation!", "status": "Not Contacted"}, {"id": "WARM-LEAD-003", "name": "Taylor Good", "title": "AI Quant", "slug": "goodtaylor", "profile_url": "https://www.linkedin.com/in/goodtaylor/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAG7Kp_MBp5lFhBIp8ZovI0S00mZEVVAqcZA&recipient=ACoAAG7Kp_MBp5lFhBIp8ZovI0S00mZEVVAqcZA&interop=msgOverlay", "connected_on": "October 5, 2026", "sector": "AI Quant & Algorithmic Finance", "sector_code": "cyber_ai", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-FLA™", "udt_num": "#3", "udt_url": "http://localhost:8000/fla", "value_prop": "Sub-15µs Constant-Product Mempool Flash Arbitrage & Zero-Gas In-Flight Settlement", "message_copy": "Hi Taylor, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-FLA™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-004", "name": "Matthew Cornelius", "title": "Founder and CEO of CIG Labs", "slug": "cornelius3d", "profile_url": "https://www.linkedin.com/in/cornelius3d/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAN5DHoBcTixXXRWH7U4NVA3AyuV5ZSut6A&recipient=ACoAAAN5DHoBcTixXXRWH7U4NVA3AyuV5ZSut6A&interop=msgOverlay", "connected_on": "October 5, 2026", "sector": "Enterprise AI & Cyber Architecture", "sector_code": "cyber_ai", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-AgentGrid™", "udt_num": "#8", "udt_url": "http://localhost:8088/triqee_agentgrid_omniverse_defense_challenge.html", "value_prop": "Zero-Trust Multi-Agent Provenance Firewall & Real-Time Prompt Injection Defense", "message_copy": "Hi Matthew, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-005", "name": "Christian Lange", "title": "CEO & Co-Founder | QLuster Photonics", "slug": "christian-l-063170185", "profile_url": "https://www.linkedin.com/in/christian-l-063170185/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAACug00sBJn0WcL7iU3tSB2AT913bAEt5Ghg&recipient=ACoAACug00sBJn0WcL7iU3tSB2AT913bAEt5Ghg&interop=msgOverlay", "connected_on": "October 3, 2026", "sector": "Photonic & Laser Hardware", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-OptoTensor™", "udt_num": "#5", "udt_url": "http://localhost:8088/triqee_optotensor_photon_overclock_challenge.html", "value_prop": "100 GHz Light-Speed Waveguide Router & Micro-Ring Optical Matrix Multiplier", "message_copy": "Hi Christian, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-006", "name": "Gaurang Belekar", "title": "Scientist @ Horizon Quantum | TrinityAQ scholarship Awardee", "slug": "gaurang-belekar-ba27171b7", "profile_url": "https://www.linkedin.com/in/gaurang-belekar-ba27171b7/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAADJ5SuoBednwd4a9zFbuwri4f97CmiV5Y4U&recipient=ACoAADJ5SuoBednwd4a9zFbuwri4f97CmiV5Y4U&interop=msgOverlay", "connected_on": "October 2, 2026", "sector": "Quantum QPUs & Fault-Tolerance", "sector_code": "quantum", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Sub-Microsecond Surface Code QEC Decoder & Heterogeneous FPGA/GPU Stabilizer Pipeline", "message_copy": "Hi Gaurang, glad we connected! Really respect Horizon Quantum's approach to abstracting quantum hardware compilation. We recently completed our live benchmark for sub-microsecond heterogeneous FPGA/GPU syndrome decoding (Triqee-QuantumClash™) and packaged it into an interactive sandbox: http://localhost:8088/triqee_quantumclash_qec_challenge.html. Thought this might resonate with your hardware compiler work—let me know if you get a chance to take a look!", "status": "Not Contacted"}, {"id": "WARM-LEAD-007", "name": "Sennai Kahssai", "title": "Quantum Computing | Life Sciences & Biotech", "slug": "senay-kahsay", "profile_url": "https://www.linkedin.com/in/senay-kahsay/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAADZoVbMBankgkcNB_ow-jFR3nKWb6Ihz44k&recipient=ACoAADZoVbMBankgkcNB_ow-jFR3nKWb6Ihz44k&interop=msgOverlay", "connected_on": "October 2, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Sennai, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-008", "name": "Ryan Dool", "title": "Director of Web Development | Enterprise Architect", "slug": "ryan-dool", "profile_url": "https://www.linkedin.com/in/ryan-dool/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAthCf8BqhOKJgmof7gpbPYcbzgZz9dW3zI&recipient=ACoAAAthCf8BqhOKJgmof7gpbPYcbzgZz9dW3zI&interop=msgOverlay", "connected_on": "October 1, 2026", "sector": "Enterprise AI & Cyber Architecture", "sector_code": "cyber_ai", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-AgentGrid™", "udt_num": "#8", "udt_url": "http://localhost:8088/triqee_agentgrid_omniverse_defense_challenge.html", "value_prop": "Zero-Trust Multi-Agent Provenance Firewall & Real-Time Prompt Injection Defense", "message_copy": "Hi Ryan, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-009", "name": "Mohammad Abbasi, Ph.D.", "title": "Quantum Hardware Scientist", "slug": "mabbasi1991", "profile_url": "https://www.linkedin.com/in/mabbasi1991/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAABfkKrgB4fbs2blMOkjfzaJwPDrBh9B-8yI&recipient=ACoAABfkKrgB4fbs2blMOkjfzaJwPDrBh9B-8yI&interop=msgOverlay", "connected_on": "September 30, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Mohammad, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-010", "name": "Rodrigo Araiza Bravo, Ph.D.", "title": "Driving Quantum Economic Development in Illinois", "slug": "orab", "profile_url": "https://www.linkedin.com/in/orab/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAC67NGABacJyoxtmgga1YKv7qX9jfe_knM8&recipient=ACoAAC67NGABacJyoxtmgga1YKv7qX9jfe_knM8&interop=msgOverlay", "connected_on": "September 30, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Rodrigo, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-011", "name": "Eoin Potts", "title": "Quantum Applications Engineer | Quantum Computation & Algorithms", "slug": "eoin-potts-bb1a7b216", "profile_url": "https://www.linkedin.com/in/eoin-potts-bb1a7b216/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAADaen_UBrzamm3ezaZ4jC6ZqoWNJd7P0zrc&recipient=ACoAADaen_UBrzamm3ezaZ4jC6ZqoWNJd7P0zrc&interop=msgOverlay", "connected_on": "September 30, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Eoin, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-012", "name": "Yichen Ma", "title": "Quantum Nanophotonics Engineer at Quantum Computing Inc.", "slug": "yichen-ma-571068b3", "profile_url": "https://www.linkedin.com/in/yichen-ma-571068b3/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAABgJDyUBMWG_mjWpN4CX4CI7QkmxUuKO4us&recipient=ACoAABgJDyUBMWG_mjWpN4CX4CI7QkmxUuKO4us&interop=msgOverlay", "connected_on": "September 30, 2026", "sector": "Photonic & Laser Hardware", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-OptoTensor™", "udt_num": "#5", "udt_url": "http://localhost:8088/triqee_optotensor_photon_overclock_challenge.html", "value_prop": "100 GHz Light-Speed Waveguide Router & Micro-Ring Optical Matrix Multiplier", "message_copy": "Hi Yichen, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-OptoTensor™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-013", "name": "Chris L. Williams", "title": "Comanche Nation Tribal Member | Leader in Gaming Industry", "slug": "chris-williams-strategic-leadership", "profile_url": "https://www.linkedin.com/in/chris-williams-strategic-leadership/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAmnpkMBHcNvLEr7XzmUVDCXKnnma_OLkTI&recipient=ACoAAAmnpkMBHcNvLEr7XzmUVDCXKnnma_OLkTI&interop=msgOverlay", "connected_on": "September 30, 2026", "sector": "Tribal Gaming & Casino Tech", "sector_code": "gaming", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Wyoming Sportsbook & FLA Engine", "udt_num": "WY-SPORTS", "udt_url": "http://localhost:8000/fla", "value_prop": "Zero-Gas Instant Settlement, Real-Time Sports Betting Engine & VIP Player Loyalty Infrastructure", "message_copy": "Hi Chris, hope you're having a wonderful week! Reaching out following our connection—we've been working deeply on modernizing gaming operations under our Wyoming regulatory framework (Wyoming Online Sports Betting Act SF0106). We engineered a high-throughput, zero-gas instant settlement wagering and loyalty engine tailored specifically for tribal and casino enterprise operators: http://localhost:8000/fla. Would love to show you a quick 5-minute walkthrough of how it streamlines player liquidity and payout reconciliation!", "status": "Not Contacted"}, {"id": "WARM-LEAD-014", "name": "R. Scott Barber", "title": "CEO | Casino Gaming & Hospitality Operator | Venture Fund", "slug": "r-scott-barber", "profile_url": "https://www.linkedin.com/in/r-scott-barber/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAW1sDMBUhoS32J75-1LeUthn5sdo1oKH28&recipient=ACoAAAW1sDMBUhoS32J75-1LeUthn5sdo1oKH28&interop=msgOverlay", "connected_on": "September 30, 2026", "sector": "Tribal Gaming & Casino Tech", "sector_code": "gaming", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Wyoming Sportsbook & FLA Engine", "udt_num": "WY-SPORTS", "udt_url": "http://localhost:8000/fla", "value_prop": "Zero-Gas Instant Settlement, Real-Time Sports Betting Engine & VIP Player Loyalty Infrastructure", "message_copy": "Hi R., hope you're having a wonderful week! Reaching out following our connection—we've been working deeply on modernizing gaming operations under our Wyoming regulatory framework (Wyoming Online Sports Betting Act SF0106). We engineered a high-throughput, zero-gas instant settlement wagering and loyalty engine tailored specifically for tribal and casino enterprise operators: http://localhost:8000/fla. Would love to show you a quick 5-minute walkthrough of how it streamlines player liquidity and payout reconciliation!", "status": "Not Contacted"}, {"id": "WARM-LEAD-015", "name": "Newton Rai", "title": "Quantum R&D Engineer", "slug": "newton-rai-778b71161", "profile_url": "https://www.linkedin.com/in/newton-rai-778b71161/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAACbLFgwBSGyccYh8P8GFR2kAlYdI4vLGXvs&recipient=ACoAACbLFgwBSGyccYh8P8GFR2kAlYdI4vLGXvs&interop=msgOverlay", "connected_on": "September 30, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Newton, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-016", "name": "Cameron Whiting", "title": "Quantum Processing Unit Electrical Engineer @ QuEra Computing", "slug": "cameron-whiting-04601b320", "profile_url": "https://www.linkedin.com/in/cameron-whiting-04601b320/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAFEpG3YB8lZ2g3nLR601sU9ozO7xd4R-HNI&recipient=ACoAAFEpG3YB8lZ2g3nLR601sU9ozO7xd4R-HNI&interop=msgOverlay", "connected_on": "September 30, 2026", "sector": "Quantum QPUs & Fault-Tolerance", "sector_code": "quantum", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Sub-Microsecond Surface Code QEC Decoder & Heterogeneous FPGA/GPU Stabilizer Pipeline", "message_copy": "Hi Cameron, hope you're having a great week! Following up after connecting recently—I've been following QuEra's neutral-atom breakthroughs closely. We've been bench-testing our autonomous quantum error-correction and sub-microsecond stabilizer pipeline (Triqee-QuantumClash™), and I'd love to share our live interactive sandbox with you. No pressure at all, just thought you'd appreciate seeing the surface-code syndrome decoding benchmarks: http://localhost:8088/triqee_quantumclash_qec_challenge.html. Would love to hear your thoughts when you have a moment!", "status": "Not Contacted"}, {"id": "WARM-LEAD-017", "name": "Philip Tan", "title": "Quantum Evangelist", "slug": "philip-tan-quantum", "profile_url": "https://www.linkedin.com/in/philip-tan-quantum/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAOmiwUBkxy741XLDM0QG1xP6Eme3mKSqOk&recipient=ACoAAAOmiwUBkxy741XLDM0QG1xP6Eme3mKSqOk&interop=msgOverlay", "connected_on": "September 29, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Philip, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-018", "name": "Jean-Olivier Simoneau", "title": "Physicist at Nord Quantique", "slug": "quantumjos", "profile_url": "https://www.linkedin.com/in/quantumjos/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAADI2mpoBXXgpdU6Q_PwzdBNfH67Mkf-_t4Y&recipient=ACoAADI2mpoBXXgpdU6Q_PwzdBNfH67Mkf-_t4Y&interop=msgOverlay", "connected_on": "September 29, 2026", "sector": "Quantum QPUs & Fault-Tolerance", "sector_code": "quantum", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Sub-Microsecond Surface Code QEC Decoder & Heterogeneous FPGA/GPU Stabilizer Pipeline", "message_copy": "Hi Jean-Olivier, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-019", "name": "Nella Ludlow", "title": "Director of Quantum Computing, Research Professor at Wright State University", "slug": "nellaludlow", "profile_url": "https://www.linkedin.com/in/nellaludlow/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAHlikkBqCdW8CBiRssjYtNyFD1J3hINiMs&recipient=ACoAAAHlikkBqCdW8CBiRssjYtNyFD1J3hINiMs&interop=msgOverlay", "connected_on": "September 29, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Nella, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-020", "name": "Mohd Zeeshan, Ph.D.", "title": "Sr. Scientist at Xanadu | Cryogenic Optical Integration | Adjunct Professor", "slug": "mohd-zeeshan-", "profile_url": "https://www.linkedin.com/in/mohd-zeeshan-/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAABThlNEBh7o5TqJ68LumJjif1wSL6jeGyRQ&recipient=ACoAABThlNEBh7o5TqJ68LumJjif1wSL6jeGyRQ&interop=msgOverlay", "connected_on": "September 29, 2026", "sector": "Quantum QPUs & Fault-Tolerance", "sector_code": "quantum", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Sub-Microsecond Surface Code QEC Decoder & Heterogeneous FPGA/GPU Stabilizer Pipeline", "message_copy": "Hi Mohd, great to be connected! Given your work at Xanadu on photonic quantum architectures and cryogenic optical integration, wanted to share something we just spun up: Triqee-QuantumClash™ (our live 100 GHz waveguide routing and quantum error mitigation engine). We built an interactive simulation cockpit you can run straight in your browser: http://localhost:8088/triqee_quantumclash_qec_challenge.html. Would be great to get your perspective on our optical stabilizer benchmarks!", "status": "Not Contacted"}, {"id": "WARM-LEAD-021", "name": "Denis Chevallier", "title": "VP of Hardware at Horizon Quantum", "slug": "denis-chevallier", "profile_url": "https://www.linkedin.com/in/denis-chevallier/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAACEM4psB_CNBOhhagjzyXOfs63k-aMG4ANg&recipient=ACoAACEM4psB_CNBOhhagjzyXOfs63k-aMG4ANg&interop=msgOverlay", "connected_on": "September 29, 2026", "sector": "Quantum QPUs & Fault-Tolerance", "sector_code": "quantum", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Sub-Microsecond Surface Code QEC Decoder & Heterogeneous FPGA/GPU Stabilizer Pipeline", "message_copy": "Hi Denis, glad we connected! Really respect Horizon Quantum's approach to abstracting quantum hardware compilation. We recently completed our live benchmark for sub-microsecond heterogeneous FPGA/GPU syndrome decoding (Triqee-QuantumClash™) and packaged it into an interactive sandbox: http://localhost:8088/triqee_quantumclash_qec_challenge.html. Thought this might resonate with your hardware compiler work—let me know if you get a chance to take a look!", "status": "Not Contacted"}, {"id": "WARM-LEAD-022", "name": "Pinlei Lyu", "title": "Quantum Physicist & Researcher", "slug": "pinlei-lyu-9143131b1", "profile_url": "https://www.linkedin.com/in/pinlei-lyu-9143131b1/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAADFYnmABZTIC4BHTeLiA6iBsb5YY7dzi3Kw&recipient=ACoAADFYnmABZTIC4BHTeLiA6iBsb5YY7dzi3Kw&interop=msgOverlay", "connected_on": "September 29, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Pinlei, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-023", "name": "Adhisha Gammanpila", "title": "Quantum Computing • AI • Climate & Deep Tech", "slug": "adhisha-gammanpila", "profile_url": "https://www.linkedin.com/in/adhisha-gammanpila/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAvgfpgBzhLr-7WC43bW5T6-lOf9nzlk8uI&recipient=ACoAAAvgfpgBzhLr-7WC43bW5T6-lOf9nzlk8uI&interop=msgOverlay", "connected_on": "September 29, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Adhisha, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-024", "name": "Amirhossein Ghods", "title": "Laser Scientist", "slug": "amirhossein-ghods", "profile_url": "https://www.linkedin.com/in/amirhossein-ghods/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAbOzxkB2M-vLEYZPpnX0SY0g_q-QfFIT_g&recipient=ACoAAAbOzxkB2M-vLEYZPpnX0SY0g_q-QfFIT_g&interop=msgOverlay", "connected_on": "September 29, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Amirhossein, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-025", "name": "Ravneet Chadha", "title": "CDO | Strategist | Enterprise Planning | Higher Education Leader", "slug": "ravneet-chadha-a66a7312", "profile_url": "https://www.linkedin.com/in/ravneet-chadha-a66a7312/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAKmKS4B9HCdGthHulFKK4qoN-S02ZiSNdk&recipient=ACoAAAKmKS4B9HCdGthHulFKK4qoN-S02ZiSNdk&interop=msgOverlay", "connected_on": "September 29, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Ravneet, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-026", "name": "Shuli S.", "title": "Fault-Tolerant Quantum Computing | HPC | MLIR/LLVM Compiler Engineering", "slug": "shuli-shu", "profile_url": "https://www.linkedin.com/in/shuli-shu/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAWrAuQBruPweWNR5qOqs-XmG-8gBNmgBr0&recipient=ACoAAAWrAuQBruPweWNR5qOqs-XmG-8gBNmgBr0&interop=msgOverlay", "connected_on": "September 29, 2026", "sector": "Quantum QPUs & Fault-Tolerance", "sector_code": "quantum", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Sub-Microsecond Surface Code QEC Decoder & Heterogeneous FPGA/GPU Stabilizer Pipeline", "message_copy": "Hi Shuli, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-027", "name": "Leslie Bosch, Ph.D.", "title": "Executive Leadership Coach (PhD, PCC)", "slug": "leslie-bosch-phd", "profile_url": "https://www.linkedin.com/in/leslie-bosch-phd/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAA3VIWsBBCwGrEkSx4rjrGHW1SdZZFpVqYk&recipient=ACoAAA3VIWsBBCwGrEkSx4rjrGHW1SdZZFpVqYk&interop=msgOverlay", "connected_on": "September 29, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Leslie, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-028", "name": "Chris Muldrow", "title": "Executive Director of the Colorado Quantum Incubator", "slug": "cmmuldrow", "profile_url": "https://www.linkedin.com/in/cmmuldrow/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAKvHpkB7-d-3STNqUG4ZjLtVrc57t1m5iE&recipient=ACoAAAKvHpkB7-d-3STNqUG4ZjLtVrc57t1m5iE&interop=msgOverlay", "connected_on": "September 28, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Chris, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-029", "name": "Sarah Yanez", "title": "Chief Executive Officer", "slug": "sarah-yanez-45783339", "profile_url": "https://www.linkedin.com/in/sarah-yanez-45783339/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAghucMB7dnSPhclJsz4tVtIxV7erwxSEn0&recipient=ACoAAAghucMB7dnSPhclJsz4tVtIxV7erwxSEn0&interop=msgOverlay", "connected_on": "September 24, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Sarah, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-030", "name": "Hon. Heidi Shyu", "title": "Former Under Secretary of Defense for Research & Engineering (USD R&E) | Founder", "slug": "heidi-shyu-02279511a", "profile_url": "https://www.linkedin.com/in/heidi-shyu-02279511a/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAB2o7toBWT5xnwI9s0saUfskMSP9KMol4dU&recipient=ACoAAB2o7toBWT5xnwI9s0saUfskMSP9KMol4dU&interop=msgOverlay", "connected_on": "September 24, 2026", "sector": "National Defense & Autonomous Systems", "sector_code": "fusion_space", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-SonicCloak™", "udt_num": "#7", "udt_url": "http://localhost:8088/triqee_soniccloak_deepsea_stealth_challenge.html", "value_prop": "Non-Hermitian Acoustic Metamaterial Stealth & Resilient Uncrewed Systems Armor", "message_copy": "Dear Hon. Heidi Shyu, thank you for connecting. Given your distinguished leadership across defense innovation and advanced technology, I wanted to respectfully share our work on Triqee-SonicCloak™—an interactive non-Hermitian acoustic metamaterial simulation modeling subsea and autonomous acoustic absorption: http://localhost:8088/triqee_soniccloak_deepsea_stealth_challenge.html. We designed it for resilient uncrewed platforms, and I would be deeply grateful for your perspective whenever your schedule allows.", "status": "Not Contacted"}, {"id": "WARM-LEAD-031", "name": "Moosa Raza", "title": "CEO & Co-Founder, One Matter Inc. | FileSense AI", "slug": "moosa-raza-a1a39b428", "profile_url": "https://www.linkedin.com/in/moosa-raza-a1a39b428/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAGxEjPYB3NOKtrXcmJMKsLa-K1ZgJ46CiLM&recipient=ACoAAGxEjPYB3NOKtrXcmJMKsLa-K1ZgJ46CiLM&interop=msgOverlay", "connected_on": "September 23, 2026", "sector": "Enterprise AI & Cyber Architecture", "sector_code": "cyber_ai", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-AgentGrid™", "udt_num": "#8", "udt_url": "http://localhost:8088/triqee_agentgrid_omniverse_defense_challenge.html", "value_prop": "Zero-Trust Multi-Agent Provenance Firewall & Real-Time Prompt Injection Defense", "message_copy": "Hi Moosa, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-032", "name": "David Kirtley", "title": "Founder & CEO of Helion Energy", "slug": "david-kirtley-490b8230", "profile_url": "https://www.linkedin.com/in/david-kirtley-490b8230/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAaUnCwByzB5wMxsPxuVpszcAG2GftUaYDk&recipient=ACoAAAaUnCwByzB5wMxsPxuVpszcAG2GftUaYDk&interop=msgOverlay", "connected_on": "September 22, 2026", "sector": "Clean Energy & Nuclear Fusion", "sector_code": "fusion_space", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-FusionCore™", "udt_num": "#9", "udt_url": "http://localhost:8088/triqee_fusioncore_plasma_confinement_challenge.html", "value_prop": "Real-Time Tokamak / FRC Plasma Magnetic Confinement & Micro-Pellet Injector Simulator", "message_copy": "Hi David, great connecting with you. Helion's pulsed magneto-inertial fusion progress has been inspiring to follow. On our side, we developed Triqee-FusionCore™—a real-time magnetic confinement & micro-pellet injection simulation engine modeled after dynamic field-reversed configurations: http://localhost:8088/triqee_fusioncore_plasma_confinement_challenge.html. Would be honored to get your high-level feedback if you have a couple of minutes to check out the simulation!", "status": "Not Contacted"}, {"id": "WARM-LEAD-033", "name": "Charles B. Montague Sr.", "title": "Chief Executive Officer", "slug": "charles-b-montague-sr-62639a253", "profile_url": "https://www.linkedin.com/in/charles-b-montague-sr-62639a253/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAD6G8_4BGR2HWRwsoDsG7hrYU4P8j1E4Ptk&recipient=ACoAAD6G8_4BGR2HWRwsoDsG7hrYU4P8j1E4Ptk&interop=msgOverlay", "connected_on": "September 22, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Charles, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-034", "name": "Ryan Cargill, CFA", "title": "Vice President & Director at Plains Ventures", "slug": "ryancargill", "profile_url": "https://www.linkedin.com/in/ryancargill/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAngugkBXufr0Gb6Wx_vxd3QnjkoHNggZes&recipient=ACoAAAngugkBXufr0Gb6Wx_vxd3QnjkoHNggZes&interop=msgOverlay", "connected_on": "September 22, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Ryan, wonderful connecting with you! Following up on regional deep-tech and quantum initiatives—we've consolidated 15 interactive deep-tech engineering tools (spanning fault-tolerant quantum decoding, fusion plasma modeling, and autonomous edge compute) into an open executive portal: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to sync for 10 minutes sometime this month to explore synergies with your portfolio and regional initiatives!", "status": "Not Contacted"}, {"id": "WARM-LEAD-035", "name": "Andy Cobin", "title": "President, Quantum Microwave | Superconducting Components", "slug": "andy-cobin-48b067139", "profile_url": "https://www.linkedin.com/in/andy-cobin-48b067139/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAACGlZ-sBLT8_7F3CypOz_82mPj7mEghKm4w&recipient=ACoAACGlZ-sBLT8_7F3CypOz_82mPj7mEghKm4w&interop=msgOverlay", "connected_on": "September 22, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Andy, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-036", "name": "Brandon Kim", "title": "CEO & Co-Founder, SQK | Quantum Tech Commercialization", "slug": "brandon-kim-7692175", "profile_url": "https://www.linkedin.com/in/brandon-kim-7692175/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAADr7IEBqRRHz_PZsLH8wgSOICEhlKbNtHE&recipient=ACoAAADr7IEBqRRHz_PZsLH8wgSOICEhlKbNtHE&interop=msgOverlay", "connected_on": "September 21, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Brandon, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-037", "name": "Nickolas Moran", "title": "Co-Founder & CEO @ Intercosmic Energy | Power Plants in Space", "slug": "nickolas-moran", "profile_url": "https://www.linkedin.com/in/nickolas-moran/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAFZtPzUBci0rF85naX-egnzl7bPai_NJ_OY&recipient=ACoAAFZtPzUBci0rF85naX-egnzl7bPai_NJ_OY&interop=msgOverlay", "connected_on": "September 21, 2026", "sector": "Commercial Space & Aerospace", "sector_code": "fusion_space", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-SpaceNav™", "udt_num": "#4", "udt_url": "http://localhost:8088/triqee_spacenav_ghost_orbit_challenge.html", "value_prop": "Ghost Orbit Quantum Inertial Guidance & GPS-Denied Orbital Navigation", "message_copy": "Hi Nickolas, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-038", "name": "Anna White", "title": "President, Dikan Quantum Corporation | Quantum Education & Software", "slug": "anna-white-a22127320", "profile_url": "https://www.linkedin.com/in/anna-white-a22127320/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAFEtIvoBXcEf7g7_6zi9WKnnQO6iv45mlPo&recipient=ACoAAFEtIvoBXcEf7g7_6zi9WKnnQO6iv45mlPo&interop=msgOverlay", "connected_on": "September 21, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Anna, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-039", "name": "James Grimsley", "title": "Executive Leader | Advanced Technology, Aviation & Autonomous Systems", "slug": "jgrimsley", "profile_url": "https://www.linkedin.com/in/jgrimsley/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAJbASMBTvqHk5CUocShxyy9UbilAIdZeXQ&recipient=ACoAAAJbASMBTvqHk5CUocShxyy9UbilAIdZeXQ&interop=msgOverlay", "connected_on": "September 21, 2026", "sector": "Commercial Space & Aerospace", "sector_code": "fusion_space", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-SpaceNav™", "udt_num": "#4", "udt_url": "http://localhost:8088/triqee_spacenav_ghost_orbit_challenge.html", "value_prop": "Ghost Orbit Quantum Inertial Guidance & GPS-Denied Orbital Navigation", "message_copy": "Hi James, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-040", "name": "Enrique Childs", "title": "CEO & Owner at Crystal View Technology | Native-Owned Tribal Gaming Promotions", "slug": "enrique-childs-aaa38b3a9", "profile_url": "https://www.linkedin.com/in/enrique-childs-aaa38b3a9/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAGPmzGIBTxLXgU6pCUQe6Ntj7ujXaphojeQ&recipient=ACoAAGPmzGIBTxLXgU6pCUQe6Ntj7ujXaphojeQ&interop=msgOverlay", "connected_on": "September 19, 2026", "sector": "Tribal Gaming & Casino Tech", "sector_code": "gaming", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Wyoming Sportsbook & FLA Engine", "udt_num": "WY-SPORTS", "udt_url": "http://localhost:8000/fla", "value_prop": "Zero-Gas Instant Settlement, Real-Time Sports Betting Engine & VIP Player Loyalty Infrastructure", "message_copy": "Hi Enrique, hope you're having a wonderful week! Reaching out following our connection—we've been working deeply on modernizing gaming operations under our Wyoming regulatory framework (Wyoming Online Sports Betting Act SF0106). We engineered a high-throughput, zero-gas instant settlement wagering and loyalty engine tailored specifically for tribal and casino enterprise operators: http://localhost:8000/fla. Would love to show you a quick 5-minute walkthrough of how it streamlines player liquidity and payout reconciliation!", "status": "Not Contacted"}, {"id": "WARM-LEAD-041", "name": "Dylan Mahler", "title": "Senior Principal Scientist at Xanadu", "slug": "dylan-mahler-63762793", "profile_url": "https://www.linkedin.com/in/dylan-mahler-63762793/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAABPZDMsBVMtPyqDQhO4pt4xrcbSx3knd7AA&recipient=ACoAABPZDMsBVMtPyqDQhO4pt4xrcbSx3knd7AA&interop=msgOverlay", "connected_on": "September 19, 2026", "sector": "Quantum QPUs & Fault-Tolerance", "sector_code": "quantum", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Sub-Microsecond Surface Code QEC Decoder & Heterogeneous FPGA/GPU Stabilizer Pipeline", "message_copy": "Hi Dylan, great to be connected! Given your work at Xanadu on photonic quantum architectures and cryogenic optical integration, wanted to share something we just spun up: Triqee-QuantumClash™ (our live 100 GHz waveguide routing and quantum error mitigation engine). We built an interactive simulation cockpit you can run straight in your browser: http://localhost:8088/triqee_quantumclash_qec_challenge.html. Would be great to get your perspective on our optical stabilizer benchmarks!", "status": "Not Contacted"}, {"id": "WARM-LEAD-042", "name": "Victor S.", "title": "President & Executive Operator", "slug": "victor-s-0b7873434", "profile_url": "https://www.linkedin.com/in/victor-s-0b7873434/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAG3DK8sBfuBt7xQimbQWLhv2BaipzPbE9D0&recipient=ACoAAG3DK8sBfuBt7xQimbQWLhv2BaipzPbE9D0&interop=msgOverlay", "connected_on": "September 18, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Victor, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-043", "name": "Robert Brown", "title": "Founder @ Zephyr-1 Aerospace | Pre-Seed SSTO Spaceplane", "slug": "robert-brown-251ab5433", "profile_url": "https://www.linkedin.com/in/robert-brown-251ab5433/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAG2ehh0Ba0I6E3auKrRztJNMMltntbKy1FM&recipient=ACoAAG2ehh0Ba0I6E3auKrRztJNMMltntbKy1FM&interop=msgOverlay", "connected_on": "September 18, 2026", "sector": "Commercial Space & Aerospace", "sector_code": "fusion_space", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-SpaceNav™", "udt_num": "#4", "udt_url": "http://localhost:8088/triqee_spacenav_ghost_orbit_challenge.html", "value_prop": "Ghost Orbit Quantum Inertial Guidance & GPS-Denied Orbital Navigation", "message_copy": "Hi Robert, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-044", "name": "Jonathan Lavoie", "title": "Lead Scientist @ Xanadu Quantum Technologies Inc.", "slug": "jonathan-lavoie-96933b83", "profile_url": "https://www.linkedin.com/in/jonathan-lavoie-96933b83/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAABGrVqEBzRW0nh0cYozBEAfJGQpyjZyzaJM&recipient=ACoAABGrVqEBzRW0nh0cYozBEAfJGQpyjZyzaJM&interop=msgOverlay", "connected_on": "September 18, 2026", "sector": "Quantum QPUs & Fault-Tolerance", "sector_code": "quantum", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Sub-Microsecond Surface Code QEC Decoder & Heterogeneous FPGA/GPU Stabilizer Pipeline", "message_copy": "Hi Jonathan, great to be connected! Given your work at Xanadu on photonic quantum architectures and cryogenic optical integration, wanted to share something we just spun up: Triqee-QuantumClash™ (our live 100 GHz waveguide routing and quantum error mitigation engine). We built an interactive simulation cockpit you can run straight in your browser: http://localhost:8088/triqee_quantumclash_qec_challenge.html. Would be great to get your perspective on our optical stabilizer benchmarks!", "status": "Not Contacted"}, {"id": "WARM-LEAD-045", "name": "Anu Patil", "title": "Customer Relationship Manager at CIO Views Magazine", "slug": "anu-patil2000", "profile_url": "https://www.linkedin.com/in/anu-patil2000/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAADix3YAB15xVw5-ON7rCyjOnuOQmuyYbphU&recipient=ACoAADix3YAB15xVw5-ON7rCyjOnuOQmuyYbphU&interop=msgOverlay", "connected_on": "September 18, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Anu, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-046", "name": "Jessi Olsen", "title": "CEO @ Elevate Quantum", "slug": "olsenjessi", "profile_url": "https://www.linkedin.com/in/olsenjessi/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAoYrV0By18eKriehK9ELB-6_8oo16mefzo&recipient=ACoAAAoYrV0By18eKriehK9ELB-6_8oo16mefzo&interop=msgOverlay", "connected_on": "September 17, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Jessi, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-047", "name": "Alex Greenberg", "title": "Director of Strategic Partnerships", "slug": "alex-greenberg-pm", "profile_url": "https://www.linkedin.com/in/alex-greenberg-pm/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAABSZXMcBbbaAJN53tm2FXpyGe8wqJ7QV_U0&recipient=ACoAABSZXMcBbbaAJN53tm2FXpyGe8wqJ7QV_U0&interop=msgOverlay", "connected_on": "September 17, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Alex, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-048", "name": "Juan Torres", "title": "Founder & CEO at Valiente Solutions LLC | 35+ Yrs Energy, Cyber & AI", "slug": "juan-torres-145527", "profile_url": "https://www.linkedin.com/in/juan-torres-145527/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAATzgUBGivmUhpheQNHRvWcFEHrIp5aLNQ&recipient=ACoAAAATzgUBGivmUhpheQNHRvWcFEHrIp5aLNQ&interop=msgOverlay", "connected_on": "September 17, 2026", "sector": "Enterprise AI & Cyber Architecture", "sector_code": "cyber_ai", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-AgentGrid™", "udt_num": "#8", "udt_url": "http://localhost:8088/triqee_agentgrid_omniverse_defense_challenge.html", "value_prop": "Zero-Trust Multi-Agent Provenance Firewall & Real-Time Prompt Injection Defense", "message_copy": "Hi Juan, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-049", "name": "Dan Schatzman", "title": "Managing Partner @ SpaceFund.com | Deep Tech Investments", "slug": "dan-schatzman-23345570", "profile_url": "https://www.linkedin.com/in/dan-schatzman-23345570/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAA8EKAcBnEEa0n_JmYwahLiK6-QHEUdCLck&recipient=ACoAAA8EKAcBnEEa0n_JmYwahLiK6-QHEUdCLck&interop=msgOverlay", "connected_on": "September 17, 2026", "sector": "Commercial Space & Aerospace", "sector_code": "fusion_space", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-SpaceNav™", "udt_num": "#4", "udt_url": "http://localhost:8088/triqee_spacenav_ghost_orbit_challenge.html", "value_prop": "Ghost Orbit Quantum Inertial Guidance & GPS-Denied Orbital Navigation", "message_copy": "Hi Dan, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-050", "name": "David Kistin", "title": "Director at Roadrunner Quantum Lab", "slug": "david-kistin-b36baa74", "profile_url": "https://www.linkedin.com/in/david-kistin-b36baa74/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAA_Wt9oB3ebmzduOiGKn4rb1KVQj1gpgGKs&recipient=ACoAAA_Wt9oB3ebmzduOiGKn4rb1KVQj1gpgGKs&interop=msgOverlay", "connected_on": "September 17, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi David, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-051", "name": "Eric Barbaro", "title": "Chief Operating Officer | Multi-Property Gaming & Casino Operations", "slug": "eric-barbaro-ba6a5453", "profile_url": "https://www.linkedin.com/in/eric-barbaro-ba6a5453/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAteHq4BMCZvbtYPUVA5xHPNZCZrKxWu1Gg&recipient=ACoAAAteHq4BMCZvbtYPUVA5xHPNZCZrKxWu1Gg&interop=msgOverlay", "connected_on": "September 16, 2026", "sector": "Tribal Gaming & Casino Tech", "sector_code": "gaming", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Wyoming Sportsbook & FLA Engine", "udt_num": "WY-SPORTS", "udt_url": "http://localhost:8000/fla", "value_prop": "Zero-Gas Instant Settlement, Real-Time Sports Betting Engine & VIP Player Loyalty Infrastructure", "message_copy": "Hi Eric, hope you're having a wonderful week! Reaching out following our connection—we've been working deeply on modernizing gaming operations under our Wyoming regulatory framework (Wyoming Online Sports Betting Act SF0106). We engineered a high-throughput, zero-gas instant settlement wagering and loyalty engine tailored specifically for tribal and casino enterprise operators: http://localhost:8000/fla. Would love to show you a quick 5-minute walkthrough of how it streamlines player liquidity and payout reconciliation!", "status": "Not Contacted"}, {"id": "WARM-LEAD-052", "name": "Dr. Irit Idan", "title": "Former EVP R&D Rafael Advanced Defense Systems | Board Advisor", "slug": "irit-idan-50037a99", "profile_url": "https://www.linkedin.com/in/irit-idan-50037a99/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAABTgsVABQ74FvAXjyfLu7ID2gwrLgt-Q9pE&recipient=ACoAABTgsVABQ74FvAXjyfLu7ID2gwrLgt-Q9pE&interop=msgOverlay", "connected_on": "September 16, 2026", "sector": "National Defense & Autonomous Systems", "sector_code": "fusion_space", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-SonicCloak™", "udt_num": "#7", "udt_url": "http://localhost:8088/triqee_soniccloak_deepsea_stealth_challenge.html", "value_prop": "Non-Hermitian Acoustic Metamaterial Stealth & Resilient Uncrewed Systems Armor", "message_copy": "Dear Dr. Irit Idan, thank you for connecting. Given your distinguished leadership across defense innovation and advanced technology, I wanted to respectfully share our work on Triqee-SonicCloak™—an interactive non-Hermitian acoustic metamaterial simulation modeling subsea and autonomous acoustic absorption: http://localhost:8088/triqee_soniccloak_deepsea_stealth_challenge.html. We designed it for resilient uncrewed platforms, and I would be deeply grateful for your perspective whenever your schedule allows.", "status": "Not Contacted"}, {"id": "WARM-LEAD-053", "name": "Ashutosh Kumar, Ph.D.", "title": "Quantum Applications Scientist | PhD in Quantum Chemistry", "slug": "ashutosh-kumar-a23003127", "profile_url": "https://www.linkedin.com/in/ashutosh-kumar-a23003127/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAB8lifsBADI5pQO0Sl4OlwJCv_bGYrAFp-Y&recipient=ACoAAB8lifsBADI5pQO0Sl4OlwJCv_bGYrAFp-Y&interop=msgOverlay", "connected_on": "September 16, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Ashutosh, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-054", "name": "Mike DeMarco", "title": "President, Aero Vertical @ SES Satellites", "slug": "mikedemarcodc", "profile_url": "https://www.linkedin.com/in/mikedemarcodc/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAABLHRQBtT1pedTo8mHBcTzIq-xKvih-yCk&recipient=ACoAAABLHRQBtT1pedTo8mHBcTzIq-xKvih-yCk&interop=msgOverlay", "connected_on": "September 16, 2026", "sector": "Satellite & Orbital Defense", "sector_code": "fusion_space", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-QKD-Orbit™", "udt_num": "#14", "udt_url": "http://localhost:8088/triqee_qkdorbit_satellite_challenge.html", "value_prop": "Space-to-Ground Entangled Photon Quantum Key Distribution & Atmospheric Adaptive Optics", "message_copy": "Hi Mike, great connecting with you! With your leadership across SES's aero and space communications verticals, thought you might find our orbital quantum communications simulator (Triqee-QKD-Orbit™) interesting: http://localhost:8088/triqee_qkdorbit_satellite_challenge.html. It models space-to-ground entangled photon key distribution and adaptive optics turbulence correction. Would love to hear your thoughts on commercial LEO/GEO quantum-safe links!", "status": "Not Contacted"}, {"id": "WARM-LEAD-055", "name": "Nidhi Yadav", "title": "Enterprise Risk & Software Asset Consultant | Ex-EY", "slug": "thenidhiyadav", "profile_url": "https://www.linkedin.com/in/thenidhiyadav/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAACyrj0wB1zjg2aOhGPJeI9KsIStcXNGc3Mw&recipient=ACoAACyrj0wB1zjg2aOhGPJeI9KsIStcXNGc3Mw&interop=msgOverlay", "connected_on": "September 15, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Nidhi, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-056", "name": "Pranay Tiwari", "title": "Security Architect (CISSP, FedRAMP, AI-Sec, SIEM)", "slug": "pranay-tiwari-cissp-grc-security-architect-ai-sec-106374121", "profile_url": "https://www.linkedin.com/in/pranay-tiwari-cissp-grc-security-architect-ai-sec-106374121/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAB4hxpYB38w5u6L3zBU_y7R373Dy_20K_WA&recipient=ACoAAB4hxpYB38w5u6L3zBU_y7R373Dy_20K_WA&interop=msgOverlay", "connected_on": "September 15, 2026", "sector": "Enterprise AI & Cyber Architecture", "sector_code": "cyber_ai", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-AgentGrid™", "udt_num": "#8", "udt_url": "http://localhost:8088/triqee_agentgrid_omniverse_defense_challenge.html", "value_prop": "Zero-Trust Multi-Agent Provenance Firewall & Real-Time Prompt Injection Defense", "message_copy": "Hi Pranay, great connecting! Noticed your deep focus on zero-trust and enterprise security architecture. We built Triqee-AgentGrid™—an autonomous runtime firewall designed specifically to defend multi-agent AI pipelines against prompt injection and privilege escalation: http://localhost:8088/triqee_agentgrid_omniverse_defense_challenge.html. Would love your candid feedback on our ZK provenance verification model!", "status": "Not Contacted"}, {"id": "WARM-LEAD-057", "name": "Jason Miyagishima", "title": "Chief Executive Officer at 118 CrossFit LLC", "slug": "jason-miyagishima-49372542b", "profile_url": "https://www.linkedin.com/in/jason-miyagishima-49372542b/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAGzaCm8BMrJNyyFtidqJH-WJOpZnl-9tIAQ&recipient=ACoAAGzaCm8BMrJNyyFtidqJH-WJOpZnl-9tIAQ&interop=msgOverlay", "connected_on": "September 15, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Jason, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}, {"id": "WARM-LEAD-058", "name": "Shankar G Menon", "title": "Cofounder & CEO at CavilinQ | Quantum Computing & Interconnects", "slug": "shankar-g-menon-665628200", "profile_url": "https://www.linkedin.com/in/shankar-g-menon-665628200/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAADNZo60BvtkhGSBcL0btycLWQ5bBzdeVGpI&recipient=ACoAADNZo60BvtkhGSBcL0btycLWQ5bBzdeVGpI&interop=msgOverlay", "connected_on": "September 14, 2026", "sector": "Quantum Ecosystem & Architecture", "sector_code": "quantum", "priority": "⚡ TIER 2 HIGH-VALUE", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Fault-Tolerant Quantum Circuit Acceleration & Scalable Logical Qubit Benchmarking", "message_copy": "Hi Shankar, glad to connect with a fellow quant! We just deployed a live autonomous flash arbitrage engine on Base L2 (Triqee-QuantumClash™) operating with constant-product math and sub-15µs in-flight execution bounds: http://localhost:8000/fla. Would love to compare notes on mempool latency and dynamic hurdle optimization if you're open to a brief chat!", "status": "Not Contacted"}, {"id": "WARM-LEAD-059", "name": "Dr. Nate Gemelke", "title": "Co-Founder & Chief Technology Strategist @ QuEra Computing", "slug": "nate-gemelke-885025154", "profile_url": "https://www.linkedin.com/in/nate-gemelke-885025154/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAACUFyKUBYx3gR2X7T0w_u6L3RpdfTmRCQl8&recipient=ACoAACUFyKUBYx3gR2X7T0w_u6L3RpdfTmRCQl8&interop=msgOverlay", "connected_on": "September 14, 2026", "sector": "Quantum QPUs & Fault-Tolerance", "sector_code": "quantum", "priority": "🔥 TIER 1 HYPER-PRIORITY", "udt_name": "Triqee-QuantumClash™", "udt_num": "#15", "udt_url": "http://localhost:8088/triqee_quantumclash_qec_challenge.html", "value_prop": "Sub-Microsecond Surface Code QEC Decoder & Heterogeneous FPGA/GPU Stabilizer Pipeline", "message_copy": "Hi Dr. Nate Gemelke, hope you're having a great week! Following up after connecting recently—I've been following QuEra's neutral-atom breakthroughs closely. We've been bench-testing our autonomous quantum error-correction and sub-microsecond stabilizer pipeline (Triqee-QuantumClash™), and I'd love to share our live interactive sandbox with you. No pressure at all, just thought you'd appreciate seeing the surface-code syndrome decoding benchmarks: http://localhost:8088/triqee_quantumclash_qec_challenge.html. Would love to hear your thoughts when you have a moment!", "status": "Not Contacted"}, {"id": "WARM-LEAD-060", "name": "Brian Davis", "title": "Head of Global Manufacturing & Supply Chain", "slug": "brian-davis-2180a317", "profile_url": "https://www.linkedin.com/in/brian-davis-2180a317/", "compose_url": "https://www.linkedin.com/messaging/compose/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAANk73QBLzbVMj-WUYCkAvYLEtq24bcIGpo&recipient=ACoAAANk73QBLzbVMj-WUYCkAvYLEtq24bcIGpo&interop=msgOverlay", "connected_on": "September 14, 2026", "sector": "Strategic Leadership & Venture", "sector_code": "leadership", "priority": "🤝 STRATEGIC PEER", "udt_name": "Triqee UDT Multi-Suite", "udt_num": "ALL 15", "udt_url": "http://localhost:8088/triqee_master_udt_arcade_portal.html", "value_prop": "Full Interactive Suite of 15 Deep-Tech Unique Delivery Tools & Wyoming Regulatory Stack", "message_copy": "Hi Brian, great to be connected! Reaching out to say hello and share what we've been building at WhatsHot / Triqee. We recently launched an interactive executive portal showcasing our 15 deep-tech delivery tools across quantum computing, clean energy, and autonomous systems: http://localhost:8088/triqee_master_udt_arcade_portal.html. Would love to learn more about what you're currently focused on and see where we might collaborate!", "status": "Not Contacted"}];
+
+    // Initialize local storage status
+    function loadSavedStatuses() {
+      const saved = localStorage.getItem('triqee_warm_lead_statuses');
+      if (saved) {
+        try {
+          const map = JSON.parse(saved);
+          leadsData.forEach(lead => {
+            if (map[lead.id]) lead.status = map[lead.id];
+          });
+        } catch(e) {}
+      }
+      updateStats();
+    }
+
+    function saveStatus(leadId, newStatus) {
+      const lead = leadsData.find(l => l.id === leadId);
+      if (lead) lead.status = newStatus;
+      
+      const map = {};
+      leadsData.forEach(l => { map[l.id] = l.status; });
+      localStorage.setItem('triqee_warm_lead_statuses', JSON.stringify(map));
+      updateStats();
+      showToast('Status updated to: ' + newStatus);
+    }
+
+    function updateStats() {
+      const sentCount = leadsData.filter(l => l.status === 'Message Sent' || l.status === 'Dialogue Active' || l.status === 'Demo Scheduled').length;
+      document.getElementById('stat-sent').innerText = sentCount;
+    }
+
+    let currentSectorFilter = 'all';
+
+    function setFilter(sector, btn) {
+      currentSectorFilter = sector;
+      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterCards();
+    }
+
+    function filterCards() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = leadsData.filter(l => {
+        const matchSector = (currentSectorFilter === 'all') || (l.sector_code === currentSectorFilter);
+        const matchQuery = l.name.toLowerCase().includes(query) || 
+                           l.title.toLowerCase().includes(query) || 
+                           l.udt_name.toLowerCase().includes(query) ||
+                           l.sector.toLowerCase().includes(query);
+        return matchSector && matchQuery;
+      });
+      renderCards(filtered);
+    }
+
+    function copyMessage(leadId) {
+      const lead = leadsData.find(l => l.id === leadId);
+      if (!lead) return;
+      navigator.clipboard.writeText(lead.message_copy).then(() => {
+        showToast('✓ Copied warm message for ' + lead.name + '!');
+      });
+    }
+
+    function openChat(url, leadId) {
+      window.open(url, '_blank');
+      // Mark as message sent if currently not contacted
+      const lead = leadsData.find(l => l.id === leadId);
+      if (lead && lead.status === 'Not Contacted') {
+        saveStatus(leadId, 'Message Sent');
+        document.getElementById('status-' + leadId).value = 'Message Sent';
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 2800);
+    }
+
+    function renderCards(list) {
+      const grid = document.getElementById('leadsGrid');
+      grid.innerHTML = '';
+
+      list.forEach(lead => {
+        const card = document.createElement('div');
+        card.className = 'lead-card';
+        card.innerHTML = `
+          <div>
+            <div class="card-top">
+              <div>
+                <div class="lead-name">
+                  <a href="${lead.profile_url}" target="_blank" style="color: #fff; text-decoration: none; border-bottom: 1px dotted var(--cyan);">
+                    ${lead.name}
+                  </a>
+                </div>
+                <div class="lead-title">${lead.title}</div>
+                <div class="conn-date">📅 Connected: ${lead.connected_on}</div>
+              </div>
+              <div>
+                <select id="status-${lead.id}" class="status-select" onchange="saveStatus('${lead.id}', this.value)">
+                  <option value="Not Contacted" ${lead.status === 'Not Contacted' ? 'selected' : ''}>⚪ Not Contacted</option>
+                  <option value="Message Sent" ${lead.status === 'Message Sent' ? 'selected' : ''}>🟡 Message Sent</option>
+                  <option value="Dialogue Active" ${lead.status === 'Dialogue Active' ? 'selected' : ''}>🟢 Dialogue Active</option>
+                  <option value="Demo Scheduled" ${lead.status === 'Demo Scheduled' ? 'selected' : ''}>🔥 Demo Scheduled</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="product-box">
+              <div class="product-header">
+                <span class="product-title">${lead.udt_name} (${lead.udt_num})</span>
+                <span class="tag tag-cyan" style="font-size: 10px;">${lead.priority}</span>
+              </div>
+              <div class="product-prop">${lead.value_prop}</div>
+            </div>
+
+            <div style="font-size: 11px; font-weight: 700; color: #94a3b8; margin-bottom: 4px; text-transform: uppercase;">
+              Warm 1st-Degree Message Copy:
+            </div>
+            <div class="message-preview">${lead.message_copy}</div>
+          </div>
+
+          <div class="card-actions">
+            <button class="btn btn-msg" onclick="openChat('${lead.compose_url}', '${lead.id}')">
+              💬 Open 1-to-1 Chat
+            </button>
+            <button class="btn btn-copy" onclick="copyMessage('${lead.id}')">
+              📋 Copy Copy
+            </button>
+            <a href="${lead.udt_url}" target="_blank" class="btn btn-demo">
+              🎮 Sandbox
+            </a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Init
+    loadSavedStatuses();
+    renderCards(leadsData);
+  </script>
+</body>
+</html>

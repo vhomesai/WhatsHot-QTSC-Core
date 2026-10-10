@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triqee Labs | DOE $215M Quantum Grand Challenge Proposal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+    body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-panel { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(51, 65, 85, 0.6); }
+    .glass-panel:hover { border-color: rgba(16, 185, 129, 0.5); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+  <div class="max-w-6xl mx-auto space-y-6">
+
+    <!-- Header Banner -->
+    <header class="p-6 bg-slate-900/90 border border-slate-800 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-2xl backdrop-blur relative overflow-hidden">
+      <div class="absolute -right-20 -top-20 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10 space-y-1">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="px-2.5 py-0.5 text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded-full flex items-center gap-1.5 shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            U.S. DOE $215M GRAND CHALLENGE DOSSIER
+          </span>
+          <span class="text-[10px] text-slate-400 mono">FY2027-2029 CONSORTIUM</span>
+          <span class="text-[10px] text-emerald-400 mono font-semibold">100-QUBIT HYDRO BENCHMARK</span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-black text-white tracking-tight flex items-center gap-2.5">
+          <span>🏛️ Triqee Labs &times; U.S. Dept. of Energy</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 font-mono font-bold">$12.5M PROPOSAL</span>
+        </h1>
+        <p class="text-xs text-slate-300 max-w-3xl">
+          Letter of Intent and Technical Proposal: Establishing 100-Qubit Quantum Hydrodynamics (KPZ Superdiffusion, $z=1.52$) as the standard scientific utility testbed for U.S. National Laboratories.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 font-mono text-xs relative z-10 shrink-0">
+        <a href="https://doi.org/10.5281/zenodo.23045297" target="_blank" class="px-3.5 py-2 bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 font-bold rounded-xl border border-emerald-500/40 transition">
+          📄 DOI: 10.5281/zenodo.23045297
+        </a>
+        <a href="IBM_PARTNERSHIP_TRANSMITTAL_PORTAL.html" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl border border-slate-700 transition">
+          🔵 IBM Network
+        </a>
+      </div>
+    </header>
+
+    <!-- Key Proposal Metrics Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">Program Scope</span>
+        <span class="text-2xl font-black text-emerald-400 mono">$215M DOE Pool</span>
+        <span class="text-[10px] text-slate-500 block mt-1">Fault-tolerant utility by 2028</span>
+      </div>
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">Triqee Request</span>
+        <span class="text-2xl font-black text-cyan-400 mono">$12.5M (3 Yrs)</span>
+        <span class="text-[10px] text-slate-500 block mt-1">Multi-lab consortium lead</span>
+      </div>
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">Lattice Benchmark</span>
+        <span class="text-2xl font-black text-purple-400 mono">100-1000 Qubits</span>
+        <span class="text-[10px] text-slate-500 block mt-1">Heavy-hex & square grids</span>
+      </div>
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">Open Science Lead</span>
+        <span class="text-2xl font-black text-amber-400 mono">IMQbd 501(c)(3)</span>
+        <span class="text-[10px] text-slate-500 block mt-1">Public CC-BY 4.0 data</span>
+      </div>
+    </div>
+
+    <!-- 3 Core Technical Work Packages -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-panel p-6 rounded-3xl space-y-3 border-t-4 border-emerald-400">
+        <span class="text-[10px] font-mono font-bold text-emerald-400 uppercase">WORK PACKAGE 1</span>
+        <h4 class="text-base font-bold text-white">Utility-Scale Hydrodynamics</h4>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Scale non-equilibrium Bethe-ansatz quench dynamics from 100 transmons to 1,000+ qubits across DOE testbeds, tracking the classical MPS entanglement barrier ($t^* \approx 2.12\,\hbar/J$).
+        </p>
+      </div>
+      <div class="glass-panel p-6 rounded-3xl space-y-3 border-t-4 border-cyan-400">
+        <span class="text-[10px] font-mono font-bold text-cyan-400 uppercase">WORK PACKAGE 2</span>
+        <h4 class="text-base font-bold text-white">Biomolecular QGHD Solvation</h4>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Embed AlphaFold3 anisotropic stress tensors onto transmon grids to simulate complex hydrophobic droplet dissolution and cancer mutant p53 phase changes.
+        </p>
+      </div>
+      <div class="glass-panel p-6 rounded-3xl space-y-3 border-t-4 border-purple-400">
+        <span class="text-[10px] font-mono font-bold text-purple-400 uppercase">WORK PACKAGE 3</span>
+        <h4 class="text-base font-bold text-white">Vendor-Neutral Telemetry DB</h4>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          IMQbd 501(c)(3) delivers an open-access hardware benchmark telemetry dashboard providing real-time drift, Pauli error rates, and coherence analytics across multi-vendor QPUs.
+        </p>
+      </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="p-6 bg-slate-900 border border-slate-800 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-4">
+      <div>
+        <h4 class="text-sm font-bold text-white">Ready for Transmittal to DOE Quantum Program Managers</h4>
+        <p class="text-xs text-slate-400">Sheridan, Wyoming | WhatsHot, Inc. & IMQbd 501(c)(3) | PI: Jon Vierk (`jon@triqee.com`)</p>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="copyDoeProposal()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold rounded-xl text-xs mono transition">
+          📋 Copy Full DOE LOI & Abstract
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function copyDoeProposal() {
+      const text = `U.S. DEPARTMENT OF ENERGY $215M QUANTUM GRAND CHALLENGE - LETTER OF INTENT\\nLead Organization: WhatsHot, Inc. & IMQbd 501(c)(3) (Triqee Labs)\\nPI: Jon Vierk (jon@triqee.com)\\nProject: PROJECT APEX-HYDRO: Multi-System Quantum Hydrodynamic Transport and Extreme-Depth Variational Coherence as Standard Scientific Utility Testbeds for Superconducting QPUs\\nPublished Reference DOI: https://doi.org/10.5281/zenodo.23045297\\nFunding Request: $12.5M over 36 months for open-science national lab testbed benchmarking.`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("DOE Proposal LOI Copied to Clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>

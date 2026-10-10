@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triqee™ | Institutional Procurement & SOW Retainer Wire Closing Binder</title>
+    <style>
+        :root {
+            --bg-dark: #030712;
+            --panel-bg: #0b1120;
+            --border-color: #1e293b;
+            --cyan-glow: #06b6d4;
+            --emerald-glow: #10b981;
+            --purple-glow: #a855f7;
+            --amber-glow: #f59e0b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 32px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 32px;
+        }
+
+        .title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-pill {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            border: 1px solid var(--emerald-glow);
+            color: var(--emerald-glow);
+            background: rgba(16,185,129,0.1);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        @media (max-width: 800px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .card-header {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--cyan-glow);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .wire-field {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.9rem;
+        }
+
+        .wire-label { color: var(--text-muted); }
+        .wire-val { font-family: var(--font-mono); font-weight: 600; color: #fff; }
+
+        .btn-action {
+            display: inline-block;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            color: #030712;
+            font-weight: 700;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover {
+            box-shadow: 0 0 15px rgba(6,182,212,0.5);
+            transform: translateY(-1px);
+        }
+
+        .tier-card {
+            border: 1px solid var(--purple-glow);
+            background: rgba(168,85,247,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div>
+            <div class="title">Triqee™ Institutional Procurement & Retainer Closing Desk</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
+                Statutory Consumptive Utility Token Standard | Wyoming W.S. § 34-29-106 | Certificate DA-000000992
+            </p>
+        </div>
+        <span class="badge-pill">🔒 SECURE PROCUREMENT PORTAL</span>
+    </header>
+
+    <div class="grid-2">
+        <!-- Banking Wire & Settlement Details -->
+        <div class="card">
+            <div class="card-header">🏦 Institutional Wire Instructions (USD)</div>
+            <div class="wire-field">
+                <span class="wire-label">Beneficiary Name</span>
+                <span class="wire-val">WhatsHot, Inc. / IMQbd 501(c)(3)</span>
+            </div>
+            <div class="wire-field">
+                <span class="wire-label">Receiving Depository</span>
+                <span class="wire-val">Piermont Bank</span>
+            </div>
+            <div class="wire-field">
+                <span class="wire-label">Fedwire / ABA Routing</span>
+                <span class="wire-val" style="color: var(--emerald-glow);">101019644</span>
+            </div>
+            <div class="wire-field">
+                <span class="wire-label">Account Identification</span>
+                <span class="wire-val">WhatsHot Corporate Operations</span>
+            </div>
+            <div class="wire-field">
+                <span class="wire-label">Statutory Incorporation</span>
+                <span class="wire-val">Wyoming DA-000000992</span>
+            </div>
+            <div class="wire-field">
+                <span class="wire-label">CERN Zenodo DOI</span>
+                <span class="wire-val">10.5281/zenodo.23045297</span>
+            </div>
+            <div class="wire-field">
+                <span class="wire-label">Base L2 Anchor</span>
+                <span class="wire-val">Block #19,842,105</span>
+            </div>
+            <button class="btn-action" onclick="copyWireDetails()" style="margin-top: 18px; width: 100%;">
+                📋 Copy Complete Wire Details
+            </button>
+        </div>
+
+        <!-- SOW Pilot Retainer Tiers -->
+        <div class="card">
+            <div class="card-header">💼 Institutional Pilot Retainer Packages</div>
+            
+            <div class="tier-card">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <strong style="color: #fff; font-size: 1.05rem;">Tier 1: Sovereign SCIF Air-Gapped Node</strong>
+                    <span style="font-size: 1.1rem; color: var(--emerald-glow); font-weight: 700;">$250,000</span>
+                </div>
+                <p style="font-size: 0.82rem; color: var(--text-muted); margin: 6px 0;">
+                    Complete on-premise hardware deployment, zero-exfiltration WebAssembly Silicon engine, 50,000 $TQ tokens, and 24/7 dedicated quantum engineering team.
+                </p>
+            </div>
+
+            <div class="tier-card" style="border-color: var(--amber-glow); background: rgba(245,158,11,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <strong style="color: #fff; font-size: 1.05rem;">Tier 2: Multi-Vendor QPU Alpha Cluster</strong>
+                    <span style="font-size: 1.1rem; color: var(--amber-glow); font-weight: 700;">$750,000</span>
+                </div>
+                <p style="font-size: 0.82rem; color: var(--text-muted); margin: 6px 0;">
+                    High-frequency Markowitz QUBO copula engine, live IBM Heron 156Q & IonQ Forte hardware execution pipeline, and custom photonic tensor ASIC compilers.
+                </p>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 14px;">
+                <a href="TRIQEE_INSTITUTIONAL_ALLOCATOR_DEALROOM_DOSSIER.html" target="_blank" class="btn-action" style="flex: 1; text-align: center; background: #1e293b; color: #38bdf8; border: 1px solid #38bdf8;">
+                    🏛️ Open Deal Room
+                </a>
+                <button class="btn-action" onclick="window.print()" style="flex: 1;">
+                    🖨️ Export PDF
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function copyWireDetails() {
+    const text = `TRIQEE™ / WHATSHOT, INC. WIRE INSTRUCTIONS:
+Beneficiary: WhatsHot, Inc. / IMQbd 501(c)(3)
+Bank: Piermont Bank
+Fedwire / ABA Routing: 101019644
+Entity Registration: Wyoming DA-000000992
+Statutory Law: Wyoming W.S. § 34-29-106
+CERN Zenodo DOI: 10.5281/zenodo.23045297`;
+    navigator.clipboard.writeText(text).then(() => {
+        alert("Wire Instructions Copied to Clipboard!");
+    });
+}
+</script>
+
+</body>
+</html>

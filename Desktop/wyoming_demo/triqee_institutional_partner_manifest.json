@@ -1,0 +1,268 @@
+{
+  "campaign_metadata": {
+    "campaign_name": "Triqee Global Institutional Quantum Expansion 2026",
+    "campaign_code": "TRIQEE-INSTITUTIONAL-Q4-2026",
+    "valuation_baseline": "$135,000,000 ARR",
+    "target_valuation": "$250,000,000 ARR",
+    "official_doi": "10.5281/zenodo.23045297",
+    "sender_address": "jon@triqee.com",
+    "live_engine_endpoints": {
+      "sovereign_qaas_gateway": "http://127.0.0.1:8088/api/v3/quantum",
+      "quantvault_trading_terminal": "http://127.0.0.1:3000/TRIQEE_QUANTVAULT_LIVE_TERMINAL.html",
+      "qbs26_benchmark_portal": "http://127.0.0.1:3000/TRIQEE_QBS26_INDUSTRY_PORTAL.html",
+      "dispatcher_console": "http://127.0.0.1:3000/TRIQEE_INSTITUTIONAL_EMAIL_DISPATCHER.html"
+    }
+  },
+  "target_institutions": [
+    {
+      "id": "INST-01",
+      "name": "Citadel LLC",
+      "category": "Quantitative Hedge Fund",
+      "target_email": "partnerships@citadel.com",
+      "alternate_email": "quant-research@citadel.com",
+      "focus": "Automated High-Frequency Covariance & Markowitz QUBO",
+      "contact_role": "Head of Quantitative Alpha & Trading Systems",
+      "custom_package": "QuantVault™ Live Alpha Feed & 16-Qubit IonQ QUBO Solver"
+    },
+    {
+      "id": "INST-02",
+      "name": "Two Sigma Investments",
+      "category": "Quantitative Hedge Fund",
+      "target_email": "research-collaborations@twosigma.com",
+      "alternate_email": "partnerships@twosigma.com",
+      "focus": "Machine Learning & Non-Linear Portfolio Risk Parity",
+      "contact_role": "Chief Technology Officer & Head of Data Science",
+      "custom_package": "QBS-26 Multi-Modal Benchmarking Standard & Arbitrage Router"
+    },
+    {
+      "id": "INST-03",
+      "name": "Renaissance Technologies (Medallion)",
+      "category": "Quantitative Hedge Fund",
+      "target_email": "inquiries@rentec.com",
+      "alternate_email": "contact@rentec.com",
+      "focus": "Non-Equilibrium Statistical Physics & Spin Models",
+      "contact_role": "Senior Research Scientist (Quantum Algorithms)",
+      "custom_package": "156-Qubit KPZ Superdiffusion & Trapped-Ion QUBO Enclave"
+    },
+    {
+      "id": "INST-04",
+      "name": "Millennium Management",
+      "category": "Multi-Strategy Hedge Fund",
+      "target_email": "inquiries@mlp.com",
+      "alternate_email": "quant-partnerships@mlp.com",
+      "focus": "Multi-Pod Factor Arbitrage & Drawdown Control",
+      "contact_role": "Global Head of Quantitative Strategies",
+      "custom_package": "QuantVault™ Sub-Second Rebalance Signals & REST API"
+    },
+    {
+      "id": "INST-05",
+      "name": "Point72 Asset Management",
+      "category": "Quantitative & Equity Hedge Fund",
+      "target_email": "cubist-inquiries@point72.com",
+      "alternate_email": "inquiries@point72.com",
+      "focus": "Systematic Equity Optimization & Alternative Data",
+      "contact_role": "Head of Cubist Systematic Strategies",
+      "custom_package": "QuantVault™ Risk Parity + 100K API Inferences Quota"
+    },
+    {
+      "id": "INST-06",
+      "name": "Bridgewater Associates",
+      "category": "Global Macro Hedge Fund",
+      "target_email": "research@bwater.com",
+      "alternate_email": "inquiries@bwater.com",
+      "focus": "Macro Economic Regime Transition & Systemic Risk",
+      "contact_role": "Chief Investment Officer & Quantum Systems Lead",
+      "custom_package": "Sovereign Air-Gapped Appliance v3.0 Enclave License"
+    },
+    {
+      "id": "INST-07",
+      "name": "Jane Street Capital",
+      "category": "Quantitative Market Maker",
+      "target_email": "collaborations@janestreet.com",
+      "alternate_email": "info@janestreet.com",
+      "focus": "Ultra-Low Latency Order Routing & Combinatorial Arbitrage",
+      "contact_role": "Head of Systematic Trading Infrastructure",
+      "custom_package": "Zero-SWAP All-to-All Arbitrage Engine SDK"
+    },
+    {
+      "id": "INST-08",
+      "name": "D.E. Shaw & Co.",
+      "category": "Quantitative & Computational Science",
+      "target_email": "research-inquiries@deshaw.com",
+      "alternate_email": "info@deshaw.com",
+      "focus": "Molecular Dynamics & Combinatorial Optimization",
+      "contact_role": "Head of Computational Chemistry & Quantum Research",
+      "custom_package": "QuEra 256-Atom Rydberg AHS + IonQ Trapped-Ion Suite"
+    },
+    {
+      "id": "INST-09",
+      "name": "NVIDIA Corporation",
+      "category": "Semiconductor & Accelerated Computing",
+      "target_email": "quantum-info@nvidia.com",
+      "alternate_email": "cudaq-partnerships@nvidia.com",
+      "focus": "CUDA-Q / cuQuantum Multi-Node Acceleration",
+      "contact_role": "VP of Quantum & HPC Computing",
+      "custom_package": "Triqee CUDA-Q to QPU Transpilation & Benchmarking Bridge"
+    },
+    {
+      "id": "INST-10",
+      "name": "Taiwan Semiconductor Manufacturing Co (TSMC)",
+      "category": "Semiconductor Foundry",
+      "target_email": "oip_support@tsmc.com",
+      "alternate_email": "investor@tsmc.com",
+      "focus": "CoWoS 3D Packaging & Optical Interconnect Metrology",
+      "contact_role": "Director of Advanced Packaging & Quantum R&D",
+      "custom_package": "Triqee Photonic Waveguide & Cryo-CMOS Analysis Dossier"
+    },
+    {
+      "id": "INST-11",
+      "name": "Broadcom Inc.",
+      "category": "Semiconductor & Optical Interconnect",
+      "target_email": "oem-sales@broadcom.com",
+      "alternate_email": "investor.relations@broadcom.com",
+      "focus": "Co-Packaged Optics & High-Bandwidth QPU Switching",
+      "contact_role": "VP of Optical Systems Architecture",
+      "custom_package": "Triqee All-to-All Interconnect Topology Evaluation Suite"
+    },
+    {
+      "id": "INST-12",
+      "name": "ASML Holding N.V.",
+      "category": "Semiconductor Lithography",
+      "target_email": "corpcomm@asml.com",
+      "alternate_email": "investor.relations@asml.com",
+      "focus": "High-NA EUV Precision & Sub-Nanometer Defect Modeling",
+      "contact_role": "VP of Technology & Quantum Metrology",
+      "custom_package": "Triqee Quantum Defect Tensor Network Solver"
+    },
+    {
+      "id": "INST-13",
+      "name": "Lockheed Martin (Space & Missiles)",
+      "category": "Defense Prime Contractor",
+      "target_email": "atl.info@lmco.com",
+      "alternate_email": "quantum.inquiries@lmco.com",
+      "focus": "Autonomous Swarm Trajectory & Sovereign Enclave Security",
+      "contact_role": "Chief Scientist, Advanced Technology Laboratories",
+      "custom_package": "Sovereign Air-Gapped Appliance v3.0 Enclave License"
+    },
+    {
+      "id": "INST-14",
+      "name": "Raytheon Technologies (RTX)",
+      "category": "Defense Prime Contractor",
+      "target_email": "rtxquantum@rtx.com",
+      "alternate_email": "bbn-info@raytheon.com",
+      "focus": "Phased Array Radar Quantum Beamforming & RF Stealth",
+      "contact_role": "Director of Quantum Information Science",
+      "custom_package": "QBS-26 Defense Benchmarking Specification & SDK"
+    },
+    {
+      "id": "INST-15",
+      "name": "Northrop Grumman",
+      "category": "Defense Prime Contractor",
+      "target_email": "maritime.autonomous@ngc.com",
+      "alternate_email": "innovation@ngc.com",
+      "focus": "Autonomous Subsea Navigation & Metamaterial Sonar Cloak",
+      "contact_role": "Head of Maritime Autonomous Systems",
+      "custom_package": "Triqee SonicCloak™ Metamaterial & QPU Router Suite"
+    },
+    {
+      "id": "INST-16",
+      "name": "General Dynamics (Electric Boat / Mission Systems)",
+      "category": "Defense Prime Contractor",
+      "target_email": "gdms.info@gd-ms.com",
+      "alternate_email": "gdebinfo@gdeb.com",
+      "focus": "Nuclear Submarine Quiet Propulsion & Cryptographic Hardware",
+      "contact_role": "VP of Engineering & Advanced Programs",
+      "custom_package": "GLI-19 True Quantum Entropy & Sovereign Enclave Key"
+    },
+    {
+      "id": "INST-17",
+      "name": "L3Harris Technologies",
+      "category": "Defense & Communications Prime",
+      "target_email": "sas.inquiries@l3harris.com",
+      "alternate_email": "communications@l3harris.com",
+      "focus": "Quantum Key Distribution & Anti-Jam Tactical Mesh",
+      "contact_role": "Chief Technology Officer, Space & Airborne Systems",
+      "custom_package": "Triqee Quantum Mesh Routing Protocol"
+    },
+    {
+      "id": "INST-18",
+      "name": "Booz Allen Hamilton",
+      "category": "Defense & Intelligence Consulting",
+      "target_email": "quantum_readiness@bah.com",
+      "alternate_email": "inquiries@bah.com",
+      "focus": "Federal Quantum Readiness & Post-Quantum Cryptography",
+      "contact_role": "Principal & Lead Quantum Practice Leader",
+      "custom_package": "Triqee Sovereign Enterprise QaaS Federal Deployment License"
+    },
+    {
+      "id": "INST-19",
+      "name": "Pfizer Inc.",
+      "category": "Biopharmaceutical Supermajor",
+      "target_email": "external.innovation@pfizer.com",
+      "alternate_email": "partnering@pfizer.com",
+      "focus": "In-Silico Ligand-Receptor Docking & Epigenetic Target ID",
+      "contact_role": "Head of Computational Biomolecular Discovery",
+      "custom_package": "Triqee QGHD Condensate & Trapped-Ion Molecular Solver"
+    },
+    {
+      "id": "INST-20",
+      "name": "Moderna Inc.",
+      "category": "Biopharmaceutical & mRNA Therapeutics",
+      "target_email": "partnering@modernatx.com",
+      "alternate_email": "investors@modernatx.com",
+      "focus": "mRNA Secondary Structure Optimization & Lipid Nanoparticles",
+      "contact_role": "VP of Computational Biology & Genomics",
+      "custom_package": "Triqee-NanoGene™ Epigenetic Precision Simulation Suite"
+    },
+    {
+      "id": "INST-21",
+      "name": "Genentech / Roche",
+      "category": "Biopharmaceutical & Oncology",
+      "target_email": "partnering@gene.com",
+      "alternate_email": "research.collaborations@gene.com",
+      "focus": "KRAS Oncogene Epigenetic Silencing & Bispecific Antibodies",
+      "contact_role": "Global Head of Oncology Data Sciences",
+      "custom_package": "Triqee Cancer Biomolecular Condensate Execution Bundle"
+    },
+    {
+      "id": "INST-22",
+      "name": "Amazon Web Services (AWS Braket)",
+      "category": "Cloud Quantum Hyperscaler",
+      "target_email": "braket-contact@amazon.com",
+      "alternate_email": "aws-quantum-specialists@amazon.com",
+      "focus": "Multi-Vendor Hardware Ecosystem & Braket AHS Integration",
+      "contact_role": "General Manager, Quantum Computing (AWS Braket)",
+      "custom_package": "Triqee Braket AHS & Multi-Cloud Arbitrage Partner Dossier"
+    },
+    {
+      "id": "INST-23",
+      "name": "Microsoft Azure Quantum",
+      "category": "Cloud Quantum Hyperscaler",
+      "target_email": "azurequantum@microsoft.com",
+      "alternate_email": "quantum-partner@microsoft.com",
+      "focus": "Topological Qubits & Quantinuum Trapped-Ion Hybrid Cloud",
+      "contact_role": "VP of Quantum Software & Cloud Infrastructure",
+      "custom_package": "QBS-26 Industry Benchmarking Integration Package"
+    },
+    {
+      "id": "INST-24",
+      "name": "Google Quantum AI",
+      "category": "Quantum Computing OEM & Research",
+      "target_email": "quantum-collaborations@google.com",
+      "alternate_email": "quantumai-support@google.com",
+      "focus": "Sycamore Quantum Supremacy & Surface Code Error Correction",
+      "contact_role": "Director of Quantum Hardware & Theory",
+      "custom_package": "156-Qubit Bethe-Ansatz & KPZ Hydrodynamic Comparison Report"
+    },
+    {
+      "id": "INST-25",
+      "name": "Intel Labs",
+      "category": "Semiconductor & Silicon Spin Qubits",
+      "target_email": "labs-quantum@intel.com",
+      "alternate_email": "intel.labs.inquiries@intel.com",
+      "focus": "Cryo-CMOS Horse Ridge II Control & 300mm Silicon Spin Arrays",
+      "contact_role": "Director of Quantum Hardware Research",
+      "custom_package": "Triqee Cross-Modal Cryogenic Transpilation Engine"
+    }
+  ]
+}

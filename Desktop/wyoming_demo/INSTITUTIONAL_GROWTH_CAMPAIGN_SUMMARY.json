@@ -1,0 +1,211 @@
+{
+  "campaign_name": "Triqee Global Institutional Quantum Expansion 2026",
+  "campaign_code": "TRIQEE-INSTITUTIONAL-Q4-2026",
+  "institutions_dispatched": 25,
+  "total_active_pipeline_usd": 155000000.0,
+  "official_doi_citation": "10.5281/zenodo.23045297",
+  "dispatches": [
+    {
+      "id": "INST-01",
+      "name": "Citadel LLC",
+      "category": "Quantitative Hedge Fund",
+      "package": "QuantVault\u2122 Live Alpha Feed & 16-Qubit IonQ QUBO Solver",
+      "api_key": "TRIQEE_ENT_CITA_8939B563",
+      "pipeline_acv_usd": 8500000.0
+    },
+    {
+      "id": "INST-02",
+      "name": "Two Sigma Investments",
+      "category": "Quantitative Hedge Fund",
+      "package": "QBS-26 Multi-Modal Benchmarking Standard & Arbitrage Router",
+      "api_key": "TRIQEE_ENT_TWO _E50D72F0",
+      "pipeline_acv_usd": 8500000.0
+    },
+    {
+      "id": "INST-03",
+      "name": "Renaissance Technologies (Medallion)",
+      "category": "Quantitative Hedge Fund",
+      "package": "156-Qubit KPZ Superdiffusion & Trapped-Ion QUBO Enclave",
+      "api_key": "TRIQEE_ENT_RENA_9007BD10",
+      "pipeline_acv_usd": 8500000.0
+    },
+    {
+      "id": "INST-04",
+      "name": "Millennium Management",
+      "category": "Multi-Strategy Hedge Fund",
+      "package": "QuantVault\u2122 Sub-Second Rebalance Signals & REST API",
+      "api_key": "TRIQEE_ENT_MILL_480B3E85",
+      "pipeline_acv_usd": 8500000.0
+    },
+    {
+      "id": "INST-05",
+      "name": "Point72 Asset Management",
+      "category": "Quantitative & Equity Hedge Fund",
+      "package": "QuantVault\u2122 Risk Parity + 100K API Inferences Quota",
+      "api_key": "TRIQEE_ENT_POIN_548C247C",
+      "pipeline_acv_usd": 8500000.0
+    },
+    {
+      "id": "INST-06",
+      "name": "Bridgewater Associates",
+      "category": "Global Macro Hedge Fund",
+      "package": "Sovereign Air-Gapped Appliance v3.0 Enclave License",
+      "api_key": "TRIQEE_ENT_BRID_AA11A426",
+      "pipeline_acv_usd": 8500000.0
+    },
+    {
+      "id": "INST-07",
+      "name": "Jane Street Capital",
+      "category": "Quantitative Market Maker",
+      "package": "Zero-SWAP All-to-All Arbitrage Engine SDK",
+      "api_key": "TRIQEE_ENT_JANE_6DD54BB0",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-08",
+      "name": "D.E. Shaw & Co.",
+      "category": "Quantitative & Computational Science",
+      "package": "QuEra 256-Atom Rydberg AHS + IonQ Trapped-Ion Suite",
+      "api_key": "TRIQEE_ENT_D.E._9E94D567",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-09",
+      "name": "NVIDIA Corporation",
+      "category": "Semiconductor & Accelerated Computing",
+      "package": "Triqee CUDA-Q to QPU Transpilation & Benchmarking Bridge",
+      "api_key": "TRIQEE_ENT_NVID_8F3FC9AB",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-10",
+      "name": "Taiwan Semiconductor Manufacturing Co (TSMC)",
+      "category": "Semiconductor Foundry",
+      "package": "Triqee Photonic Waveguide & Cryo-CMOS Analysis Dossier",
+      "api_key": "TRIQEE_ENT_TAIW_00FF7ED3",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-11",
+      "name": "Broadcom Inc.",
+      "category": "Semiconductor & Optical Interconnect",
+      "package": "Triqee All-to-All Interconnect Topology Evaluation Suite",
+      "api_key": "TRIQEE_ENT_BROA_F2320F9E",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-12",
+      "name": "ASML Holding N.V.",
+      "category": "Semiconductor Lithography",
+      "package": "Triqee Quantum Defect Tensor Network Solver",
+      "api_key": "TRIQEE_ENT_ASML_C091C86C",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-13",
+      "name": "Lockheed Martin (Space & Missiles)",
+      "category": "Defense Prime Contractor",
+      "package": "Sovereign Air-Gapped Appliance v3.0 Enclave License",
+      "api_key": "TRIQEE_ENT_LOCK_038BCDD4",
+      "pipeline_acv_usd": 6500000.0
+    },
+    {
+      "id": "INST-14",
+      "name": "Raytheon Technologies (RTX)",
+      "category": "Defense Prime Contractor",
+      "package": "QBS-26 Defense Benchmarking Specification & SDK",
+      "api_key": "TRIQEE_ENT_RAYT_668BE7E6",
+      "pipeline_acv_usd": 6500000.0
+    },
+    {
+      "id": "INST-15",
+      "name": "Northrop Grumman",
+      "category": "Defense Prime Contractor",
+      "package": "Triqee SonicCloak\u2122 Metamaterial & QPU Router Suite",
+      "api_key": "TRIQEE_ENT_NORT_2D154EAF",
+      "pipeline_acv_usd": 6500000.0
+    },
+    {
+      "id": "INST-16",
+      "name": "General Dynamics (Electric Boat / Mission Systems)",
+      "category": "Defense Prime Contractor",
+      "package": "GLI-19 True Quantum Entropy & Sovereign Enclave Key",
+      "api_key": "TRIQEE_ENT_GENE_D70089C9",
+      "pipeline_acv_usd": 6500000.0
+    },
+    {
+      "id": "INST-17",
+      "name": "L3Harris Technologies",
+      "category": "Defense & Communications Prime",
+      "package": "Triqee Quantum Mesh Routing Protocol",
+      "api_key": "TRIQEE_ENT_L3HA_C60DD5CF",
+      "pipeline_acv_usd": 6500000.0
+    },
+    {
+      "id": "INST-18",
+      "name": "Booz Allen Hamilton",
+      "category": "Defense & Intelligence Consulting",
+      "package": "Triqee Sovereign Enterprise QaaS Federal Deployment License",
+      "api_key": "TRIQEE_ENT_BOOZ_BB9189D7",
+      "pipeline_acv_usd": 6500000.0
+    },
+    {
+      "id": "INST-19",
+      "name": "Pfizer Inc.",
+      "category": "Biopharmaceutical Supermajor",
+      "package": "Triqee QGHD Condensate & Trapped-Ion Molecular Solver",
+      "api_key": "TRIQEE_ENT_PFIZ_C5A79B37",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-20",
+      "name": "Moderna Inc.",
+      "category": "Biopharmaceutical & mRNA Therapeutics",
+      "package": "Triqee-NanoGene\u2122 Epigenetic Precision Simulation Suite",
+      "api_key": "TRIQEE_ENT_MODE_38D2035E",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-21",
+      "name": "Genentech / Roche",
+      "category": "Biopharmaceutical & Oncology",
+      "package": "Triqee Cancer Biomolecular Condensate Execution Bundle",
+      "api_key": "TRIQEE_ENT_GENE_D5EAFB27",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-22",
+      "name": "Amazon Web Services (AWS Braket)",
+      "category": "Cloud Quantum Hyperscaler",
+      "package": "Triqee Braket AHS & Multi-Cloud Arbitrage Partner Dossier",
+      "api_key": "TRIQEE_ENT_AMAZ_76E46FCD",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-23",
+      "name": "Microsoft Azure Quantum",
+      "category": "Cloud Quantum Hyperscaler",
+      "package": "QBS-26 Industry Benchmarking Integration Package",
+      "api_key": "TRIQEE_ENT_MICR_C38FBE3A",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-24",
+      "name": "Google Quantum AI",
+      "category": "Quantum Computing OEM & Research",
+      "package": "156-Qubit Bethe-Ansatz & KPZ Hydrodynamic Comparison Report",
+      "api_key": "TRIQEE_ENT_GOOG_3FE95A95",
+      "pipeline_acv_usd": 5000000.0
+    },
+    {
+      "id": "INST-25",
+      "name": "Intel Labs",
+      "category": "Semiconductor & Silicon Spin Qubits",
+      "package": "Triqee Cross-Modal Cryogenic Transpilation Engine",
+      "api_key": "TRIQEE_ENT_INTE_DFD03FBE",
+      "pipeline_acv_usd": 5000000.0
+    }
+  ],
+  "timestamp": "2026-09-30T17:35:04.788698+00:00",
+  "status": "ALL_25_INSTITUTIONS_TRANSMITTED_SUCCESSFULLY"
+}

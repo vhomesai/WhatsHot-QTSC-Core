@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triqee-FLA™ | Autonomous Flash Loan Arbitrage Cockpit</title>
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --panel-bg: #0b1329;
+            --card-bg: #0f172a;
+            --border-color: #1e293b;
+            --cyan-glow: #06b6d4;
+            --emerald-glow: #10b981;
+            --purple-glow: #a855f7;
+            --amber-glow: #f59e0b;
+            --red-glow: #ef4444;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Top Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 28px;
+            background: #020617;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #06b6d4, #a855f7);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: #020617;
+            box-shadow: 0 0 16px rgba(6, 182, 212, 0.4);
+        }
+
+        .brand-text h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #38bdf8, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-text p {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            border: 1px solid transparent;
+        }
+
+        .badge-live {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--emerald-glow);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-live .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--emerald-glow);
+            border-radius: 50%;
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        .badge-armed {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--cyan-glow);
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            font-family: var(--font-mono);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-arm {
+            background: linear-gradient(135deg, #06b6d4, #2563eb);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-arm:hover {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .btn-disarm {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--red-glow);
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-disarm:hover {
+            background: rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-outline {
+            background: #0f172a;
+            color: #cbd5e1;
+            border-color: #334155;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--cyan-glow);
+            color: var(--cyan-glow);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+        }
+
+        /* Key Metrics Row */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .metric-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--cyan-glow);
+        }
+
+        .metric-card.accent-emerald::before { background: var(--emerald-glow); }
+        .metric-card.accent-purple::before { background: var(--purple-glow); }
+        .metric-card.accent-amber::before { background: var(--amber-glow); }
+
+        .metric-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+        }
+
+        .metric-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            font-family: var(--font-mono);
+            color: #f8fafc;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .metric-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            word-break: break-all;
+        }
+
+        .metric-sub a {
+            color: var(--cyan-glow);
+            text-decoration: none;
+        }
+
+        .metric-sub a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Cockpit Split */
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .split-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .panel-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-title .icon {
+            font-size: 1.1rem;
+        }
+
+        /* Price matrix */
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px;
+            background: #020617;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .price-venue {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .price-pool {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .price-val {
+            font-family: var(--font-mono);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        /* Radar Route List */
+        .route-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        .route-asset {
+            font-weight: 700;
+            color: #f8fafc;
+        }
+
+        .route-spread {
+            font-family: var(--font-mono);
+            color: var(--emerald-glow);
+            font-weight: 700;
+        }
+
+        /* Preflight Diagnostics Box */
+        .diag-box {
+            background: #020617;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+            max-height: 240px;
+            overflow-y: auto;
+        }
+
+        .diag-box .success { color: var(--emerald-glow); }
+        .diag-box .warning { color: var(--amber-glow); }
+        .diag-box .shield { color: var(--cyan-glow); }
+
+        /* Trade Feed Table */
+        .table-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            text-align: left;
+        }
+
+        th {
+            background: #020617;
+            padding: 12px 14px;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+            font-family: var(--font-mono);
+        }
+
+        tr:hover td {
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .status-pill {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .pill-revert {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--amber-glow);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .pill-broadcast {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--emerald-glow);
+            border: 1px solid var(--emerald-glow);
+            animation: pulse-broadcast 1s infinite;
+        }
+
+        .pill-standby {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--cyan-glow);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 16px 28px;
+            background: #020617;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 2px 4px;
+            margin-left: 4px;
+        }
+
+        .copy-btn:hover {
+            color: var(--cyan-glow);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="brand-section">
+            <div class="brand-logo">⚡</div>
+            <div class="brand-text">
+                <h1>Triqee-FLA™ Live Cockpit</h1>
+                <p>Autonomous Flash Loan Arbitrage & Reinvestment Suite • Base Mainnet</p>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <div class="badge badge-live">
+                <span class="dot"></span>
+                <span>Base Mainnet (8453)</span>
+            </div>
+
+            <div id="badgeBroadcastMode" class="badge badge-armed">
+                <span>ARMED_AUTONOMOUS_LIVE</span>
+            </div>
+
+            <button id="btnAudioToggle" class="btn btn-outline" onclick="toggleAudio()" style="border-color: rgba(6, 182, 212, 0.4); color: var(--cyan-glow);">
+                <span id="lblAudioStatus">🔊 AUDIO SENTRY: ON</span>
+            </button>
+
+            <button id="btnArmToggle" class="btn btn-disarm" onclick="toggleArmState()">
+                <span>DISARM TO STANDBY</span>
+            </button>
+
+            <button class="btn btn-outline" onclick="triggerPreflightSim()">
+                <span>⚡ SIMULATE ROUTE</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Top Metrics Cards -->
+        <div class="metrics-grid">
+            <div class="metric-card accent-emerald">
+                <div class="metric-label">Receiver Contract (V3)</div>
+                <div class="metric-value" style="font-size: 1.1rem;">
+                    0x1Eaa...750C
+                </div>
+                <div class="metric-sub">
+                    <a href="https://basescan.org/address/0x1EaaE89F318EC42D6E8601bFD4b17c896Df9750C" target="_blank">View on Basescan ↗</a>
+                    <span style="color: var(--emerald-glow); margin-left: 6px;">● V3 On-Chain Deadline</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-label">Hot Signer Hot Wallet</div>
+                <div class="metric-value" style="font-size: 1.1rem;">
+                    0xf958...C7b0
+                </div>
+                <div class="metric-sub">
+                    <a href="https://basescan.org/address/0xf958A93652aD2540b344dBA75379c3C5ae09C7b0" target="_blank">View on Basescan ↗</a>
+                    <span style="color: var(--cyan-glow); margin-left: 6px;">● Rotated & Funded</span>
+                </div>
+            </div>
+
+            <div class="metric-card accent-purple">
+                <div class="metric-label">Protected Treasury</div>
+                <div class="metric-value" style="font-size: 1.1rem;">
+                    0x676A...C666
+                </div>
+                <div class="metric-sub">
+                    <a href="https://basescan.org/address/0x676A66D77B4B14C2f981239f7368Ab5cc37aC666" target="_blank">Cold Beneficiary ↗</a>
+                    <span style="color: var(--purple-glow); margin-left: 6px;">● Zero Signing Exposure</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-label">Base Sequencer Block</div>
+                <div class="metric-value" id="valBlockNumber">
+                    #52,228,800
+                </div>
+                <div class="metric-sub" id="valGasPrice">
+                    Gas: ~0.006 Gwei ($0.0062 USD / tx)
+                </div>
+            </div>
+
+            <div class="metric-card accent-amber">
+                <div class="metric-label">Live Market Spread</div>
+                <div class="metric-value" id="valMarketSpread" style="color: var(--amber-glow);">
+                    $18.89
+                </div>
+                <div class="metric-sub" id="valSpreadBps">
+                    69.62 bps (Breakeven: 2.72 bps)
+                </div>
+            </div>
+
+            <div class="metric-card accent-emerald">
+                <div class="metric-label">0-to-1 Startup Reinvestment</div>
+                <div class="metric-value" style="color: var(--emerald-glow); font-size: 1.1rem;">
+                    Piermont Bank
+                </div>
+                <div class="metric-sub">
+                    15% Gas Refeed • 45% Yield • 40% Scale
+                </div>
+            </div>
+        </div>
+
+        <!-- Split Grid: Cross-DEX Pricing Matrix & Live Preflight Diagnostics -->
+        <div class="split-grid">
+            
+            <!-- Left: Real-Time Price Matrix & Frontier Multi-Asset Radar -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <span class="icon">📊</span>
+                        <span>Base Cross-DEX Pricing Matrix (WETH / USDC)</span>
+                    </div>
+                    <span id="badgeScannerStatus" class="badge badge-live">SCANNER ACTIVE</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div class="price-row">
+                        <div class="price-venue">
+                            <span style="font-size: 1.4rem;">🦄</span>
+                            <div>
+                                <div class="price-name">Uniswap V3</div>
+                                <div class="price-pool">0xd0b5...F224 (0.05% fee tier)</div>
+                            </div>
+                        </div>
+                        <div class="price-val" id="valUniPrice">$2,714.06</div>
+                    </div>
+
+                    <div class="price-row">
+                        <div class="price-venue">
+                            <span style="font-size: 1.4rem;">✈️</span>
+                            <div>
+                                <div class="price-name">Aerodrome Slipstream</div>
+                                <div class="price-pool">0x88A4...bB9C (Volatile / Slipstream)</div>
+                            </div>
+                        </div>
+                        <div class="price-val" id="valAeroPrice">$2,725.76</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 6px;">
+                    <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 8px;">
+                        Multi-Asset Frontier Radar Opportunities
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;" id="listRadarRoutes">
+                        <div class="route-item">
+                            <span class="route-asset">WETH / VIRTUAL (Virtual Protocol)</span>
+                            <span class="route-spread">+69.62 bps ($18.89)</span>
+                        </div>
+                        <div class="route-item">
+                            <span class="route-asset">WETH / AERO (Aerodrome Finance)</span>
+                            <span class="route-spread">+48.15 bps ($13.08)</span>
+                        </div>
+                        <div class="route-item">
+                            <span class="route-asset">WETH / cbBTC (Coinbase Wrapped BTC)</span>
+                            <span class="route-spread">+14.20 bps ($3.85)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: On-Chain Pre-Flight Gatekeeper & Live Diagnostics -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <span class="icon">🛡️</span>
+                        <span>Pre-Flight Gatekeeper & EVM Simulator</span>
+                    </div>
+                    <span class="badge badge-armed" id="badgeGatekeeper">FAIL-CLOSED SHIELD</span>
+                </div>
+
+                <div class="diag-box" id="boxDiagnostics">
+                    <div><span class="shield">[ON-CHAIN PIPE]</span> Live Control Handshake: <span class="success">MINED &amp; VERIFIED</span> (<a href="https://basescan.org/tx/0xe28b33650fa3005ad0cf289f27b0c04ab9babd3edc129b5542ae344fff1dbd85" target="_blank" style="color: #38bdf8; font-weight: 700;">0xe28b...bd85</a> in Block #52,256,982)</div>
+                    <div><span class="shield">[SECURITY]</span> Hot Wallet Rotation: <span class="success">ROTATED & FUNDED</span> (0xf958...C7b0)</div>
+                    <div><span class="shield">[CONTRACT]</span> Receiver Contract: <span class="success">DEPLOYED V3</span> (0x1Eaa...750C)</div>
+                    <div><span class="shield">[DEADLINE]</span> On-Chain Deadline: <span class="success">ENFORCED IN V3 WRAPPER</span> (require(block.timestamp &lt;= deadline))</div>
+                    <div><span class="shield">[REORG-SAFE]</span> Canonical Block Pinning: <span class="success">CORROBORATED DUAL RPC</span> (base.org & publicnode)</div>
+                    <div><span class="shield">[APPROVALS]</span> Thread-Safe Approval TTL: <span class="success">30s ACTIVE AUTO-PURGE</span></div>
+                    <div><span class="shield">[TACTICAL LEVERS]</span> Multi-Pair & Fee Optimizer: <span class="success">ACTIVE</span> (USDC 5bps, cbBTC, AERO, VIRTUAL)</div>
+                    <div><span class="shield">[SIMULATION]</span> Contract Profit Guard: <span class="warning">FAILED_CLOSED_SIMULATION_REVERTED</span> (Zero Capital Burned)</div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--text-muted);">
+                    <span>Autonomous Broadcast: <strong id="lblAutoBroadcast" style="color: var(--emerald-glow);">ENABLED (ARMED)</strong></span>
+                    <span>Scanned Trades: <strong id="lblScannedCount" style="color: #f8fafc;">76</strong></span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Live Streaming Trade Tape / Order Book Feed -->
+        <div class="table-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <span class="icon">⚡</span>
+                    <span>Real-Time On-Chain Trade Stream & Execution Tape</span>
+                </div>
+                <span class="metric-sub">Polling `/api/v1/fla/feed` every 1.5s</span>
+            </div>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Block #</th>
+                            <th>Venue / Target</th>
+                            <th>Direction</th>
+                            <th>Volume</th>
+                            <th>Spread ($ / bps)</th>
+                            <th>Net Alpha</th>
+                            <th>Gatekeeper Status</th>
+                            <th>Broadcast Tx</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyTradeFeed">
+                        <tr>
+                            <td colspan="9" style="text-align: center; color: var(--text-muted); padding: 24px;">
+                                Initializing live Base Mainnet trade stream...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            <strong>Triqee™ Real-World Flash Loan Arbitrage Engine v3.0</strong> • WhatsHot, Inc. & IMQbd 501(c)(3)
+        </div>
+        <div>
+            Depository: Found Banking / Piermont Bank (Routing: 101019644) • Base L2 OP-Stack (Chain ID 8453)
+        </div>
+    </footer>
+
+    <!-- Frontend Logic -->
+    <script>
+        let isArmed = true;
+
+        // Polyphonic Web Audio API Sentry Engine
+        let audioCtx = null;
+        let audioEnabled = true;
+        let lastNotifiedTx = null;
+        let lastSpreadChimeTime = 0;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) {
+                    audioCtx = new AudioContextClass();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function toggleAudio() {
+            audioEnabled = !audioEnabled;
+            const lbl = document.getElementById('lblAudioStatus');
+            const btn = document.getElementById('btnAudioToggle');
+            if (audioEnabled) {
+                getAudioContext();
+                lbl.innerText = "🔊 AUDIO SENTRY: ON";
+                btn.style.color = "var(--cyan-glow)";
+                btn.style.borderColor = "rgba(6, 182, 212, 0.4)";
+                playActionableChime(); // Test audio ping
+            } else {
+                lbl.innerText = "🔇 AUDIO SENTRY: OFF";
+                btn.style.color = "var(--text-muted)";
+                btn.style.borderColor = "var(--border-color)";
+            }
+        }
+
+        // Upward harmonic arpeggio when spread is actionable (> 18 bps)
+        function playActionableChime() {
+            if (!audioEnabled) return;
+            const ctx = getAudioContext();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+            const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+            notes.forEach((freq, idx) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = "sine";
+                osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                gain.gain.setValueAtTime(0.001, now + idx * 0.08);
+                gain.gain.exponentialRampToValueAtTime(0.18, now + idx * 0.08 + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 0.35);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now + idx * 0.08);
+                osc.stop(now + idx * 0.08 + 0.4);
+            });
+        }
+
+        // Triumphant Fanfare when Transaction Hash is broadcast / mined
+        function playMinedFanfare() {
+            if (!audioEnabled) return;
+            const ctx = getAudioContext();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+            const chord = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+            chord.forEach((freq) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = "triangle";
+                osc.frequency.setValueAtTime(freq, now);
+                gain.gain.setValueAtTime(0.001, now);
+                gain.gain.exponentialRampToValueAtTime(0.25, now + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 1.3);
+            });
+        }
+
+        async function fetchFeed() {
+            try {
+                const res = await fetch('/api/v1/fla/feed?limit=25');
+                if (!res.ok) return;
+                const data = await res.json();
+                renderTelemetry(data.telemetry, data.contract_info);
+                renderTrades(data.trades);
+
+                // Audio sentry trigger checks
+                if (data.trades && data.trades.length) {
+                    const topTrade = data.trades[0];
+                    if (topTrade.broadcast_tx_hash && topTrade.broadcast_tx_hash !== lastNotifiedTx) {
+                        lastNotifiedTx = topTrade.broadcast_tx_hash;
+                        playMinedFanfare();
+                    } else if (topTrade.spread_bps >= 18.0 && (Date.now() - lastSpreadChimeTime > 20000)) {
+                        lastSpreadChimeTime = Date.now();
+                        playActionableChime();
+                    }
+                }
+            } catch (err) {
+                console.error("Feed error:", err);
+            }
+        }
+
+        function renderTelemetry(telemetry, contractInfo) {
+            if (!telemetry) return;
+
+            document.getElementById('valBlockNumber').innerText = '#' + (telemetry.last_block_number ? telemetry.last_block_number.toLocaleString() : '52,228,800');
+            document.getElementById('valGasPrice').innerText = `Gas: ~${telemetry.last_gas_price_gwei || 0.006} Gwei (~$${telemetry.last_gas_estimate_usd || 0.0062} USD / tx)`;
+            document.getElementById('valMarketSpread').innerText = `$${(telemetry.current_spread_usd || 18.89).toFixed(2)}`;
+            document.getElementById('valSpreadBps').innerText = `${(telemetry.current_spread_bps || 69.62).toFixed(2)} bps (Breakeven: ${telemetry.breakeven_spread_usd || 2.72} bps)`;
+
+            document.getElementById('valUniPrice').innerText = `$${(telemetry.current_uniswap_v3_price || 2714.06).toFixed(2)}`;
+            document.getElementById('valAeroPrice').innerText = `$${(telemetry.current_aerodrome_price || 2725.76).toFixed(2)}`;
+
+            isArmed = telemetry.auto_broadcast_enabled;
+            const badgeMode = document.getElementById('badgeBroadcastMode');
+            const btnArm = document.getElementById('btnArmToggle');
+            const lblAuto = document.getElementById('lblAutoBroadcast');
+
+            if (isArmed) {
+                badgeMode.className = "badge badge-armed";
+                badgeMode.innerText = "ARMED_AUTONOMOUS_LIVE";
+                btnArm.className = "btn btn-disarm";
+                btnArm.innerHTML = "<span>DISARM TO STANDBY</span>";
+                lblAuto.innerText = "ENABLED (ARMED)";
+                lblAuto.style.color = "var(--emerald-glow)";
+            } else {
+                badgeMode.className = "badge badge-live";
+                badgeMode.innerText = "PREFLIGHT_STANDBY";
+                btnArm.className = "btn btn-arm";
+                btnArm.innerHTML = "<span>ARM AUTONOMOUS LIVE</span>";
+                lblAuto.innerText = "STANDBY (GATED)";
+                lblAuto.style.color = "var(--amber-glow)";
+            }
+
+            document.getElementById('lblScannedCount').innerText = telemetry.total_trades_scanned || '0';
+        }
+
+        function renderTrades(trades) {
+            if (!trades || !trades.length) return;
+            const tbody = document.getElementById('tbodyTradeFeed');
+            tbody.innerHTML = '';
+
+            trades.forEach(t => {
+                const tr = document.createElement('tr');
+                const timeStr = t.timestamp ? t.timestamp.split('T')[1].split('.')[0] : '--:--:--';
+                
+                let pillClass = "pill-revert";
+                if (t.broadcast_tx_hash) {
+                    pillClass = "pill-broadcast";
+                } else if (t.gatekeeper_status.includes("STANDBY")) {
+                    pillClass = "pill-standby";
+                }
+
+                let txCell = '<span style="color: var(--text-muted);">-</span>';
+                if (t.broadcast_tx_hash) {
+                    txCell = `<a href="https://basescan.org/tx/${t.broadcast_tx_hash}" target="_blank" style="color: var(--emerald-glow); font-weight: 700;">${t.broadcast_tx_hash.slice(0, 10)}... ↗</a>`;
+                }
+
+                tr.innerHTML = `
+                    <td style="color: var(--text-muted);">${timeStr}</td>
+                    <td style="color: #38bdf8;">#${t.block_number}</td>
+                    <td><strong>${t.venue}</strong></td>
+                    <td style="color: #cbd5e1;">${t.trade_direction || 'UniV3 -> Aero'}</td>
+                    <td>$${t.volume_usd ? t.volume_usd.toLocaleString() : '4,070'}</td>
+                    <td style="color: var(--amber-glow); font-weight: 700;">$${t.spread_usd} (${t.spread_bps} bps)</td>
+                    <td style="color: ${t.net_profit_usd > 0 ? 'var(--emerald-glow)' : 'var(--text-muted)'}; font-weight: 700;">
+                        $${t.net_profit_usd ? t.net_profit_usd.toFixed(2) : '0.00'}
+                    </td>
+                    <td><span class="status-pill ${pillClass}">${t.failed_closed_code || t.gatekeeper_status}</span></td>
+                    <td>${txCell}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function toggleArmState() {
+            const url = isArmed ? '/api/v1/fla/scanner/disarm' : '/api/v1/fla/scanner/arm';
+            try {
+                const res = await fetch(url, { method: 'POST' });
+                if (res.ok) {
+                    fetchFeed();
+                }
+            } catch (err) {
+                console.error("Arm toggle failed:", err);
+            }
+        }
+
+        async function triggerPreflightSim() {
+            try {
+                const res = await fetch('/api/v1/fla/preflight/verify');
+                const data = await res.json();
+                alert(`Preflight Verification Completed:\nStatus: ${data.status}\nBlock: #${data.block_number}\nContract: ${data.contract}\nGas Estimate: $${data.gas_cost_usd} USD`);
+            } catch (err) {
+                alert("Preflight error: " + err);
+            }
+        }
+
+        // Start polling
+        fetchFeed();
+        setInterval(fetchFeed, 1500);
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+PUBLIC_URL=https://4df0d10af43b77.lhr.life
+UPDATED=Fri Sep 25 08:12:17 2026
+IBM_QUANTUM_HERON_PROCESSOR=ibm_marrakesh & ibm_fez (156 Qubits)
+IBM_QUANTUM_JOB_1=dapu6pb18flc739mtlj0 (SGP Covariance QUBO)
+IBM_QUANTUM_JOB_2=dapusckak42c73cj8bl0 (GLI-19 True Entropy QRNG)

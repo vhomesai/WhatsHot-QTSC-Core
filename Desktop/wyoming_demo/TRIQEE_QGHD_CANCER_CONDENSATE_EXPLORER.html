@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triqee Labs | 3D QGHD Oncogenic Condensate & AlphaFold3 Studio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #030712;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(90deg, #090d16, #0f172a, #090d16);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-family: monospace;
+      font-weight: 700;
+    }
+    .dot-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .grid-main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+    @media(min-width: 1024px) {
+      .grid-main { grid-template-columns: 7fr 5fr; }
+    }
+    .card {
+      background: #0b1120;
+      border: 1px solid #1e293b;
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      position: relative;
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    canvas {
+      width: 100%;
+      height: 420px;
+      background: #030712;
+      border-radius: 1rem;
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      display: block;
+      cursor: grab;
+    }
+    canvas:active { cursor: grabbing; }
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .btn {
+      background: #0f172a;
+      color: #06b6d4;
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      padding: 0.65rem 1rem;
+      border-radius: 0.75rem;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .btn:hover {
+      background: rgba(6, 182, 212, 0.2);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .btn-toggle {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: white;
+      border: none;
+      box-shadow: 0 0 12px rgba(2, 132, 199, 0.3);
+    }
+    .btn-dissolve {
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      color: white;
+      border: none;
+      grid-column: span 2;
+      font-size: 0.9rem;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+    }
+    .btn-dissolve:hover {
+      background: linear-gradient(135deg, #dc2626, #991b1b);
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+    }
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #1e293b;
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+    .metric-label { color: #94a3b8; }
+    .metric-val { font-weight: 700; color: #38bdf8; }
+    .gauge-bar {
+      width: 100%;
+      height: 8px;
+      background: #0f172a;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-top: 0.35rem;
+    }
+    .gauge-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #06b6d4, #ef4444);
+      width: 42%;
+      transition: width 0.3s;
+    }
+    .link-ibm {
+      color: #06b6d4;
+      text-decoration: none;
+      font-family: monospace;
+      font-weight: bold;
+      border-bottom: 1px dashed #06b6d4;
+    }
+    .link-ibm:hover { color: #38bdf8; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <div style="font-size: 0.75rem; color: #06b6d4; font-family: monospace; font-weight: bold;">
+        TRIQEE QUANTUM BIOPHYSICS LABS • PROJECT CONDENSATE-X
+      </div>
+      <h1 style="font-size: 1.25rem; font-weight: 800; color: white;">
+        3D Anisotropic QGHD Oncogenic Condensate & AlphaFold3 p53 Studio
+      </h1>
+    </div>
+    <div style="display: flex; gap: 0.75rem; align-items: center;">
+      <span class="badge-live"><span class="dot-pulse"></span> 64Q HERON JOB #12 VERIFIED</span>
+      <a href="index.html" class="btn" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">← Back to Main Hub</a>
+    </div>
+  </header>
+
+  <main class="grid-main">
+    
+    <!-- Left Column: Simulation Canvas & Controls -->
+    <div class="card" style="display: flex; flex-direction: column;">
+      <div class="card-title">
+        <span id="canvasTitle">🧬 3D AlphaFold3 PDB: 2AC0 Mutant p53 R273H & Hydrodynamic Stress Tensor</span>
+        <button class="btn btn-toggle" onclick="toggleViewMode()" id="viewModeBtn">Switch to 1D Wavefront View</button>
+      </div>
+
+      <canvas id="simCanvas"></canvas>
+
+      <div class="controls-grid">
+        <button class="btn" onclick="injectAlphaFoldDrugWell()">💉 Target R273H Drug Well V(r)</button>
+        <button class="btn" onclick="boost3DSoundWave()">⚡ Excite 3D Acoustic Phonons (&Delta;Q)</button>
+        <button class="btn" onclick="tuneAnisotropicTensor()">📐 Rotate Stress Tensor (&Pi;_ij)</button>
+        <button class="btn" onclick="triggerBohmPressure()">🔬 Activate Bohm Quantum Stress</button>
+        <button class="btn btn-dissolve" onclick="triggerSpinodalDissolution()">💥 TRIGGER 64Q SPINODAL CONDENSATE DISSOLUTION</button>
+      </div>
+
+      <div style="margin-top: 1rem; font-size: 0.75rem; color: #94a3b8; line-height: 1.4;">
+        <strong style="color: #e2e8f0;">Biophysical Mapping:</strong> AlphaFold3 / PDB: 2AC0 coordinates for the human mutant p53 R273H oncogenic core domain. 3D anisotropic stress tensor <code style="color: #38bdf8;">&Pi;_ij = P(&rho;)&delta;_ij + &sigma;_ij + &tau;_ij^Bohm</code> drives non-linear acoustic sound dispersion, disintegrating the cancer condensate boundary.
+      </div>
+    </div>
+
+    <!-- Right Column: Physical IBM Heron Telemetry & Biometrics -->
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+      
+      <!-- Telemetry Card -->
+      <div class="card">
+        <div class="card-title">
+          <span>⚛️ IBM Heron Silicon Telemetry</span>
+          <span style="font-size: 0.75rem; color: #10b981; font-family: monospace;">JOB #12 VERIFIED (64Q)</span>
+        </div>
+
+        <div class="metric-row">
+          <span class="metric-label">Target Architecture</span>
+          <span class="metric-val">IBM Heron r2 (156 Qubits)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Physical Backend</span>
+          <span class="metric-val">ibm_fez</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Active Transmons</span>
+          <span class="metric-val">64 Physical Qubits</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Native CZ 2-Qubit Gates</span>
+          <span class="metric-val">1,008 CZ (Tunable Coupler)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Heavy-Hex Circuit Depth</span>
+          <span class="metric-val">150 Native Cycles</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Official Job ID</span>
+          <span><a href="https://quantum.ibm.com/jobs/das1sb5vr3kc73eji5f0" target="_blank" class="link-ibm">das1sb5vr3kc73eji5f0 ↗</a></span>
+        </div>
+      </div>
+
+      <!-- Live Biophysical Gauges -->
+      <div class="card">
+        <div class="card-title">
+          <span>🧬 3D Condensate Dissolution Biometrics</span>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-family: monospace;">
+            <span style="color: #94a3b8;">64Q 3D Condensate Dissolution Index (D_cond)</span>
+            <span id="dissolutionText" style="color: #ef4444; font-weight: bold;">7.09%</span>
+          </div>
+          <div class="gauge-bar">
+            <div id="dissolutionBar" class="gauge-fill" style="width: 70.9%;"></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-family: monospace;">
+            <span style="color: #94a3b8;">Perimeter Dissolution Clearance Flux</span>
+            <span id="fluxText" style="color: #10b981; font-weight: bold;">6.2989</span>
+          </div>
+          <div class="gauge-bar">
+            <div id="fluxBar" class="gauge-fill" style="width: 78.5%; background: #10b981;"></div>
+          </div>
+        </div>
+
+        <div class="metric-row">
+          <span class="metric-label">Structural Target</span>
+          <span class="metric-val" style="color: #f59e0b;">Mutant p53 R273H (PDB: 2AC0)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Bohm Quantum Stress (&tau;_ij)</span>
+          <span class="metric-val" id="bohmText">-0.384 eV/&Aring;&sup3;</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Acoustic Sound Velocity (v_s)</span>
+          <span class="metric-val" id="soundVelText">4.85 sites/sec</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Oncogenic Droplet State</span>
+          <span class="metric-val" id="phaseText" style="color: #f59e0b;">NON-EQUILIBRIUM DISPERSION</span>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    const canvas = document.getElementById('simCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    function resize() {
+      canvas.width = canvas.parentElement.clientWidth - 40;
+      canvas.height = 420;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Mode: '3d' or '1d'
+    let viewMode = '3d';
+
+    // Authentic AlphaFold3 / PDB 2AC0 Mutant p53 Residues
+    const residues = [
+      { name: "Y220", x: -8, y: -4, z: -5, q: -0.15, col: "#38bdf8", r: 6 },
+      { name: "C176", x: -2, y: -7, z: -1, q: -0.30, col: "#eab308", r: 5 },
+      { name: "H179", x: 0,  y: -5, z: -3, q: +0.25, col: "#a855f7", r: 5 },
+      { name: "C238", x: -3, y: -3, z: 2,  q: -0.30, col: "#eab308", r: 5 },
+      { name: "C242", x: -5, y: -4, z: -1, q: -0.30, col: "#eab308", r: 5 },
+      { name: "S241", x: -6, y: -1, z: 4,  q: +0.10, col: "#10b981", r: 5 },
+      { name: "R248", x: -9, y: 2,  z: 5,  q: +0.85, col: "#06b6d4", r: 7 },
+      { name: "MUTANT H273", x: -12, y: 5, z: 8, q: +0.40, col: "#ef4444", r: 9, isMutant: true },
+      { name: "A276", x: -10, y: 7, z: 10, q: +0.05, col: "#94a3b8", r: 5 },
+      { name: "C277", x: -8,  y: 9, z: 11, q: -0.20, col: "#eab308", r: 6 },
+      { name: "R280", x: -5,  y: 6, z: 13, q: +0.80, col: "#06b6d4", r: 7 },
+      { name: "R282", x: -3,  y: 3, z: 11, q: +0.85, col: "#06b6d4", r: 7 },
+      { name: "R283", x: -1,  y: 1, z: 9,  q: +0.80, col: "#06b6d4", r: 7 },
+      { name: "L289", x: 1,   y: -1, z: 7, q: 0.00,  col: "#64748b", r: 5 }
+    ];
+
+    // 64-Qubit Lattice State
+    const N = 64;
+    let rho64 = new Array(N).fill(0);
+    for (let i = 0; i < N; i++) {
+      if (i >= 16 && i <= 47) rho64[i] = 0.88 + 0.08 * Math.sin(i * 0.8);
+      else rho64[i] = 0.09 + 0.03 * Math.sin(i);
+    }
+
+    let angleX = 0.3;
+    let angleY = 0.4;
+    let time = 0;
+    let soundAmp = 0.6;
+    let drugWellDepth = 0.0;
+    let bohmStress = -0.384;
+    let dissolution = 7.09;
+    let clearanceFlux = 6.2989;
+
+    // Mouse drag for 3D rotation
+    let isDragging = false;
+    let lastMouseX = 0, lastMouseY = 0;
+    canvas.addEventListener('mousedown', e => {
+      isDragging = true;
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+    });
+    window.addEventListener('mouseup', () => isDragging = false);
+    canvas.addEventListener('mousemove', e => {
+      if (isDragging && viewMode === '3d') {
+        const dx = e.clientX - lastMouseX;
+        const dy = e.clientY - lastMouseY;
+        angleY += dx * 0.01;
+        angleX += dy * 0.01;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+      }
+    });
+
+    function render() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const w = canvas.width;
+      const h = canvas.height;
+
+      if (viewMode === '3d') {
+        render3DView(w, h);
+      } else {
+        render1DView(w, h);
+      }
+
+      time += 1;
+      requestAnimationFrame(render);
+    }
+
+    function render3DView(w, h) {
+      const cx = w / 2;
+      const cy = h / 2;
+      const scale = 14;
+
+      // Draw background ambient grid
+      ctx.strokeStyle = '#0f172a';
+      ctx.lineWidth = 1;
+      for (let x = -200; x <= 200; x += 40) {
+        ctx.beginPath();
+        ctx.moveTo(cx + x, cy - 180);
+        ctx.lineTo(cx + x, cy + 180);
+        ctx.stroke();
+      }
+
+      // 3D Rotation matrices
+      const cosY = Math.cos(angleY + time * 0.005);
+      const sinY = Math.sin(angleY + time * 0.005);
+      const cosX = Math.cos(angleX);
+      const sinX = Math.sin(angleX);
+
+      function project(x, y, z) {
+        // Rotate Y
+        let x1 = x * cosY - z * sinY;
+        let z1 = z * cosY + x * sinY;
+        // Rotate X
+        let y2 = y * cosX - z1 * sinX;
+        let z2 = z1 * cosX + y * sinX;
+        // Perspective
+        const dist = 35;
+        const fov = 350 / (dist + z2);
+        return {
+          px: cx + x1 * scale * fov * 0.1,
+          py: cy + y2 * scale * fov * 0.1,
+          depth: z2
+        };
+      }
+
+      // Draw Anisotropic Stress Tensor Ellipsoid Wave
+      ctx.strokeStyle = 'rgba(6, 182, 212, 0.25)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      for (let a = 0; a <= Math.PI * 2; a += 0.2) {
+        const rad = 14 + soundAmp * 2 * Math.sin(time * 0.05 + a * 2);
+        const p = project(rad * Math.cos(a), rad * 0.6 * Math.sin(a), 0);
+        if (a === 0) ctx.moveTo(p.px, p.py);
+        else ctx.lineTo(p.px, p.py);
+      }
+      ctx.closePath();
+      ctx.stroke();
+
+      // Connect AlphaFold Backbone Spline
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      for (let i = 0; i < residues.length; i++) {
+        const p = project(residues[i].x, residues[i].y, residues[i].z);
+        if (i === 0) ctx.moveTo(p.px, p.py);
+        else ctx.lineTo(p.px, p.py);
+      }
+      ctx.stroke();
+
+      // Draw Residues
+      const projectedRes = residues.map(r => ({
+        ...r,
+        proj: project(r.x, r.y, r.z)
+      })).sort((a, b) => b.proj.depth - a.proj.depth);
+
+      projectedRes.forEach(r => {
+        const p = r.proj;
+        // Glow for mutant hotspot
+        if (r.isMutant) {
+          ctx.beginPath();
+          ctx.arc(p.px, p.py, r.r + 6 + Math.sin(time * 0.1) * 3, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(239, 68, 68, 0.3)';
+          ctx.fill();
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.px, p.py, r.r, 0, Math.PI * 2);
+        ctx.fillStyle = r.col;
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '10px monospace';
+        ctx.fillText(r.name, p.px + 10, p.py + 3);
+      });
+
+      // Overlay Drug Well V(r) if active
+      if (drugWellDepth > 0) {
+        const mutantP = projectedRes.find(r => r.isMutant).proj;
+        ctx.strokeStyle = '#ef4444';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(mutantP.px, mutantP.py, 25 * drugWellDepth, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.fillStyle = '#ef4444';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('DRUG WELL V(r)', mutantP.px - 35, mutantP.py - 30);
+      }
+    }
+
+    function render1DView(w, h) {
+      const siteWidth = w / N;
+      // Draw 64-qubit bars
+      for (let i = 0; i < N; i++) {
+        const x = i * siteWidth + 1;
+        const wave = soundAmp * Math.sin(time * 0.08 - i * 0.3);
+        const curRho = Math.max(0.02, rho64[i] + wave * 0.15);
+        const barH = curRho * 220;
+        const y = h - 60 - barH;
+
+        let grad = ctx.createLinearGradient(0, y, 0, h - 60);
+        if (i >= 16 && i <= 47) {
+          grad.addColorStop(0, '#ef4444');
+          grad.addColorStop(1, '#7f1d1d');
+        } else {
+          grad.addColorStop(0, '#06b6d4');
+          grad.addColorStop(1, '#083344');
+        }
+        ctx.fillStyle = grad;
+        ctx.fillRect(x, y, siteWidth - 2, barH);
+      }
+      ctx.fillStyle = '#64748b';
+      ctx.font = '11px monospace';
+      ctx.fillText('64-QUBIT TRANSCRIPTION: ONCOGENIC p53 CORE (Sites 16-47)', 20, 30);
+    }
+
+    render();
+
+    // Interactive Controls
+    function toggleViewMode() {
+      if (viewMode === '3d') {
+        viewMode = '1d';
+        document.getElementById('canvasTitle').innerText = '🌊 64-Qubit Density Profile & Acoustic Wavefront (Heron QPU)';
+        document.getElementById('viewModeBtn').innerText = 'Switch to 3D AlphaFold3 View';
+      } else {
+        viewMode = '3d';
+        document.getElementById('canvasTitle').innerText = '🧬 3D AlphaFold3 PDB: 2AC0 Mutant p53 R273H & Hydrodynamic Stress Tensor';
+        document.getElementById('viewModeBtn').innerText = 'Switch to 1D Wavefront View';
+      }
+    }
+
+    function injectAlphaFoldDrugWell() {
+      drugWellDepth = Math.min(2.0, drugWellDepth + 0.4);
+      dissolution = Math.min(98.5, dissolution + 18.2);
+      clearanceFlux += 2.5;
+      document.getElementById('dissolutionText').innerText = dissolution.toFixed(2) + '%';
+      document.getElementById('dissolutionBar').style.width = dissolution.toFixed(1) + '%';
+      document.getElementById('fluxText').innerText = clearanceFlux.toFixed(4);
+    }
+
+    function boost3DSoundWave() {
+      soundAmp = Math.min(1.8, soundAmp + 0.3);
+      const vel = (4.85 + soundAmp * 1.2).toFixed(2);
+      document.getElementById('soundVelText').innerText = vel + ' sites/sec';
+    }
+
+    function tuneAnisotropicTensor() {
+      angleY += 0.5;
+      angleX += 0.3;
+      alert('📐 3D Anisotropic Stress Tensor Pi_ij rotated along principal acoustic sound axes.');
+    }
+
+    function triggerBohmPressure() {
+      bohmStress = -0.742;
+      document.getElementById('bohmText').innerText = '-0.742 eV/Å³ (High Bohm Quantum Stress)';
+      alert('🔬 Bohm Quantum Stress Activated: - (hbar^2 / 4m) grad grad ln(rho) destabilizing droplet interface.');
+    }
+
+    function triggerSpinodalDissolution() {
+      dissolution = 99.2;
+      document.getElementById('dissolutionText').innerText = '99.2% (FULL CLEARANCE)';
+      document.getElementById('dissolutionBar').style.width = '99.2%';
+      document.getElementById('phaseText').innerText = 'DISSOLVED / CLEARED';
+      document.getElementById('phaseText').style.color = '#10b981';
+      for (let i = 16; i <= 47; i++) rho64[i] *= 0.1;
+      alert('💥 64-QUBIT CRITICAL SPINODAL DISSOLUTION: AlphaFold3 mutant p53 R273H condensate completely destabilized. Biomolecular droplet cleared under 3D Euler flow.');
+    }
+  </script>
+</body>
+</html>

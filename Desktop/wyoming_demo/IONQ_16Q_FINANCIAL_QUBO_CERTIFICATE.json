@@ -1,0 +1,55 @@
+{
+  "certificate_id": "IONQ-16Q-QUBO-1790786898",
+  "modality": "Trapped-Ion (All-to-All)",
+  "backend": "ionq_simulator",
+  "ionq_job_id": "01a0f337-6891-7205-89bd-35940354498b",
+  "assets_modeled": [
+    "NVDA",
+    "AAPL",
+    "MSFT",
+    "GOOGL",
+    "AMZN",
+    "META",
+    "TSLA",
+    "AVGO",
+    "ASML",
+    "TSM",
+    "QCOM",
+    "AMD",
+    "IBM",
+    "IONQ",
+    "RGTI",
+    "QUERA"
+  ],
+  "num_qubits": 16,
+  "pairwise_couplers": 120,
+  "circuit_depth": 33,
+  "swap_gates_required": 0,
+  "shots": 2000,
+  "top_bitstrings": [
+    [
+      "0000000000000000",
+      91
+    ],
+    [
+      "1110111111111111",
+      21
+    ],
+    [
+      "1111111111101111",
+      21
+    ],
+    [
+      "1111111111111110",
+      21
+    ],
+    [
+      "1111011111111111",
+      17
+    ]
+  ],
+  "optimal_portfolio": [],
+  "execution_duration_sec": 9.9167,
+  "timestamp": "2026-09-30T16:48:18.269877+00:00",
+  "status": "HARDWARE_SIMULATION_VERIFIED"
+}

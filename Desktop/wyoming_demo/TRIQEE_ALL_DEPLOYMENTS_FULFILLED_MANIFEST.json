@@ -1,0 +1,738 @@
+{
+  "manifest_title": "Triqee\u2122 Enterprise Deployment Fulfillment Master Manifest",
+  "timestamp_utc": "2026-10-03T19:38:04.866120+00:00",
+  "total_deployments_fulfilled": 37,
+  "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token Standard",
+  "wyoming_certificate": "DA-000000992",
+  "doi_provenance": "10.5281/zenodo.23045297",
+  "base_l2_settlement_block": 19842105,
+  "deployments": [
+    {
+      "deployment_id": "TRIQEE-NODE-0001-C17B33CF",
+      "lead_id": 1,
+      "firm_name": "Independent Enterprise",
+      "contact_name": "0x71C...b89A",
+      "contact_email": "dev_1790908850@triqee.com",
+      "deployment_scale": "Hybrid Multi-Vendor QPU Transpiler Gateway",
+      "allocated_tq_tokens": 500.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x848442a01104d3eafdd08c539064dd2730288ef97d891937319276b57bf063a3",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "HYBRID_CLOUD",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.800906+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0002-B21B2C9B",
+      "lead_id": 2,
+      "firm_name": "Independent Enterprise",
+      "contact_name": "0x71C...b89A",
+      "contact_email": "institutional_allocator@triqee.com",
+      "deployment_scale": "Hybrid Multi-Vendor QPU Transpiler Gateway",
+      "allocated_tq_tokens": 10000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x86ccbb56da58252ad8dc793fa9b027c65d4f9951ff76287f639d1e4d4eb58b26",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "HYBRID_CLOUD",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.805699+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0003-B21B2C9B",
+      "lead_id": 3,
+      "firm_name": "Independent Enterprise",
+      "contact_name": "0x71C...b89A",
+      "contact_email": "institutional_allocator@triqee.com",
+      "deployment_scale": "Hybrid Multi-Vendor QPU Transpiler Gateway",
+      "allocated_tq_tokens": 10000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x03d16cc6d732d4ed9ab7358c0b7efa983d034337c5a9d9ec666df8994a2410ba",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "HYBRID_CLOUD",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.808933+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0004-D02F57D0",
+      "lead_id": 4,
+      "firm_name": "Independent Enterprise",
+      "contact_name": "0x71C...b89A",
+      "contact_email": "dev_1790979019@triqee.com",
+      "deployment_scale": "Hybrid Multi-Vendor QPU Transpiler Gateway",
+      "allocated_tq_tokens": 500.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x6c30e070281879397e8ba2a960830fd7fb631acfbad3dece3372d12e16e1004e",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "HYBRID_CLOUD",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.812884+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0005-4742D247",
+      "lead_id": 5,
+      "firm_name": "Independent Enterprise",
+      "contact_name": "0x71C...b89A",
+      "contact_email": "tier1_allocator@triqee.com",
+      "deployment_scale": "Hybrid Multi-Vendor QPU Transpiler Gateway",
+      "allocated_tq_tokens": 25000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x5ddb890ad57bbac689631475dcd5720e7f30c12c422c300adb30b6c58e73d942",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "HYBRID_CLOUD",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.818396+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0006-4742D247",
+      "lead_id": 6,
+      "firm_name": "Independent Enterprise",
+      "contact_name": "0x71C...b89A",
+      "contact_email": "tier1_allocator@triqee.com",
+      "deployment_scale": "Hybrid Multi-Vendor QPU Transpiler Gateway",
+      "allocated_tq_tokens": 25000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0xf4967ec20b58d295a76bf63f6a7236ff1a40632769ebffcff8922961dc0ff0dc",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "HYBRID_CLOUD",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.820161+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0007-2C1265B3",
+      "lead_id": 7,
+      "firm_name": "Bridgewater Macro Quantum",
+      "contact_name": "Ray Dalio Team",
+      "contact_email": "lead_bcd9101c@bridgewater.com",
+      "deployment_scale": "SCIF Defense On-Premise Sovereign Node",
+      "allocated_tq_tokens": 50000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x7ea5cf812a0125662ba80ac52a550e0901003614fe2e7e53db139cb3eb46dff4",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "ACTIVE",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.822256+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0008-5C53A137",
+      "lead_id": 8,
+      "firm_name": "Bridgewater Macro Quantum",
+      "contact_name": "Ray Dalio Team",
+      "contact_email": "lead_90b9aced@bridgewater.com",
+      "deployment_scale": "SCIF Defense On-Premise Sovereign Node",
+      "allocated_tq_tokens": 50000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x24397a2dab5132954608a0979ab58e8b305cf3f8459bd38ac21e618130ed3e2d",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "ACTIVE",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.823875+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0009-BAD8F2F5",
+      "lead_id": 9,
+      "firm_name": "Bridgewater Macro Quantum",
+      "contact_name": "Ray Dalio Team",
+      "contact_email": "lead_328e31cd@bridgewater.com",
+      "deployment_scale": "SCIF Defense On-Premise Sovereign Node",
+      "allocated_tq_tokens": 50000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x906b9d5f99199c275fbc7d666682888264f72e7b42961c12f9242d34845e2446",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "ACTIVE",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.824879+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0010-03787C93",
+      "lead_id": 10,
+      "firm_name": "Bridgewater Macro Quantum",
+      "contact_name": "Ray Dalio Team",
+      "contact_email": "lead_1c517380@bridgewater.com",
+      "deployment_scale": "SCIF Defense On-Premise Sovereign Node",
+      "allocated_tq_tokens": 50000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x0b5e2f38eb83b4633d1506ab87413f0fe33848a3efb890a8f490de1fa1806b58",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "ACTIVE",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.830174+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0011-ED639C1B",
+      "lead_id": 11,
+      "firm_name": "Bridgewater Macro Quantum",
+      "contact_name": "Ray Dalio Team",
+      "contact_email": "lead_47e11f5b@bridgewater.com",
+      "deployment_scale": "SCIF Defense On-Premise Sovereign Node",
+      "allocated_tq_tokens": 50000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x1ef0cf940a8283dd9db800bb6cc675fb7344e138f7de223ec0db617b11ade0cb",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "ACTIVE",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.831193+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0012-53112FBF",
+      "lead_id": 12,
+      "firm_name": "WH",
+      "contact_name": "Jon Vierk",
+      "contact_email": "teamvierk@gmail.com",
+      "deployment_scale": "Hybrid Multi-Vendor QPU Transpiler Gateway",
+      "allocated_tq_tokens": 25000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0xd262f32faeaa95fb71fcedfc9ec4383f2a6743ce047b5f2fe45909771bb7d74f",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "HYBRID_CLOUD",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.834162+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0013-FCB53729",
+      "lead_id": 13,
+      "firm_name": "Bridgewater Macro Quantum",
+      "contact_name": "Ray Dalio Team",
+      "contact_email": "lead_821c18a8@bridgewater.com",
+      "deployment_scale": "SCIF Defense On-Premise Sovereign Node",
+      "allocated_tq_tokens": 50000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x5bb119870159d4eebeaab4d51b36db365af8b721c45290da72f0425b853b4b88",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "ACTIVE",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.835982+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0014-BF1F3C80",
+      "lead_id": 14,
+      "firm_name": "Bridgewater Macro Quantum",
+      "contact_name": "Ray Dalio Team",
+      "contact_email": "lead_ba2ee742@bridgewater.com",
+      "deployment_scale": "SCIF Defense On-Premise Sovereign Node",
+      "allocated_tq_tokens": 50000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x6d9b1097487222237e16a22723166090919b5855d46a98b8cf68b21653849a18",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "ACTIVE",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.836987+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0015-D34F14CD",
+      "lead_id": 15,
+      "firm_name": "Bridgewater Macro Quantum",
+      "contact_name": "Ray Dalio Team",
+      "contact_email": "lead_9e58ef38@bridgewater.com",
+      "deployment_scale": "SCIF Defense On-Premise Sovereign Node",
+      "allocated_tq_tokens": 50000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x012d8abd92b906628baddf1c18f8b062bb1725dcc36364114beb48d547ecafb6",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "ACTIVE",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.838991+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0016-B21B2C9B",
+      "lead_id": 16,
+      "firm_name": "Independent Enterprise",
+      "contact_name": "0x71C...b89A",
+      "contact_email": "institutional_allocator@triqee.com",
+      "deployment_scale": "Hybrid Multi-Vendor QPU Transpiler Gateway",
+      "allocated_tq_tokens": 10000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0x6bfc842b0e32e4219c2f42342d8dd8a0910b310f50374b57180767913425fc4a",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "HYBRID_CLOUD",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.839979+00:00"
+    },
+    {
+      "deployment_id": "TRIQEE-NODE-0017-E080A926",
+      "lead_id": 17,
+      "firm_name": "Bridgewater Macro Quantum",
+      "contact_name": "Ray Dalio Team",
+      "contact_email": "lead_765bcfef@bridgewater.com",
+      "deployment_scale": "SCIF Defense On-Premise Sovereign Node",
+      "allocated_tq_tokens": 50000.0,
+      "statutory_authority": "Wyoming W.S. \u00a7 34-29-106 Consumptive Open Utility Token",
+      "wyoming_certificate": "DA-000000992",
+      "doi_provenance": "10.5281/zenodo.23045297",
+      "merkle_receipt": "0xc16e27adfa163d5788e62dd8180e4cda50faebf4ed291b5303cdb24ee39755c2",
+      "engine_configuration": {
+        "photonic_wasm_silicon": "ENABLED (Sub-250 \u00b5s Latency)",
+        "physical_invariants": {
+          "c_speed_of_light_km_s": 299792.458,
+          "fiber_glass_refractive_index": 1.4682,
+          "earth_mean_radius_km": 6371.0
+        },
+        "scif_airgap_mode": "ACTIVE",
+        "qpu_transpiler_gateways": [
+          "IBM Heron 156Q",
+          "IonQ Forte",
+          "Rigetti Ankaa-2",
+          "AWS Braket"
+        ],
+        "zero_exfiltration_guarantee": true
+      },
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.841570+00:00"
+    },
+    {
+      "pilot_id": 1,
+      "client_name": "Xanadu Quantum Technologies",
+      "tier": "Tier-1 Quantum Software & Hardware Supermajor",
+      "node_id": "TRIQEE-PILOT-001-EC-01A",
+      "sandbox_token": "TRIQEE-SBX-XANADU-CATALYST-QEC-01A",
+      "merkle_receipt": "0xcc8bf2179b23591f07eb1fdd6eca22ddc796c579e8cddbf7f789c6d0391f847c",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 2,
+      "client_name": "AMD Quantum & Adaptive Computing",
+      "tier": "Global Semiconductor & Acceleration Supermajor",
+      "node_id": "TRIQEE-PILOT-002-GA-02B",
+      "sandbox_token": "TRIQEE-SBX-AMD-ROCM-FPGA-02B",
+      "merkle_receipt": "0x3ff510fc1f5906632477f94e70e312059350726d88124fa697080ac6567d253f",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 3,
+      "client_name": "Quantinuum",
+      "tier": "Trapped-Ion Commercial Supermajor",
+      "node_id": "TRIQEE-PILOT-003-ES-03C",
+      "sandbox_token": "TRIQEE-SBX-QUANTINUUM-HSERIES-03C",
+      "merkle_receipt": "0xef0a64772633d20854d9b650b30cb51452a3148aa15800c536e82cc2621e2bdd",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 4,
+      "client_name": "Rigetti Computing",
+      "tier": "Superconducting QPU Pioneer",
+      "node_id": "TRIQEE-PILOT-004-AA-04D",
+      "sandbox_token": "TRIQEE-SBX-RIGETTI-ANKAA-04D",
+      "merkle_receipt": "0xd5adb81a7e2469bd6bff4b43333f619ee076c85477b8e229ac945c48b6c74942",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 5,
+      "client_name": "IBM Quantum",
+      "tier": "Enterprise Quantum Pioneer",
+      "node_id": "TRIQEE-PILOT-005-EC-05E",
+      "sandbox_token": "TRIQEE-SBX-IBM-HERON-QEC-05E",
+      "merkle_receipt": "0x892bfb15f28e850c0a0a6abd2aceeaaa38dbc37651de4afd0b960e79ef8611d2",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 6,
+      "client_name": "Google Quantum AI",
+      "tier": "Quantum Error Correction Frontier Major",
+      "node_id": "TRIQEE-PILOT-006-EC-06F",
+      "sandbox_token": "TRIQEE-SBX-GOOGLE-WILLOW-QEC-06F",
+      "merkle_receipt": "0x1d98937b5173de4a3a5d949d2151907fabe9766c49c55f4949c530476f4fff59",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 7,
+      "client_name": "AWS Braket Quantum Technologies",
+      "tier": "Cloud Quantum Infrastructure Supermajor",
+      "node_id": "TRIQEE-PILOT-007-EC-07G",
+      "sandbox_token": "TRIQEE-SBX-AWS-BRAKET-QEC-07G",
+      "merkle_receipt": "0xa1ded5dbd059370dd6d1894530bfda543d0b80c4fab5313590a57b1874c08b2a",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 8,
+      "client_name": "Microsoft Azure Quantum",
+      "tier": "Topological Quantum Pioneer",
+      "node_id": "TRIQEE-PILOT-008-EC-08H",
+      "sandbox_token": "TRIQEE-SBX-MSFT-AZURE-QEC-08H",
+      "merkle_receipt": "0x461f0778ed70e635f89a9c138f5db421625b525cdbe6ebe55552137d8e16b294",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 9,
+      "client_name": "PsiQuantum",
+      "tier": "Fault-Tolerant Photonic Supermajor",
+      "node_id": "TRIQEE-PILOT-009-QC-09I",
+      "sandbox_token": "TRIQEE-SBX-PSIQUANTUM-FBQC-09I",
+      "merkle_receipt": "0xe7e81d248a3ed9013a543722c9c3178dc8af03cfa4a8391faf485cca3147a092",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 10,
+      "client_name": "IonQ, Inc.",
+      "tier": "Trapped-Ion Enterprise Supermajor",
+      "node_id": "TRIQEE-PILOT-010-EC-10J",
+      "sandbox_token": "TRIQEE-SBX-IONQ-FORTE-QEC-10J",
+      "merkle_receipt": "0xbfa4dc88041e8bc2aa8bddd8d204365d617a70d693070fd66d20060b1abedfce",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 11,
+      "client_name": "Xanadu Quantum Technologies",
+      "tier": "Tier-1 Quantum Software & Hardware Supermajor",
+      "node_id": "TRIQEE-PILOT-011-EC-01A",
+      "sandbox_token": "TRIQEE-SBX-XANADU-CATALYST-QEC-01A",
+      "merkle_receipt": "0x778779584f01f42728e633e869302dc0a8353a353fd1453cd43acc12f0caaf9d",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 12,
+      "client_name": "AMD Quantum & Adaptive Computing",
+      "tier": "Global Semiconductor & Acceleration Supermajor",
+      "node_id": "TRIQEE-PILOT-012-GA-02B",
+      "sandbox_token": "TRIQEE-SBX-AMD-ROCM-FPGA-02B",
+      "merkle_receipt": "0x21c45320fdb6174dcde127f966bc13898112f5d2fa009e7a135def180b9184f7",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 13,
+      "client_name": "Quantinuum",
+      "tier": "Trapped-Ion Commercial Supermajor",
+      "node_id": "TRIQEE-PILOT-013-ES-03C",
+      "sandbox_token": "TRIQEE-SBX-QUANTINUUM-HSERIES-03C",
+      "merkle_receipt": "0xa3f544c1e8d72c2f63b1d4032c3722f0bf10ab7e582d4dd1056f297146b71856",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 14,
+      "client_name": "Rigetti Computing",
+      "tier": "Superconducting QPU Pioneer",
+      "node_id": "TRIQEE-PILOT-014-AA-04D",
+      "sandbox_token": "TRIQEE-SBX-RIGETTI-ANKAA-04D",
+      "merkle_receipt": "0x14807c629ee026df14b1801e6c8be77009f01a57886264f1d1417c7a8e02f160",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 15,
+      "client_name": "IBM Quantum",
+      "tier": "Enterprise Quantum Pioneer",
+      "node_id": "TRIQEE-PILOT-015-EC-05E",
+      "sandbox_token": "TRIQEE-SBX-IBM-HERON-QEC-05E",
+      "merkle_receipt": "0x827042b090d1bd9d72ac477f28d1871493c10f454dadfb4cda13588c2a6343a7",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 16,
+      "client_name": "Google Quantum AI",
+      "tier": "Quantum Error Correction Frontier Major",
+      "node_id": "TRIQEE-PILOT-016-EC-06F",
+      "sandbox_token": "TRIQEE-SBX-GOOGLE-WILLOW-QEC-06F",
+      "merkle_receipt": "0x5840f763d3391ff8983258c8407669009d997e67cf81e94451ed42ee54ea3675",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 17,
+      "client_name": "AWS Braket Quantum Technologies",
+      "tier": "Cloud Quantum Infrastructure Supermajor",
+      "node_id": "TRIQEE-PILOT-017-EC-07G",
+      "sandbox_token": "TRIQEE-SBX-AWS-BRAKET-QEC-07G",
+      "merkle_receipt": "0x67f95468266121dc0d2dd88b94cdf9ba9d6cb173355a23b72478d5128d7e3b34",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 18,
+      "client_name": "Microsoft Azure Quantum",
+      "tier": "Topological Quantum Pioneer",
+      "node_id": "TRIQEE-PILOT-018-EC-08H",
+      "sandbox_token": "TRIQEE-SBX-MSFT-AZURE-QEC-08H",
+      "merkle_receipt": "0x8e85f419a760a56a8092809f97bd8f76c7227f2f79a560d3d4aaae2e31767b0f",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 19,
+      "client_name": "PsiQuantum",
+      "tier": "Fault-Tolerant Photonic Supermajor",
+      "node_id": "TRIQEE-PILOT-019-QC-09I",
+      "sandbox_token": "TRIQEE-SBX-PSIQUANTUM-FBQC-09I",
+      "merkle_receipt": "0x55885928ddfeaad4f44a0366df2790c7ea335f8da81789a7b107675b184ab1d4",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    },
+    {
+      "pilot_id": 20,
+      "client_name": "IonQ, Inc.",
+      "tier": "Trapped-Ion Enterprise Supermajor",
+      "node_id": "TRIQEE-PILOT-020-EC-10J",
+      "sandbox_token": "TRIQEE-SBX-IONQ-FORTE-QEC-10J",
+      "merkle_receipt": "0x63ef0c4995130f55f93c4e7b2ebce7a67f65f8d6dd2e2c8071c669893bb250d6",
+      "status": "DEPLOYED_OPERATIONAL",
+      "fulfillment_timestamp": "2026-10-03T19:38:04.846073+00:00"
+    }
+  ]
+}

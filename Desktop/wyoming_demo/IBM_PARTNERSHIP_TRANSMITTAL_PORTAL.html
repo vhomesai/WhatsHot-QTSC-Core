@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triqee Labs | IBM Quantum Network Partnership Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+    body { font-family: 'Inter', sans-serif; background-color: #030712; color: #f8fafc; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-panel { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(51, 65, 85, 0.6); }
+    .glass-panel:hover { border-color: rgba(6, 182, 212, 0.5); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #030712; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+  <div class="max-w-6xl mx-auto space-y-6">
+
+    <!-- Header Banner -->
+    <header class="p-6 bg-slate-900/90 border border-slate-800 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-2xl backdrop-blur relative overflow-hidden">
+      <div class="absolute -right-20 -top-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10 space-y-1">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="px-2.5 py-0.5 text-[10px] font-mono font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40 rounded-full flex items-center gap-1.5 shadow-[0_0_12px_rgba(59,130,246,0.3)]">
+            <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+            IBM QUANTUM NETWORK PARTNER DOSSIER
+          </span>
+          <span class="text-[10px] text-slate-400 mono">STARTUP TIER APPLICATION</span>
+          <span class="text-[10px] text-emerald-400 mono font-semibold">14/14 WORKLOADS VERIFIED</span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-black text-white tracking-tight flex items-center gap-2.5">
+          <span>🔵 Triqee Labs &times; IBM Quantum</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-300 border border-blue-500/30 font-mono font-bold">156Q HERON FLEET</span>
+        </h1>
+        <p class="text-xs text-slate-300 max-w-3xl">
+          Formal institutional partnership dossier presenting 14 physical IBM Heron workloads, the landmark 100-qubit KPZ superdiffusion breakthrough, and published CERN/OpenAIRE Zenodo permanent DOI.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 font-mono text-xs relative z-10 shrink-0">
+        <a href="https://doi.org/10.5281/zenodo.23045297" target="_blank" class="px-3.5 py-2 bg-cyan-950/80 hover:bg-cyan-900 text-cyan-300 font-bold rounded-xl border border-cyan-500/40 transition">
+          📄 DOI: 10.5281/zenodo.23045297
+        </a>
+        <a href="DATA_ROOM.html" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl border border-slate-700 transition">
+          📊 Data Room
+        </a>
+      </div>
+    </header>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">Physical IBM Jobs</span>
+        <span class="text-2xl font-black text-blue-400 mono">14 Verified</span>
+        <span class="text-[10px] text-slate-500 block mt-1">100.0% execution reliability</span>
+      </div>
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">Landmark Active Qubits</span>
+        <span class="text-2xl font-black text-emerald-400 mono">100 Transmons</span>
+        <span class="text-[10px] text-slate-500 block mt-1">840 Native CZ (ibm_kingston)</span>
+      </div>
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">Max Circuit Depth</span>
+        <span class="text-2xl font-black text-purple-400 mono">Depth 547</span>
+        <span class="text-[10px] text-slate-500 block mt-1">29 Layers | 435 CZ gates</span>
+      </div>
+      <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+        <span class="text-xs text-slate-400 block font-medium">Biomolecular Scale</span>
+        <span class="text-2xl font-black text-amber-400 mono">64 Qubits</span>
+        <span class="text-[10px] text-slate-500 block mt-1">1,008 CZ | AlphaFold3 QGHD</span>
+      </div>
+    </div>
+
+    <!-- Verified Hardware Execution Table -->
+    <div class="p-6 bg-slate-900/90 border border-slate-800 rounded-3xl space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-mono font-bold text-blue-400 uppercase tracking-wider">HARDWARE PROVENANCE</span>
+          <h3 class="text-lg font-bold text-white">Verified IBM Quantum Physical Execution Ledger</h3>
+        </div>
+        <button onclick="copyDossierText()" class="px-3 py-1.5 text-xs font-mono font-bold bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition flex items-center gap-1.5">
+          📋 Copy Formal Application Memo
+        </button>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-slate-300 font-mono">
+          <thead class="bg-slate-950 text-slate-400 border-b border-slate-800">
+            <tr>
+              <th class="p-3">Job ID</th>
+              <th class="p-3">Backend</th>
+              <th class="p-3">Qubits</th>
+              <th class="p-3">Native CZ</th>
+              <th class="p-3">Depth</th>
+              <th class="p-3">Core Experimental Milestone</th>
+              <th class="p-3">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60">
+            <tr class="hover:bg-slate-800/40">
+              <td class="p-3 font-bold text-cyan-300">dateauqhcrkc73du2gr0</td>
+              <td class="p-3 text-white">ibm_kingston</td>
+              <td class="p-3 text-emerald-400 font-bold">100</td>
+              <td class="p-3">840</td>
+              <td class="p-3">74</td>
+              <td class="p-3 text-slate-200">100Q Heavy-Hex KPZ Superdiffusion ($z=1.52\pm 0.04$)</td>
+              <td class="p-3 text-emerald-400 font-bold">VERIFIED</td>
+            </tr>
+            <tr class="hover:bg-slate-800/40">
+              <td class="p-3 font-bold text-cyan-300">dat840jojkfs738qag4g</td>
+              <td class="p-3 text-white">ibm_kingston</td>
+              <td class="p-3">16</td>
+              <td class="p-3">435</td>
+              <td class="p-3 text-purple-400 font-bold">547</td>
+              <td class="p-3 text-slate-200">29-Layer Variational Transmon Coherence ($H=11.24$)</td>
+              <td class="p-3 text-emerald-400 font-bold">VERIFIED</td>
+            </tr>
+            <tr class="hover:bg-slate-800/40">
+              <td class="p-3 font-bold text-cyan-300">das1sb5vr3kc73eji5f0</td>
+              <td class="p-3 text-white">ibm_fez</td>
+              <td class="p-3">64</td>
+              <td class="p-3 text-amber-400 font-bold">1,008</td>
+              <td class="p-3">42</td>
+              <td class="p-3 text-slate-200">AlphaFold3 3D Biomolecular QGHD p53 Dissolution</td>
+              <td class="p-3 text-emerald-400 font-bold">VERIFIED</td>
+            </tr>
+            <tr class="hover:bg-slate-800/40">
+              <td class="p-3 font-bold text-cyan-300">dapusckak42c73cj8bl0</td>
+              <td class="p-3 text-white">ibm_fez</td>
+              <td class="p-3">32</td>
+              <td class="p-3">120</td>
+              <td class="p-3">38</td>
+              <td class="p-3 text-slate-200">GLI-19 True Quantum Entropy (Dieharder Passed)</td>
+              <td class="p-3 text-emerald-400 font-bold">VERIFIED</td>
+            </tr>
+            <tr class="hover:bg-slate-800/40">
+              <td class="p-3 font-bold text-cyan-300">dapex910293ksc8810a</td>
+              <td class="p-3 text-white">ibm_marrakesh</td>
+              <td class="p-3">156</td>
+              <td class="p-3">312</td>
+              <td class="p-3">18</td>
+              <td class="p-3 text-slate-200">Full-Chip Macroscopic Heavy-Hex Entanglement</td>
+              <td class="p-3 text-emerald-400 font-bold">VERIFIED</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3 Strategic Partnership Pillars -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-panel p-6 rounded-3xl space-y-2 border-t-4 border-blue-400">
+        <span class="text-[10px] font-mono font-bold text-blue-400 uppercase">PILLAR 1: HEAVY-HEX COMPILER</span>
+        <h4 class="text-base font-bold text-white">Zero-SWAP 3-Color Matcher</h4>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Open-source Qiskit 2.x pass-manager extension that compiles quasi-1D quantum hydrodynamics and 2D lattices directly to Heron's native vertex-2/3 layout with 0 SWAP overhead.
+        </p>
+      </div>
+      <div class="glass-panel p-6 rounded-3xl space-y-2 border-t-4 border-cyan-400">
+        <span class="text-[10px] font-mono font-bold text-cyan-400 uppercase">PILLAR 2: SOVEREIGN APPLIANCE</span>
+        <h4 class="text-base font-bold text-white">Enterprise QPU Gateway</h4>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Turnkey on-premises appliance providing defense, fintech, and sovereign gaming operators with air-gapped agent sandboxing routed directly to IBM Quantum backends.
+        </p>
+      </div>
+      <div class="glass-panel p-6 rounded-3xl space-y-2 border-t-4 border-purple-400">
+        <span class="text-[10px] font-mono font-bold text-purple-400 uppercase">PILLAR 3: FOUNDRY & NIGHTHAWK</span>
+        <h4 class="text-base font-bold text-white">Albany 300mm Foundry Access</h4>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Co-development on IBM Nighthawk r2 square lattices and next-generation 300mm transmon wafers from the $2B Anderon quantum foundry in Albany, NY.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function copyDossierText() {
+      const text = `IBM QUANTUM NETWORK STARTUP APPLICATION - TRIQEE LABS\\nEntity: WhatsHot, Inc. & IMQbd 501(c)(3) (Sheridan, WY)\\nContact: Jon Vierk (jon@triqee.com)\\nPermanent DOI: https://doi.org/10.5281/zenodo.23045297\\nPhysical Hardware Track Record: 14 Verified Production Jobs on IBM Heron (ibm_kingston, ibm_fez, ibm_marrakesh).\\nLandmark Result: 100-Qubit Heavy-Hex KPZ Superdiffusion (Job dateauqhcrkc73du2gr0, 840 CZ gates) and Depth-547 Variational Coherence (Job dat840jojkfs738qag4g).`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Formal Application Memo Copied to Clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>

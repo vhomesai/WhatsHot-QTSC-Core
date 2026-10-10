@@ -1,0 +1,41 @@
+{
+  "benchmark": "Triqee-QOpt Institutional Markowitz Mean-Variance QUBO",
+  "processor": "ibm_kingston",
+  "architecture": "IBM Quantum 156-Qubit Heron",
+  "job_id": "daq0n38r7bnc73b463rg",
+  "job_url": "https://quantum.ibm.com/jobs/daq0n38r7bnc73b463rg",
+  "completed_at": "Wed Sep 23 11:25:43 2026",
+  "asset_universe": [
+    "BTC",
+    "ETH",
+    "SPY",
+    "TLT",
+    "GLD",
+    "USO"
+  ],
+  "num_qubits": 6,
+  "shots": 1024,
+  "top_ground_state": "111111",
+  "optimal_portfolio_assets": [
+    "BTC",
+    "ETH",
+    "SPY",
+    "TLT",
+    "GLD",
+    "USO"
+  ],
+  "top_ground_state_probability_pct": 19.14,
+  "qpu_seconds": 2.471209591,
+  "top_measurements": {
+    "111111": 196,
+    "000000": 192,
+    "000010": 43,
+    "110111": 38,
+    "111110": 26,
+    "111101": 24,
+    "011111": 21,
+    "111011": 18,
+    "011110": 18,
+    "000110": 17
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "benchmark_name": "Triqee Meridian Fault-Tolerant Surface Code Stabilizer",
+  "framework": "QC Design Meridian AI + Plaquette Syndrome Model",
+  "target_processor": "ibm_kingston",
+  "processor_architecture": "IBM Quantum Heron 156-Qubit Heavy-Hex (r2)",
+  "job_id": "daqsbvbt55cs738s6jig",
+  "verification_url": "https://quantum.ibm.com/jobs/daqsbvbt55cs738s6jig",
+  "timestamp": "Thu Sep 24 18:54:06 2026",
+  "shots": 1024,
+  "active_physical_qubits": 17,
+  "data_qubits": 9,
+  "syndrome_ancillas": 8,
+  "clean_zero_syndrome_ratio_pct": 0.49,
+  "unique_syndromes_detected": 251,
+  "quantum_seconds_used": 2.45,
+  "top_syndromes": [
+    [
+      "10100010",
+      13
+    ],
+    [
+      "10000111",
+      10
+    ],
+    [
+      "10111111",
+      10
+    ],
+    [
+      "10001001",
+      10
+    ],
+    [
+      "11000001",
+      9
+    ],
+    [
+      "10111000",
+      9
+    ],
+    [
+      "01100011",
+      9
+    ],
+    [
+      "11100101",
+      9
+    ],
+    [
+      "01001010",
+      9
+    ],
+    [
+      "10001101",
+      8
+    ]
+  ],
+  "top_data_states": [
+    [
+      "000000111",
+      12
+    ],
+    [
+      "000011011",
+      11
+    ],
+    [
+      "011001101",
+      11
+    ],
+    [
+      "000110110",
+      10
+    ],
+    [
+      "000100100",
+      10
+    ],
+    [
+      "000100010",
+      10
+    ],
+    [
+      "000010010",
+      9
+    ],
+    [
+      "011000100",
+      9
+    ],
+    [
+      "000000000",
+      9
+    ],
+    [
+      "000001110",
+      9
+    ]
+  ]
+}

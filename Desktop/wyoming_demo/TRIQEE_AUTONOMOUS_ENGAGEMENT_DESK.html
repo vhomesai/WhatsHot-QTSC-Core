@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triqee Labs | Autonomous Inbound & Investor Engagement Desk</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+    body { font-family: 'Inter', sans-serif; background-color: #030712; color: #f8fafc; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-panel { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(51, 65, 85, 0.6); }
+    .glass-panel:hover { border-color: rgba(6, 182, 212, 0.5); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #030712; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+  <div class="max-w-6xl mx-auto space-y-6">
+
+    <!-- Header -->
+    <header class="p-6 bg-slate-900/90 border border-slate-800 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-2xl backdrop-blur relative overflow-hidden">
+      <div class="absolute -right-20 -top-20 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10 space-y-1">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="px-2.5 py-0.5 text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded-full flex items-center gap-1.5 shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            AUTONOMOUS INBOUND & ENGAGEMENT DESK
+          </span>
+          <span class="text-[10px] text-slate-400 mono">PREPRINT DOI: 10.5281/zenodo.23045297</span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-black text-white tracking-tight flex items-center gap-2.5">
+          <span>📡 Triqee Autonomous Engagement Desk</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 font-mono font-bold">LIVE CONVERSIONS</span>
+        </h1>
+        <p class="text-xs text-slate-300 max-w-3xl">
+          Automated executive transmittal and technical response desk for incoming inquiries from IBM executives, quantum researchers, deep-tech VC allocators, and enterprise pilot prospects.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 font-mono text-xs relative z-10 shrink-0">
+        <a href="https://doi.org/10.5281/zenodo.23045297" target="_blank" class="px-3.5 py-2 bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 font-bold rounded-xl border border-emerald-500/40 transition">
+          📄 View Zenodo Paper
+        </a>
+        <a href="DATA_ROOM.html" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl border border-slate-700 transition">
+          📊 Data Room
+        </a>
+      </div>
+    </header>
+
+    <!-- 4 Persona Response Playbooks -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Persona 1: IBM Quantum Executives & Researchers -->
+      <div class="glass-panel p-6 rounded-3xl space-y-3 border-t-4 border-blue-400">
+        <div class="flex justify-between items-center">
+          <span class="text-xs font-mono font-bold text-blue-400 uppercase">1. IBM QUANTUM / QISKIT RESEARCHERS</span>
+          <button onclick="copyResponse(1)" class="px-2.5 py-1 bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-mono rounded transition">Copy Response</button>
+        </div>
+        <h4 class="text-sm font-bold text-white">Focus: Native CZ Pulse Compiling & 100Q Heavy-Hex Topology</h4>
+        <div id="resp-1" class="bg-slate-950 p-4 rounded-xl text-xs font-mono text-slate-300 border border-slate-800 leading-relaxed">
+Thanks for engaging! In our physical runs on ibm_kingston (Job dateauqhcrkc73du2gr0), we compiled the 99-edge Bethe-ansatz backbone and 12 cross-couplers using 3-color edge matching, executing 840 native CZ gates with 0 SWAP overhead. We'd love to explore early access to Nighthawk r2 square lattices for dense QUBOs! Full paper & dataset: https://doi.org/10.5281/zenodo.23045297
+        </div>
+      </div>
+
+      <!-- Persona 2: Quantum Physicists & Theorists -->
+      <div class="glass-panel p-6 rounded-3xl space-y-3 border-t-4 border-cyan-400">
+        <div class="flex justify-between items-center">
+          <span class="text-xs font-mono font-bold text-cyan-400 uppercase">2. CONDENSED MATTER / KPZ THEORISTS</span>
+          <button onclick="copyResponse(2)" class="px-2.5 py-1 bg-cyan-600 hover:bg-cyan-500 text-white text-[10px] font-mono rounded transition">Copy Response</button>
+        </div>
+        <h4 class="text-sm font-bold text-white">Focus: Dynamical Exponent $z=1.52$ & Classical MPS Barrier</h4>
+        <div id="resp-2" class="bg-slate-950 p-4 rounded-xl text-xs font-mono text-slate-300 border border-slate-800 leading-relaxed">
+Great question on the scaling. At lambda=0, wavepacket variance scales as sigma^2(t) ~ t^(4/3), giving z = 1.52 +/- 0.04. Turning on heavy-hex cross-couplers (lambda=0.5) shifts transport to standard diffusion (z = 1.98). Classical MPS (chi <= 128) truncates at t* ~ 2.12 hbar/J due to von Neumann entropy growth. Full derivations in Section III: https://doi.org/10.5281/zenodo.23045297
+        </div>
+      </div>
+
+      <!-- Persona 3: Deep-Tech & Quantum VC Allocators -->
+      <div class="glass-panel p-6 rounded-3xl space-y-3 border-t-4 border-purple-400">
+        <div class="flex justify-between items-center">
+          <span class="text-xs font-mono font-bold text-purple-400 uppercase">3. DEEP TECH & QUANTUM VCs</span>
+          <button onclick="copyResponse(3)" class="px-2.5 py-1 bg-purple-600 hover:bg-purple-500 text-white text-[10px] font-mono rounded transition">Copy Response</button>
+        </div>
+        <h4 class="text-sm font-bold text-white">Focus: Commercial Sovereign Appliance & $25k Pilot SOW</h4>
+        <div id="resp-3" class="bg-slate-950 p-4 rounded-xl text-xs font-mono text-slate-300 border border-slate-800 leading-relaxed">
+Appreciate your interest! We have packaged our verified quantum-classical engine into the Triqee Sovereign Appliance™ (v2.5)—an air-gapped on-premises container running behind institutional firewalls for defense and finance. We are currently accepting select partners for our 30-day commercial pilot ($25k). Data Room: https://triqee.com/data-room | Paper: https://doi.org/10.5281/zenodo.23045297
+        </div>
+      </div>
+
+      <!-- Persona 4: Enterprise & Sovereign Defense Leads -->
+      <div class="glass-panel p-6 rounded-3xl space-y-3 border-t-4 border-amber-400">
+        <div class="flex justify-between items-center">
+          <span class="text-xs font-mono font-bold text-amber-400 uppercase">4. ENTERPRISE DEFENSE / FINTECH LEADS</span>
+          <button onclick="copyResponse(4)" class="px-2.5 py-1 bg-amber-600 hover:bg-amber-500 text-slate-950 text-[10px] font-mono font-bold rounded transition">Copy Response</button>
+        </div>
+        <h4 class="text-sm font-bold text-white">Focus: Zero Cloud Egress & GLI-19 True Entropy</h4>
+        <div id="resp-4" class="bg-slate-950 p-4 rounded-xl text-xs font-mono text-slate-300 border border-slate-800 leading-relaxed">
+Thank you for connecting. Triqee Sovereign Appliance operates with 100% air-gap isolation (zero egress to multi-tenant LLMs) with HMAC digital execution certificates and GLI-19 true quantum entropy under Wyoming WGC SF0106 compliance. We can deploy a local Docker container for your team in under 60 seconds: https://doi.org/10.5281/zenodo.23045297
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    function copyResponse(id) {
+      const el = document.getElementById(`resp-${id}`);
+      navigator.clipboard.writeText(el.innerText.trim()).then(() => {
+        alert(`Response Template #${id} Copied to Clipboard!`);
+      });
+    }
+  </script>
+</body>
+</html>

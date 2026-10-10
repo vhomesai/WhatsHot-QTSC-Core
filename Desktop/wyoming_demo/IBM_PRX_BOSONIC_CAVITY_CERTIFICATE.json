@@ -1,0 +1,48 @@
+{
+  "certificate_type": "IBM_HERON_PHYSICAL_HARDWARE_EXECUTION_CERTIFICATE",
+  "workload_name": "PRX Bosonic Dispersive Cavity QED & Wigner Negativity Witness",
+  "job_id": "dart3d2hcrkc73ds3l20",
+  "verification_url": "https://quantum.ibm.com/jobs/dart3d2hcrkc73ds3l20",
+  "target_processor": "ibm_fez",
+  "processor_architecture": "IBM Heron 156-Qubit Heavy-Hex Lattice",
+  "qubits_executed": 16,
+  "native_circuit_depth": 397,
+  "native_gate_count": {
+    "rz": 252,
+    "sx": 216,
+    "cz": 100,
+    "measure": 16,
+    "barrier": 3
+  },
+  "shots": 1024,
+  "even_parity_shots": 538,
+  "odd_parity_shots": 486,
+  "wigner_parity_witness": 0.0508,
+  "top_5_bitstrings": [
+    [
+      "1000000101010110",
+      2
+    ],
+    [
+      "1110110111110011",
+      2
+    ],
+    [
+      "1101001000001010",
+      2
+    ],
+    [
+      "0001010000100111",
+      2
+    ],
+    [
+      "0000011000101001",
+      2
+    ]
+  ],
+  "qpu_quantum_seconds": 2.25,
+  "transpilation_seconds": 0.2,
+  "timestamp": "2026-09-26T08:07:58.733820",
+  "status": "VERIFIED_COMPLETED",
+  "regulatory_filing": "Wyoming Gaming Commission SF0106 Exhibit 12 & PRX 16, 031077"
+}

@@ -1,0 +1,20 @@
+{
+  "certificate_id": "QUERA-256A-AHS-1790786898",
+  "modality": "Neutral-Atom (Rydberg Array)",
+  "target_qpu": "QuEra Aquila",
+  "qpu_arn": "arn:aws:braket:us-east-1::device/qpu/quera/Aquila",
+  "atom_count": 256,
+  "grid_geometry": "16x16 Square Lattice",
+  "lattice_constant_um": 5.5,
+  "rydberg_blockade_radius_um": 8.84,
+  "blockade_coordination_number": 3,
+  "pulse_duration_us": 3.0,
+  "peak_rabi_freq_rad_us": 15.71,
+  "detuning_range_mhz": [
+    -15.0,
+    15.0
+  ],
+  "estimated_ground_state_energy": -1170180431.61,
+  "compilation_status": "AHS_IR_VALIDATED_READY_FOR_AQUILA_DISPATCH",
+  "timestamp": "2026-09-30T16:48:18.274860+00:00"
+}

@@ -1,0 +1,123 @@
+{
+  "certificate_id": "TRIQEE-ARBITRAGE-ROUTER-1790786898",
+  "router_version": "v1.0-Autonomous",
+  "workloads_tested": 6,
+  "decisions": [
+    {
+      "task_name": "16-Asset Portfolio QUBO",
+      "circuit_type": "Dense Financial QUBO",
+      "num_qubits": 16,
+      "edge_count": 120,
+      "graph_density": 1.0,
+      "selected_backend": "ionq_trapped_ion",
+      "backend_display_name": "IonQ Forte / Cloud",
+      "modality": "Trapped-Ion",
+      "arbitrage_score": 115.0,
+      "all_scores": {
+        "ionq_trapped_ion": 115.0,
+        "ibm_superconducting": 35.0,
+        "quera_neutral_atom": 35.0,
+        "classical_tensor_mps": 25.0
+      },
+      "estimated_swap_overhead": 0,
+      "routing_rationale": "Selected IonQ Forte / Cloud based on graph density 1.000 and optimal fit for Dense Financial QUBO."
+    },
+    {
+      "task_name": "156-Qubit KPZ Hydrodynamic Quench",
+      "circuit_type": "Heavy-Hex Lattice Hydrodynamics",
+      "num_qubits": 156,
+      "edge_count": 178,
+      "graph_density": 0.015,
+      "selected_backend": "ibm_superconducting",
+      "backend_display_name": "IBM Kingston / Heron r2",
+      "modality": "Superconducting Transmon",
+      "arbitrage_score": 104.34,
+      "all_scores": {
+        "ionq_trapped_ion": 0.0,
+        "ibm_superconducting": 104.34,
+        "quera_neutral_atom": 35.0,
+        "classical_tensor_mps": 25.0
+      },
+      "estimated_swap_overhead": 320,
+      "routing_rationale": "Selected IBM Kingston / Heron r2 based on graph density 0.015 and optimal fit for Heavy-Hex Lattice Hydrodynamics."
+    },
+    {
+      "task_name": "256-Atom Quantum Spin Liquid",
+      "circuit_type": "Analog Rydberg Spatial Geometry",
+      "num_qubits": 256,
+      "edge_count": 480,
+      "graph_density": 0.015,
+      "selected_backend": "quera_neutral_atom",
+      "backend_display_name": "QuEra Aquila",
+      "modality": "Neutral-Atom (Rydberg)",
+      "arbitrage_score": 100.0,
+      "all_scores": {
+        "ionq_trapped_ion": 0.0,
+        "ibm_superconducting": 0.0,
+        "quera_neutral_atom": 100.0,
+        "classical_tensor_mps": 25.0
+      },
+      "estimated_swap_overhead": 0,
+      "routing_rationale": "Selected QuEra Aquila based on graph density 0.015 and optimal fit for Analog Rydberg Spatial Geometry."
+    },
+    {
+      "task_name": "50-Qubit Quantum Chemistry VQE",
+      "circuit_type": "Dense All-to-All Molecular Orbitals",
+      "num_qubits": 32,
+      "edge_count": 496,
+      "graph_density": 1.0,
+      "selected_backend": "ionq_trapped_ion",
+      "backend_display_name": "IonQ Forte / Cloud",
+      "modality": "Trapped-Ion",
+      "arbitrage_score": 100.0,
+      "all_scores": {
+        "ionq_trapped_ion": 100.0,
+        "ibm_superconducting": 35.0,
+        "quera_neutral_atom": 35.0,
+        "classical_tensor_mps": 25.0
+      },
+      "estimated_swap_overhead": 0,
+      "routing_rationale": "Selected IonQ Forte / Cloud based on graph density 1.000 and optimal fit for Dense All-to-All Molecular Orbitals."
+    },
+    {
+      "task_name": "100-Qubit 1D Integrable Heisenberg Spin Chain",
+      "circuit_type": "1D Linear Short-Time Evolution",
+      "num_qubits": 100,
+      "edge_count": 99,
+      "graph_density": 0.02,
+      "selected_backend": "classical_tensor_mps",
+      "backend_display_name": "Classical HPC Tensor Network (MPS / GPU)",
+      "modality": "Matrix Product States (chi <= 128)",
+      "arbitrage_score": 90.0,
+      "all_scores": {
+        "ionq_trapped_ion": 0.0,
+        "ibm_superconducting": 79.1,
+        "quera_neutral_atom": 35.0,
+        "classical_tensor_mps": 90.0
+      },
+      "estimated_swap_overhead": 178,
+      "routing_rationale": "Selected Classical HPC Tensor Network (MPS / GPU) based on graph density 0.020 and optimal fit for 1D Linear Short-Time Evolution."
+    },
+    {
+      "task_name": "Meridian Surface Code d=5",
+      "circuit_type": "Planar Error Correction Surface Code",
+      "num_qubits": 64,
+      "edge_count": 96,
+      "graph_density": 0.048,
+      "selected_backend": "ibm_superconducting",
+      "backend_display_name": "IBM Kingston / Heron r2",
+      "modality": "Superconducting Transmon",
+      "arbitrage_score": 102.86,
+      "all_scores": {
+        "ionq_trapped_ion": 0.0,
+        "ibm_superconducting": 102.86,
+        "quera_neutral_atom": 35.0,
+        "classical_tensor_mps": 25.0
+      },
+      "estimated_swap_overhead": 172,
+      "routing_rationale": "Selected IBM Kingston / Heron r2 based on graph density 0.048 and optimal fit for Planar Error Correction Surface Code."
+    }
+  ],
+  "timestamp": "2026-09-30T16:48:18.276856+00:00",
+  "status": "ARBITRAGE_ROUTER_ACTIVE"
+}

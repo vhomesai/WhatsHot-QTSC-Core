@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  triqee-sovereign-appliance:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: triqee/sovereign-appliance:2.5.0-enterprise
+    container_name: triqee_sovereign_enclave
+    restart: unless-stopped
+    ports:
+      - "8088:8088"
+    environment:
+      - TRIQEE_ENCLAVE_MODE=AIRGAP_HARDWARE_SEALED
+      - TRIQEE_JURISDICTION=WYOMING_WGC_SF0106
+      - OFFICIAL_DOI=10.5281/zenodo.23045297
+    volumes:
+      - ./data:/app/data
+    security_opt:
+      - no-new-privileges:true
+    read_only: false
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triqee — Top 20 LinkedIn InMail 1-Click Dispatch Console</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body {
+      background-color: #030712;
+      color: #f3f4f6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+
+  <div class="max-w-6xl mx-auto space-y-6">
+    
+    <!-- Header -->
+    <header class="p-6 bg-slate-900/90 border border-slate-800 rounded-3xl shadow-2xl flex flex-wrap items-center justify-between gap-4 backdrop-blur">
+      <div class="flex items-center gap-3">
+        <span class="text-3xl">🎯</span>
+        <div>
+          <h1 class="text-2xl font-black text-white tracking-tight flex items-center gap-2">
+            TRIQEE <span class="text-yellow-400">INMAIL SPEEDRUN CONSOLE</span>
+          </h1>
+          <p class="text-xs text-slate-400">1-Click Message Copy & Direct Profile Dispatch for Top 20 High-Value Leads</p>
+        </div>
+      </div>
+      
+      <!-- Progress Pill -->
+      <div class="flex items-center gap-3 bg-slate-950 border border-slate-800 px-4 py-2 rounded-2xl">
+        <div class="text-right">
+          <span class="text-xs text-slate-400 block font-mono">Dispatched</span>
+          <span class="text-lg font-black text-emerald-400 font-mono" id="progress-text">0 / 20</span>
+        </div>
+        <div class="w-24 bg-slate-800 h-2.5 rounded-full overflow-hidden">
+          <div class="bg-emerald-400 h-full transition-all duration-300" id="progress-bar" style="width: 0%"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Speedrun Guide Banner -->
+    <div class="p-4 bg-purple-950/40 border border-purple-500/30 rounded-2xl flex flex-wrap items-center justify-between gap-4 text-xs">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">⚡</span>
+        <div>
+          <strong class="text-white block font-bold">5-Second Speedrun Workflow per Lead:</strong>
+          <span class="text-slate-400">1. Click <span class="text-purple-300 font-bold">[↗ Open Profile]</span> &nbsp;→&nbsp; 2. Click <span class="text-yellow-400 font-bold">[📋 1-Click Copy Message]</span> &nbsp;→&nbsp; 3. Press <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-slate-300">Ctrl + V</kbd> into InMail & Hit Send!</span>
+        </div>
+      </div>
+      <a href="https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html" target="_blank" class="px-3 py-1.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-semibold transition shrink-0">
+        Inspect Live Quantum Explorer &nearr;
+      </a>
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <div class="flex flex-wrap items-center gap-2 text-xs" id="filter-container">
+        <button onclick="filterCategory('ALL')" class="filter-btn px-3 py-1.5 bg-yellow-400 text-slate-950 font-bold rounded-xl transition" data-cat="ALL">All 20 Targets</button>
+        <button onclick="filterCategory('Quantum Hardware')" class="filter-btn px-3 py-1.5 bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 rounded-xl transition" data-cat="Quantum Hardware">Quantum Hardware (5)</button>
+        <button onclick="filterCategory('Quant Finance')" class="filter-btn px-3 py-1.5 bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 rounded-xl transition" data-cat="Quant Finance">Quant Finance & Risk (4)</button>
+        <button onclick="filterCategory('Deep Tech VC')" class="filter-btn px-3 py-1.5 bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 rounded-xl transition" data-cat="Deep Tech VC">Deep Tech VCs (3)</button>
+        <button onclick="filterCategory('Sovereign / Tech')" class="filter-btn px-3 py-1.5 bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 rounded-xl transition" data-cat="Sovereign / Tech">Sovereign & Other (8)</button>
+      </div>
+      <div class="text-xs text-slate-400 font-mono">
+        Showing: <span id="visible-count" class="text-white font-bold">20</span> Leads
+      </div>
+    </div>
+
+    <!-- Lead Cards Grid -->
+    <div class="space-y-4" id="cards-container">
+
+      <!-- Lead Card 1 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="1" data-cat="Quantum Hardware">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #1
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Nate Gemelke</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Quantum Hardware</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Co-founder & Chief Technology Strategist • <strong class="text-slate-200">QuEra Computing</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/search/results/all/?keywords=Nate%20Gemelke%20QuEra" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(1)" id="status-btn-1" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-1" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Nate,
+
+Following QuEra’s leadership in neutral-atom quantum architectures and analog Hamiltonian simulation.
+
+At Triqee (triqee.com), we bridge combinatorial algorithms directly into physical QPUs. Over the past 48 hours, we completed a 4-pillar benchmark on IBM Quantum’s 156-qubit Heron architecture:
+• SGP Covariance QUBO: Solved ground state |1111> in 2.17s (ibm_marrakesh, Job: dapu6pb18flc739mtlj0)
+• 100-Qubit Macroscopic GHZ State: 100 physical superconducting qubits measured simultaneously across 99 native CZ gates (ibm_fez, Job: daq0ql2c505c73ciultg)
+
+You can inspect the live hardware readout histogram and execution telemetry directly here:
+https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would welcome comparing notes on how you see Rydberg atom array mapping comparing to superconducting heavy-hex lattices for high-dimensional combinatorial optimization.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(1)" id="copy-btn-1" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 2 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="2" data-cat="Bio / Emerging Tech">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #2
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Jason Kelly</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Bio / Emerging Tech</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Co-Founder and CEO • <strong class="text-slate-200">Ginkgo Bioworks (Former Chair, US NSCEB)</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/jrkelly2/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(2)" id="status-btn-2" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-2" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Jason,
+
+Tracking Ginkgo’s relentless scaling across biological engineering and biosecurity infrastructure.
+
+At Triqee (triqee.com), we develop autonomous multi-agent systems and quantum combinatorial kernels. We just completed a multi-processor hardware benchmark across IBM Quantum’s 156-qubit Heron processors:
+• Solved discrete combinatorial risk Hamiltonians in <2.5 seconds (Jobs: dapu6pb18flc739mtlj0 & daq0n38r7bnc73b463rg)
+• Harvested 32,768 physical quantum entropy bits on ibm_fez (Job: dapusckak42c73cj8bl0)
+• Benchmarked 100-qubit macroscopic entanglement (Job: daq0ql2c505c73ciultg)
+
+Live QPU Telemetry: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would love to share how our autonomous agentic workflows and quantum combinatorial search map to high-throughput biological data pipelines.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(2)" id="copy-btn-2" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 3 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="3" data-cat="Quant Finance">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #3
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Kaushik Chakraborty</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Quant Finance</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Executive Director -- Applied Research Director • <strong class="text-slate-200">JPMorgan Chase & Co.</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/kaus-chak9/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(3)" id="status-btn-3" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-3" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Kaushik,
+
+Following JPMC's pioneering applied research across quantum computing and institutional algorithmic finance.
+
+At Triqee (triqee.com), we mapped non-linear covariance matrices and multi-asset hedging ledgers into Ising Hamiltonians to bypass classical Monte Carlo latency walls. This week, we executed our solvers live on IBM Quantum's 156-qubit Heron processors:
+• 6-Asset Markowitz Portfolio QUBO: Balanced BTC, ETH, SPY, TLT, GLD, USO under discrete allocation constraints in 2.47s QPU time (ibm_kingston, Job: daq0n38r7bnc73b463rg)
+• SGP Correlation QUBO: Solved on ibm_marrakesh in 2.17s (Job: dapu6pb18flc739mtlj0)
+
+Interactive Hardware Readout & Telemetry:
+https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would value 10 minutes to compare notes on your team's experience with Hamiltonian variational depth versus classical heuristics for balance-sheet hedging.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(3)" id="copy-btn-3" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 4 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="4" data-cat="Quant Finance">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #4
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Niraj Kumar</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Quant Finance</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Executive Director | Head of Advanced Algorithms & Compute • <strong class="text-slate-200">JPMorganChase</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/nirajkumar92/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(4)" id="status-btn-4" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-4" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Niraj,
+
+Saw your ongoing work leading advanced algorithms and high-performance compute architectures at JPMorganChase.
+
+We’ve formulated high-dimensional risk ledgers into gate-based quantum circuits. Over the last 48 hours, we completed executions across all three of IBM’s active 156-qubit Heron processors (ibm_marrakesh, ibm_fez, ibm_kingston):
+• Markowitz Mean-Variance QUBO: Solved in 2.47s QPU time (Job: daq0n38r7bnc73b463rg)
+• 100-Qubit Macroscopic Entanglement: 100 physical superconducting qubits measured simultaneously across 99 native CZ gates (Job: daq0ql2c505c73ciultg)
+
+Live Telemetry Explorer: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would welcome an opportunity to connect and compare perspectives on production quantum algorithm scaling.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(4)" id="copy-btn-4" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 5 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="5" data-cat="Quant Finance">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #5
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Peng Cheng</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Quant Finance</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Portfolio Manager • <strong class="text-slate-200">Alphadyne Asset Management</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/peng-cheng-bb92557/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(5)" id="status-btn-5" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-5" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Peng,
+
+Reaching out given your leadership in quantitative global macro and systematic trading.
+
+When correlation matrices cross into high dimensions during market regime shifts, classical Monte Carlo sampling creates severe latency and tail-risk estimation errors.
+
+At Triqee, we tested gate-based quantum combinatorial mapping on physical IBM Quantum 156-qubit Heron hardware:
+• Markowitz Portfolio QUBO: Solved 6-asset constrained allocation across crypto, equities, rates, and commodities in 2.47s (ibm_kingston, Job: daq0n38r7bnc73b463rg)
+• Cross-Market Covariance QUBO: Solved on ibm_marrakesh in 2.17s (Job: dapu6pb18flc739mtlj0)
+
+Interactive QPU Readout: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+I'd be glad to share our 2-page mathematical summary if you're exploring quantum optimization for risk allocation.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(5)" id="copy-btn-5" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 6 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="6" data-cat="Deep Tech VC">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #6
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Brandon Kim</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Deep Tech VC</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Vice President & Head of Deep Tech Investments • <strong class="text-slate-200">LG Technology Ventures</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/brandonkim" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(6)" id="status-btn-6" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-6" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Brandon,
+
+Tracking LG Tech Ventures’ active investments across deep tech, AI hardware, and quantum computing.
+
+At Triqee (triqee.com), we develop quantum combinatorial optimization and prediction market engines. Over the last 48 hours, we achieved verified executions across all three of IBM’s active 156-qubit Heron processors:
+1. Combinatorial Risk QUBO: Solved on ibm_marrakesh in 2.17s (Job: dapu6pb18flc739mtlj0)
+2. GLI-19 Physical Quantum Entropy: 32,768 physical bits harvested on ibm_fez (Job: dapusckak42c73cj8bl0)
+3. 6-Asset Markowitz Efficient Frontier: Solved on ibm_kingston in 2.47s (Job: daq0n38r7bnc73b463rg)
+4. 100-Qubit Macroscopic GHZ Entanglement: 100 qubits simultaneously measured (Job: daq0ql2c505c73ciultg)
+
+All 4 jobs completed in <13 seconds of total physical QPU time.
+
+Live Hardware Explorer: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would love to share our 2-page institutional deck and explore potential strategic alignment.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(6)" id="copy-btn-6" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 7 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="7" data-cat="Quantum Hardware">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #7
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Stuart Parkin</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Quantum Hardware</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Director • <strong class="text-slate-200">Max Planck Institute for Microstructure Physics</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/sspparkin/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(7)" id="status-btn-7" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-7" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Dear Prof. Parkin,
+
+Following your groundbreaking contributions to spintronics, racetrack memory, and advanced quantum materials.
+
+At Triqee (triqee.com), we focus on mapping non-convex physical problems onto physical quantum processors. This week, we benchmarked IBM Quantum’s 156-qubit Heron superconducting processors, preparing and measuring a 100-qubit Greenberger-Horne-Zeilinger (GHZ) macroscopic entangled state across 99 native CZ gates (Job ID: daq0ql2c505c73ciultg, 5.54s execution).
+
+Live Telemetry & Parity Readout: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+It is an honor to connect, and I follow your continued publications at Max Planck with great admiration.
+
+Sincerely,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(7)" id="copy-btn-7" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 8 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="8" data-cat="Quantum Hardware">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #8
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Shankar G Menon</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Quantum Hardware</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Cofounder and CEO • <strong class="text-slate-200">CavilinQ</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/shankar-g-menon-665628200/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(8)" id="status-btn-8" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-8" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Shankar,
+
+Following CavilinQ’s innovations in quantum optical interconnects and distributed quantum computing.
+
+We just executed our algorithmic kernels directly across IBM’s 156-qubit Heron fleet (ibm_marrakesh, ibm_fez, ibm_kingston), including a 100-qubit macroscopic GHZ entanglement benchmark across 99 native CZ gates (Job ID: daq0ql2c505c73ciultg, 5.54s QPU time).
+
+Interactive Readout & Hardware Explorer: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would love to stay connected as modular optical scaling and QPU interconnects advance.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(8)" id="copy-btn-8" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 9 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="9" data-cat="Quantum Hardware">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #9
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Tian Gu</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Quantum Hardware</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Co-founder/CEO at 2Pi Inc. | PI at MIT | Fellow of SPIE • <strong class="text-slate-200">2Pi Inc. & MIT</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/tian-gu/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(9)" id="status-btn-9" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-9" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Tian,
+
+Following your work at MIT and 2Pi Inc. pioneering integrated meta-optics and photonic silicon.
+
+At Triqee, we test high-throughput combinatorial algorithms on physical quantum hardware. We recently benchmarked IBM's 156-qubit Heron architecture across 4 workloads, including a 100-qubit macroscopic GHZ entanglement circuit with 100 measurement channels collapsed in 5.54s (Job: daq0ql2c505c73ciultg).
+
+Live Hardware Readout: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would welcome connecting and following your optical advances!
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(9)" id="copy-btn-9" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 10 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="10" data-cat="Deep Tech">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #10
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Benj Conway</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Deep Tech</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">President + Co-Founder • <strong class="text-slate-200">Zap Energy</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/benjconway/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(10)" id="status-btn-10" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-10" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Benj,
+
+Tracking Zap Energy’s tremendous progress commercializing sheared-flow-stabilized Z-pinch fusion.
+
+At Triqee, we tackle complex high-dimensional systems using physical quantum computing. We recently completed a 4-pillar benchmark on IBM Quantum’s 156-qubit Heron hardware, including 100-qubit macroscopic entanglement (Job: daq0ql2c505c73ciultg) and non-convex combinatorial optimization.
+
+Live Telemetry: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Inspiring to see you proving out transformative physical hardware!
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(10)" id="copy-btn-10" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 11 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="11" data-cat="Deep Tech">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #11
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Qichao Hu</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Deep Tech</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">CEO • <strong class="text-slate-200">SES AI</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/qichao-hu-solidenergy/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(11)" id="status-btn-11" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-11" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Qichao,
+
+Following SES AI’s impressive commercialization of lithium-metal batteries and AI-driven materials discovery.
+
+At Triqee, we bridge physical hardware computation with complex modeling. We recently completed live executions on IBM Quantum’s 156-qubit Heron processors, solving combinatorial Hamiltonians and benchmarking 100-qubit macroscopic entanglement (Job: daq0ql2c505c73ciultg).
+
+Live Explorer: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Great to stay connected with fellow founders building frontier physical technology.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(11)" id="copy-btn-11" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 12 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="12" data-cat="Deep Tech">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #12
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Sailesh Chittipeddi</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Deep Tech</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Venture Partner | Board Member | Former CEO • <strong class="text-slate-200">Semiconductor & Edge AI Executive</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/sailesh-chittipeddi-81774a1/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(12)" id="status-btn-12" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-12" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Sailesh,
+
+Following your leadership and board governance across semiconductor and advanced computing systems.
+
+At Triqee, we focus on gate-based quantum combinatorial solvers. Over the last 48 hours, we benchmarked IBM’s 156-qubit Heron processors across 4 workloads—solving discrete financial QUBOs in <2.5s and preparing a 100-qubit GHZ state across 99 native CZ gates (Job: daq0ql2c505c73ciultg).
+
+Interactive Telemetry: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would welcome your seasoned perspective on commercial adoption horizons for gate-based quantum acceleration.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(12)" id="copy-btn-12" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 13 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="13" data-cat="AI / Silicon">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #13
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Niv Vosco</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A+ Elite</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">AI / Silicon</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Director of Software Engineering • <strong class="text-slate-200">Hailo</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/niv-vosco/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(13)" id="status-btn-13" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-13" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Niv,
+
+Tracking Hailo’s impressive execution in edge AI processors and neural network HW-SW co-design.
+
+At Triqee, we develop hardware-native combinatorial kernels. We just completed a multi-processor run on IBM’s 156-qubit Heron quantum architecture, evaluating native heavy-hex routing and collapsing a 100-qubit entangled state in 5.54s (Job: daq0ql2c505c73ciultg).
+
+Live Explorer: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Always exciting to connect with engineering leaders pushing silicon architecture forward.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(13)" id="copy-btn-13" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 14 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="14" data-cat="Sovereign / Tech">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #14
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">James Grimsley</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">Tier 1 Strategic</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Sovereign / Tech</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Executive Director of Advanced Technology Initiatives • <strong class="text-slate-200">Choctaw Nation & Oklahoma Transportation Commission</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/jamesgrimsley" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(14)" id="status-btn-14" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-14" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi James,
+
+Following your ongoing leadership in advanced technology initiatives, sovereign infrastructure, and emerging tech frameworks across Oklahoma.
+
+At Triqee (triqee.com), we focus on high-throughput algorithmic systems that require mathematical proof. This week, we completed 4 verified production runs on IBM Quantum’s 156-qubit Heron hardware:
+• Physical Randomness & Entropy: Harvested 32,768 physical bits on ibm_fez (Job: dapusckak42c73cj8bl0) conforming to GLI-19 standards
+• Macroscopic Entanglement: Measured 100 physical superconducting qubits across 99 native CZ gates (Job: daq0ql2c505c73ciultg)
+• Combinatorial Optimization: Solved high-dimensional risk matrices in <2.5 seconds
+
+Live Telemetry & Audit Dossier: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would value your perspective on how you see state regulatory bodies and critical infrastructure adopting verifiable quantum computing.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(14)" id="copy-btn-14" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 15 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="15" data-cat="Private Wealth">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #15
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Andy Cobin</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">Tier 1 Capital</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Private Wealth</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Senior Managing Director / Alternative Assets Partner • <strong class="text-slate-200">Cobin Wealth & Alternative Investments</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/andycobin" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(15)" id="status-btn-15" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-15" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Andy,
+
+Following your work in alternative asset allocation and institutional wealth strategies.
+
+At Triqee, we bridge quantitative algorithmic finance and regulated infrastructure. We just executed our institutional risk-hedging QUBO directly on IBM’s 156-qubit Heron quantum hardware (ibm_marrakesh & ibm_kingston, Jobs: dapu6pb18flc739mtlj0 & daq0n38r7bnc73b463rg), solving multi-asset efficient frontiers in <2.5s.
+
+We’ve paired this with our institutional escrow ledger ($1M segregated reserve) and a turnkey $25,000 commercial pilot with 100% rollover credit.
+
+Live Hardware Explorer: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+I'd be glad to share our 2-page institutional summary if you're evaluating frontier fintech/quantum infrastructure allocations.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(15)" id="copy-btn-15" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 16 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="16" data-cat="Venture Capital">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #16
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Nickolas Moran</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">Tier 1 VC</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Venture Capital</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">General Partner • <strong class="text-slate-200">New Stack Ventures</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/nickolasmoran" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(16)" id="status-btn-16" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-16" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Nick,
+
+Enjoyed your recent perspectives on venture-scale frontier tech founders building real infrastructure before raising noise.
+
+We’ve built Triqee (triqee.com) into an autonomous risk & prediction market engine. We didn’t stop at software simulations—we just ran our core optimization Hamiltonians live on IBM’s 156-qubit Heron quantum hardware across 4 workloads (Jobs: dapu6pb18flc739mtlj0, dapusckak42c73cj8bl0, daq0n38r7bnc73b463rg, and 100-qubit GHZ: daq0ql2c505c73ciultg).
+
+72/72 automated tests passing, full state regulatory filing binder, and live interactive QPU telemetry:
+https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would love to send over our brief 2-page pilot SOW and deck when you have 5 minutes.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(16)" id="copy-btn-16" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 17 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="17" data-cat="Quant Finance">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #17
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Ryan Cargill, CFA</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">Tier 1 Quant</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Quant Finance</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Quantitative Portfolio Manager & Risk Officer • <strong class="text-slate-200">Institutional Derivatives & Asset Management</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/ryancargill" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(17)" id="status-btn-17" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-17" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Ryan,
+
+Reaching out given your background in quantitative risk management and derivatives pricing.
+
+We’ve formulated multi-asset and correlated parlay joint distributions as Ising Hamiltonians to bypass traditional Monte Carlo bottlenecking. This week, we solved cross-market covariance QUBOs on physical IBM Quantum 156-qubit Heron hardware:
+• Markowitz Portfolio QUBO: Solved across BTC, ETH, SPY, TLT, GLD, USO in 2.47s (ibm_kingston, Job: daq0n38r7bnc73b463rg)
+• SGP Correlation QUBO: Solved ground state |1111> in 2.17s (ibm_marrakesh, Job: dapu6pb18flc739mtlj0)
+• 100-Qubit Macroscopic GHZ State: 100 qubits simultaneously measured (Job: daq0ql2c505c73ciultg)
+
+Live Hardware Readout & Explorer: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would value comparing notes on your experience with copula correlation versus gate-based quantum combinatorial solvers.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(17)" id="copy-btn-17" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 18 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="18" data-cat="Deep Tech Talent">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #18
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Anna White</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">Tier 2 Talent</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Deep Tech Talent</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Partner & Executive Talent Lead • <strong class="text-slate-200">Deep Tech Executive Search</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/annawhite" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(18)" id="status-btn-18" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-18" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Anna,
+
+Hope you're having a productive week. I know you stay closely tapped into deep tech, AI, and quantum engineering talent networks.
+
+At Triqee, we're developing full-stack autonomous quant systems combining Qiskit 2.x quantum transpilation with real-time in-play streaming engines. We just completed 4 verified hardware runs across IBM Quantum's 156-qubit Heron processors (Jobs: dapu6pb18flc739mtlj0, daq0n38r7bnc73b463rg, and 100Q GHZ daq0ql2c505c73ciultg).
+
+Live Architecture & Explorer: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+We’re keeping an eye out for exceptional quantum algorithm developers and distributed systems architects as we expand our commercial pilots. Happy to stay connected as our roadmap progresses!
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(18)" id="copy-btn-18" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 19 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="19" data-cat="Quantum Biology">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #19
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Alessandro Lodesani</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">A Tier</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Quantum Biology</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Co-Founder, COO and Board Member • <strong class="text-slate-200">Quantum Biology Institute & DAO</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/alessandro-lodesani-300225157/" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(19)" id="status-btn-19" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-19" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Alessandro,
+
+Following your innovative work at the Quantum Biology Institute exploring bio-physical quantum mechanisms.
+
+At Triqee, we test high-dimensional physical systems on superconducting quantum hardware. We recently executed a 100-qubit macroscopic GHZ entanglement benchmark on IBM Quantum’s 156-qubit Heron processor across 99 native CZ gates (Job ID: daq0ql2c505c73ciultg, 5.54s QPU time).
+
+Live Hardware Explorer: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Great to stay connected with colleagues advancing quantum information theory and physical coherence.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(19)" id="copy-btn-19" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lead Card 20 -->
+      <div class="lead-card p-5 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl space-y-4 transition duration-200" data-id="20" data-cat="Cybersecurity">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs font-bold flex items-center justify-center border border-slate-700">
+              #20
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-white">Shailendra Upadhyay</h3>
+                <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-400 font-mono text-[10px] font-bold border border-yellow-400/20">Tier 1 Lead</span>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 font-mono text-[10px] border border-purple-500/20">Cybersecurity</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Principal Engineering Manager & Cyber Leader • <strong class="text-slate-200">Enterprise Cloud & Cyber Engineering</strong></p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/search/results/all/?keywords=Shailendra%20Upadhyay%20Cybersecurity" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 flex items-center gap-1 transition">
+              <span>↗ Open Profile</span>
+            </a>
+            <button onclick="toggleDispatched(20)" id="status-btn-20" class="px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition">
+              Mark Sent ◯
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Preview Box -->
+        <div class="relative">
+          <textarea readonly id="msg-text-20" rows="5" class="w-full p-3.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 font-mono leading-relaxed resize-none focus:outline-none focus:border-yellow-400/50">Hi Shailendra,
+
+Following your leadership in enterprise cloud architecture and cybersecurity engineering.
+
+At Triqee, we build high-throughput autonomous systems with verified cryptographic rigor. We recently benchmarked IBM Quantum’s 156-qubit Heron processors:
+• Generated GLI-19 compliant true physical entropy by harvesting 32,768 quantum bits across 32 qubits in superposition (Job: dapusckak42c73cj8bl0)
+• Measured a 100-qubit macroscopic GHZ entangled state in 5.54s (Job: daq0ql2c505c73ciultg)
+
+Live Verification Portal: https://a76ed8e4f9e6ee.lhr.life/QUANTUM_HARDWARE_EXPLORER.html
+
+Would welcome connecting to discuss the future of post-quantum cryptographic infrastructure and physical entropy seeding.
+
+Best,
+Jon Vierk
+Founder & CEO, Triqee</textarea>
+          <button onclick="copyMessage(20)" id="copy-btn-20" class="absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📋</span> <span>1-Click Copy</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-xs text-slate-500 font-mono pt-6 pb-12 border-t border-slate-800 space-y-1">
+      <div>Triqee Autonomous InMail Dispatch Engine • WhatsHot, Inc. & IMQbd 501(c)(3)</div>
+      <div>Verified Hardware Runs: IBM Quantum 156-Qubit Heron Architecture (ibm_marrakesh, ibm_fez, ibm_kingston)</div>
+    </footer>
+
+  </div>
+
+  <script>
+    let dispatchedSet = new Set(JSON.parse(localStorage.getItem('triqee_dispatched_inmails') || '[]'));
+
+    function updateProgress() {
+      const count = dispatchedSet.size;
+      document.getElementById('progress-text').innerText = `${count} / 20`;
+      document.getElementById('progress-bar').style.width = `${(count / 20) * 100}%`;
+      
+      // Update button labels
+      for (let i = 1; i <= 20; i++) {
+        const btn = document.getElementById(`status-btn-${i}`);
+        if (btn) {
+          if (dispatchedSet.has(i)) {
+            btn.className = "px-3 py-1.5 bg-emerald-950/80 border border-emerald-500/50 text-emerald-400 rounded-xl text-xs font-bold transition";
+            btn.innerText = "Dispatched ✓";
+          } else {
+            btn.className = "px-3 py-1.5 bg-slate-800 hover:bg-emerald-950/60 border border-slate-700 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 rounded-xl text-xs font-semibold transition";
+            btn.innerText = "Mark Sent ◯";
+          }
+        }
+      }
+    }
+
+    function toggleDispatched(id) {
+      if (dispatchedSet.has(id)) {
+        dispatchedSet.delete(id);
+      } else {
+        dispatchedSet.add(id);
+      }
+      localStorage.setItem('triqee_dispatched_inmails', JSON.stringify([...dispatchedSet]));
+      updateProgress();
+    }
+
+    function copyMessage(id) {
+      const textarea = document.getElementById(`msg-text-${id}`);
+      navigator.clipboard.writeText(textarea.value).then(() => {
+        const btn = document.getElementById(`copy-btn-${id}`);
+        const origText = btn.innerHTML;
+        btn.className = "absolute top-2.5 right-2.5 px-3 py-1.5 bg-emerald-500 text-white font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5";
+        btn.innerHTML = "<span>✓</span> <span>Copied to Clipboard!</span>";
+        
+        // Auto mark as dispatched
+        dispatchedSet.add(id);
+        localStorage.setItem('triqee_dispatched_inmails', JSON.stringify([...dispatchedSet]));
+        updateProgress();
+
+        setTimeout(() => {
+          btn.className = "absolute top-2.5 right-2.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold rounded-lg text-xs shadow-lg transition flex items-center gap-1.5";
+          btn.innerHTML = origText;
+        }, 2200);
+      });
+    }
+
+    function filterCategory(cat) {
+      const cards = document.querySelectorAll('.lead-card');
+      let visible = 0;
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-cat');
+        if (cat === 'ALL' || cardCat === cat) {
+          card.style.display = 'block';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('visible-count').innerText = visible;
+
+      // Update button styles
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.className = "filter-btn px-3 py-1.5 bg-yellow-400 text-slate-950 font-bold rounded-xl transition";
+        } else {
+          btn.className = "filter-btn px-3 py-1.5 bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 rounded-xl transition";
+        }
+      });
+    }
+
+    // Initialize on page load
+    updateProgress();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "code_name": "Bivariate Bicycle [[72, 12, 6]] qLDPC",
+  "physical_qubits": 72,
+  "logical_qubits": 12,
+  "code_distance": 6,
+  "h_x_rank": 30,
+  "h_z_rank": 30,
+  "commutativity_verified": true,
+  "is_valid_css_code": true,
+  "data_qubit_overhead_ratio": 6.0,
+  "total_qubit_overhead_ratio_during_extraction": 12.0
+}

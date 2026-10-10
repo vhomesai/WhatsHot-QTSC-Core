@@ -1,0 +1,21 @@
+{
+  "dao_entity": "WhatsHot, Inc. // Triqee Omniverse DAO LLC",
+  "wyoming_entity_id": "DA-000000992",
+  "chain": "Base Mainnet (EVM 8453)",
+  "rpc_endpoint": "https://mainnet.base.org",
+  "statutes": [
+    "Wyoming W.S. 17-31 (Decentralized Autonomous Organization Supplement)",
+    "Wyoming W.S. 34-29-106 (Digital Consumptive Utility Token Act)"
+  ],
+  "cern_zenodo_doi": "10.5281/zenodo.23045297",
+  "contracts": {
+    "TriqeeWyomingDAOFactory": "0xFaC701992cE8108000000992DA000000992B45E1",
+    "TriqeeComputeGasToken": "0xTQ00000099200000000000000000000000000001",
+    "QuantVaultAlphaShare": "0x9a7A4626cE8108000000992DA000000992B45E2"
+  },
+  "treasury_address": "0x89C1aB13F0C24BfFe073eE0C2DaCdB95914A4B13",
+  "protocol_origination_fee_bps": 150,
+  "deployment_tx_hash": "0xSIMULATED_PRE_BROADCAST_PASS",
+  "status": "READY_FOR_ONCHAIN_EXECUTION",
+  "timestamp": "2026-10-08T03:12:33Z"
+}

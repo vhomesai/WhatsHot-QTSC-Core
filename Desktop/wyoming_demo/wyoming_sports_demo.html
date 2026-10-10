@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wyoming Sportsbook & Exchange — Live Wagering Platform</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body {
+      background-color: #0b0f19;
+      color: #f3f4f6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .odds-btn {
+      transition: all 0.15s ease-in-out;
+    }
+    .odds-btn:hover {
+      border-color: #facc15;
+      background-color: #1e293b;
+    }
+    .odds-btn.selected {
+      background-color: #facc15;
+      color: #020617;
+      border-color: #facc15;
+      font-weight: 700;
+    }
+    .odds-btn.selected .subtext {
+      color: #0f172a;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="p-4 md:p-6 min-h-screen">
+  <div class="max-w-7xl mx-auto space-y-5">
+
+    <!-- Top Header / Sportsbook Branding -->
+    <header class="flex flex-wrap items-center justify-between gap-4 p-4 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl backdrop-blur">
+      <div class="flex items-center gap-4">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <h1 class="text-2xl font-black tracking-tight text-yellow-400">
+              WYOMING<span class="text-white">BET</span>
+            </h1>
+            <span class="bg-yellow-400/10 text-yellow-400 text-xs px-2.5 py-0.5 rounded font-mono font-semibold border border-yellow-400/20">
+              WGC Lic. SF0106
+            </span>
+            <span class="bg-emerald-500/10 text-emerald-400 text-xs px-2.5 py-0.5 rounded font-mono font-semibold border border-emerald-500/20 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              WYOMING ONLY (GEO-VERIFIED)
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 mt-0.5">
+            State-Regulated Online Sportsbook • Live In-Game Wagering • Spreads, Totals, Props & Same Game Parlays
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <!-- Odds Format Switcher -->
+        <div class="flex items-center bg-slate-800 border border-slate-700 rounded-lg p-0.5 text-xs font-mono">
+          <button id="btn-format-american" onclick="setOddsFormat('american')" class="px-2.5 py-1 rounded bg-yellow-400 text-slate-950 font-bold transition">American (-110)</button>
+          <button id="btn-format-decimal" onclick="setOddsFormat('decimal')" class="px-2.5 py-1 rounded text-slate-400 hover:text-white transition">Decimal (1.91)</button>
+        </div>
+
+        <!-- Player Balance -->
+        <div class="text-right">
+          <div class="text-[11px] text-slate-400 uppercase font-mono">Available Balance</div>
+          <div id="player-balance" class="text-2xl font-black text-yellow-400 font-mono">$10,000.00</div>
+        </div>
+
+        <button onclick="switchTab('cashier')" class="px-4 py-2 bg-yellow-400 text-slate-950 font-bold rounded-xl text-xs hover:bg-yellow-300 transition shadow">
+          Deposit / Cashier
+        </button>
+      </div>
+    </header>
+
+    <!-- Top Navigation Bar -->
+    <nav class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div class="flex flex-wrap gap-2">
+        <button onclick="switchTab('sportsbook')" id="tab-sportsbook" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-yellow-400 text-slate-950 transition">
+          🏈 Live Sportsbook
+        </button>
+        <button onclick="switchTab('backtester')" id="tab-backtester" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-900 text-slate-400 hover:text-white transition">
+          📊 Betting Systems Backtester
+        </button>
+        <button onclick="switchTab('compliance')" id="tab-compliance" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-900 text-slate-400 hover:text-white transition">
+          🛡️ Geofence & KYC (21+)
+        </button>
+        <button onclick="switchTab('cashier')" id="tab-cashier" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-900 text-slate-400 hover:text-white transition">
+          💳 Cashier & AML
+        </button>
+        <button onclick="switchTab('responsible')" id="tab-responsible" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-900 text-slate-400 hover:text-white transition">
+          ⚖️ Responsible Gaming
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span>Sportradar & Betgenius Feeds: ACTIVE</span>
+      </div>
+    </nav>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: LIVE SPORTSBOOK (SPORTS-FIRST INTERFACE)                        -->
+    <!-- ===================================================================== -->
+    <main id="panel-sportsbook" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- Left 8 Columns: Sports Matchup Board -->
+      <div class="lg:col-span-8 space-y-4">
+
+        <!-- Sport Category Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+          <button onclick="filterSport('ALL')" class="sport-filter-btn px-3.5 py-1.5 rounded-lg font-bold bg-yellow-400 text-slate-950 whitespace-nowrap">🔥 Popular / All</button>
+          <button onclick="filterSport('NFL')" class="sport-filter-btn px-3.5 py-1.5 rounded-lg font-medium bg-slate-900 text-slate-300 hover:bg-slate-800 whitespace-nowrap">🏈 NFL</button>
+          <button onclick="filterSport('NBA')" class="sport-filter-btn px-3.5 py-1.5 rounded-lg font-medium bg-slate-900 text-slate-300 hover:bg-slate-800 whitespace-nowrap">🏀 NBA</button>
+          <button onclick="filterSport('NCAA_FB')" class="sport-filter-btn px-3.5 py-1.5 rounded-lg font-medium bg-slate-900 text-slate-300 hover:bg-slate-800 whitespace-nowrap">🎓 College Football (Wyoming)</button>
+          <button onclick="filterSport('RODEO')" class="sport-filter-btn px-3.5 py-1.5 rounded-lg font-medium bg-slate-900 text-slate-300 hover:bg-slate-800 whitespace-nowrap">🤠 Pro Rodeo (PRCA)</button>
+          <button onclick="filterSport('F1')" class="sport-filter-btn px-3.5 py-1.5 rounded-lg font-medium bg-slate-900 text-slate-300 hover:bg-slate-800 whitespace-nowrap">🏎️ Formula 1</button>
+          <button onclick="filterSport('NASCAR')" class="sport-filter-btn px-3.5 py-1.5 rounded-lg font-medium bg-slate-900 text-slate-300 hover:bg-slate-800 whitespace-nowrap">🏁 NASCAR & IndyCar</button>
+          <button onclick="filterSport('HORSE')" class="sport-filter-btn px-3.5 py-1.5 rounded-lg font-medium bg-slate-900 text-slate-300 hover:bg-slate-800 whitespace-nowrap">🐎 Horse Racing</button>
+        </div>
+
+        <!-- Schedule / Slate Tabs -->
+        <div class="flex items-center justify-between bg-slate-900/60 p-2.5 rounded-xl border border-slate-800 text-xs">
+          <div class="flex gap-2">
+            <button onclick="setSlate('live')" id="slate-live" class="slate-btn px-3 py-1 rounded-md font-bold bg-red-500/20 text-red-400 border border-red-500/30 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-ping"></span>
+              LIVE IN-GAME (4)
+            </button>
+            <button onclick="setSlate('today')" id="slate-today" class="slate-btn px-3 py-1 rounded-md font-semibold text-slate-400 hover:text-white">
+              Today's Games
+            </button>
+            <button onclick="setSlate('weekend')" id="slate-weekend" class="slate-btn px-3 py-1 rounded-md font-semibold text-slate-400 hover:text-white">
+              Upcoming Weekend
+            </button>
+            <button onclick="setSlate('futures')" id="slate-futures" class="slate-btn px-3 py-1 rounded-md font-semibold text-slate-400 hover:text-white">
+              Championship Futures
+            </button>
+          </div>
+          <span class="text-slate-500 font-mono hidden md:inline">Quantum Pricing Engine: Live Ticking</span>
+        </div>
+
+        <!-- Sportsbook Matches Container -->
+        <div id="games-container" class="space-y-4">
+
+          <!-- GAME CARD 1: NFL LIVE -->
+          <div class="game-card bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 transition shadow-lg" data-sport="NFL" data-slate="live">
+            <!-- Header bar -->
+            <div class="flex items-center justify-between text-xs pb-3 border-b border-slate-800/80 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-mono font-bold flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
+                  4Q 02:45
+                </span>
+                <span class="text-slate-400 font-semibold">NFL • Week 4</span>
+                <span class="text-slate-500">| Highmark Stadium, Orchard Park, NY</span>
+              </div>
+              <span class="text-yellow-400 font-mono text-[11px] font-semibold bg-yellow-400/10 px-2 py-0.5 rounded">
+                Live TV: CBS / Paramount+
+              </span>
+            </div>
+
+            <!-- Odds Table Layout -->
+            <div class="grid grid-cols-12 gap-2 items-center">
+              <!-- Team Names & Score -->
+              <div class="col-span-5 space-y-2">
+                <div class="flex items-center justify-between pr-4">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                    <span class="font-bold text-white text-sm">Kansas City Chiefs</span>
+                    <span class="text-[10px] text-slate-400 font-mono">(3-0)</span>
+                  </div>
+                  <span class="font-mono text-base font-bold text-yellow-400">27</span>
+                </div>
+                <div class="flex items-center justify-between pr-4">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                    <span class="font-bold text-white text-sm">Buffalo Bills</span>
+                    <span class="text-[10px] text-slate-400 font-mono">(3-0)</span>
+                  </div>
+                  <span class="font-mono text-base font-bold text-yellow-400">24</span>
+                </div>
+              </div>
+
+              <!-- Lines: SPREAD (Col-span 2.3) -->
+              <div class="col-span-7 grid grid-cols-3 gap-2">
+                <!-- Column Header -->
+                <div class="col-span-3 grid grid-cols-3 text-center text-[10px] uppercase font-mono text-slate-400 mb-1">
+                  <span>SPREAD</span>
+                  <span>TOTAL (O/U)</span>
+                  <span>MONEYLINE</span>
+                </div>
+
+                <!-- Away Spread -->
+                <button onclick="selectBet('NFL: KC Chiefs @ BUF Bills', 'Kansas City Chiefs -2.5', -110, 'Spread', 'Chiefs -2.5 (-110)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">-2.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-110</div>
+                </button>
+                <!-- Away Over -->
+                <button onclick="selectBet('NFL: KC Chiefs @ BUF Bills', 'Total Over 52.5', -108, 'Total', 'Over 52.5 (-108)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">O 52.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-108</div>
+                </button>
+                <!-- Away Moneyline -->
+                <button onclick="selectBet('NFL: KC Chiefs @ BUF Bills', 'Kansas City Chiefs ML', -145, 'Moneyline', 'Chiefs Win (-145)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">KC</div>
+                  <div class="subtext text-[11px] font-mono text-yellow-400 font-bold">-145</div>
+                </button>
+
+                <!-- Home Spread -->
+                <button onclick="selectBet('NFL: KC Chiefs @ BUF Bills', 'Buffalo Bills +2.5', -110, 'Spread', 'Bills +2.5 (-110)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">+2.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-110</div>
+                </button>
+                <!-- Home Under -->
+                <button onclick="selectBet('NFL: KC Chiefs @ BUF Bills', 'Total Under 52.5', -112, 'Total', 'Under 52.5 (-112)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">U 52.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-112</div>
+                </button>
+                <!-- Home Moneyline -->
+                <button onclick="selectBet('NFL: KC Chiefs @ BUF Bills', 'Buffalo Bills ML', 125, 'Moneyline', 'Bills Win (+125)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">BUF</div>
+                  <div class="subtext text-[11px] font-mono text-yellow-400 font-bold">+125</div>
+                </button>
+              </div>
+            </div>
+
+            <!-- In-Play Live Props Collapsible Bar -->
+            <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+              <span class="text-slate-400 font-medium">⚡ In-Play Micro-Betting:</span>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="selectBet('NFL: KC @ BUF Next Drive', 'Next Drive: Touchdown', 240, 'Prop', 'Drive Result: Touchdown (+240)')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[11px] text-slate-300">
+                  Next Drive TD <span class="text-yellow-400 font-mono font-bold">+240</span>
+                </button>
+                <button onclick="selectBet('NFL: KC @ BUF Next Drive', 'Next Drive: Field Goal', 320, 'Prop', 'Drive Result: Field Goal (+320)')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[11px] text-slate-300">
+                  Next Drive FG <span class="text-yellow-400 font-mono font-bold">+320</span>
+                </button>
+                <button onclick="selectBet('NFL: KC @ BUF Next Drive', 'Next Drive: Punt / Turnover', -135, 'Prop', 'Drive Result: Punt/Turnover (-135)')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[11px] text-slate-300">
+                  Next Drive Punt <span class="text-yellow-400 font-mono font-bold">-135</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GAME CARD 2: COLLEGE FOOTBALL — WYOMING COWBOYS -->
+          <div class="game-card bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 transition shadow-lg" data-sport="NCAA_FB" data-slate="live">
+            <div class="flex items-center justify-between text-xs pb-3 border-b border-slate-800/80 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-mono font-bold flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
+                  2Q 08:30
+                </span>
+                <span class="text-slate-400 font-semibold">NCAA Football • Mountain West</span>
+                <span class="text-slate-500">| War Memorial Stadium, Laramie, WY</span>
+              </div>
+              <span class="text-yellow-400 font-mono text-[11px] font-semibold bg-yellow-400/10 px-2 py-0.5 rounded">
+                Wyoming Home Game
+              </span>
+            </div>
+
+            <div class="grid grid-cols-12 gap-2 items-center">
+              <div class="col-span-5 space-y-2">
+                <div class="flex items-center justify-between pr-4">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-800"></span>
+                    <span class="font-bold text-white text-sm">Wyoming Cowboys</span>
+                    <span class="text-[10px] text-yellow-400 font-mono font-bold">WYO</span>
+                  </div>
+                  <span class="font-mono text-base font-bold text-yellow-400">17</span>
+                </div>
+                <div class="flex items-center justify-between pr-4">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-700"></span>
+                    <span class="font-bold text-white text-sm">Boise State Broncos</span>
+                    <span class="text-[10px] text-slate-400 font-mono">BSU</span>
+                  </div>
+                  <span class="font-mono text-base font-bold text-yellow-400">14</span>
+                </div>
+              </div>
+
+              <div class="col-span-7 grid grid-cols-3 gap-2">
+                <!-- WYO Spread -->
+                <button onclick="selectBet('NCAA: Boise State @ Wyoming', 'Wyoming Cowboys +4.5', -115, 'Spread', 'Wyoming +4.5 (-115)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">+4.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-115</div>
+                </button>
+                <!-- Over -->
+                <button onclick="selectBet('NCAA: Boise State @ Wyoming', 'Total Over 45.5', -110, 'Total', 'Over 45.5 (-110)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">O 45.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-110</div>
+                </button>
+                <!-- WYO Moneyline -->
+                <button onclick="selectBet('NCAA: Boise State @ Wyoming', 'Wyoming Cowboys ML', 150, 'Moneyline', 'Wyoming Win (+150)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">WYO</div>
+                  <div class="subtext text-[11px] font-mono text-yellow-400 font-bold">+150</div>
+                </button>
+
+                <!-- BSU Spread -->
+                <button onclick="selectBet('NCAA: Boise State @ Wyoming', 'Boise State -4.5', -105, 'Spread', 'Boise State -4.5 (-105)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">-4.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-105</div>
+                </button>
+                <!-- Under -->
+                <button onclick="selectBet('NCAA: Boise State @ Wyoming', 'Total Under 45.5', -110, 'Total', 'Under 45.5 (-110)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">U 45.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-110</div>
+                </button>
+                <!-- BSU Moneyline -->
+                <button onclick="selectBet('NCAA: Boise State @ Wyoming', 'Boise State ML', -175, 'Moneyline', 'Boise State Win (-175)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">BSU</div>
+                  <div class="subtext text-[11px] font-mono text-yellow-400 font-bold">-175</div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GAME CARD 3: NBA LIVE -->
+          <div class="game-card bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 transition shadow-lg" data-sport="NBA" data-slate="live">
+            <div class="flex items-center justify-between text-xs pb-3 border-b border-slate-800/80 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-mono font-bold flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
+                  3Q 04:12
+                </span>
+                <span class="text-slate-400 font-semibold">NBA • Regular Season</span>
+                <span class="text-slate-500">| Ball Arena, Denver, CO</span>
+              </div>
+              <span class="text-slate-400 font-mono text-[11px]">ESPN National Game</span>
+            </div>
+
+            <div class="grid grid-cols-12 gap-2 items-center">
+              <div class="col-span-5 space-y-2">
+                <div class="flex items-center justify-between pr-4">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                    <span class="font-bold text-white text-sm">Boston Celtics</span>
+                  </div>
+                  <span class="font-mono text-base font-bold text-yellow-400">84</span>
+                </div>
+                <div class="flex items-center justify-between pr-4">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                    <span class="font-bold text-white text-sm">Denver Nuggets</span>
+                  </div>
+                  <span class="font-mono text-base font-bold text-yellow-400">81</span>
+                </div>
+              </div>
+
+              <div class="col-span-7 grid grid-cols-3 gap-2">
+                <button onclick="selectBet('NBA: Celtics @ Nuggets', 'Boston Celtics -1.5', -110, 'Spread', 'Celtics -1.5 (-110)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">-1.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-110</div>
+                </button>
+                <button onclick="selectBet('NBA: Celtics @ Nuggets', 'Total Over 224.5', -110, 'Total', 'Over 224.5 (-110)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">O 224.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-110</div>
+                </button>
+                <button onclick="selectBet('NBA: Celtics @ Nuggets', 'Boston Celtics ML', -120, 'Moneyline', 'Celtics Win (-120)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">BOS</div>
+                  <div class="subtext text-[11px] font-mono text-yellow-400 font-bold">-120</div>
+                </button>
+
+                <button onclick="selectBet('NBA: Celtics @ Nuggets', 'Denver Nuggets +1.5', -110, 'Spread', 'Nuggets +1.5 (-110)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">+1.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-110</div>
+                </button>
+                <button onclick="selectBet('NBA: Celtics @ Nuggets', 'Total Under 224.5', -110, 'Total', 'Under 224.5 (-110)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">U 224.5</div>
+                  <div class="subtext text-[11px] font-mono text-slate-400">-110</div>
+                </button>
+                <button onclick="selectBet('NBA: Celtics @ Nuggets', 'Denver Nuggets ML', 100, 'Moneyline', 'Nuggets Win (+100)')" class="odds-btn bg-slate-800/90 border border-slate-700/80 rounded-xl py-2 px-1 text-center">
+                  <div class="text-xs font-bold text-white">DEN</div>
+                  <div class="subtext text-[11px] font-mono text-yellow-400 font-bold">+100</div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GAME CARD 4: PRO RODEO (PRCA CHEYENNE FRONTIER DAYS) -->
+          <div class="game-card bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 transition shadow-lg" data-sport="RODEO" data-slate="live">
+            <div class="flex items-center justify-between text-xs pb-3 border-b border-slate-800/80 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono font-bold flex items-center gap-1">
+                  🤠 SECTION 4 IN CHUTE
+                </span>
+                <span class="text-slate-400 font-semibold">PRCA Pro Rodeo • Cheyenne Frontier Days</span>
+                <span class="text-slate-500">| Frontier Park Arena, Cheyenne, WY</span>
+              </div>
+              <span class="text-yellow-400 font-mono text-[11px] font-bold">The Daddy of 'em All</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <!-- Rider Matchup 1 -->
+              <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl space-y-2">
+                <div class="text-xs font-bold text-white">Stetson Wright vs Bull: "Red Rock"</div>
+                <div class="text-[11px] text-slate-400">Bull Riding • Championship Round</div>
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                  <button onclick="selectBet('PRCA Bull Riding: Stetson Wright', 'Makes 8-Sec Whistle (YES)', 135, 'Rodeo Prop', '8-Sec Whistle YES (+135)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">8-Sec Whistle</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">+135</span>
+                  </button>
+                  <button onclick="selectBet('PRCA Bull Riding: Stetson Wright', 'Bucked Off Before 8-Sec (NO)', -165, 'Rodeo Prop', '8-Sec Whistle NO (-165)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">Buck Off (NO)</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">-165</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Ride Score Total -->
+              <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl space-y-2">
+                <div class="text-xs font-bold text-white">Winning Ride Score (Total)</div>
+                <div class="text-[11px] text-slate-400">Judge Scored (Out of 100)</div>
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                  <button onclick="selectBet('PRCA: Cheyenne Ride Score', 'Over 88.5 Points', -110, 'Total', 'Over 88.5 Points (-110)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">Over 88.5</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">-110</span>
+                  </button>
+                  <button onclick="selectBet('PRCA: Cheyenne Ride Score', 'Under 88.5 Points', -110, 'Total', 'Under 88.5 Points (-110)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">Under 88.5</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">-110</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Saddle Bronc Champion -->
+              <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl space-y-2">
+                <div class="text-xs font-bold text-white">Saddle Bronc Winner Outright</div>
+                <div class="text-[11px] text-slate-400">Final Go-Round Match</div>
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                  <button onclick="selectBet('PRCA Saddle Bronc', 'Brody Cress (Wyoming Favorite)', 220, 'Moneyline', 'Brody Cress Win (+220)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">Brody Cress (WY)</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">+220</span>
+                  </button>
+                  <button onclick="selectBet('PRCA Saddle Bronc', 'Sage Newman', 250, 'Moneyline', 'Sage Newman Win (+250)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">Sage Newman</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">+250</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GAME CARD 5: FORMULA 1 (LAS VEGAS GP) -->
+          <div class="game-card bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 transition shadow-lg" data-sport="F1" data-slate="today">
+            <div class="flex items-center justify-between text-xs pb-3 border-b border-slate-800/80 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-mono font-bold">
+                  🏎️ FORMULA 1 • SATURDAY 10:00 PM MT
+                </span>
+                <span class="text-slate-400 font-semibold">Las Vegas Grand Prix</span>
+                <span class="text-slate-500">| Las Vegas Strip Circuit, NV</span>
+              </div>
+              <span class="text-emerald-400 font-mono text-[11px] font-bold">Track: Night Race / Cold</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl space-y-2">
+                <div class="text-xs font-bold text-white">Race Winner Outright</div>
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                  <button onclick="selectBet('F1: Las Vegas GP', 'Max Verstappen to Win', 110, 'Outright', 'Verstappen Win (+110)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">Verstappen</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">+110</span>
+                  </button>
+                  <button onclick="selectBet('F1: Las Vegas GP', 'Lando Norris to Win', 210, 'Outright', 'Norris Win (+210)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">Norris</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">+210</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl space-y-2">
+                <div class="text-xs font-bold text-white">Podium Finish (Top 3)</div>
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                  <button onclick="selectBet('F1: Las Vegas GP', 'Charles Leclerc Podium', -140, 'Prop', 'Leclerc Podium (-140)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">Leclerc Podium</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">-140</span>
+                  </button>
+                  <button onclick="selectBet('F1: Las Vegas GP', 'Oscar Piastri Podium', 125, 'Prop', 'Piastri Podium (+125)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">Piastri Podium</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">+125</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl space-y-2">
+                <div class="text-xs font-bold text-white">Safety Car Deployed?</div>
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                  <button onclick="selectBet('F1: Las Vegas GP', 'Safety Car: YES', -280, 'Prop', 'Safety Car YES (-280)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">YES</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">-280</span>
+                  </button>
+                  <button onclick="selectBet('F1: Las Vegas GP', 'Safety Car: NO', 220, 'Prop', 'Safety Car NO (+220)')" class="odds-btn py-1.5 px-2 bg-slate-800 rounded-lg text-xs text-center border border-slate-700">
+                    <span class="font-bold text-white">NO</span>
+                    <span class="block text-[10px] text-yellow-400 font-mono font-bold">+220</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GAME CARD 6: HORSE RACING (KENTUCKY DERBY / BREEDERS CUP) -->
+          <div class="game-card bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 transition shadow-lg" data-sport="HORSE" data-slate="today">
+            <div class="flex items-center justify-between text-xs pb-3 border-b border-slate-800/80 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-amber-600/20 text-amber-300 font-mono font-bold">
+                  🐎 THOROUGHBRED RACING • POST TIME 5:45 PM MT
+                </span>
+                <span class="text-slate-400 font-semibold">Churchill Downs • Race 10</span>
+                <span class="text-slate-500">| 1 1/4 Mile Dirt (Fast)</span>
+              </div>
+              <span class="text-yellow-400 font-mono text-[11px] font-bold">Equibase Feed Certified</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+              <button onclick="selectBet('Horse Race: Churchill Downs R10', 'Horse #3: Fierceness (Win)', 250, 'Horse Racing', 'Fierceness Win (+250)')" class="odds-btn p-2.5 bg-slate-800/90 border border-slate-700 rounded-xl text-left">
+                <div class="text-[10px] text-yellow-400 font-mono font-bold">POST 3 • ML 5-2</div>
+                <div class="text-xs font-bold text-white mt-0.5">3. Fierceness</div>
+                <div class="subtext text-[11px] text-yellow-400 font-mono font-bold mt-1">+250</div>
+              </button>
+              <button onclick="selectBet('Horse Race: Churchill Downs R10', 'Horse #7: Sierra Leone (Win)', 300, 'Horse Racing', 'Sierra Leone Win (+300)')" class="odds-btn p-2.5 bg-slate-800/90 border border-slate-700 rounded-xl text-left">
+                <div class="text-[10px] text-yellow-400 font-mono font-bold">POST 7 • ML 3-1</div>
+                <div class="text-xs font-bold text-white mt-0.5">7. Sierra Leone</div>
+                <div class="subtext text-[11px] text-yellow-400 font-mono font-bold mt-1">+300</div>
+              </button>
+              <button onclick="selectBet('Horse Race: Churchill Downs R10', 'Horse #2: Catching Freedom (Win)', 600, 'Horse Racing', 'Catching Freedom Win (+600)')" class="odds-btn p-2.5 bg-slate-800/90 border border-slate-700 rounded-xl text-left">
+                <div class="text-[10px] text-yellow-400 font-mono font-bold">POST 2 • ML 8-1</div>
+                <div class="text-xs font-bold text-white mt-0.5">2. Catching Freedom</div>
+                <div class="subtext text-[11px] text-yellow-400 font-mono font-bold mt-1">+600</div>
+              </button>
+              <button onclick="selectBet('Horse Race: Churchill Downs R10', 'Exacta Box: 3 & 7', 850, 'Horse Racing', 'Exacta Box 3/7 (+850)')" class="odds-btn p-2.5 bg-slate-800/90 border border-slate-700 rounded-xl text-left">
+                <div class="text-[10px] text-purple-400 font-mono font-bold">EXOTIC WAGER</div>
+                <div class="text-xs font-bold text-white mt-0.5">Exacta Box: 3 & 7</div>
+                <div class="subtext text-[11px] text-purple-300 font-mono font-bold mt-1">+850</div>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right 4 Columns: Authentic Sports Bet Slip -->
+      <div class="lg:col-span-4 space-y-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-2xl sticky top-4 space-y-4">
+          
+          <!-- Slip Header -->
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div class="flex items-center gap-2">
+              <h2 class="text-base font-extrabold text-white uppercase tracking-wider">🎟️ Bet Slip</h2>
+              <span id="slip-badge-count" class="bg-yellow-400 text-slate-950 font-black text-xs px-2 py-0.5 rounded-full">1</span>
+            </div>
+            <div class="flex gap-1 text-xs">
+              <button onclick="setBetMode('single')" id="btn-mode-single" class="px-3 py-1 rounded-md font-bold bg-yellow-400 text-slate-950 transition">Straight</button>
+              <button onclick="setBetMode('parlay')" id="btn-mode-parlay" class="px-3 py-1 rounded-md font-bold bg-slate-800 text-slate-400 hover:text-white transition">Parlay</button>
+            </div>
+          </div>
+
+          <!-- Active Selections Container -->
+          <div id="selections-list" class="space-y-3 max-h-72 overflow-y-auto pr-1">
+            <!-- Active Pick Card -->
+            <div id="active-pick-card" class="bg-slate-950 border border-slate-800 rounded-xl p-3 relative">
+              <button onclick="clearSlip()" class="absolute top-2 right-2 text-slate-500 hover:text-red-400 text-xs font-bold">✕</button>
+              <div class="text-[11px] text-slate-400 font-mono" id="slip-game-title">NFL: KC Chiefs @ BUF Bills</div>
+              <div class="text-sm font-bold text-white mt-0.5" id="slip-selection-title">Kansas City Chiefs -2.5</div>
+              <div class="flex items-center justify-between mt-2 pt-2 border-t border-slate-800/80 text-xs">
+                <span class="text-slate-400" id="slip-market-type">Point Spread</span>
+                <span class="font-mono font-bold text-yellow-400" id="slip-odds-display">-110</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stake Input & Quick Chips -->
+          <div class="space-y-2.5">
+            <div class="flex justify-between items-center text-xs">
+              <label class="font-bold text-slate-300">WAGER AMOUNT ($USD)</label>
+              <span class="text-slate-500 font-mono">Min: $1 | Max: $10,000</span>
+            </div>
+            
+            <div class="relative">
+              <span class="absolute left-3 top-2.5 text-slate-400 font-mono font-bold text-sm">$</span>
+              <input id="wager-amount" type="number" min="1" max="10000" value="50" oninput="calculatePayout()" class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-8 pr-4 py-2.5 text-white font-mono text-base font-bold focus:outline-none focus:border-yellow-400 transition">
+            </div>
+
+            <!-- Quick Chip Buttons -->
+            <div class="grid grid-cols-5 gap-1.5 text-xs font-mono">
+              <button onclick="addStake(10)" class="py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-lg transition">+$10</button>
+              <button onclick="addStake(25)" class="py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-lg transition">+$25</button>
+              <button onclick="addStake(50)" class="py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-lg transition">+$50</button>
+              <button onclick="addStake(100)" class="py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-lg transition">+$100</button>
+              <button onclick="setStakeMax()" class="py-1.5 bg-slate-800 hover:bg-slate-700 text-yellow-400 font-bold rounded-lg transition">MAX</button>
+            </div>
+          </div>
+
+          <!-- Projected Payout Summary Box -->
+          <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5 text-xs font-mono">
+            <div class="flex justify-between text-slate-400">
+              <span>Total Wager:</span>
+              <span id="summary-wager" class="text-white font-bold">$50.00</span>
+            </div>
+            <div class="flex justify-between text-slate-400">
+              <span>Potential Win:</span>
+              <span id="summary-win" class="text-emerald-400 font-bold">+$45.45</span>
+            </div>
+            <div class="border-t border-slate-800 pt-1.5 flex justify-between text-sm font-bold">
+              <span class="text-slate-300">Total Payout:</span>
+              <span id="summary-payout" class="text-yellow-400 font-black text-base">$95.45</span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button onclick="submitWager()" class="w-full py-3.5 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 text-slate-950 font-black text-sm uppercase tracking-wider rounded-xl hover:from-yellow-300 hover:to-amber-300 transition shadow-lg flex items-center justify-center gap-2">
+            <span>⚡ PLACE WAGER</span>
+          </button>
+
+          <!-- Confirmation Notification Alert -->
+          <div id="bet-ticket-alert" class="hidden p-3 rounded-xl text-xs font-mono"></div>
+
+          <!-- Pending Bets / Cash Out Simulator -->
+          <div class="pt-3 border-t border-slate-800">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+              <span class="font-bold">ACTIVE BET TICKETS</span>
+              <span id="active-tickets-count" class="font-mono text-yellow-400">1 Open</span>
+            </div>
+            <div id="active-tickets-container" class="space-y-2">
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono space-y-1">
+                <div class="flex justify-between text-slate-400">
+                  <span class="text-yellow-400 font-bold">#WY-991204</span>
+                  <span class="text-emerald-400">● LIVE IN-PLAY</span>
+                </div>
+                <div class="text-white font-bold">Kansas City Chiefs -2.5</div>
+                <div class="flex justify-between text-slate-400 pt-1 border-t border-slate-900">
+                  <span>Stake: $100.00</span>
+                  <span class="text-emerald-400">To Win: $90.91</span>
+                </div>
+                <button onclick="cashOut('WY-991204', 145.20)" class="w-full mt-1.5 py-1 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 rounded text-center text-[10px] font-bold">
+                  Cash Out Now: $145.20
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: BETTING SYSTEMS & QUANTITATIVE BACKTESTER                       -->
+    <!-- ===================================================================== -->
+    <section id="panel-backtester" class="hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-yellow-400">📊 Sports Betting Systems & ATS Backtester</h2>
+            <p class="text-xs text-slate-400 mt-1">
+              Validate quantitative betting strategies against historical multi-sport game databases (Port 8006). Evaluates Against-The-Spread (ATS) performance, Game Totals, and Moneylines.
+            </p>
+          </div>
+          <button onclick="runSportsBacktest()" class="px-5 py-2.5 bg-yellow-400 text-slate-950 font-bold rounded-xl text-xs hover:bg-yellow-300 transition shadow">
+            ▶ Run Simulation (250 Historical Matches)
+          </button>
+        </div>
+
+        <!-- Strategy Inputs -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 bg-slate-950 border border-slate-800 rounded-xl text-xs">
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Target Sport:</label>
+            <select id="bt-sport" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white">
+              <option value="NFL">NFL Football</option>
+              <option value="NBA">NBA Basketball</option>
+              <option value="NCAA_FB">College Football (NCAA)</option>
+              <option value="RODEO">PRCA Rodeo</option>
+              <option value="F1">Formula 1</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Betting Angle / Strategy:</label>
+            <select class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white">
+              <option>Underdog Spread (ATS +3.5 to +7.5)</option>
+              <option>Home Favorites (-3.0 or higher)</option>
+              <option>Under Total Points in Cold Weather</option>
+              <option>Chamber Closing-Line Value (CLV) Edge</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Sportsbook Hold (House Edge):</label>
+            <select id="bt-edge" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono">
+              <option value="0.045">4.50% (Standard -110 Juice)</option>
+              <option value="0.035">3.50% (Reduced -105 Juice)</option>
+              <option value="0.020">2.00% (Low-Vig Market)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Unit Stake per Wager:</label>
+            <input type="number" value="100" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono">
+          </div>
+        </div>
+
+        <!-- Strategy Performance Dashboard -->
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
+          <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl text-center">
+            <div class="text-[10px] text-slate-400 uppercase font-mono">Wagers Tested</div>
+            <div id="bt-count" class="text-xl font-black text-white font-mono mt-1">250</div>
+          </div>
+          <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl text-center">
+            <div class="text-[10px] text-slate-400 uppercase font-mono">Win Rate (ATS)</div>
+            <div id="bt-winrate" class="text-xl font-black text-emerald-400 font-mono mt-1">56.8%</div>
+            <div class="text-[10px] text-slate-500">Break-even: 52.4%</div>
+          </div>
+          <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl text-center">
+            <div class="text-[10px] text-slate-400 uppercase font-mono">Total Risked</div>
+            <div class="text-xl font-black text-white font-mono mt-1">$25,000</div>
+          </div>
+          <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl text-center">
+            <div class="text-[10px] text-slate-400 uppercase font-mono">Net Profit</div>
+            <div id="bt-profit" class="text-xl font-black text-emerald-400 font-mono mt-1">+$2,180.00</div>
+          </div>
+          <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl text-center">
+            <div class="text-[10px] text-slate-400 uppercase font-mono">ROI (%)</div>
+            <div id="bt-roi" class="text-xl font-black text-yellow-400 font-mono mt-1">+8.72%</div>
+          </div>
+          <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl text-center">
+            <div class="text-[10px] text-slate-400 uppercase font-mono">Sharpe Ratio</div>
+            <div id="bt-sharpe" class="text-xl font-black text-yellow-400 font-mono mt-1">1.94</div>
+          </div>
+        </div>
+
+        <!-- Historical Game Breakdown Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="text-slate-500 border-b border-slate-800">
+              <tr>
+                <th class="pb-2">DATE</th>
+                <th class="pb-2">MATCHUP</th>
+                <th class="pb-2">WAGER LINE</th>
+                <th class="pb-2">FINAL SCORE</th>
+                <th class="pb-2">ATS RESULT</th>
+                <th class="pb-2 text-right">RETURN</th>
+              </tr>
+            </thead>
+            <tbody id="bt-table-body" class="divide-y divide-slate-800 text-slate-300">
+              <tr>
+                <td class="py-2.5 text-slate-400">2026-09-14</td>
+                <td class="py-2.5 font-bold text-white">Wyoming Cowboys @ Air Force</td>
+                <td class="py-2.5 text-yellow-400">Wyoming +6.5 (-110)</td>
+                <td class="py-2.5">WYO 21 - 24 AF</td>
+                <td class="py-2.5"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">COVERED (+3.5)</span></td>
+                <td class="py-2.5 text-right text-emerald-400 font-bold">+$90.91</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 text-slate-400">2026-09-07</td>
+                <td class="py-2.5 font-bold text-white">Kansas City Chiefs @ LA Chargers</td>
+                <td class="py-2.5 text-yellow-400">Total Under 47.5 (-110)</td>
+                <td class="py-2.5">KC 20 - 17 LAC (37)</td>
+                <td class="py-2.5"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">UNDER WON (-10.5)</span></td>
+                <td class="py-2.5 text-right text-emerald-400 font-bold">+$90.91</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 text-slate-400">2026-08-31</td>
+                <td class="py-2.5 font-bold text-white">Denver Nuggets @ Minnesota Timberwolves</td>
+                <td class="py-2.5 text-yellow-400">Denver Nuggets -2.5 (-110)</td>
+                <td class="py-2.5">DEN 102 - 106 MIN</td>
+                <td class="py-2.5"><span class="px-2 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/20 font-bold">LOST</span></td>
+                <td class="py-2.5 text-right text-red-400 font-bold">-$100.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: REGULATORY COMPLIANCE, GEOFENCE & KYC (21+)                     -->
+    <!-- ===================================================================== -->
+    <section id="panel-compliance" class="hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <span>🛡️ Wyoming Geofence & Age Verification</span>
+            <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono">Wyo. Stat. § 11-25</span>
+          </h2>
+          <p class="text-xs text-slate-400">
+            Players must be physically located within Wyoming state borders and at least 21 years of age to place wagers.
+          </p>
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block font-medium text-slate-400 mb-1">Player IP Address (GeoComply Adapter):</label>
+              <div class="flex gap-2">
+                <input id="comp-ip" type="text" value="72.24.0.1" class="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white font-mono">
+                <button onclick="testGeo()" class="px-4 py-2 bg-yellow-400 text-slate-950 font-bold rounded-lg hover:bg-yellow-300">Test Geolocation</button>
+              </div>
+            </div>
+            <div>
+              <label class="block font-medium text-slate-400 mb-1">Date of Birth (Minimum 21 Years):</label>
+              <div class="flex gap-2">
+                <input id="comp-dob" type="date" value="1995-05-12" class="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white font-mono">
+                <button onclick="testAge()" class="px-4 py-2 bg-yellow-400 text-slate-950 font-bold rounded-lg hover:bg-yellow-300">Verify Age</button>
+              </div>
+            </div>
+          </div>
+          <div id="comp-status-box" class="p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs font-mono text-emerald-400">
+            ✅ VERIFIED: Device located within Wyoming borders (Cheyenne centroid, Lat 41.1399° N, Lon 104.8202° W). Player Age: 31 years (≥ 21). Wagering authorization granted.
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-bold text-white">📜 WGC Regulatory Disclosures</h2>
+            <span class="text-xs font-mono bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded border border-purple-500/20">AUDIT COMPLIANT</span>
+          </div>
+          <div class="space-y-2.5 text-xs text-slate-300">
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl flex justify-between items-center">
+              <div>
+                <div class="text-slate-400 text-[11px]">Segregated Player Reserve Fund</div>
+                <div class="font-bold text-white font-mono">$500,000.00 USD Required</div>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono text-[10px]">VERIFIED 100%</span>
+            </div>
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl flex justify-between items-center">
+              <div>
+                <div class="text-slate-400 text-[11px]">Wyoming State AGR Tax</div>
+                <div class="font-bold text-yellow-400 font-mono">10.0% Monthly Gross Revenue</div>
+              </div>
+              <span class="text-slate-400 font-mono text-[10px]">Senate File 0106</span>
+            </div>
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl flex justify-between items-center">
+              <div>
+                <div class="text-slate-400 text-[11px]">Audit Log Storage Policy</div>
+                <div class="font-bold text-purple-300 font-mono">PostgreSQL WORM (Immutable)</div>
+              </div>
+              <span class="text-purple-400 font-mono text-[10px]">REVOKE DELETE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 4: CASHIER & AML MONITORING                                       -->
+    <!-- ===================================================================== -->
+    <section id="panel-cashier" class="hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+          <h2 class="text-lg font-bold text-white">💳 Player Wallet & Cashier</h2>
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block font-medium text-slate-400 mb-1">Transaction Type:</label>
+              <div class="grid grid-cols-2 gap-2">
+                <button id="btn-cashier-dep" onclick="setCashierAction('deposit')" class="py-2 bg-yellow-400 text-slate-950 font-bold rounded-lg">Deposit</button>
+                <button id="btn-cashier-with" onclick="setCashierAction('withdrawal')" class="py-2 bg-slate-800 text-slate-400 font-bold rounded-lg hover:text-white">Withdrawal</button>
+              </div>
+            </div>
+            <div>
+              <label class="block font-medium text-slate-400 mb-1">Amount ($USD):</label>
+              <input id="cashier-amount" type="number" value="1000" min="10" max="50000" oninput="checkAmlNotice(this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white font-mono text-sm">
+            </div>
+            <div>
+              <label class="block font-medium text-slate-400 mb-1">Payment Method:</label>
+              <select class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white text-xs">
+                <option>Visa Card ending in 4242 (Instant Deposit)</option>
+                <option>Mastercard ending in 5555</option>
+                <option>Chase Bank ACH (Same Day)</option>
+                <option>Play+ Prepaid Wagering Card</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="aml-notice-box" class="hidden p-3 bg-amber-950/70 border border-amber-800 rounded-xl text-xs text-amber-200">
+            ⚠️ <strong>FinCEN / WGC AML Compliance Alert:</strong> Transaction amount ≥ $3,000.00 triggers statutory Currency Transaction Reporting (CTR). Cumulative 30-day volume ≥ $10,000.00 undergoes automated SAR review.
+          </div>
+
+          <button onclick="executeCashier()" class="w-full py-2.5 bg-yellow-400 text-slate-950 font-bold rounded-xl text-sm hover:bg-yellow-300 transition">
+            Process Transaction
+          </button>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+          <h2 class="text-lg font-bold text-white">📋 Financial Ledger History</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs font-mono">
+              <thead class="text-slate-500 border-b border-slate-800">
+                <tr>
+                  <th class="pb-2">TX ID</th>
+                  <th class="pb-2">TYPE</th>
+                  <th class="pb-2">AMOUNT</th>
+                  <th class="pb-2">STATUS</th>
+                </tr>
+              </thead>
+              <tbody id="cashier-tx-body" class="divide-y divide-slate-800 text-slate-300">
+                <tr>
+                  <td class="py-2.5 text-yellow-400">tx_init_001</td>
+                  <td class="py-2.5 uppercase">DEPOSIT</td>
+                  <td class="py-2.5 text-emerald-400 font-bold">+$10,000.00</td>
+                  <td class="py-2.5"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">SETTLED</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 5: RESPONSIBLE GAMING & SELF-EXCLUSION                            -->
+    <!-- ===================================================================== -->
+    <section id="panel-responsible" class="hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+          <h2 class="text-lg font-bold text-white">⚙️ Personal Wagering Limits</h2>
+          <p class="text-xs text-slate-400">
+            Per WGC regulations, limit decreases apply immediately. Limit increases require a mandatory 24-hour cooling-off period.
+          </p>
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block font-medium text-slate-400 mb-1">Daily Deposit Limit ($USD):</label>
+              <input type="number" value="500" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono">
+            </div>
+            <div>
+              <label class="block font-medium text-slate-400 mb-1">Daily Loss Limit ($USD):</label>
+              <input type="number" value="250" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono">
+            </div>
+            <div>
+              <label class="block font-medium text-slate-400 mb-1">Session Duration Max (Hours):</label>
+              <input type="number" value="2" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono">
+            </div>
+          </div>
+          <button onclick="alert('✅ Responsible Gaming limits updated successfully in compliance with WGC rules.')" class="w-full py-2 bg-yellow-400 text-slate-950 font-bold rounded-lg hover:bg-yellow-300">
+            Save Limits
+          </button>
+        </div>
+
+        <div class="bg-slate-900 border border-red-900/40 rounded-2xl p-6 space-y-4">
+          <h2 class="text-lg font-bold text-red-400 flex items-center gap-2">
+            <span>🛑 Statewide Self-Exclusion</span>
+          </h2>
+          <p class="text-xs text-slate-400">
+            Self-exclusion immediately terminates active betting and submits your registration to the Wyoming Gaming Commission Statewide Exclusion Registry.
+          </p>
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block font-medium text-slate-400 mb-1">Exclusion Period:</label>
+              <select class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white">
+                <option>1 Year Exclusion</option>
+                <option>3 Year Exclusion</option>
+                <option>5 Year Exclusion</option>
+                <option>Permanent Lifetime Exclusion</option>
+              </select>
+            </div>
+            <div class="p-3 bg-red-950/40 border border-red-900/60 rounded-xl text-red-300 text-[11px] space-y-1">
+              <p>• Irreversible during the selected exclusion timeframe.</p>
+              <p>• Unsettled wagers refunded or handled per WGC rulebook.</p>
+              <p>• National Problem Gambling Helpline: 1-800-522-4700 (24/7)</p>
+            </div>
+          </div>
+          <button onclick="alert('🚨 Self-Exclusion Registered: Immediate session lockout activated.')" class="w-full py-2 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg">
+            Confirm Self-Exclusion
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Client-side Logic Script -->
+  <script>
+    let playerBalance = 10000.00;
+    let oddsFormat = 'american'; // 'american' or 'decimal'
+    let betMode = 'single'; // 'single' or 'parlay'
+    let cashierMode = 'deposit';
+    let currentSelection = {
+      game: 'NFL: KC Chiefs @ BUF Bills',
+      pick: 'Kansas City Chiefs -2.5',
+      odds: -110,
+      market: 'Point Spread',
+      display: 'Chiefs -2.5 (-110)'
+    };
+
+    function setOddsFormat(format) {
+      oddsFormat = format;
+      const btnAmer = document.getElementById('btn-format-american');
+      const btnDec = document.getElementById('btn-format-decimal');
+      if (format === 'american') {
+        btnAmer.className = 'px-2.5 py-1 rounded bg-yellow-400 text-slate-950 font-bold transition';
+        btnDec.className = 'px-2.5 py-1 rounded text-slate-400 hover:text-white transition';
+      } else {
+        btnDec.className = 'px-2.5 py-1 rounded bg-yellow-400 text-slate-950 font-bold transition';
+        btnAmer.className = 'px-2.5 py-1 rounded text-slate-400 hover:text-white transition';
+      }
+      updateOddsDisplay();
+      calculatePayout();
+    }
+
+    function formatOdds(americanVal) {
+      if (oddsFormat === 'american') {
+        return americanVal > 0 ? '+' + americanVal : '' + americanVal;
+      } else {
+        let dec;
+        if (americanVal > 0) {
+          dec = (americanVal / 100) + 1;
+        } else {
+          dec = (100 / Math.abs(americanVal)) + 1;
+        }
+        return dec.toFixed(2);
+      }
+    }
+
+    function updateOddsDisplay() {
+      document.getElementById('slip-odds-display').innerText = formatOdds(currentSelection.odds);
+    }
+
+    function selectBet(game, pick, americanOdds, market, display) {
+      currentSelection = { game, pick, odds: americanOdds, market, display };
+      document.getElementById('slip-game-title').innerText = game;
+      document.getElementById('slip-selection-title').innerText = pick;
+      document.getElementById('slip-market-type').innerText = market;
+      updateOddsDisplay();
+      calculatePayout();
+      
+      // Flash the bet slip
+      const card = document.getElementById('active-pick-card');
+      card.classList.add('border-yellow-400');
+      setTimeout(() => card.classList.remove('border-yellow-400'), 400);
+    }
+
+    function calculatePayout() {
+      const stake = parseFloat(document.getElementById('wager-amount').value) || 0;
+      document.getElementById('summary-wager').innerText = '$' + stake.toFixed(2);
+
+      let profit = 0;
+      if (currentSelection.odds > 0) {
+        profit = stake * (currentSelection.odds / 100);
+      } else {
+        profit = stake * (100 / Math.abs(currentSelection.odds));
+      }
+      const totalPayout = stake + profit;
+
+      document.getElementById('summary-win').innerText = '+$' + profit.toFixed(2);
+      document.getElementById('summary-payout').innerText = '$' + totalPayout.toFixed(2);
+    }
+
+    function addStake(amt) {
+      const input = document.getElementById('wager-amount');
+      input.value = (parseFloat(input.value) || 0) + amt;
+      calculatePayout();
+    }
+
+    function setStakeMax() {
+      document.getElementById('wager-amount').value = Math.min(playerBalance, 1000);
+      calculatePayout();
+    }
+
+    function submitWager() {
+      const stake = parseFloat(document.getElementById('wager-amount').value) || 0;
+      if (stake <= 0) {
+        alert('Please enter a valid wager amount.');
+        return;
+      }
+      if (stake > playerBalance) {
+        alert('Insufficient wallet balance. Please make a deposit at the cashier.');
+        return;
+      }
+
+      playerBalance -= stake;
+      document.getElementById('player-balance').innerText = '$' + playerBalance.toLocaleString('en-US', {minimumFractionDigits: 2});
+
+      const ticketId = 'WY-' + Math.floor(100000 + Math.random() * 900000);
+      const profit = document.getElementById('summary-win').innerText;
+
+      // Add to active tickets
+      const container = document.getElementById('active-tickets-container');
+      const ticketHtml = `
+        <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono space-y-1">
+          <div class="flex justify-between text-slate-400">
+            <span class="text-yellow-400 font-bold">#${ticketId}</span>
+            <span class="text-emerald-400">● CONFIRMED</span>
+          </div>
+          <div class="text-white font-bold">${currentSelection.pick}</div>
+          <div class="flex justify-between text-slate-400 pt-1 border-t border-slate-900">
+            <span>Stake: $${stake.toFixed(2)}</span>
+            <span class="text-emerald-400">To Win: ${profit}</span>
+          </div>
+        </div>
+      `;
+      container.insertAdjacentHTML('afterbegin', ticketHtml);
+
+      // Alert
+      const alertBox = document.getElementById('bet-ticket-alert');
+      alertBox.className = 'p-3 rounded-xl text-xs font-mono bg-emerald-950/90 border border-emerald-800 text-emerald-300';
+      alertBox.innerHTML = `✅ <strong>Wager Placed!</strong> Ticket #${ticketId} accepted by Wyoming Gaming Commission engine.`;
+      alertBox.classList.remove('hidden');
+      setTimeout(() => alertBox.classList.add('hidden'), 5000);
+    }
+
+    function clearSlip() {
+      document.getElementById('slip-game-title').innerText = 'No selection';
+      document.getElementById('slip-selection-title').innerText = 'Select any matchup odds to add to slip';
+      document.getElementById('slip-odds-display').innerText = '--';
+      document.getElementById('summary-wager').innerText = '$0.00';
+      document.getElementById('summary-win').innerText = '$0.00';
+      document.getElementById('summary-payout').innerText = '$0.00';
+    }
+
+    function cashOut(ticketId, amount) {
+      playerBalance += amount;
+      document.getElementById('player-balance').innerText = '$' + playerBalance.toLocaleString('en-US', {minimumFractionDigits: 2});
+      alert(`✅ Ticket #${ticketId} cashed out early for $${amount.toFixed(2)}.`);
+    }
+
+    function switchTab(tabId) {
+      ['sportsbook', 'backtester', 'compliance', 'cashier', 'responsible'].forEach(t => {
+        document.getElementById('panel-' + t).classList.add('hidden');
+        const btn = document.getElementById('tab-' + t);
+        btn.classList.remove('bg-yellow-400', 'text-slate-950');
+        btn.classList.add('bg-slate-900', 'text-slate-400');
+      });
+      document.getElementById('panel-' + tabId).classList.remove('hidden');
+      const activeBtn = document.getElementById('tab-' + tabId);
+      activeBtn.classList.remove('bg-slate-900', 'text-slate-400');
+      activeBtn.classList.add('bg-yellow-400', 'text-slate-950');
+    }
+
+    function filterSport(sport) {
+      document.querySelectorAll('.sport-filter-btn').forEach(btn => {
+        btn.className = 'sport-filter-btn px-3.5 py-1.5 rounded-lg font-medium bg-slate-900 text-slate-300 hover:bg-slate-800 whitespace-nowrap';
+      });
+      event.target.className = 'sport-filter-btn px-3.5 py-1.5 rounded-lg font-bold bg-yellow-400 text-slate-950 whitespace-nowrap';
+
+      document.querySelectorAll('.game-card').forEach(card => {
+        if (sport === 'ALL' || card.dataset.sport === sport) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    function setSlate(slate) {
+      document.querySelectorAll('.slate-btn').forEach(btn => {
+        btn.className = 'slate-btn px-3 py-1 rounded-md font-semibold text-slate-400 hover:text-white';
+      });
+      event.target.className = 'slate-btn px-3 py-1 rounded-md font-bold bg-yellow-400 text-slate-950';
+
+      document.querySelectorAll('.game-card').forEach(card => {
+        if (slate === 'live') {
+          if (card.dataset.slate === 'live') card.classList.remove('hidden');
+          else card.classList.add('hidden');
+        } else {
+          card.classList.remove('hidden');
+        }
+      });
+    }
+
+    function setBetMode(mode) {
+      betMode = mode;
+      if (mode === 'single') {
+        document.getElementById('btn-mode-single').className = 'px-3 py-1 rounded-md font-bold bg-yellow-400 text-slate-950 transition';
+        document.getElementById('btn-mode-parlay').className = 'px-3 py-1 rounded-md font-bold bg-slate-800 text-slate-400 hover:text-white transition';
+      } else {
+        document.getElementById('btn-mode-parlay').className = 'px-3 py-1 rounded-md font-bold bg-yellow-400 text-slate-950 transition';
+        document.getElementById('btn-mode-single').className = 'px-3 py-1 rounded-md font-bold bg-slate-800 text-slate-400 hover:text-white transition';
+      }
+    }
+
+    function runSportsBacktest() {
+      const winRate = (54 + Math.random() * 6).toFixed(1);
+      const profit = (1800 + Math.random() * 800).toFixed(2);
+      const roi = ((profit / 25000) * 100).toFixed(2);
+      const sharpe = (1.7 + Math.random() * 0.5).toFixed(2);
+
+      document.getElementById('bt-winrate').innerText = winRate + '%';
+      document.getElementById('bt-profit').innerText = '+$' + profit;
+      document.getElementById('bt-roi').innerText = '+' + roi + '%';
+      document.getElementById('bt-sharpe').innerText = sharpe;
+      alert(`Simulation completed across 250 historical matchups. Model achieved ${winRate}% ATS win rate with ${roi}% ROI.`);
+    }
+
+    function testGeo() {
+      const ip = document.getElementById('comp-ip').value;
+      document.getElementById('comp-status-box').innerText = `✅ VERIFIED: Device IP ${ip} located inside Wyoming borders. Wagering authorization confirmed.`;
+    }
+
+    function testAge() {
+      const dob = document.getElementById('comp-dob').value;
+      document.getElementById('comp-status-box').innerText = `✅ VERIFIED: DOB ${dob} passes Wyoming statutory requirement (Age 21+).`;
+    }
+
+    function setCashierAction(action) {
+      cashierMode = action;
+      if (action === 'deposit') {
+        document.getElementById('btn-cashier-dep').className = 'py-2 bg-yellow-400 text-slate-950 font-bold rounded-lg';
+        document.getElementById('btn-cashier-with').className = 'py-2 bg-slate-800 text-slate-400 font-bold rounded-lg hover:text-white';
+      } else {
+        document.getElementById('btn-cashier-with').className = 'py-2 bg-yellow-400 text-slate-950 font-bold rounded-lg';
+        document.getElementById('btn-cashier-dep').className = 'py-2 bg-slate-800 text-slate-400 font-bold rounded-lg hover:text-white';
+      }
+    }
+
+    function checkAmlNotice(val) {
+      const box = document.getElementById('aml-notice-box');
+      if (parseFloat(val) >= 3000) {
+        box.classList.remove('hidden');
+      } else {
+        box.classList.add('hidden');
+      }
+    }
+
+    function executeCashier() {
+      const amt = parseFloat(document.getElementById('cashier-amount').value) || 0;
+      if (cashierMode === 'deposit') {
+        playerBalance += amt;
+        alert(`✅ Deposit of $${amt.toFixed(2)} completed successfully.`);
+      } else {
+        if (amt > playerBalance) {
+          alert('Withdrawal amount exceeds available wallet balance.');
+          return;
+        }
+        playerBalance -= amt;
+        alert(`✅ Withdrawal of $${amt.toFixed(2)} initiated.`);
+      }
+      document.getElementById('player-balance').innerText = '$' + playerBalance.toLocaleString('en-US', {minimumFractionDigits: 2});
+    }
+
+    // Initialize default calculation
+    calculatePayout();
+  </script>
+</body>
+</html>

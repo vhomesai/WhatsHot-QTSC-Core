@@ -1,0 +1,46 @@
+{
+  "status": "COMPLETED",
+  "job_id": "dapu6pb18flc739mtlj0",
+  "job_url": "https://quantum.ibm.com/jobs/dapu6pb18flc739mtlj0",
+  "backend": "ibm_marrakesh",
+  "num_qubits": 156,
+  "submitted_at": "Wed Sep 23 08:34:13 2026",
+  "shots": 1024,
+  "problem": "Triqee SGP Cross-Market Covariance QUBO (4-Leg Correlated Parlay Ledger)",
+  "correlation_couplings": {
+    "0-1": 0.35,
+    "1-2": 0.55,
+    "0-3": 0.24,
+    "2-3": -0.18,
+    "0-2": 0.12,
+    "1-3": 0.15
+  },
+  "linear_biases": [
+    -0.2,
+    0.1,
+    -0.38,
+    0.25
+  ],
+  "completed_at": "Wed Sep 23 08:35:39 2026",
+  "top_ground_state": "1111",
+  "top_ground_state_probability_pct": 15.43,
+  "measurement_counts": {
+    "1100": 39,
+    "1011": 31,
+    "0101": 89,
+    "0111": 153,
+    "0010": 23,
+    "0000": 79,
+    "0110": 76,
+    "1111": 158,
+    "0100": 104,
+    "1101": 58,
+    "1000": 54,
+    "1110": 34,
+    "0001": 32,
+    "0011": 29,
+    "1001": 53,
+    "1010": 12
+  },
+  "time_per_step": {}
+}

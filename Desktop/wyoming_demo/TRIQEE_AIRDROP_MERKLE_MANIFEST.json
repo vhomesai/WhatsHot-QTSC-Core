@@ -1,0 +1,90 @@
+{
+  "campaign": "Triqee Quantum Genesis Airdrop (Season 1)",
+  "wyoming_entity_id": "DA-000000992",
+  "cern_zenodo_doi": "10.5281/zenodo.23045297",
+  "merkle_root": "0x953619cff3e4a783fa31789f39476783f5c504c00d818a4327415e806c2e529f",
+  "token_contract_base_l2": "0xTQ00000099200000000000000000000000000001",
+  "airdrop_distributor_contract": "0xAiRdR0P000000992DA000000992B45E77777777",
+  "season_pool_tq": 10000000,
+  "active_claimants": {
+    "0x3d7a68ebd92e7428f731b68bc659d71c35b91176": {
+      "amount": 500,
+      "tier": "TIER_1_DEVELOPER",
+      "leaf": "6436af7c2f44a8ae1e5fb88f610a3c1d5218db060029d456b31b73b14cbc4694",
+      "name": "Open-Source Qiskit & PyTorch Devs",
+      "proof": [
+        "0x8c08058e7a49743a45918c5f9006fd0efa49bdd44d9020c2cdda12399d8df578",
+        "0x0f690fbf04dcf623d89f73fdf118427f2dd87153658db81d8dcea8dad97d89b2",
+        "0x848199b3e3a3c6fce2cb4ed1fb31309d133943bfe121d23f3d0f2e8afbf4b16e"
+      ]
+    },
+    "0x70997970c51812dc3a010c7d01b50e0d17dc79c8": {
+      "amount": 500,
+      "tier": "TIER_1_DEVELOPER",
+      "leaf": "8c08058e7a49743a45918c5f9006fd0efa49bdd44d9020c2cdda12399d8df578",
+      "name": "CUDA-Q & Pennylane Researchers",
+      "proof": [
+        "0x6436af7c2f44a8ae1e5fb88f610a3c1d5218db060029d456b31b73b14cbc4694",
+        "0x0f690fbf04dcf623d89f73fdf118427f2dd87153658db81d8dcea8dad97d89b2",
+        "0x848199b3e3a3c6fce2cb4ed1fb31309d133943bfe121d23f3d0f2e8afbf4b16e"
+      ]
+    },
+    "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc": {
+      "amount": 500,
+      "tier": "TIER_1_DEVELOPER",
+      "leaf": "a0190bb8acdcce2fafec56e3bb9c43d0c675b3192950c15cd0fba74f9e63e549",
+      "name": "DeepSWE Benchmark Contributors",
+      "proof": [
+        "0xdff62a6c74e2856d244c2caef6723359897593410fd7ca6fa9a1ffa4fd1a54ab",
+        "0x4407722fcce17866dbdf489ca1fa33f4da58b43b0c8a7eaa2b570dc08022760b",
+        "0x4b3f3e0865aff4d14e436268ddc03327a3ffcb485f07ff66e398342fb44f7c14"
+      ]
+    },
+    "0x90f79bf6eb2c4f870365e785982e1f101e93b906": {
+      "amount": 5000,
+      "tier": "TIER_2_QUANT_RESEARCHER",
+      "leaf": "5ef9ce914c4aff013a3f10bd8444c934ec4327e9c3c6295d612a540040ea0c3a",
+      "name": "Hedge Fund Quant Analysts",
+      "proof": [
+        "0x165748f4330ef4c2e9ac2751398d2fa64b7638aa7862c2f7a31f0ad8e8033197",
+        "0x9b760724368b9de4240eefc42a1fb9c741bc1cb5d98b6775caba540932eb914e",
+        "0x848199b3e3a3c6fce2cb4ed1fb31309d133943bfe121d23f3d0f2e8afbf4b16e"
+      ]
+    },
+    "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65": {
+      "amount": 5000,
+      "tier": "TIER_2_QUANT_RESEARCHER",
+      "leaf": "fe05b0ffed8733f1995c4ea8585636333ae76d17c46038f054ff3c842cee9a36",
+      "name": "University Physics & Quantum Labs",
+      "proof": [
+        "0xfe05b0ffed8733f1995c4ea8585636333ae76d17c46038f054ff3c842cee9a36",
+        "0xb340347866c8831d3f00b9bda86750d230d27d13c3db81f6ebf9917ab32bce44",
+        "0x4b3f3e0865aff4d14e436268ddc03327a3ffcb485f07ff66e398342fb44f7c14"
+      ]
+    },
+    "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc": {
+      "amount": 250,
+      "tier": "TIER_3_EARLY_COHORT",
+      "leaf": "165748f4330ef4c2e9ac2751398d2fa64b7638aa7862c2f7a31f0ad8e8033197",
+      "name": "Founding Pilot Supporters",
+      "proof": [
+        "0x5ef9ce914c4aff013a3f10bd8444c934ec4327e9c3c6295d612a540040ea0c3a",
+        "0x9b760724368b9de4240eefc42a1fb9c741bc1cb5d98b6775caba540932eb914e",
+        "0x848199b3e3a3c6fce2cb4ed1fb31309d133943bfe121d23f3d0f2e8afbf4b16e"
+      ]
+    },
+    "0x976ea74026e726554db657fa54763abd0c3a0aa9": {
+      "amount": 250,
+      "tier": "TIER_3_EARLY_COHORT",
+      "leaf": "dff62a6c74e2856d244c2caef6723359897593410fd7ca6fa9a1ffa4fd1a54ab",
+      "name": "Community Pioneer Node",
+      "proof": [
+        "0xa0190bb8acdcce2fafec56e3bb9c43d0c675b3192950c15cd0fba74f9e63e549",
+        "0x4407722fcce17866dbdf489ca1fa33f4da58b43b0c8a7eaa2b570dc08022760b",
+        "0x4b3f3e0865aff4d14e436268ddc03327a3ffcb485f07ff66e398342fb44f7c14"
+      ]
+    }
+  },
+  "status": "MERKLE_TREE_FORMALLY_VERIFIED",
+  "timestamp": "2026-10-01T18:36:49Z"
+}

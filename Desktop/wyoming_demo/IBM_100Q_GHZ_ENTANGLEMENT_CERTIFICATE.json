@@ -1,0 +1,37 @@
+{
+  "benchmark": "Triqee 100-Qubit Macroscopic GHZ Entanglement",
+  "processor": "ibm_fez",
+  "architecture": "IBM Quantum 156-Qubit Heron",
+  "job_id": "daq0ql2c505c73ciultg",
+  "job_url": "https://quantum.ibm.com/jobs/daq0ql2c505c73ciultg",
+  "completed_at": "Wed Sep 23 11:33:18 2026",
+  "num_qubits": 100,
+  "shots": 1024,
+  "qpu_seconds": 5.536286037,
+  "transpiled_native_depth": 403,
+  "transpiled_native_gates": {
+    "rz": 398,
+    "sx": 199,
+    "measure": 100,
+    "cz": 99,
+    "barrier": 2
+  },
+  "entanglement_metrics": {
+    "all_zeros_shots": 22,
+    "all_ones_shots": 0,
+    "ghz_basis_states_shots": 22,
+    "even_parity_shots": 522,
+    "odd_parity_shots": 502,
+    "even_parity_pct": 50.98,
+    "mean_hamming_weight": 39.25,
+    "total_unique_bitstrings": 986
+  },
+  "top_bitstrings_sample": {
+    "0000000000000000...0000000000000000": 3,
+    "0000000000000000...1111111111111111": 3,
+    "0000000000000000...0000000000011111": 2,
+    "0000000000000000...0000000111111111": 2,
+    "0000000000000000...1111110111111111": 2,
+    "1111111111111111...0000000000000000": 2
+  }
+}
