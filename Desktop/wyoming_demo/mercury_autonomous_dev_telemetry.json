@@ -1,21 +1,21 @@
 {
-  "timestamp": "2026-10-10 11:39:35",
+  "timestamp": "2026-10-10 13:11:14",
   "scan": {
-    "total_files": 31,
-    "valid_syntax_files": 31,
+    "total_files": 32,
+    "valid_syntax_files": 32,
     "syntax_errors": [],
-    "uncommitted_files_count": 842,
+    "uncommitted_files_count": 845,
     "git_dirty": true
   },
-  "tests_total": 4,
-  "tests_passed": 4,
+  "tests_total": 5,
+  "tests_passed": 5,
   "tests_failed": 0,
   "test_details": [
     {
       "test": "test_wyoming_bonding_curve.py",
       "success": true,
       "exit_code": 0,
-      "duration_sec": 0.151,
+      "duration_sec": 0.155,
       "stdout_snippet": "================================\n   BONDING CURVE & DEX SEEDER SUITE 100% VERIFIED AND READY FOR BASE MAINNET\n================================================================================\n  \u00e2\u0153\u201c Saved Verification Report: C:\\Users\\VHome\\Desktop\\wyoming_demo\\wyoming_bonding_curve_verification.json",
       "stderr_snippet": ""
     },
@@ -23,15 +23,15 @@
       "test": "test_consumptive_burn_bridge.py",
       "success": true,
       "exit_code": 0,
-      "duration_sec": 3.76,
-      "stdout_snippet": "Q\n  \u00e2\u0153\u201c Active Consumptive Tickets: 6\n  \u00e2\u0153\u201c Safe Harbor Certified: True\n\n================================================================================\n   ALL VECTOR 2 CONSUMPTIVE BURN TESTS PASSED (100% OPERATIONAL)\n================================================================================",
+      "duration_sec": 4.41,
+      "stdout_snippet": "Q\n  \u00e2\u0153\u201c Active Consumptive Tickets: 8\n  \u00e2\u0153\u201c Safe Harbor Certified: True\n\n================================================================================\n   ALL VECTOR 2 CONSUMPTIVE BURN TESTS PASSED (100% OPERATIONAL)\n================================================================================",
       "stderr_snippet": ""
     },
     {
       "test": "triqee_4realsy_qsir_heron_bridge.py",
       "success": true,
       "exit_code": 0,
-      "duration_sec": 4.617,
+      "duration_sec": 4.424,
       "stdout_snippet": "==\n[\u00e2\u0153\u201c] QSIR JSON Manifest generated: C:\\Users\\VHome\\Desktop\\wyoming_demo\\TRIQEE_4REALSY_QSIR_HERON_MANIFEST.json\n[\u00e2\u0153\u201c] OpenQASM 3.0 Circuit generated: C:\\Users\\VHome\\Desktop\\wyoming_demo\\triqee_4realsy_heron_ghz.qasm\n================================================================================",
       "stderr_snippet": ""
     },
@@ -39,8 +39,16 @@
       "test": "triqee_run_full_user_buildout_test.py",
       "success": true,
       "exit_code": 0,
-      "duration_sec": 2.181,
-      "stdout_snippet": "ageId: 010001a126e644b3-18c7cef4-d488-4045-a5ca-37b29290eff8-000000)\n\n================================================================================\n   TEST PROJECT COMPLETED TO 100% SUCCESS // USER BUILDOUT VERIFIED\n================================================================================",
+      "duration_sec": 2.765,
+      "stdout_snippet": "ageId: 010001a1273a33df-a695e041-f26c-467d-8c0d-495ec38faec2-000000)\n\n================================================================================\n   TEST PROJECT COMPLETED TO 100% SUCCESS // USER BUILDOUT VERIFIED\n================================================================================",
+      "stderr_snippet": ""
+    },
+    {
+      "test": "triqee_ltlm_byte_retrofitting_engine.py",
+      "success": true,
+      "exit_code": 0,
+      "duration_sec": 0.174,
+      "stdout_snippet": "xact reversibility.\n   3. Retrofitting existing checkpoints (<1% pretrain budget) saves $Ms in compute.\n================================================================================\n\n[\u00e2\u0153\u201c] Evaluation Manifest Persisted: C:\\Users\\VHome\\Desktop\\wyoming_demo\\TRIQEE_BYTE_RETROFITTING_EVALUATION.json",
       "stderr_snippet": ""
     }
   ],
@@ -52,6 +60,6 @@
     "zero_gas_flash_arbitrage_invariant": true
   },
   "git_committed": true,
-  "commit_info": "71f953d",
+  "commit_info": "f215967",
   "verdict": "NOMINAL_FULL_PASS"
 }
