@@ -1,0 +1,12 @@
+{
+  "status": "VERIFIED_ALL_TESTS_PASS",
+  "principal_tested_usd": 250000.0,
+  "epochs_tested": 730,
+  "total_lp_payout_usd": 14999.99985,
+  "lp_effective_apy_pct": 5.99999994,
+  "total_protocol_carry_retained_usd": 7874.99983,
+  "protocol_carry_margin_pct": 3.149999932,
+  "non_custodial_redemption_verified": true,
+  "contract_bytecode_size_bytes": 4767,
+  "compiler_version": "vyper-0.4.3"
+}
