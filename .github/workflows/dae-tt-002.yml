@@ -1,15 +1,19 @@
-name: DAE TT-002 Evidence Tests
+name: DAE RWA Evidence Tests
 
 on:
   push:
     paths:
       - 'dae_tt002.py'
       - 'test_dae_tt002.py'
+      - 'dae_rwa001.py'
+      - 'test_dae_rwa001.py'
       - '.github/workflows/dae-tt-002.yml'
   pull_request:
     paths:
       - 'dae_tt002.py'
       - 'test_dae_tt002.py'
+      - 'dae_rwa001.py'
+      - 'test_dae_rwa001.py'
       - '.github/workflows/dae-tt-002.yml'
 
 jobs:
@@ -20,5 +24,5 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.12'
-      - name: Validate evidence classifier
-        run: python -m unittest -v test_dae_tt002
+      - name: Validate RWA evidence gates
+        run: python -m unittest -v test_dae_tt002 test_dae_rwa001
